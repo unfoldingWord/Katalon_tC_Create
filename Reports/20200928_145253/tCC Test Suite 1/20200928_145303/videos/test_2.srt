@@ -1,0 +1,464 @@
+1
+00:00:00,650 --> 00:00:00,651
+1. highlighted = "rgba(255, 255, 0, 1)"
+
+2
+00:00:00,652 --> 00:00:00,653
+5. callTestCase(findTestCase("tCC Components/tCC tN Open For Edit"), ["$username":"", "$password":"", "$origQuote":"", "$newOrigQuote":""], STOP_ON_FAILURE)
+
+3
+00:00:00,722 --> 00:00:00,723
+1. callTestCase(findTestCase("tCC Components/tCC Login"), ["user":$username, "password":$password], STOP_ON_FAILURE)
+
+4
+00:00:00,838 --> 00:00:00,839
+1. if (openBrowser)
+
+5
+00:00:00,841 --> 00:00:00,841
+1. openBrowser("")
+
+6
+00:00:07,281 --> 00:00:07,282
+5. maximizeWindow()
+
+7
+00:00:07,297 --> 00:00:07,298
+5. println("Opening " + url)
+
+8
+00:00:07,298 --> 00:00:07,299
+9. navigateToUrl(url)
+
+9
+00:00:10,954 --> 00:00:10,955
+13. waitForElementVisible(findTestObject("Page_tC Create/text_tCCVersion"), 30)
+
+10
+00:00:11,969 --> 00:00:11,970
+17. version = getText(findTestObject("Page_tC Create/text_tCCVersion"))
+
+11
+00:00:12,259 --> 00:00:12,260
+21. version = version
+
+12
+00:00:12,260 --> 00:00:12,261
+25. println("Version is " + version)
+
+13
+00:00:12,261 --> 00:00:12,262
+29. if (user == "")
+
+14
+00:00:12,264 --> 00:00:12,264
+1. println("Logging in as " + user1Name)
+
+15
+00:00:12,265 --> 00:00:12,266
+5. setText(findTestObject("Page_tC Create/input__username"), user1Name)
+
+16
+00:00:13,162 --> 00:00:13,163
+9. setText(findTestObject("Page_tC Create/input__password"), user1Password)
+
+17
+00:00:14,125 --> 00:00:14,125
+13. click(findTestObject("Page_tC Create/button_Login"))
+
+18
+00:00:14,832 --> 00:00:14,836
+5. if (callTestCase(findTestCase("tCC Components/tCC Select Org-Lang-Resource"), ["organization":"", "language":"", "resource":"unfoldingWord/en_tn"], STOP_ON_FAILURE) == false)
+
+19
+00:00:14,911 --> 00:00:14,911
+1. if (organization == "")
+
+20
+00:00:14,912 --> 00:00:14,912
+1. organization = organization
+
+21
+00:00:14,913 --> 00:00:14,914
+5. if (language == "")
+
+22
+00:00:14,914 --> 00:00:14,915
+1. language = langCode
+
+23
+00:00:14,915 --> 00:00:14,916
+9. println("Choosing organization " + organization)
+
+24
+00:00:14,917 --> 00:00:14,918
+13. if (waitForElementPresent(organization, 5, OPTIONAL) == false)
+
+25
+00:00:17,141 --> 00:00:17,141
+2. click(organization)
+
+26
+00:00:17,608 --> 00:00:17,609
+6. alerted = waitForAlert(2)
+
+27
+00:00:19,663 --> 00:00:19,664
+10. if (alerted == true)
+
+28
+00:00:19,664 --> 00:00:19,665
+2. println("Not alerted on organization")
+
+29
+00:00:19,665 --> 00:00:19,665
+6. alertFlag = false
+
+30
+00:00:19,666 --> 00:00:19,666
+10. println("Choosing resource " + resource)
+
+31
+00:00:19,667 --> 00:00:19,667
+14. click(findTestObject("Page_tC Create/resource_Parmed", ["resource":resource]))
+
+32
+00:00:20,348 --> 00:00:20,349
+18. println("Choosing language " + language)
+
+33
+00:00:20,349 --> 00:00:20,350
+22. click(findTestObject("Page_tC Create/combo_Select Language"))
+
+34
+00:00:21,079 --> 00:00:21,080
+26. click(findTestObject("Page_tC Create/listOption_Language_Parmed", ["lang_code":language]))
+
+35
+00:00:21,692 --> 00:00:21,693
+14. return true
+
+36
+00:00:21,694 --> 00:00:21,695
+9. click(findTestObject("Page_tC Create/file_en_tn_57-TITtsv"))
+
+37
+00:00:23,394 --> 00:00:23,395
+9. system = unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem()
+
+38
+00:00:23,456 --> 00:00:23,457
+13. myBrowser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+39
+00:00:23,486 --> 00:00:23,487
+17. objectPage = "Page_tCC translationNotes/"
+
+40
+00:00:23,487 --> 00:00:23,488
+21. len = 17
+
+41
+00:00:23,488 --> 00:00:23,489
+25. origQuote = []
+
+42
+00:00:23,489 --> 00:00:23,490
+29. origQuote = ["text_OrigQuote-en-xyz8-Pavlos-1", "text_OrigQuote-en-xyz8-dolos-1", "text_OrigQuote-en-xyz8-Theo-1", "text_OrigQuote-en-xyz8-apstolos-1", "text_OrigQuote-en-xyz8-d-1", "text_OrigQuote-en-xyz8-Iiso-1", "text_OrigQuote-en-xyz8-Christo-1", "text_OrigQuote-en-xyz8-kat-1", "text_OrigQuote-en-xyz8-pstin-1", "text_OrigQuote-en-xyz8-eklektn-1", "text_OrigQuote-en-xyz8-Theo-2", "text_OrigQuote-en-xyz8-ka-1", "text_OrigQuote-en-xyz8-epgnosin-1", "text_OrigQuote-en-xyz8-alitheas-1", "text_OrigQuote-en-xyz8-ts-1", "text_OrigQuote-en-xyz8-ka-2", "text_OrigQuote-en-xyz8-efsveian-1"]
+
+43
+00:00:23,490 --> 00:00:23,491
+33. for (def i : (0..(origQuote.size() - 1)))
+
+44
+00:00:23,506 --> 00:00:23,508
+1. origQuote[i] = objectPage + origQuote[i]
+
+45
+00:00:23,515 --> 00:00:23,516
+1. origQuote[i] = objectPage + origQuote[i]
+
+46
+00:00:23,516 --> 00:00:23,519
+1. origQuote[i] = objectPage + origQuote[i]
+
+47
+00:00:23,519 --> 00:00:23,520
+1. origQuote[i] = objectPage + origQuote[i]
+
+48
+00:00:23,521 --> 00:00:23,521
+1. origQuote[i] = objectPage + origQuote[i]
+
+49
+00:00:23,522 --> 00:00:23,522
+1. origQuote[i] = objectPage + origQuote[i]
+
+50
+00:00:23,523 --> 00:00:23,524
+1. origQuote[i] = objectPage + origQuote[i]
+
+51
+00:00:23,524 --> 00:00:23,525
+1. origQuote[i] = objectPage + origQuote[i]
+
+52
+00:00:23,525 --> 00:00:23,526
+1. origQuote[i] = objectPage + origQuote[i]
+
+53
+00:00:23,526 --> 00:00:23,527
+1. origQuote[i] = objectPage + origQuote[i]
+
+54
+00:00:23,527 --> 00:00:23,528
+1. origQuote[i] = objectPage + origQuote[i]
+
+55
+00:00:23,528 --> 00:00:23,529
+1. origQuote[i] = objectPage + origQuote[i]
+
+56
+00:00:23,530 --> 00:00:23,531
+1. origQuote[i] = objectPage + origQuote[i]
+
+57
+00:00:23,531 --> 00:00:23,532
+1. origQuote[i] = objectPage + origQuote[i]
+
+58
+00:00:23,532 --> 00:00:23,533
+1. origQuote[i] = objectPage + origQuote[i]
+
+59
+00:00:23,533 --> 00:00:23,534
+1. origQuote[i] = objectPage + origQuote[i]
+
+60
+00:00:23,534 --> 00:00:23,535
+1. origQuote[i] = objectPage + origQuote[i]
+
+61
+00:00:23,550 --> 00:00:23,554
+37. click(findTestObject("Page_tCC translationNotes/button_ViewColumns"))
+
+62
+00:00:31,680 --> 00:00:31,681
+41. click(findTestObject("Page_tCC translationNotes/columns_OrigQuote"))
+
+63
+00:00:33,259 --> 00:00:33,260
+45. click(findTestObject("Page_tCC translationNotes/btnX_CloseColumns"))
+
+64
+00:00:33,808 --> 00:00:33,809
+49. glText = getText(findTestObject("Page_tCC translationNotes/text_OrigQuote-GL-xyz8"))
+
+65
+00:00:34,337 --> 00:00:34,338
+53. enText = getText(findTestObject(origQuote[16]))
+
+66
+00:00:34,625 --> 00:00:34,626
+57. if (glText != enText)
+
+67
+00:00:34,627 --> 00:00:34,628
+2. printHighlightStatus(origQuote[16], enText)
+
+68
+00:00:34,629 --> 00:00:34,630
+1. hText = "highlighted"
+
+69
+00:00:34,631 --> 00:00:34,631
+5. highlighted = "rgba(255, 255, 0, 1)"
+
+70
+00:00:34,632 --> 00:00:34,632
+9. if (getCSSValue(findTestObject(element), "background-color") != highlighted)
+
+71
+00:00:34,917 --> 00:00:34,917
+1. hText = "not " + hText
+
+72
+00:00:34,918 --> 00:00:34,919
+13. println(elementText + " is " + hText)
+
+73
+00:00:34,920 --> 00:00:34,922
+61. setText(findTestObject("Page_tCC translationNotes/text_OrigQuote-GL-xyz8"), "")
+
+74
+00:00:37,688 --> 00:00:37,689
+65. printHighlightStatus(origQuote[16], enText)
+
+75
+00:00:37,691 --> 00:00:37,691
+1. hText = "highlighted"
+
+76
+00:00:37,692 --> 00:00:37,692
+5. highlighted = "rgba(255, 255, 0, 1)"
+
+77
+00:00:37,694 --> 00:00:37,695
+9. if (getCSSValue(findTestObject(element), "background-color") != highlighted)
+
+78
+00:00:38,311 --> 00:00:38,311
+1. hText = "not " + hText
+
+79
+00:00:38,311 --> 00:00:38,313
+13. println(elementText + " is " + hText)
+
+80
+00:00:38,313 --> 00:00:38,314
+69. enText = getText(findTestObject(origQuote[2]))
+
+81
+00:00:38,845 --> 00:00:38,846
+73. setGLOrigQuote("", enText)
+
+82
+00:00:38,848 --> 00:00:38,850
+1. if (fnc == "paste")
+
+83
+00:00:38,853 --> 00:00:38,856
+2. setText(findTestObject("Page_tCC translationNotes/text_OrigQuote-GL-xyz8"), quote)
+
+84
+00:00:39,653 --> 00:00:39,654
+5. clickOffset(findTestObject("Page_tCC translationNotes/label_OrigQuote"), -10, -10)
+
+85
+00:00:41,394 --> 00:00:41,394
+77. printHighlightStatus(origQuote[2], enText)
+
+86
+00:00:41,395 --> 00:00:41,396
+1. hText = "highlighted"
+
+87
+00:00:41,396 --> 00:00:41,400
+5. highlighted = "rgba(255, 255, 0, 1)"
+
+88
+00:00:41,401 --> 00:00:41,402
+9. if (getCSSValue(findTestObject(element), "background-color") != highlighted)
+
+89
+00:00:41,798 --> 00:00:41,798
+1. hText = "not " + hText
+
+90
+00:00:41,798 --> 00:00:41,799
+13. println(elementText + " is " + hText)
+
+91
+00:00:41,799 --> 00:00:41,800
+81. if (!(testHighlightStatus(origQuote[2])))
+
+92
+00:00:41,801 --> 00:00:41,802
+1. flag = false
+
+93
+00:00:41,802 --> 00:00:41,803
+5. highlighted = "rgba(255, 255, 0, 1)"
+
+94
+00:00:41,803 --> 00:00:41,804
+9. if (getCSSValue(findTestObject(element), "background-color") == highlighted)
+
+95
+00:00:42,070 --> 00:00:42,070
+13. return flag
+
+96
+00:00:42,071 --> 00:00:42,072
+1. println(enText + " is not highlighted as expected")
+
+97
+00:00:42,073 --> 00:00:42,075
+85. doubleClick(findTestObject(origQuote[3]))
+
+98
+00:00:42,579 --> 00:00:42,579
+89. copyText()
+
+99
+00:00:42,580 --> 00:00:42,580
+1. if (system.contains("Windows"))
+
+100
+00:00:42,583 --> 00:00:42,583
+2. sendKeys(null, Keys.chord(COMMAND, "c"))
+
+101
+00:00:42,974 --> 00:00:42,975
+93. setGLOrigQuote("paste", "")
+
+102
+00:00:42,975 --> 00:00:42,976
+1. if (fnc == "paste")
+
+103
+00:00:42,976 --> 00:00:42,977
+1. setText(findTestObject("Page_tCC translationNotes/text_OrigQuote-GL-xyz8"), "")
+
+104
+00:00:45,638 --> 00:00:45,639
+5. click(findTestObject("Page_tCC translationNotes/text_OrigQuote-GL-xyz8"))
+
+105
+00:00:49,743 --> 00:00:49,744
+1. separator = "==========================================================================================================================="
+
+106
+00:00:49,745 --> 00:00:49,745
+5. println(separator)
+
+107
+00:00:49,745 --> 00:00:49,746
+9. prefix = " +++++++++++ "
+
+108
+00:00:49,746 --> 00:00:49,747
+13. if (testCaseContext.getTestCaseStatus() != "PASSED")
+
+109
+00:00:49,747 --> 00:00:49,748
+1. prefix = " ---------------------- "
+
+110
+00:00:49,748 --> 00:00:49,748
+17. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " " + testCaseContext.getTestCaseStatus() + prefix)
+
+111
+00:00:49,749 --> 00:00:49,749
+21. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+112
+00:00:49,750 --> 00:00:49,750
+25. if (tcMessages.size() > 0)
+
+113
+00:00:49,751 --> 00:00:49,751
+29. println(separator)
+
+114
+00:00:51,967 --> 00:00:51,968
+1. tcMessages = []
+
+115
+00:00:51,968 --> 00:00:51,968
+5. executionProfile = getExecutionProfile()
+
+116
+00:00:51,968 --> 00:00:51,969
+9. logInfo("Execution profile is " + executionProfile)
+

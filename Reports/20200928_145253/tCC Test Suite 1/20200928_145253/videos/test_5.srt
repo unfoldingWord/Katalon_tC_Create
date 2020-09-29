@@ -1,0 +1,300 @@
+1
+00:00:00,402 --> 00:00:00,403
+1. callTestCase(findTestCase("tCC Components/tCC tA Open For Edit"), ["$username":"", "$password":"", "$origQuote":"", "$newOrigQuote":""], STOP_ON_FAILURE)
+
+2
+00:00:00,766 --> 00:00:00,767
+1. callTestCase(findTestCase("tCC Components/tCC Login"), ["user":$username, "password":$password], STOP_ON_FAILURE)
+
+3
+00:00:00,923 --> 00:00:00,924
+1. if (openBrowser)
+
+4
+00:00:00,924 --> 00:00:00,925
+1. openBrowser("")
+
+5
+00:00:03,955 --> 00:00:03,956
+5. maximizeWindow()
+
+6
+00:00:04,144 --> 00:00:04,145
+5. println("Opening " + url)
+
+7
+00:00:04,145 --> 00:00:04,146
+9. navigateToUrl(url)
+
+8
+00:00:06,978 --> 00:00:06,979
+13. waitForElementVisible(findTestObject("Page_tC Create/text_tCCVersion"), 30)
+
+9
+00:00:07,935 --> 00:00:07,935
+17. version = getText(findTestObject("Page_tC Create/text_tCCVersion"))
+
+10
+00:00:08,228 --> 00:00:08,229
+21. version = version
+
+11
+00:00:08,229 --> 00:00:08,230
+25. println("Version is " + version)
+
+12
+00:00:08,230 --> 00:00:08,230
+29. if (user == "")
+
+13
+00:00:08,230 --> 00:00:08,231
+1. println("Logging in as " + user1Name)
+
+14
+00:00:08,231 --> 00:00:08,231
+5. setText(findTestObject("Page_tC Create/input__username"), user1Name)
+
+15
+00:00:09,065 --> 00:00:09,066
+9. setText(findTestObject("Page_tC Create/input__password"), user1Password)
+
+16
+00:00:10,094 --> 00:00:10,094
+13. click(findTestObject("Page_tC Create/button_Login"))
+
+17
+00:00:10,545 --> 00:00:10,546
+5. if (callTestCase(findTestCase("tCC Components/tCC Select Org-Lang-Resource"), ["organization":"", "language":"", "resource":"unfoldingWord® Translation Academy"], STOP_ON_FAILURE) == false)
+
+18
+00:00:10,620 --> 00:00:10,620
+1. if (organization == "")
+
+19
+00:00:10,621 --> 00:00:10,621
+1. organization = organization
+
+20
+00:00:10,621 --> 00:00:10,622
+5. if (language == "")
+
+21
+00:00:10,622 --> 00:00:10,623
+1. language = langCode
+
+22
+00:00:10,623 --> 00:00:10,623
+9. println("Choosing organization " + organization)
+
+23
+00:00:10,624 --> 00:00:10,624
+13. if (waitForElementPresent(organization, 5, OPTIONAL) == false)
+
+24
+00:00:12,568 --> 00:00:12,568
+2. click(organization)
+
+25
+00:00:12,870 --> 00:00:12,870
+6. alerted = waitForAlert(2)
+
+26
+00:00:14,959 --> 00:00:14,960
+10. if (alerted == true)
+
+27
+00:00:14,961 --> 00:00:14,962
+2. println("Not alerted on organization")
+
+28
+00:00:14,962 --> 00:00:14,962
+6. alertFlag = false
+
+29
+00:00:14,963 --> 00:00:14,963
+10. println("Choosing resource " + resource)
+
+30
+00:00:14,964 --> 00:00:14,964
+14. click(findTestObject("Page_tC Create/resource_Parmed", ["resource":resource]))
+
+31
+00:00:15,471 --> 00:00:15,512
+18. println("Choosing language " + language)
+
+32
+00:00:15,512 --> 00:00:15,513
+22. click(findTestObject("Page_tC Create/combo_Select Language"))
+
+33
+00:00:16,301 --> 00:00:16,302
+26. click(findTestObject("Page_tC Create/listOption_Language_Parmed", ["lang_code":language]))
+
+34
+00:00:16,971 --> 00:00:16,972
+14. return true
+
+35
+00:00:16,975 --> 00:00:16,975
+9. click(findTestObject("Page_tC Create/span_translate"))
+
+36
+00:00:17,838 --> 00:00:17,839
+13. click(findTestObject("Page_tC Create/span_bita-humanbehavior"))
+
+37
+00:00:19,206 --> 00:00:19,215
+17. click(findTestObject("Page_tC Create/span_01.md"))
+
+38
+00:00:20,333 --> 00:00:20,334
+5. click(findTestObject("Page_tCC translationAcademy/section_BentOver"))
+
+39
+00:00:22,249 --> 00:00:22,250
+9. click(findTestObject("Page_tCC translationAcademy/text_BentOver"))
+
+40
+00:00:22,763 --> 00:00:22,763
+13. click(findTestObject("Page_tCC translationAcademy/header_BentOver"))
+
+41
+00:00:23,349 --> 00:00:23,350
+17. delay(2)
+
+42
+00:00:25,358 --> 00:00:25,358
+21. if (!(getText(findTestObject("Page_tCC translationAcademy/text_BentOver")).contains("Yahweh")))
+
+43
+00:00:25,692 --> 00:00:25,692
+2. println("Block quote text is correct")
+
+44
+00:00:25,693 --> 00:00:25,693
+6. if (!(verifyElementPresent(findTestObject("Page_tCC translationAcademy/button_SaveEnabled"), 1, CONTINUE_ON_FAILURE)))
+
+45
+00:00:28,762 --> 00:00:28,763
+1. unfoldingWord_Keywords.SendMessage.SendFailMessage("Test failed because the Save button was not enabled after text change.")
+
+46
+00:00:28,775 --> 00:00:28,776
+5. click(findTestObject("Page_tCC translationAcademy/text_BentOver"))
+
+47
+00:00:29,268 --> 00:00:29,268
+9. sendKeys(findTestObject("Page_tCC translationAcademy/text_BentOver"), Keys.chord(END))
+
+48
+00:00:29,643 --> 00:00:29,643
+13. sendKeys(findTestObject("Page_tCC translationAcademy/text_BentOver"), "x")
+
+49
+00:00:30,025 --> 00:00:30,025
+17. click(findTestObject("Page_tCC translationAcademy/header_BentOver"))
+
+50
+00:00:30,638 --> 00:00:30,639
+21. delay(2)
+
+51
+00:00:32,645 --> 00:00:32,646
+25. click(findTestObject("Page_tCC translationAcademy/button_SaveEnabled"))
+
+52
+00:00:33,003 --> 00:00:33,004
+29. waitForElementNotPresent(findTestObject("Page_tCC translationAcademy/button_SaveEnabled"), 30)
+
+53
+00:00:37,549 --> 00:00:37,550
+33. click(findTestObject("Page_tCC translationAcademy/text_BentOver"))
+
+54
+00:00:37,997 --> 00:00:37,998
+37. sendKeys(findTestObject("Page_tCC translationAcademy/text_BentOver"), Keys.chord(END))
+
+55
+00:00:38,377 --> 00:00:38,378
+41. sendKeys(findTestObject("Page_tCC translationAcademy/text_BentOver"), Keys.chord(BACK_SPACE))
+
+56
+00:00:38,756 --> 00:00:38,758
+45. click(findTestObject("Page_tCC translationAcademy/header_BentOver"))
+
+57
+00:00:39,408 --> 00:00:39,409
+49. delay(2)
+
+58
+00:00:41,415 --> 00:00:41,416
+10. click(findTestObject("Page_tCC translationAcademy/button_SaveEnabled"))
+
+59
+00:00:41,819 --> 00:00:41,821
+14. if (!(waitForElementNotPresent(findTestObject("Page_tCC translationAcademy/button_SaveEnabled"), 30)))
+
+60
+00:00:45,962 --> 00:00:45,962
+25. closeBrowser()
+
+61
+00:00:46,218 --> 00:00:46,218
+1. separator = "==========================================================================================================================="
+
+62
+00:00:46,218 --> 00:00:46,219
+5. println(separator)
+
+63
+00:00:46,219 --> 00:00:46,219
+9. prefix = " +++++++++++ "
+
+64
+00:00:46,220 --> 00:00:46,220
+13. if (testCaseContext.getTestCaseStatus() != "PASSED")
+
+65
+00:00:46,220 --> 00:00:46,221
+1. prefix = " ---------------------- "
+
+66
+00:00:46,221 --> 00:00:46,222
+17. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " " + testCaseContext.getTestCaseStatus() + prefix)
+
+67
+00:00:46,222 --> 00:00:46,222
+21. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+68
+00:00:46,223 --> 00:00:46,223
+25. if (tcMessages.size() > 0)
+
+69
+00:00:46,223 --> 00:00:46,223
+1. for (def i : (0..(internal.GlobalVariable.tcMessages.size() - 1)))
+
+70
+00:00:46,224 --> 00:00:46,224
+1. println(tcMessages[i])
+
+71
+00:00:46,225 --> 00:00:46,225
+5. tsMessages.add(tcMessages[i])
+
+72
+00:00:46,225 --> 00:00:46,226
+29. println(separator)
+
+73
+00:00:48,372 --> 00:00:48,372
+1. tcMessages = []
+
+74
+00:00:48,372 --> 00:00:48,373
+5. executionProfile = getExecutionProfile()
+
+75
+00:00:48,373 --> 00:00:48,374
+9. logInfo("Execution profile is " + executionProfile)
+

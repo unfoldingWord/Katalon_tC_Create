@@ -1,0 +1,716 @@
+1
+00:00:00,293 --> 00:00:00,294
+1. system = unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem()
+
+2
+00:00:00,295 --> 00:00:00,295
+5. callTestCase(findTestCase("tCC Components/tCC tN Open For Edit"), [:], STOP_ON_FAILURE)
+
+3
+00:00:00,392 --> 00:00:00,392
+1. callTestCase(findTestCase("tCC Components/tCC Login"), ["user":$username, "password":$password], STOP_ON_FAILURE)
+
+4
+00:00:00,493 --> 00:00:00,494
+1. if (openBrowser)
+
+5
+00:00:00,494 --> 00:00:00,494
+1. openBrowser("")
+
+6
+00:00:03,172 --> 00:00:03,173
+5. maximizeWindow()
+
+7
+00:00:03,381 --> 00:00:03,382
+5. println("Opening " + url)
+
+8
+00:00:03,383 --> 00:00:03,385
+9. navigateToUrl(url)
+
+9
+00:00:08,638 --> 00:00:08,658
+13. waitForElementVisible(findTestObject("Page_tC Create/text_tCCVersion"), 30)
+
+10
+00:00:09,655 --> 00:00:09,656
+17. version = getText(findTestObject("Page_tC Create/text_tCCVersion"))
+
+11
+00:00:09,987 --> 00:00:09,990
+21. version = version
+
+12
+00:00:09,990 --> 00:00:09,998
+25. println("Version is " + version)
+
+13
+00:00:10,028 --> 00:00:10,029
+29. if (user == "")
+
+14
+00:00:10,029 --> 00:00:10,030
+1. println("Logging in as " + user1Name)
+
+15
+00:00:10,030 --> 00:00:10,031
+5. setText(findTestObject("Page_tC Create/input__username"), user1Name)
+
+16
+00:00:10,843 --> 00:00:10,843
+9. setText(findTestObject("Page_tC Create/input__password"), user1Password)
+
+17
+00:00:11,644 --> 00:00:11,644
+13. click(findTestObject("Page_tC Create/button_Login"))
+
+18
+00:00:12,064 --> 00:00:12,065
+5. if (callTestCase(findTestCase("tCC Components/tCC Select Org-Lang-Resource"), ["organization":"", "language":"", "resource":"unfoldingWord/en_tn"], STOP_ON_FAILURE) == false)
+
+19
+00:00:12,141 --> 00:00:12,142
+1. if (organization == "")
+
+20
+00:00:12,143 --> 00:00:12,143
+1. organization = organization
+
+21
+00:00:12,143 --> 00:00:12,144
+5. if (language == "")
+
+22
+00:00:12,144 --> 00:00:12,144
+1. language = langCode
+
+23
+00:00:12,145 --> 00:00:12,146
+9. println("Choosing organization " + organization)
+
+24
+00:00:12,147 --> 00:00:12,147
+13. if (waitForElementPresent(organization, 5, OPTIONAL) == false)
+
+25
+00:00:14,245 --> 00:00:14,245
+2. click(organization)
+
+26
+00:00:14,533 --> 00:00:14,534
+6. alerted = waitForAlert(2)
+
+27
+00:00:16,566 --> 00:00:16,566
+10. if (alerted == true)
+
+28
+00:00:16,567 --> 00:00:16,567
+2. println("Not alerted on organization")
+
+29
+00:00:16,568 --> 00:00:16,568
+6. alertFlag = false
+
+30
+00:00:16,569 --> 00:00:16,569
+10. println("Choosing resource " + resource)
+
+31
+00:00:16,569 --> 00:00:16,570
+14. click(findTestObject("Page_tC Create/resource_Parmed", ["resource":resource]))
+
+32
+00:00:17,186 --> 00:00:17,186
+18. println("Choosing language " + language)
+
+33
+00:00:17,187 --> 00:00:17,187
+22. click(findTestObject("Page_tC Create/combo_Select Language"))
+
+34
+00:00:18,195 --> 00:00:18,196
+26. click(findTestObject("Page_tC Create/listOption_Language_Parmed", ["lang_code":language]))
+
+35
+00:00:18,803 --> 00:00:18,805
+14. return true
+
+36
+00:00:18,806 --> 00:00:18,807
+9. click(findTestObject("Page_tC Create/file_en_tn_57-TITtsv"))
+
+37
+00:00:20,721 --> 00:00:20,722
+9. myBrowser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+38
+00:00:20,723 --> 00:00:20,723
+13. if (!(system.contains("Mac")) || myBrowser.contains("chrome"))
+
+39
+00:00:20,724 --> 00:00:20,724
+1. if (myBrowser.contains("chrome"))
+
+40
+00:00:20,725 --> 00:00:20,725
+1. executeJavaScript("window.open();", [])
+
+41
+00:00:20,803 --> 00:00:20,803
+5. currentWindow = getWindowIndex()
+
+42
+00:00:20,848 --> 00:00:20,849
+9. switchToWindowIndex(currentWindow + 1)
+
+43
+00:00:20,888 --> 00:00:20,889
+13. navigateToUrl("https://create.translationcore.com")
+
+44
+00:00:21,997 --> 00:00:21,998
+17. openBrowser = false
+
+45
+00:00:21,998 --> 00:00:21,999
+21. callTestCase(findTestCase("tCC Components/tCC Login"), ["user":$username, "password":$password], STOP_ON_FAILURE)
+
+46
+00:00:22,125 --> 00:00:22,127
+1. if (openBrowser)
+
+47
+00:00:22,128 --> 00:00:22,128
+5. println("Opening " + url)
+
+48
+00:00:22,129 --> 00:00:22,129
+9. navigateToUrl(url)
+
+49
+00:00:22,985 --> 00:00:22,986
+13. waitForElementVisible(findTestObject("Page_tC Create/text_tCCVersion"), 30)
+
+50
+00:00:27,788 --> 00:00:27,795
+17. version = getText(findTestObject("Page_tC Create/text_tCCVersion"))
+
+51
+00:00:28,210 --> 00:00:28,210
+21. version = version
+
+52
+00:00:28,211 --> 00:00:28,211
+25. println("Version is " + version)
+
+53
+00:00:28,211 --> 00:00:28,212
+29. if (user == "")
+
+54
+00:00:28,212 --> 00:00:28,212
+1. println("Logging in as " + user1Name)
+
+55
+00:00:28,213 --> 00:00:28,213
+5. setText(findTestObject("Page_tC Create/input__username"), user1Name)
+
+56
+00:00:29,102 --> 00:00:29,102
+9. setText(findTestObject("Page_tC Create/input__password"), user1Password)
+
+57
+00:00:30,417 --> 00:00:30,417
+13. click(findTestObject("Page_tC Create/button_Login"))
+
+58
+00:00:30,800 --> 00:00:30,801
+25. openBrowser = true
+
+59
+00:00:30,802 --> 00:00:30,802
+29. switchToWindowIndex(currentWindow)
+
+60
+00:00:30,840 --> 00:00:30,841
+33. waitForElementPresent(findTestObject("Page_tCC translationNotes/tNText_GLOutlinePoint1"), 5)
+
+61
+00:00:31,361 --> 00:00:31,361
+37. sendKeys(findTestObject("Page_tCC translationNotes/tNText_GLOutlinePoint1"), Keys.chord(END))
+
+62
+00:00:31,959 --> 00:00:31,960
+41. sendKeys(findTestObject("Page_tCC translationNotes/tNText_GLOutlinePoint1"), "x")
+
+63
+00:00:32,446 --> 00:00:32,447
+45. clickOffset(findTestObject("Page_tCC translationNotes/tNText_GLOutlinePoint1"), -500, 0)
+
+64
+00:00:34,459 --> 00:00:34,459
+49. delay(2)
+
+65
+00:00:36,466 --> 00:00:36,467
+53. click(findTestObject("Page_tCC translationNotes/button_SaveEnabled - xPath"))
+
+66
+00:00:36,951 --> 00:00:36,952
+57. if (waitForElementNotPresent(findTestObject("Page_tCC translationAcademy/button_SaveEnabled - xPath"), 30, CONTINUE_ON_FAILURE))
+
+67
+00:00:38,086 --> 00:00:38,086
+2. unfoldingWord_Keywords.SendMessage.SendFailMessage("Test failed because the Save button remained enabled.")
+
+68
+00:00:38,088 --> 00:00:38,089
+17. closeBrowser()
+
+69
+00:00:38,285 --> 00:00:38,285
+1. separator = "==========================================================================================================================="
+
+70
+00:00:38,286 --> 00:00:38,286
+5. println(separator)
+
+71
+00:00:38,286 --> 00:00:38,287
+9. prefix = " +++++++++++ "
+
+72
+00:00:38,287 --> 00:00:38,287
+13. if (testCaseContext.getTestCaseStatus() != "PASSED")
+
+73
+00:00:38,287 --> 00:00:38,288
+1. prefix = " ---------------------- "
+
+74
+00:00:38,288 --> 00:00:38,288
+17. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " " + testCaseContext.getTestCaseStatus() + prefix)
+
+75
+00:00:38,289 --> 00:00:38,289
+21. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+76
+00:00:38,289 --> 00:00:38,290
+25. if (tcMessages.size() > 0)
+
+77
+00:00:38,290 --> 00:00:38,290
+1. for (def i : (0..(internal.GlobalVariable.tcMessages.size() - 1)))
+
+78
+00:00:38,291 --> 00:00:38,291
+1. println(tcMessages[i])
+
+79
+00:00:38,291 --> 00:00:38,292
+5. tsMessages.add(tcMessages[i])
+
+80
+00:00:38,292 --> 00:00:38,293
+29. println(separator)
+
+81
+00:00:40,435 --> 00:00:40,435
+1. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+82
+00:00:40,435 --> 00:00:40,436
+5. println(separator)
+
+83
+00:00:40,436 --> 00:00:40,436
+9. prefix = ">>>>>>>>>"
+
+84
+00:00:40,437 --> 00:00:40,437
+13. hdr = false
+
+85
+00:00:40,437 --> 00:00:40,438
+17. first = true
+
+86
+00:00:40,438 --> 00:00:40,438
+21. error = false
+
+87
+00:00:40,438 --> 00:00:40,439
+25. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+88
+00:00:40,439 --> 00:00:40,439
+1. if (tsMessages[i].length() > 2)
+
+89
+00:00:40,441 --> 00:00:40,441
+1. if (tsMessages[i][(0..1)] == "##")
+
+90
+00:00:40,445 --> 00:00:40,445
+1. if (!(first))
+
+91
+00:00:40,446 --> 00:00:40,446
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+92
+00:00:40,446 --> 00:00:40,447
+9. hdr = true
+
+93
+00:00:40,447 --> 00:00:40,447
+13. first = false
+
+94
+00:00:40,448 --> 00:00:40,448
+5. if (error)
+
+95
+00:00:40,448 --> 00:00:40,449
+1. if (tsMessages[i].length() > 2)
+
+96
+00:00:40,449 --> 00:00:40,449
+1. if (tsMessages[i][(0..1)] == "##")
+
+97
+00:00:40,450 --> 00:00:40,450
+1. if (!(first))
+
+98
+00:00:40,450 --> 00:00:40,450
+1. if (hdr)
+
+99
+00:00:40,451 --> 00:00:40,451
+1. println("+++++++++++++++++++ PASSED +++++++++++++++++++++")
+
+100
+00:00:40,451 --> 00:00:40,452
+5. error = false
+
+101
+00:00:40,452 --> 00:00:40,452
+5. println("
+        ----------------------------------------
+")
+
+102
+00:00:40,453 --> 00:00:40,453
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+103
+00:00:40,453 --> 00:00:40,454
+9. hdr = true
+
+104
+00:00:40,454 --> 00:00:40,454
+13. first = false
+
+105
+00:00:40,454 --> 00:00:40,455
+5. if (error)
+
+106
+00:00:40,455 --> 00:00:40,455
+1. if (tsMessages[i].length() > 2)
+
+107
+00:00:40,456 --> 00:00:40,456
+1. if (tsMessages[i][(0..1)] == "##")
+
+108
+00:00:40,456 --> 00:00:40,456
+1. if (!(first))
+
+109
+00:00:40,457 --> 00:00:40,457
+1. if (hdr)
+
+110
+00:00:40,457 --> 00:00:40,457
+1. println("+++++++++++++++++++ PASSED +++++++++++++++++++++")
+
+111
+00:00:40,457 --> 00:00:40,458
+5. error = false
+
+112
+00:00:40,458 --> 00:00:40,458
+5. println("
+        ----------------------------------------
+")
+
+113
+00:00:40,459 --> 00:00:40,459
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+114
+00:00:40,464 --> 00:00:40,465
+9. hdr = true
+
+115
+00:00:40,466 --> 00:00:40,467
+13. first = false
+
+116
+00:00:40,472 --> 00:00:40,472
+5. if (error)
+
+117
+00:00:40,472 --> 00:00:40,473
+1. if (tsMessages[i].length() > 2)
+
+118
+00:00:40,473 --> 00:00:40,473
+1. if (tsMessages[i][(0..1)] == "##")
+
+119
+00:00:40,474 --> 00:00:40,474
+1. if (!(first))
+
+120
+00:00:40,474 --> 00:00:40,474
+1. if (hdr)
+
+121
+00:00:40,474 --> 00:00:40,474
+1. println("+++++++++++++++++++ PASSED +++++++++++++++++++++")
+
+122
+00:00:40,475 --> 00:00:40,476
+5. error = false
+
+123
+00:00:40,476 --> 00:00:40,477
+5. println("
+        ----------------------------------------
+")
+
+124
+00:00:40,478 --> 00:00:40,478
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+125
+00:00:40,478 --> 00:00:40,479
+9. hdr = true
+
+126
+00:00:40,479 --> 00:00:40,479
+13. first = false
+
+127
+00:00:40,479 --> 00:00:40,480
+5. if (error)
+
+128
+00:00:40,480 --> 00:00:40,480
+1. if (tsMessages[i].length() > 2)
+
+129
+00:00:40,480 --> 00:00:40,481
+1. if (tsMessages[i][(0..1)] == "##")
+
+130
+00:00:40,481 --> 00:00:40,481
+1. if (!(first))
+
+131
+00:00:40,481 --> 00:00:40,481
+1. if (hdr)
+
+132
+00:00:40,482 --> 00:00:40,482
+1. println("+++++++++++++++++++ PASSED +++++++++++++++++++++")
+
+133
+00:00:40,482 --> 00:00:40,483
+5. error = false
+
+134
+00:00:40,483 --> 00:00:40,483
+5. println("
+        ----------------------------------------
+")
+
+135
+00:00:40,483 --> 00:00:40,484
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+136
+00:00:40,484 --> 00:00:40,484
+9. hdr = true
+
+137
+00:00:40,485 --> 00:00:40,485
+13. first = false
+
+138
+00:00:40,485 --> 00:00:40,486
+5. if (error)
+
+139
+00:00:40,486 --> 00:00:40,486
+1. if (tsMessages[i].length() > 2)
+
+140
+00:00:40,486 --> 00:00:40,487
+1. if (tsMessages[i][(0..1)] == "##")
+
+141
+00:00:40,487 --> 00:00:40,488
+2. println(tsMessages[i])
+
+142
+00:00:40,488 --> 00:00:40,488
+6. hdr = false
+
+143
+00:00:40,488 --> 00:00:40,489
+10. error = true
+
+144
+00:00:40,489 --> 00:00:40,490
+5. if (error)
+
+145
+00:00:40,490 --> 00:00:40,490
+1. println("******************* FAILED *********************")
+
+146
+00:00:40,490 --> 00:00:40,491
+5. error = false
+
+147
+00:00:40,491 --> 00:00:40,494
+1. if (tsMessages[i].length() > 2)
+
+148
+00:00:40,494 --> 00:00:40,495
+1. if (tsMessages[i][(0..1)] == "##")
+
+149
+00:00:40,495 --> 00:00:40,495
+1. if (!(first))
+
+150
+00:00:40,495 --> 00:00:40,495
+1. if (hdr)
+
+151
+00:00:40,496 --> 00:00:40,496
+5. println("
+        ----------------------------------------
+")
+
+152
+00:00:40,496 --> 00:00:40,496
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+153
+00:00:40,497 --> 00:00:40,497
+9. hdr = true
+
+154
+00:00:40,497 --> 00:00:40,497
+13. first = false
+
+155
+00:00:40,497 --> 00:00:40,498
+5. if (error)
+
+156
+00:00:40,498 --> 00:00:40,498
+1. if (tsMessages[i].length() > 2)
+
+157
+00:00:40,499 --> 00:00:40,499
+1. if (tsMessages[i][(0..1)] == "##")
+
+158
+00:00:40,499 --> 00:00:40,499
+1. if (!(first))
+
+159
+00:00:40,499 --> 00:00:40,500
+1. if (hdr)
+
+160
+00:00:40,500 --> 00:00:40,500
+1. println("+++++++++++++++++++ PASSED +++++++++++++++++++++")
+
+161
+00:00:40,500 --> 00:00:40,500
+5. error = false
+
+162
+00:00:40,501 --> 00:00:40,501
+5. println("
+        ----------------------------------------
+")
+
+163
+00:00:40,501 --> 00:00:40,502
+5. println(prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))])
+
+164
+00:00:40,502 --> 00:00:40,502
+9. hdr = true
+
+165
+00:00:40,502 --> 00:00:40,502
+13. first = false
+
+166
+00:00:40,503 --> 00:00:40,503
+5. if (error)
+
+167
+00:00:40,503 --> 00:00:40,504
+1. if (tsMessages[i].length() > 2)
+
+168
+00:00:40,505 --> 00:00:40,506
+1. if (tsMessages[i][(0..1)] == "##")
+
+169
+00:00:40,507 --> 00:00:40,508
+2. println(tsMessages[i])
+
+170
+00:00:40,508 --> 00:00:40,509
+6. hdr = false
+
+171
+00:00:40,509 --> 00:00:40,509
+10. error = true
+
+172
+00:00:40,510 --> 00:00:40,510
+5. if (error)
+
+173
+00:00:40,510 --> 00:00:40,510
+1. println("******************* FAILED *********************")
+
+174
+00:00:40,515 --> 00:00:40,515
+5. error = false
+
+175
+00:00:40,516 --> 00:00:40,516
+29. if (hdr)
+
+176
+00:00:40,516 --> 00:00:40,517
+33. println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+

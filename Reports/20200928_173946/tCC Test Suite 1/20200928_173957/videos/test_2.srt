@@ -1,0 +1,12 @@
+265
+00:01:18,526 --> 00:01:18,527
+1. tcMessages = []
+
+266
+00:01:18,527 --> 00:01:18,528
+5. executionProfile = getExecutionProfile()
+
+267
+00:01:18,528 --> 00:01:18,528
+9. logInfo("Execution profile is " + executionProfile)
+

@@ -1,0 +1,12 @@
+126
+00:00:46,487 --> 00:00:46,487
+1. tcMessages = []
+
+127
+00:00:46,488 --> 00:00:46,488
+5. executionProfile = getExecutionProfile()
+
+128
+00:00:46,489 --> 00:00:46,489
+9. logInfo("Execution profile is " + executionProfile)
+
