@@ -120,8 +120,9 @@ if (!(testHighlightStatus(origQuote[3]))) {
 }
 
 // Test multiword copy and paste 
-if (system.contains('Windows') || myBrowser.contains('firefox')) {
-    // This test would fail on Mac/Chrome because Paste and match style is not available in Katalon
+if (system.contains('Windows') || myBrowser.contains('firefox') 
+		|| CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4')) {
+    // This test will fail on Mac/Chrome prior to v1.0.5 because Paste and match style is not available in Katalon
     dragIt(9, 11)
 
     copyText()

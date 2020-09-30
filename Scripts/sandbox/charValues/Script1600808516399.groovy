@@ -22,5 +22,15 @@ import com.kms.katalon.core.configuration.RunConfiguration as RC
 String bs = $/ab\c/$
 
 println(bs)
+
+println((char)65)
+
+int a = 1
+a += 64
+println((char)a)
  
 //int pos1 = path1.lastIndexOf(bs)
+
+GlobalVariable.version = 'translationCore Create - v1.0.4.rc-2'
+
+println(CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.5'))
