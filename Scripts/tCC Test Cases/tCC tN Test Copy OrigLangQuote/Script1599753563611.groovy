@@ -72,24 +72,20 @@ if (glText != enText) {
     printHighlightStatus(origQuote[16], enText)
 }
 
-if (1==2) {
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/filter_CategorySupportRefAll'))
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/filter_SupportRefOption_figs-abstractnouns'))
-	
-	WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_filterClose'), 2)
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
+if (1 == 2) {
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_CategorySupportRefAll'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_SupportRefOption_figs-abstractnouns'))
+
+    WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_filterClose'), 2)
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
 }
 
-int y = 4300 - height
-
-//Move the GL Orig Quote into view (For whatever reason the WebUI.scrollToElement scrolls to the wrong place)
-WebUI.scrollToPosition(500,y)
-
-//WebUI.delay(5)
+//Move the GL Orig Quote into view 
+WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
 
 // Clear the gl origQuote value and test highlight status
 WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), '')
