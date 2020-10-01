@@ -38,6 +38,10 @@ myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAn
 objectPage = 'Page_tCC translationNotes/'
 
 //Define and load the original language text array for ID xyz8'
+//def origQuote = new String[17]
+Integer len = 17
+
+//origQuote = new String[]
 origQuote = []
 
 origQuote = ['text_OrigQuote-en-xyz8-Pavlos-1', 'text_OrigQuote-en-xyz8-dolos-1', 'text_OrigQuote-en-xyz8-Theo-1', 'text_OrigQuote-en-xyz8-apstolos-1'
@@ -66,6 +70,18 @@ if (glText != enText) {
     println(('Unexpected value [' + glText) + '] in GL OrigQuote field')
 } else {
     printHighlightStatus(origQuote[16], enText)
+}
+
+if (1 == 2) {
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_CategorySupportRefAll'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_SupportRefOption_figs-abstractnouns'))
+
+    WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_filterClose'), 2)
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
 }
 
 //Move the GL Orig Quote into view 
@@ -104,45 +120,18 @@ if (!(testHighlightStatus(origQuote[3]))) {
 }
 
 // Test multiword copy and paste 
-if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'(
-    '1.0.3')) {
+if (system.contains('Windows') || myBrowser.contains('firefox') 
+		|| CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.3')) {
     // This test will fail on Mac/Chrome prior to v1.0.5 because Paste and match style is not available in Katalon
-    dragIt(7, 9)
-	
+    dragIt(9, 11)
+
     copyText()
 
     setGLOrigQuote('paste', '')
-	
-	if (!WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), 'κατὰ πίστιν ἐκλεκτῶν', FailureHandling.CONTINUE_ON_FAILURE)) {
-		println('Failed to perform unformatted paste')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because multiword paste contained formatting.')		
-	} else {
-		println('The pasted text was unformatted as desired.')
-	}
-	
-    testHighlight(7, 9)
-	
-// Test pasting bolded text
-	WebUI.doubleClick(findTestObject('Page_tCC translationNotes/text_OccurNote-Knowledge'))
-	
-	copyText()
-	
-	setGLOrigQuote('paste', '')
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
-	WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
-	
-	if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-afterPaste')).contains('**')) {
-		println('text is formatted')
-	
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted bold text was bolded.')
-	} else {
-		println('text is not formatted')
-	}
-	
+    testHighlight(9, 11)
 } else {
-    println('Bypassing multiword paste and default format check')
+    println('Bypassing multiword paste in Chrome on Mac')
 }
 
 WebUI.closeBrowser()
@@ -206,7 +195,7 @@ def testHighlightStatus(def element) {
 def dragIt(def from, def to) {
     def ofset = WebUI.getElementWidth(findTestObject(origQuote[from]))
 
-    Integer x = WebUI.getElementWidth(findTestObject(origQuote[from])) / -(2)
+    Integer x = WebUI.getElementWidth(findTestObject(origQuote[from])) / 2
 
     WebDriver driver = DriverFactory.getWebDriver()
 
@@ -217,7 +206,7 @@ def dragIt(def from, def to) {
                 to]))) - WebUI.getElementLeftPosition(findTestObject(origQuote[from])))
     }
     
-    WebUI.mouseOverOffset(findTestObject(origQuote[from]), x, 0)
+    WebUI.mouseOverOffset(findTestObject(origQuote[from]), -(x), 0)
 
     builder.clickAndHold()
 

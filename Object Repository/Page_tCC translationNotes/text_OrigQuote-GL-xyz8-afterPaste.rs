@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>div_en - English - English (Europe Gateway)</name>
+   <name>text_OrigQuote-GL-xyz8-afterPaste</name>
    <tag></tag>
-   <elementGuidId>a70c631a-b28c-4fea-9ec0-e662ae6ae60a</elementGuidId>
+   <elementGuidId>7dd9a2c4-a1bf-49e8-a7c4-3fda73aa17fd</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@id='react-select-2-option-8']</value>
+         <key>CSS</key>
+         <value>div.cell-3-6.jss305 > div.jss310 > div.jss307 > div.jss317 > pre.jss320 > code.jss319</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>#react-select-2-option-8</value>
+         <key>XPATH</key>
+         <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -21,104 +21,90 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>div</value>
+      <value>code</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root MuiListItem-root MuiMenuItem-root Mui-selected MuiMenuItem-gutters MuiListItem-gutters MuiListItem-button Mui-selected</value>
+      <value>jss319</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>tabindex</name>
+      <name>dir</name>
       <type>Main</type>
-      <value>-1</value>
+      <value>auto</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>role</name>
+      <name>contenteditable</name>
       <type>Main</type>
-      <value>menuitem</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>aria-disabled</name>
-      <type>Main</type>
-      <value>false</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>id</name>
-      <type>Main</type>
-      <value>react-select-2-option-8</value>
+      <value>true</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>en - English - English (Europe Gateway)</value>
+      <value>​ἐπίγνωσιν** knowledge**</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;react-select-2-option-8&quot;)</value>
+      <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-3-6 jss305&quot;]/div[@class=&quot;jss310&quot;]/div[@class=&quot;jss307&quot;]/div[@class=&quot;jss317&quot;]/pre[@class=&quot;jss320&quot;]/code[@class=&quot;jss319&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>xpath:attributes</name>
-      <type>Main</type>
-      <value>//div[@id='react-select-2-option-8']</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//div[@id='root']/div/div/div/div/div[2]/div/div/div/div[2]/div/div[9]</value>
+      <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='ceb - Cebuano - Cebuano (Asia Gateway)'])[1]/following::div[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[9]/following::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='es - Spanish - español (Europe Gateway)'])[1]/preceding::div[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ἐπίγνωσιν'])[3]/following::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='es-419 - Latin American Spanish - Español Latin America (Americas Gateway)'])[1]/preceding::div[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[8]/preceding::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='en - English - English (Europe Gateway)']/parent::*</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[9]/preceding::code[2]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='​ἐπίγνωσιν** knowledge**']/parent::*</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div[2]/div/div[9]</value>
+      <value>//tr[4]/td[3]/div/div/div/div[2]/div/pre/code</value>
    </webElementXpaths>
 </WebElementEntity>

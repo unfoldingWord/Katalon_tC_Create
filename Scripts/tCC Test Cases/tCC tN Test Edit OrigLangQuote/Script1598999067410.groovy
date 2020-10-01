@@ -35,7 +35,8 @@ println('Setting original language quote to ' + newOrigQuote)
 
 WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), newOrigQuote)
 
-WebUI.clickOffset(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), 0, -20)
+//In v1.0.4 the save button is enabled without the blur when running Katalon scripts
+//WebUI.clickOffset(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), 0, -20)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled'))
 

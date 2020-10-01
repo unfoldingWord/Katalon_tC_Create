@@ -37,41 +37,44 @@ WebUI.delay(2)
 
 if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver')).contains('Yahweh'))) {
     println('Block quote text was deleted')
-
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote text was deleted.')
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote text was deleted.')
 } else {
     println('Block quote text is correct')
+
+	if (!(WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled'), 1, FailureHandling.CONTINUE_ON_FAILURE))) {
+	 
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save button was not enabled after text change.')
+				
+	    WebUI.click(findTestObject('Page_tCC translationAcademy/text_BentOver'))
+	
+	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), Keys.chord(Keys.END))
+	
+	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), 'x')
+	
+	    WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
+	
+		WebUI.delay(2)
+	
+		WebUI.click(findTestObject('Page_tCC translationAcademy/button_SaveEnabled'))
+		
+		WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled'), 30)
+		
+	    WebUI.click(findTestObject('Page_tCC translationAcademy/text_BentOver'))
+	
+	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), Keys.chord(Keys.END))
+	
+		WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), Keys.chord(Keys.BACK_SPACE))
+		
+	    WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
+	
+	    WebUI.delay(2)
+	
+	}
+	
+	WebUI.click(findTestObject('Page_tCC translationAcademy/button_SaveEnabled'))
+	
+	if (!WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled'), 30)) {
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save button remained enabled.')
+	}
 }
-
-if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4')) {
-    WebUI.click(findTestObject('Page_tCC translationAcademy/button_preview'))
-
-    WebUI.click(findTestObject('Page_tCC translationAcademy/section_Having BIRTH PAINS'))
-
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.END))
-
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.ENTER))
-
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), '> This is line 1')
-
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.ENTER))
-
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), '> This is line 2')
-
-    WebUI.click(findTestObject('Page_tCC translationAcademy/button_preview'))
-
-    WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/paragraph_My little children'), 2)
-
-    if (WebUI.getText(findTestObject('Page_tCC translationAcademy/paragraph_My little children')).contains('ULT) This is line 1 This is line 2')) {
-        println('line feeds were deleted in block quotes')
-
-        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote line feeds were deleted.')
-    } else {
-        println('Line feeds were correctly included in block quotes')
-    }
-} else {
-    println('Test for block quote line feeds was bypassed')
-}
-
 WebUI.closeBrowser()
-
