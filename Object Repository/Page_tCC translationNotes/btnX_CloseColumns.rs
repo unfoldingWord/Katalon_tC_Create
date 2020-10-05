@@ -13,8 +13,12 @@
          <key>XPATH</key>
          <value>(//button[@type='button'])[179]</value>
       </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[@type = 'button' and @aria-label = 'Close']</value>
+      </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
