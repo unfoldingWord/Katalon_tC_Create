@@ -31,7 +31,7 @@ WebUI.click(findTestObject('Page_tCC translationAcademy/section_BentOver'))
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
+WebUI.click(findTestObject('null'))
 
 WebUI.delay(2)
 
@@ -51,7 +51,7 @@ if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 	
 	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), 'x')
 	
-	    WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
+	    WebUI.click(findTestObject('null'))
 	
 		WebUI.delay(2)
 	
@@ -65,7 +65,7 @@ if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 	
 		WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_BentOver'), Keys.chord(Keys.BACK_SPACE))
 		
-	    WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
+	    WebUI.click(findTestObject('null'))
 	
 	    WebUI.delay(2)
 	

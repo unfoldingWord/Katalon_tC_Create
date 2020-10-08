@@ -2,7 +2,7 @@
 <TestCaseEntity>
    <description></description>
    <name>tCC Test Multiple Sessions</name>
-   <tag></tag>
+   <tag>Issues 397</tag>
    <comment></comment>
    <testCaseGuid>7f696467-eb55-4931-8d86-dccd669e56b6</testCaseGuid>
    <variable>

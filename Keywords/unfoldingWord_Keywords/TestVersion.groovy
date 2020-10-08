@@ -24,8 +24,8 @@ import internal.GlobalVariable
 
 public class TestVersion {
 	@Keyword
-	//This method tests the current version number to see if it's greater than the one passed in 
-	//Used to bypass test for features not yet in the build 
+	//This method tests the current version number to see if it's greater than the one passed in
+	//Used to bypass test for features not yet in the build
 	def isVersionGreater(testVersion) {
 		//convert the version number to alpha to make sorting easier (e.g. '1.0.4' = 'A D'; '1.1.6' = 'AAF')
 		def vNum = ''
@@ -36,7 +36,7 @@ public class TestVersion {
 			def version = versions[x]
 			if (x == 0) {
 				def v = version.indexOf('v')
-				def rc = version.indexOf('.rc')
+				def rc = version.indexOf('-rc')
 				if (rc > 0) {
 					version = version[0..rc-1]
 				}
