@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>text_BentOver</name>
+   <name>div_Yahweh supports all</name>
    <tag></tag>
-   <elementGuidId>5b069c3d-47a3-4ef2-90d7-997e14d11c5a</elementGuidId>
+   <elementGuidId>78dba0cf-e0ee-485a-9181-fa057015c990</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[@contenteditable = 'true' and (contains(text(), 'Yahweh supports all') or contains(., 'Yahweh supports all'))]</value>
+         <value>//*[(text() = '
+  Yahweh supports all who are falling and raises up all those who are bent over. (Psalm 145:14 ULT)
+' or . = '
+  Yahweh supports all who are falling and raises up all those who are bent over. (Psalm 145:14 ULT)
+')]</value>
       </entry>
       <entry>
          <key>XPATH</key>
@@ -41,7 +45,7 @@
       <value>auto</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>contenteditable</name>
       <type>Main</type>
@@ -49,10 +53,12 @@
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
-      <matchCondition>contains</matchCondition>
+      <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>Yahweh supports all</value>
+      <value>
+  Yahweh supports all who are falling and raises up all those who are bent over. (Psalm 145:14 ULT)
+</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>

@@ -6,29 +6,15 @@
    <elementGuidId>b39f6573-1b3e-406f-aee4-32917a44ca54</elementGuidId>
    <selectorCollection>
       <entry>
+         <key>XPATH</key>
+         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/code</value>
+      </entry>
+      <entry>
          <key>CSS</key>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[@contenteditable = 'true' and (text() = '> ***Be in pain and labor to give birth***, daughter of Zion, like a ***woman in labor***.  
-> For now you will go out of the city, live in the field, and go to Babylon.  
-> There you will be rescued.  
-> There Yahweh will rescue you from the hand of your enemies. (Micah 4:10 ULT)
-  
-> For nation will rise against nation, and kingdom against kingdom. There will be famines and earthquakes in various places. But all these things are only the beginning of ***birth pains***. (Matthew 24:7-8 ULT)
-  
-> My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)' or . = '> ***Be in pain and labor to give birth***, daughter of Zion, like a ***woman in labor***.  
-> For now you will go out of the city, live in the field, and go to Babylon.  
-> There you will be rescued.  
-> There Yahweh will rescue you from the hand of your enemies. (Micah 4:10 ULT)
-  
-> For nation will rise against nation, and kingdom against kingdom. There will be famines and earthquakes in various places. But all these things are only the beginning of ***birth pains***. (Matthew 24:7-8 ULT)
-  
-> My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)')]</value>
-      </entry>
-      <entry>
-         <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/code</value>
+         <value>//*[@contenteditable = 'true' and (contains(text(), 'Be in pain and labor to give birth') or contains(., 'Be in pain and labor to give birth'))]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -63,17 +49,10 @@
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
+      <matchCondition>contains</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>> ***Be in pain and labor to give birth***, daughter of Zion, like a ***woman in labor***.  
-> For now you will go out of the city, live in the field, and go to Babylon.  
-> There you will be rescued.  
-> There Yahweh will rescue you from the hand of your enemies. (Micah 4:10 ULT)
-  
-> For nation will rise against nation, and kingdom against kingdom. There will be famines and earthquakes in various places. But all these things are only the beginning of ***birth pains***. (Matthew 24:7-8 ULT)
-  
-> My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)</value>
+      <value>Be in pain and labor to give birth</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>

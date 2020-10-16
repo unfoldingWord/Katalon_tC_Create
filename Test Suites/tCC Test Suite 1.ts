@@ -135,7 +135,7 @@
       <guid>2714ed1f-10f9-4b2d-912a-102fe1c71f99</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/tCC Test Cases/tCC tA Test Block Quotes</testCaseId>
+      <testCaseId>Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>tCC tA Test Block Quotes</name>
-   <tag>Issues 321, 356, 424</tag>
+   <name>tCC tN Test Copy OrigLangQuote - Copy (1)</name>
+   <tag></tag>
    <comment></comment>
-   <testCaseGuid>16826d59-5581-47e2-87f9-41c0572bfed2</testCaseGuid>
+   <testCaseGuid>f3fce1e8-fccb-4284-8ca6-b01f62f6344b</testCaseGuid>
    <variable>
       <defaultValue>''</defaultValue>
       <description></description>
-      <id>539ade9c-551e-4b50-a35e-96cde2373dc7</id>
+      <id>bf47099a-bcac-4846-8c1f-cf1baecd2645</id>
       <masked>false</masked>
       <name>$username</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description></description>
-      <id>2efbe80c-5f49-421c-b1a7-cc6f145e31c0</id>
+      <id>8aa1777a-a86b-48df-8f39-329e9699b6f8</id>
       <masked>false</masked>
       <name>$password</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description>not used except in Archives</description>
-      <id>88ecf495-b837-4ae8-b4b9-9ee4c27943ce</id>
+      <id>2eeb5e3b-6da6-429d-ba76-af2d62b4050f</id>
       <masked>false</masked>
       <name>$origQuote</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description>not used except in Archives</description>
-      <id>de66dbc3-c215-45a8-b7f6-41f3ca480d90</id>
+      <id>8fe12060-1e54-4430-bacc-8a71d30257bb</id>
       <masked>false</masked>
       <name>$newOrigQuote</name>
    </variable>
