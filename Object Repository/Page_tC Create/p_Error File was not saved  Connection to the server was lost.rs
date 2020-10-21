@@ -1,91 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>input_Expand all Scripture</name>
+   <name>p_Error File was not saved  Connection to the server was lost</name>
    <tag></tag>
-   <elementGuidId>1d278e55-ae1c-4868-8b7f-bfccefe14bfb</elementGuidId>
-   <imagePath></imagePath>
+   <elementGuidId>1c105fde-1bb0-4f80-adf3-b8a9cf1354fa</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//input[@name='default']</value>
-      </entry>
-      <entry>
-         <key>IMAGE</key>
-         <value></value>
-      </entry>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[@name = 'default' and @type = 'checkbox']</value>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Login to try again...'])[1]/following::p[1]</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>input[name=&quot;default&quot;]</value>
+         <value>p.MuiTypography-root.MuiTypography-body1</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>input</value>
+      <value>p</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>jss5648 MuiSwitch-input</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>name</name>
-      <type>Main</type>
-      <value>default</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>type</name>
-      <type>Main</type>
-      <value>checkbox</value>
+      <value>MuiTypography-root MuiTypography-body1</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>aria-label</name>
+      <name>data-test</name>
       <type>Main</type>
-      <value>secondary checkbox</value>
+      <value>login-error-text</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Error! File was not saved.  Connection to the server was lost.</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;list-items&quot;)/ul[@class=&quot;MuiList-root MuiList-padding&quot;]/li[@class=&quot;MuiListItem-root MuiListItem-gutters&quot;]/div[3]/span[@class=&quot;MuiSwitch-root&quot;]/span[@class=&quot;MuiButtonBase-root MuiIconButton-root jss5645 MuiSwitch-switchBase MuiSwitch-colorPrimary jss5646 Mui-checked&quot;]/span[@class=&quot;MuiIconButton-label&quot;]/input[@class=&quot;jss5648 MuiSwitch-input&quot;]</value>
+      <value>/html[1]/body[1]/div[3]/div[@class=&quot;MuiPaper-root jss51 MuiPaper-elevation1 MuiPaper-rounded&quot;]/div[@class=&quot;jss5635&quot;]/p[@class=&quot;MuiTypography-root MuiTypography-body1&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>xpath:attributes</name>
+      <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//input[@name='default']</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Login to try again...'])[1]/following::p[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>xpath:idRelative</name>
+      <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//div[@id='list-items']/ul/li[3]/div[3]/span/span/span/input</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[2]/following::p[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//span/span/input</value>
+      <value>//div[3]/div/p</value>
    </webElementXpaths>
 </WebElementEntity>

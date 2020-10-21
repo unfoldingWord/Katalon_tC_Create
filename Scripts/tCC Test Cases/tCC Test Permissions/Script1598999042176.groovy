@@ -20,8 +20,9 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : 'tc01',
 
 if (!(WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
         , ('resource') : 'unfoldingWord® Translation Academy'], FailureHandling.STOP_ON_FAILURE))) {
-    KeywordUtil.markFailed('Exiting script because organization was not found..')
-
+    KeywordUtil.markFailed('Exiting script because organization was not found.')
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the organization was not found.')
+	
     WebUI.closeBrowser()
 
     return null

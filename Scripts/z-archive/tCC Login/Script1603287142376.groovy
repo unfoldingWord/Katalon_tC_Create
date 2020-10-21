@@ -23,28 +23,26 @@ import org.openqa.selenium.Keys as Keys
 //		  (If user = ? the test will wait for a manual login)
 // - password 
 
-if (newSession) {
+if (GlobalVariable.openBrowser) {
 	
-	if (GlobalVariable.openBrowser) {
-		
-		WebUI.openBrowser('')
-		
-		WebUI.maximizeWindow()
-		
-	}
+	WebUI.openBrowser('')
 	
-	println('Opening ' + GlobalVariable.url)
+	WebUI.maximizeWindow()
 	
-	WebUI.navigateToUrl(GlobalVariable.url)
-	
-	WebUI.waitForElementVisible(findTestObject('Page_tC Create/text_tCCVersion'), 30)
-	
-	version = WebUI.getText(findTestObject('Page_tC Create/text_tCCVersion'))
-	
-	GlobalVariable.version = version
-	
-	println('Version is ' + GlobalVariable.version)
 }
+
+println('Opening ' + GlobalVariable.url)
+
+WebUI.navigateToUrl(GlobalVariable.url)
+
+WebUI.waitForElementVisible(findTestObject('Page_tC Create/text_tCCVersion'), 30)
+
+version = WebUI.getText(findTestObject('Page_tC Create/text_tCCVersion'))
+
+GlobalVariable.version = version
+
+println('Version is ' + GlobalVariable.version)
+
 if (user == "") {
 
 	println('Logging in as ' + GlobalVariable.user1Name)
@@ -53,14 +51,8 @@ if (user == "") {
 
 	WebUI.setText(findTestObject('Page_tC Create/input__password'), GlobalVariable.user1Password)
 	
-	if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/button_Login'),1,FailureHandling.OPTIONAL)) {
-		
-		WebUI.click(findTestObject('Page_tC Create/button_Login'))
-		
-	} else if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/button_Login to try again'),1,FailureHandling.OPTIONAL)) {
+	WebUI.click(findTestObject('Page_tC Create/button_Login'))
 	
-		WebUI.click(findTestObject('Page_tC Create/button_Login to try again'))
-	}
 } 
 
 else if (user != "?") {
@@ -71,13 +63,6 @@ else if (user != "?") {
 	
 	WebUI.setText(findTestObject('Page_tC Create/input__password'), password)
 	
-	if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/button_Login'),1,FailureHandling.OPTIONAL)) {
-		
-		WebUI.click(findTestObject('Page_tC Create/button_Login'))
-		
-	} else if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/button_Login to try again'),1,FailureHandling.OPTIONAL)) {
-	
-		WebUI.click(findTestObject('Page_tC Create/button_Login to try again'))
-	}
+	WebUI.click(findTestObject('Page_tC Create/button_Login'))
 	
 } 

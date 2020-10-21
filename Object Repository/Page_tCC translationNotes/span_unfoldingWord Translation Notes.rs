@@ -10,8 +10,11 @@
          <value>//div[@id='root']/div/div/div/div/div[2]/div/ul/div[3]/div/div[2]/span</value>
       </entry>
       <entry>
+         <key>BASIC</key>
+         <value>//*[(text() = 'unfoldingWord® Translation Notes' or . = 'unfoldingWord® Translation Notes')]</value>
+      </entry>
+      <entry>
          <key>CSS</key>
-         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

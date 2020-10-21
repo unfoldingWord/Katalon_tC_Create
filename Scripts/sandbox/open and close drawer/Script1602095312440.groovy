@@ -23,68 +23,83 @@ import org.openqa.selenium.WebElement as WebElement
 import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
-import org.sikuli.script.*
 
 String highlighted = 'rgba(255, 255, 0, 1)'
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
         , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
 
-//CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'(null)
+if (GlobalVariable.version.contains('rc.6')) {
+    WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
+
+    WebUI.delay(5)
+}
+
+WebUI.click(findTestObject('Page_tC Create/text_tCCVersion'))
+
+WebUI.verifyElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+
 WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
 
-WebUI.delay(5)
+//WebUI.verifyElementVisible(findTestObject('Page_tC Create/button_DrawerClose'), FailureHandling.STOP_ON_FAILURE)
+open = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 2)
 
-onState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
-
-println('On state is ' + onState)
-	
-if (1 == 2) {
-
-	onState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
-	
-	println('On state is ' + onState)
-	
-	offState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOff'), FailureHandling.OPTIONAL)
-	
-	println('Off state is ' + offState)
-	
-	WebUI.click(findTestObject('Page_tC Create/input_Expand all Scripture'))
-	
-	WebUI.delay(5)
-	
-	onState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
-	
-	println('On state is ' + onState)
-	
-	offState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOff'), FailureHandling.OPTIONAL)
-	
-	println('Off state is ' + offState)
+if (open) {
+    println('Drawer close is visible')
+} else {
+    println('Drawer close is not visible')
 }
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('Off')
-scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('test')
-println('The scripture pane is ' + scripture)
-WebUI.delay(5)
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('ON')
-scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('TEST')
-println('The scripture pane is ' + scripture)
-//Pattern switchOn = new Pattern('/Users/cckozie/Katalon Studio/Sikuli Images/switchOn.png')
-//Pattern switchOff = new Pattern('/Users/cckozie/Katalon Studio/Sikuli Images/switchOff.png')
-//Screen s = new Screen()
-//if (s.exists(switchOn)) {
-//	println('The switch is on as expected')
-//} else {
-//	println('The switch is off')
-//}
-//WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
-//WebUI.click(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'))
-WebUI.delay(2)
-//if (s.exists(switchOff)) {
-//	println('The switch is off as expected')
-//} else {
-//	println('The switch is on')
-//}
-WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
 
-WebUI.closeBrowser()
+if (1 == 2) {
+    WebUI.verifyElementPresent(findTestObject('Page_tC Create/input_Expand all Scripture'), 2)
+
+    WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2)
+
+    WebUI.delay(5)
+
+    WebUI.verifyElementPresent(findTestObject('Page_tC Create/input_Expand all Scripture'), 2)
+
+    state = WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2, FailureHandling.OPTIONAL)
+
+    println(state)
+}
+
+//WebUI.verifyElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+if (1 == 1) {
+    WebUI.delay(5)
+
+    onState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
+
+    println('On state is ' + onState)
+
+    offState = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOff'), FailureHandling.OPTIONAL)
+
+    println('Off state is ' + offState)
+
+    CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('Off')
+
+    scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('test')
+
+    println('The scripture pane is ' + scripture)
+
+    WebUI.delay(5)
+
+    CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('ON')
+
+    scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('TEST')
+
+    println('The scripture pane is ' + scripture)
+
+    WebUI.delay(2)
+
+    scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('off')
+
+    scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('TEST')
+
+    println('The scripture pane is ' + scripture)
+
+    WebUI.delay(2)
+
+    WebUI.closeBrowser()
+}
 

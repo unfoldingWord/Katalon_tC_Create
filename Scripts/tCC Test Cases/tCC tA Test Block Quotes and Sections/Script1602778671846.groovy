@@ -36,8 +36,7 @@ WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
 WebUI.delay(2)
 
 if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver')).contains('Yahweh'))) {
-    println('Block quote text was deleted')
-
+    println('ERROR: Block quote text was deleted')
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote text was deleted.')
 } else {
     println('Block quote text is correct')
@@ -53,8 +52,8 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
     WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.SPACE))
 	
 	if (WebUI.getText(findTestObject('Page_tCC translationAcademy/text_birthPains')).contains('&gt;')) {
-		println('&gt; was displayed instead of > for block quotes')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because &gt; was displayed instead of > for block quotes.')
+		println('ERROR: "&gt;" was displayed instead of ">" for block quotes')
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because "&gt;" was displayed instead of ">" for block quotes.')
 	    WebUI.click(findTestObject('Page_tCC translationAcademy/button_Preview'))
 		WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
 		WebUI.delay(2)
@@ -73,9 +72,8 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
 	    WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/paragraph_My little children'), 2)
 	
 	    if (WebUI.getText(findTestObject('Page_tCC translationAcademy/paragraph_My little children')).contains('ULT) This is line 1 This is line 2')) {
-	        println('line feeds were deleted in block quotes')
-	
-	        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote line feeds were deleted.')
+	        println('ERROR: line feeds were deleted in block quotes')	
+	        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because line feeds were deleted in block quotes.')
 	    } else {
 	        println('Line feeds were correctly included in block quotes')
 	    }

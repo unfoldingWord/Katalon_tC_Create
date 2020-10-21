@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>button_DrawerOpen</name>
+   <name>button_translationCore Create - v105-rc6_MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit</name>
    <tag></tag>
-   <elementGuidId>80a1830b-a62d-4570-963e-6ecc5f2ea6e0</elementGuidId>
+   <elementGuidId>e4c2d0cb-eae6-43c8-9de8-975f47b7309a</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
          <value>//button[@type='button']</value>
-      </entry>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[@type = 'button' and @data-test = 'drawer-menu-button' and @aria-label = 'Menu']</value>
       </entry>
       <entry>
          <key>CSS</key>
@@ -88,7 +84,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='translationCore Create - v1.0.4'])[1]/preceding::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='translationCore Create - v1.0.5-rc.6'])[1]/preceding::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

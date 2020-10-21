@@ -19,7 +19,8 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
 //LOGIN AND OPEN THE en-tN FOR EDITING
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
+//WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
 if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
         , ('resource') : 'unfoldingWord/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {

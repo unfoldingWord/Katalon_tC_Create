@@ -58,14 +58,32 @@ WebUI.click(findTestObject('Page_tCC translationNotes/columns_OrigQuote'))
 WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 
 // Verify that the GL OrigQuote is as expected (εὐσέβεια)
-String glText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_ID_m2jl'))
+String glText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote-xyz8-efsveian'))
 
 String enText = WebUI.getText(findTestObject(origQuote[16]))
 
 if (glText != enText) {
-    println(('Unexpected value [' + glText) + '] in GL OrigQuote field')
+    println(('ERROR: unexpected value [' + glText) + '] in GL OrigQuote field')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because there is an unexpected value [' + 
+        glText) + '] in GL OrigQuote field.')
 } else {
     printHighlightStatus(origQuote[16], enText)
+}
+
+//Test to ensure that the GL OrigQuote is the highlighted OrigLangQuote
+glQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote-xyz8'))
+
+for (def i : (0..origQuote.size - 1)) {
+    if (testHighlightStatus(origQuote[i])) {
+        if (WebUI.getText(findTestObject(origQuote[i])) != glQuote) {
+            println('The GL quote is not the same as the original language highlighted text')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL quote is not the same as the original language highlighted text.')
+        }
+        
+        break
+    }
 }
 
 //Move the GL Orig Quote into view 
@@ -83,7 +101,8 @@ setGLOrigQuote('', enText)
 printHighlightStatus(origQuote[2], enText)
 
 if (!(testHighlightStatus(origQuote[2]))) {
-    println(enText + ' is not highlighted as expected')
+    println('ERROR: ' + enText + ' is not highlighted as expected')
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + enText + ' is not highlighted as expected.')
 } else {
     println(enText + ' is highlighted as expected')
 }
@@ -99,6 +118,7 @@ enText = WebUI.getText(findTestObject(origQuote[3]))
 
 if (!(testHighlightStatus(origQuote[3]))) {
     println(enText + ' is not highlighted as expected')
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because ' + enText) + ' is not highlighted as expected.')
 } else {
     println(enText + ' is highlighted as expected')
 }
@@ -108,39 +128,38 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
     '1.0.3')) {
     // This test will fail on Mac/Chrome prior to v1.0.5 because Paste and match style is not available in Katalon
     dragIt(7, 9)
-	
+
     copyText()
 
     setGLOrigQuote('paste', '')
-	
-	if (!WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), 'κατὰ πίστιν ἐκλεκτῶν', FailureHandling.CONTINUE_ON_FAILURE)) {
-		println('Failed to perform unformatted paste')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because multiword paste contained formatting.')		
-	} else {
-		println('The pasted text was unformatted as desired.')
-	}
-	
-    testHighlight(7, 9)
-	
-// Test pasting bolded text
-	WebUI.doubleClick(findTestObject('Page_tCC translationNotes/text_OccurNote-Knowledge'))
-	
-	copyText()
-	
-	setGLOrigQuote('paste', '')
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
-	WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
-	
-	if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-afterPaste')).contains('**')) {
-		println('text is formatted')
-	
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted bold text was bolded.')
-	} else {
-		println('text is not formatted')
-	}
-	
+    if (!(WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), 'κατὰ πίστιν ἐκλεκτῶν', 
+        FailureHandling.CONTINUE_ON_FAILURE))) {
+        println('ERROR: Failed to perform unformatted paste')
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because multiword paste contained formatting.')
+    } else {
+        println('The pasted text was unformatted as desired.')
+    }
+    
+    testHighlight(7, 9)
+
+    // Test pasting bolded text
+    WebUI.doubleClick(findTestObject('Page_tCC translationNotes/text_OccurNote-Knowledge'))
+
+    copyText()
+
+    setGLOrigQuote('paste', '')
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
+
+    WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
+
+    if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-afterPaste')).contains('**')) {
+        println('ERROR: pasted text is formatted')
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted bold text was bolded.')
+    } else {
+        println('text is not formatted')
+    }
 } else {
     println('Bypassing multiword paste and default format check')
 }
@@ -188,7 +207,7 @@ def printHighlightStatus(def element, def elementText) {
         hText = ('not ' + hText)
     }
     
-    println((elementText + ' is ') + hText)
+//    println((elementText + ' is ') + hText)
 }
 
 def testHighlightStatus(def element) {
@@ -228,13 +247,16 @@ def testHighlight(def from, def to) {
     for (def i : (0..origQuote.size - 1)) {
         if ((i >= from) && (i <= to)) {
             if (!(testHighlightStatus(origQuote[i]))) {
-                println(WebUI.getText(findTestObject(origQuote[i])) + ' should be highlighted but is not.<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+				word = WebUI.getText(findTestObject(origQuote[i]))
+                println(word + ' should be highlighted but is not.<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + word + ' should be highlighted but is not.')
             } else {
                 println(WebUI.getText(findTestObject(origQuote[i])) + ' is highlighted as expected.')
             }
         } else {
             if (testHighlightStatus(origQuote[i])) {
-                println(WebUI.getText(findTestObject(origQuote[i])) + ' is highlighted but should not be.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+                println(word + ' is highlighted but should not be.>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + word + ' is highlighted but should not be.')
             } else {
                 println(WebUI.getText(findTestObject(origQuote[i])) + ' is not highlighted as expected.')
             }

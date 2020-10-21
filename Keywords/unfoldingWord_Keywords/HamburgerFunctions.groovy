@@ -24,24 +24,40 @@ import internal.GlobalVariable
 
 public class HamburgerFunctions {
 	@Keyword
-// ADD ABILITY TO OPEN THE DRAWER IF NOT ALREADY OPEN. IF OPENED HERE THEN CLOSE AT END.
+	// Call with CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'(parm) where parm in('on','off,'test')
+	// If parm = 'test', returns 'on' or 'off'
 	def toggleAllScripture(toState) {
 		def newState = toState.toLowerCase()
 		def myState = ''
-		def state = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
+		def drawerOpen = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 1)
+		if (!drawerOpen) {
+			WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
+		}
+		WebUI.delay(1)
+		//		def state = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
+		def state = WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2,FailureHandling.OPTIONAL)
 		if (state) {
 			myState = 'on'
 		} else {
 			myState = 'off'
 		}
-//		println('The switch is ' + myState)
+		println('Expand all Scripture switch is ' + myState)
 		if (newState != 'test') {
 			if (myState != newState) {
 				println('Toggling scripture pane ' + newState)
 				WebUI.click(findTestObject('Page_tC Create/input_Expand all Scripture'))
+				WebUI.delay(1)
+				//				if (newState == 'off') {
+				//					WebUI.waitForElementNotVisible(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'),5)
+				//				} else {
+				//					WebUI.waitForElementVisible(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'),15)
+				//				}
 			}
 		} else {
 			return myState
+		}
+		if (!drawerOpen) {
+			WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
 		}
 	}
 }
