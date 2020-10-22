@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>text_OccurrenceNote_Who wrote the Book of Titus</name>
+   <name>text_OccurenceNoteWho wrote the Book of Titus-2</name>
    <tag></tag>
-   <elementGuidId>08001433-a8e8-49b0-b670-0b3501589552</elementGuidId>
+   <elementGuidId>04fd19ba-5140-4390-b646-b1bafddefc1e</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//h3[@id='whowrotethebookoftitus']</value>
-      </entry>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[@id = 'whowrotethebookoftitus' and (text() = 'Who wrote the Book of Titus?' or . = 'Who wrote the Book of Titus?')]</value>
+         <value>//tr[@id='MUIDataTableBodyRow-0']/td/div/div/div/div/div/div/h3[2]</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>#whowrotethebookoftitus</value>
+         <value></value>
       </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -28,35 +24,21 @@
       <value>h3</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>id</name>
-      <type>Main</type>
-      <value>whowrotethebookoftitus</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
       <value>Who wrote the Book of Titus?</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-0&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-0-9 jss304&quot;]/div[@class=&quot;jss309&quot;]/div[@class=&quot;jss305&quot;]/div[@class=&quot;jss316&quot;]/div[@class=&quot;jss317&quot;]/h3[@id=&quot;whowrotethebookoftitus&quot;]</value>
+      <value>id(&quot;MUIDataTableBodyRow-0&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-0-9 jss252&quot;]/div[@class=&quot;jss257&quot;]/div[@class=&quot;jss253&quot;]/div[@class=&quot;jss264&quot;]/div[@class=&quot;jss265&quot;]/h3[2]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:attributes</name>
-      <type>Main</type>
-      <value>//h3[@id='whowrotethebookoftitus']</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>

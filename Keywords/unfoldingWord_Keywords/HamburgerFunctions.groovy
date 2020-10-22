@@ -34,7 +34,6 @@ public class HamburgerFunctions {
 			WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
 		}
 		WebUI.delay(1)
-		//		def state = WebUI.verifyImagePresent(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'), FailureHandling.OPTIONAL)
 		def state = WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2,FailureHandling.OPTIONAL)
 		if (state) {
 			myState = 'on'
@@ -47,17 +46,13 @@ public class HamburgerFunctions {
 				println('Toggling scripture pane ' + newState)
 				WebUI.click(findTestObject('Page_tC Create/input_Expand all Scripture'))
 				WebUI.delay(1)
-				//				if (newState == 'off') {
-				//					WebUI.waitForElementNotVisible(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'),5)
-				//				} else {
-				//					WebUI.waitForElementVisible(findTestObject('Page_tC Create/image_ExpandAllScriptureOn'),15)
-				//				}
 			}
 		} else {
 			return myState
 		}
 		if (!drawerOpen) {
 			WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
+			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
 		}
 	}
 }

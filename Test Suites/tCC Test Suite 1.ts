@@ -44,7 +44,7 @@
    <testCaseLink>
       <guid>cf6facb6-c5b2-44ec-b29a-1d15ae1690d9</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Copy OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -74,7 +74,7 @@
    <testCaseLink>
       <guid>31b8d6d8-dcad-4e81-8291-7e5550602519</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -104,7 +104,7 @@
    <testCaseLink>
       <guid>1f10648c-f64a-44f9-985f-6c5c08676da6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit Outline</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -134,7 +134,7 @@
    <testCaseLink>
       <guid>2714ed1f-10f9-4b2d-912a-102fe1c71f99</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -164,13 +164,13 @@
    <testCaseLink>
       <guid>232f1a3d-1344-4eef-afad-d793502a351f</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Permissions</testCaseId>
    </testCaseLink>
    <testCaseLink>
       <guid>e83dae57-01d2-4991-a4b5-01afbf5517e1</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Multiple Sessions</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
