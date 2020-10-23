@@ -55,4 +55,21 @@ public class HamburgerFunctions {
 			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
 		}
 	}
+
+	@Keyword
+	def chooseFile(name) {
+		def drawerOpen = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 1, FailureHandling.OPTIONAL)
+		if (!drawerOpen) {
+			WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
+		}
+		WebUI.delay(2)
+		WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : name]))
+//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
+		
+		if (!drawerOpen) {
+			WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
+			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+		}
+	}
+
 }

@@ -82,6 +82,7 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
     println('Test for block quote line feeds was bypassed')
 }
 
+println('Testing for sections visible and invisible')
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 
 WebUI.verifyElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'))
@@ -93,6 +94,17 @@ WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 
 WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_BirthPains'))
+
+println('Testing for sections and blocks visible')
+WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
+
+WebUI.click(findTestObject('Page_tCC translationAcademy/button_Blocks'))
+
+if (!WebUI.waitForElementPresent(findTestObject('Page_tCC translationAcademy/text_BentOver'), 1, FailureHandling.OPTIONAL) ||
+	!WebUI.waitForElementPresent(findTestObject('Page_tCC translationAcademy/text_BirthPains'), 1, FailureHandling.OPTIONAL)) {
+	println('ERROR: tA text is not visible when Sections and Blocks have been clicked')
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text is not visible when Sections and Blocks have been clicked.')
+}
 
 WebUI.closeBrowser()
 

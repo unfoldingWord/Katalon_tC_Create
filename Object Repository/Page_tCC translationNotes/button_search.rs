@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>button_translationCore Create - v105-rc6_MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit</name>
+   <name>button_Search</name>
    <tag></tag>
-   <elementGuidId>e4c2d0cb-eae6-43c8-9de8-975f47b7309a</elementGuidId>
+   <elementGuidId>8697a9d3-d9fa-4397-89e4-fa9d20d56c6e</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//button[@type='button']</value>
+         <value>(//button[@type='button'])[3]</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>button.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-colorInherit</value>
+         <value>button.MuiButtonBase-root-163.MuiIconButton-root-155.jss104</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -28,7 +28,7 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit</value>
+      <value>MuiButtonBase-root-163 MuiIconButton-root-155 jss104</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -47,57 +47,78 @@
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>data-test</name>
+      <name>aria-label</name>
       <type>Main</type>
-      <value>drawer-menu-button</value>
+      <value>Search</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>aria-label</name>
+      <name>data-testid</name>
       <type>Main</type>
-      <value>Menu</value>
+      <value>Search-iconButton</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>aria-describedby</name>
+      <type>Main</type>
+      <value>mui-12660</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;App-header&quot;)/div[@class=&quot;headroom-wrapper&quot;]/div[@class=&quot;headroom headroom--unfixed headroom-disable-animation&quot;]/div[@class=&quot;jss1&quot;]/header[@class=&quot;MuiPaper-root MuiAppBar-root MuiAppBar-positionStatic MuiAppBar-colorPrimary jss4 MuiPaper-elevation4&quot;]/div[@class=&quot;MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters&quot;]/div[@class=&quot;jss5&quot;]/div[1]/button[@class=&quot;MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit&quot;]</value>
+      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-67 jss56 undefined MuiPaper-elevation4-74 MuiPaper-rounded-68&quot;]/div[@class=&quot;MuiToolbar-root-110 MuiToolbar-regular-112 jss95 MuiToolbar-gutters-111&quot;]/div[@class=&quot;jss99&quot;]/button[@class=&quot;MuiButtonBase-root-163 MuiIconButton-root-155 jss104&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:attributes</name>
       <type>Main</type>
-      <value>//button[@type='button']</value>
+      <value>(//button[@type='button'])[3]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//header[@id='App-header']/div/div/div/header/div/div/div/button</value>
+      <value>//div[@id='root']/div/div/div/div[2]/div/div[2]/button</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='translationCore Create - v1.0.5-rc.6'])[1]/preceding::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - translate_test/en_tn/tc01-tc-create-1'])[1]/following::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_57-TIT.tsv'])[1]/preceding::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - unfoldingWord/en_tn/master'])[1]/following::button[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='rowHeader'])[1]/preceding::button[5]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SupportReference'])[1]/preceding::button[5]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//button</value>
+      <value>//div[2]/button</value>
    </webElementXpaths>
 </WebElementEntity>

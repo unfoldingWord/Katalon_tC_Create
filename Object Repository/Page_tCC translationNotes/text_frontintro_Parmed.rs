@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>file_en_tn_57-TITtsv</name>
+   <name>text_frontintro_Parmed</name>
    <tag></tag>
-   <elementGuidId>f4e92b3d-b30b-4668-bda3-7faf851158bf</elementGuidId>
+   <elementGuidId>631c91ee-e6cb-4b9d-82e9-c878ed6cd0d6</elementGuidId>
    <selectorCollection>
       <entry>
+         <key>BASIC</key>
+         <value>//*[@class = 'MuiTypography-root-114 jss260 MuiTypography-h6-124' and (text() = '${text}' or . = '${text}')]</value>
+      </entry>
+      <entry>
          <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div/div/div[2]/div/div/div/div/ul/div[59]/div/div[2]/span</value>
+         <value>//div[@id='header-front-intro-m2jl']/div/div/h6</value>
       </entry>
       <entry>
          <key>CSS</key>
+         <value>h6.MuiTypography-root-114.jss260.MuiTypography-h6-124</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -20,76 +25,76 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>span</value>
+      <value>h6</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock</value>
+      <value>MuiTypography-root-114 jss260 MuiTypography-h6-124</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>en_tn_57-TIT.tsv</value>
+      <value>${text}</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;MuiPaper-root MuiPaper-elevation1 MuiPaper-rounded&quot;]/div[@class=&quot;jss117&quot;]/div[2]/div[@class=&quot;jss118&quot;]/div[@class=&quot;MuiCollapse-container MuiCollapse-entered&quot;]/div[@class=&quot;MuiCollapse-wrapper&quot;]/div[@class=&quot;MuiCollapse-wrapperInner&quot;]/ul[@class=&quot;MuiList-root jss442 MuiList-dense MuiList-padding&quot;]/div[59]/div[@class=&quot;MuiButtonBase-root MuiListItem-root jss473 MuiListItem-dense MuiListItem-gutters MuiListItem-button&quot;]/div[@class=&quot;MuiListItemText-root jss474 MuiListItemText-dense MuiListItemText-multiline&quot;]/span[@class=&quot;MuiTypography-root MuiListItemText-primary MuiTypography-body2 MuiTypography-displayBlock&quot;]</value>
+      <value>id(&quot;header-front-intro-m2jl&quot;)/div[@class=&quot;jss256&quot;]/div[@class=&quot;jss258&quot;]/h6[@class=&quot;MuiTypography-root-114 jss260 MuiTypography-h6-124&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//div[@id='root']/div/div/div/div/div[2]/div/div/div/div/ul/div[59]/div/div[2]/span</value>
+      <value>//div[@id='header-front-intro-m2jl']/div/div/h6</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_56-2TI.tsv'])[1]/following::span[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[1]/following::h6[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_55-1TI.tsv'])[1]/following::span[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SupportReference'])[1]/following::h6[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_58-PHM.tsv'])[1]/preceding::span[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='SupportReference'])[2]/preceding::h6[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_59-HEB.tsv'])[1]/preceding::span[6]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='empty'])[1]/preceding::h6[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='en_tn_57-TIT.tsv']/parent::*</value>
+      <value>//*/text()[normalize-space(.)='TIT front:intro']/parent::*</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div[59]/div/div[2]/span</value>
+      <value>//div/div/h6</value>
    </webElementXpaths>
 </WebElementEntity>
