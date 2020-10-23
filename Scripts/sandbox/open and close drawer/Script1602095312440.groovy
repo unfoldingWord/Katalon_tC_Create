@@ -29,11 +29,25 @@ String highlighted = 'rgba(255, 255, 0, 1)'
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
         , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
 
-if (GlobalVariable.version.contains('rc.6')) {
+if (GlobalVariable.version.contains('rc.6') && 1 == 2) {
     WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
 
     WebUI.delay(5)
 }
+
+scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('test')
+
+println('The scripture pane is ' + scripture)
+
+scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('off')
+
+println('The scripture pane is ' + scripture)
+
+scripture = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.toggleAllScripture'('on')
+
+println('The scripture pane is ' + scripture)
+
+return false
 
 WebUI.click(findTestObject('Page_tC Create/text_tCCVersion'))
 

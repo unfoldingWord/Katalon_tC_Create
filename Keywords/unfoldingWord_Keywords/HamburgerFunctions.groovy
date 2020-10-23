@@ -31,7 +31,12 @@ public class HamburgerFunctions {
 		def myState = ''
 		def drawerOpen = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 1)
 		if (!drawerOpen) {
-			WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
+			try {
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			} catch (Exception e) {
+				WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			}
 		}
 		WebUI.delay(1)
 		def state = WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2,FailureHandling.OPTIONAL)
@@ -46,27 +51,37 @@ public class HamburgerFunctions {
 				println('Toggling scripture pane ' + newState)
 				WebUI.click(findTestObject('Page_tC Create/input_Expand all Scripture'))
 				WebUI.delay(1)
+				if (WebUI.verifyElementChecked(findTestObject('Page_tC Create/input_Expand all Scripture'), 2,FailureHandling.OPTIONAL)) {
+					myState = 'on'
+				} else {
+					myState = 'off'
+				}
 			}
-		} else {
-			return myState
 		}
 		if (!drawerOpen) {
 			WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
 			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
 		}
+		return myState
 	}
 
 	@Keyword
 	def chooseFile(name) {
 		def drawerOpen = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 1, FailureHandling.OPTIONAL)
 		if (!drawerOpen) {
-			WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
+			try {
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			} catch (Exception e) {
+				WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			}
 		}
 		WebUI.delay(2)
 		WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : name]))
-//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
-		
+		//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
+
 		if (!drawerOpen) {
+			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)
 			WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
 			WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
 		}
