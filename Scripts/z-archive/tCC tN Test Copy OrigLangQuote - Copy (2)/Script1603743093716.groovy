@@ -166,31 +166,6 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 
 WebUI.closeBrowser()
 
-// Test proper highlighting when Parashah Setumah marker appears in Hebrew
-//WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-//	, ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
-
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'('en_tn_16-NEH.tsv')
-
-WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
-
-WebUI.click(findTestObject('Page_tCC translationNotes/filter_ChapterAll'))
-
-WebUI.click(findTestObject('Page_tCC translationNotes/filterOption_Chapter3'))
-
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
-
-if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
-	println('ERROR: Jericho is not highlighted')
-	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Jericho is not highlighted.')
-} else {
-	println('Jericho is highlighted as expected')
-}
-
-WebUI.closeBrowser()
-
 def copyText() {
     if (system.contains('Windows')) {
         WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))

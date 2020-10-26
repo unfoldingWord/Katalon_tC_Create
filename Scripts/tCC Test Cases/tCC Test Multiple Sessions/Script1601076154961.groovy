@@ -25,113 +25,159 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], Fai
 
 myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
 
-if (!(system.contains('Mac')) || myBrowser.contains('chrome')) {
-    // Open a second browser tab
-    if (myBrowser.contains('chrome')) {
-        WebUI.executeJavaScript('window.open();', [])
-    } else if (system.contains('Windows')) {
-        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.CONTROL, 't'))
-    }
-    
-    currentWindow = WebUI.getWindowIndex()
+if (system.contains('Mac') && !myBrowser.contains('chrome')) {
+    println('Bypassed testing multiple sessions in Firefox on Mac')
+	return false
+}
+// Open a second browser tab
+if (myBrowser.contains('chrome')) {
+    WebUI.executeJavaScript('window.open();', [])
+} else if (system.contains('Windows')) {
+    WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.CONTROL, 't'))
+}
 
-    //Go to new tab
-    WebUI.switchToWindowIndex(currentWindow + 1)
+currentWindow = WebUI.getWindowIndex()
 
-    // Navigate to tCC
-    WebUI.navigateToUrl(GlobalVariable.url)
+//Go to new tab
+WebUI.switchToWindowIndex(currentWindow + 1)
 
-    //Prevent the login script from opening a browser thereby closing the open ones
-    GlobalVariable.openBrowser = false
+// Navigate to tCC
+WebUI.navigateToUrl(GlobalVariable.url)
 
-    //Login to second session
-    //    WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
-    WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false], 
-        FailureHandling.STOP_ON_FAILURE)
+//Prevent the login script from opening a browser thereby closing the open ones
+GlobalVariable.openBrowser = false
 
-    GlobalVariable.openBrowser = true
+//Login to second session
+//    WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false], 
+    FailureHandling.STOP_ON_FAILURE)
 
-    //Switch back to original tab
-    WebUI.switchToWindowIndex(currentWindow)
+GlobalVariable.openBrowser = true
 
-    //Test saving of edit
-    WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), 5)
+//Switch back to original tab
+WebUI.switchToWindowIndex(currentWindow)
 
-    //Add an 'x' to the end of GLOutlinePoint1
+//Test saving of edit
+WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), 5)
+
+//Add an 'x' to the end of GLOutlinePoint1
+WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.END))
+
+WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), 'x')
+
+if (!WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 2, FailureHandling.OPTIONAL)) {
+
+	println('ERRROR: Save button was not enabled after change of text')
+	
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save button was not enabled after change of text.')
+
+	WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
+
+	WebUI.delay(2)
+
+} else {
+
+	println('Save button was enabled after change of text')
+	
+}
+
+WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
+
+if (WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath'), 3, FailureHandling.OPTIONAL)) {
+    println('Save was unexpedely processed')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save was unexpedely processed.')
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
+
     WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.END))
 
-    WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), 'x')
-	
-	if (!WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 2, FailureHandling.OPTIONAL)) {
+    WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.BACK_SPACE))
 
-		println('ERRROR: Save button was not enabled after change of text')
-		
-        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save button was not enabled after change of text.')
+    WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
 
-		WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
+    WebUI.delay(2)
 
-		WebUI.delay(2)
-	
-	} else {
-	
-		println('Save button was enabled after change of text')
-		
-	}
+    WebUI.click(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath'))
 
-    WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
-
-    if (WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath'), 3, FailureHandling.OPTIONAL)) {
-        println('Save was unexpedely processed')
-
-        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save was unexpedely processed.')
-
-        WebUI.click(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
-
-        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.END))
-
-        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.BACK_SPACE))
-
-        WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
-
-        WebUI.delay(2)
-
-        WebUI.click(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath'))
-
-        WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath') //			println('login try again found')
-            ) //	            WebUI.delay(5)
-    } else {
-        if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/p_Error File was not saved  Connection to the server was lost'), 
-            currentWindow)) {
-            WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password
-                    , ('newSession') : false], FailureHandling.STOP_ON_FAILURE)
-
-            myText = WebUI.getText(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
-
-            WebUI.delay(5)
-
-            if (myText.endsWith('x')) {
-                WebUI.click(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
-
-                WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.END))
-
-                WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.BACK_SPACE))
-
-                WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
-
-                WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 5)
-
-                WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
-
-                WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 5)
-            }
-        } else {
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Login try again dialog was not found.')
-
-            println('ERROR: Login try again dialog was not found')
-        }
-    }
+    WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationAcademy/button_SaveEnabled - xPath') //			println('login try again found')
+        ) //	            WebUI.delay(5)
 } else {
-    println('Bypassed testing multiple sessions in Firefox on Mac')
+    if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/p_Error File was not saved  Connection to the server was lost'), 
+        currentWindow)) {
+        WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password
+                , ('newSession') : false], FailureHandling.STOP_ON_FAILURE)
+
+        myText = WebUI.getText(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
+
+        WebUI.delay(5)
+
+        if (myText.endsWith('x')) {
+            WebUI.click(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'))
+
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.END))
+
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.BACK_SPACE))
+
+            WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
+
+            WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 5)
+
+            WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
+
+            WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 5)
+        }
+    } else {
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Login try again dialog was not found.')
+
+        println('ERROR: Login try again dialog was not found')
+    }
+}
+
+WebUI.closeBrowser()
+
+println('Testing for user alert on 404 or 403 error')
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
+		, ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+
+// Open a second browser tab
+if (myBrowser.contains('chrome')) {
+	WebUI.executeJavaScript('window.open();', [])
+} else if (system.contains('Windows')) {
+	WebUI.sendKeys(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), Keys.chord(Keys.CONTROL, 't'))
+}
+
+currentWindow = WebUI.getWindowIndex()
+
+//Go to new tab
+WebUI.switchToWindowIndex(currentWindow + 1)
+
+// Navigate to tCC
+WebUI.navigateToUrl(GlobalVariable.url)
+
+//Prevent the login script from opening a browser thereby closing the open ones
+GlobalVariable.openBrowser = false
+
+//Login to second session
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false],
+	FailureHandling.STOP_ON_FAILURE)
+
+GlobalVariable.openBrowser = true
+
+//Switch back to original tab
+WebUI.switchToWindowIndex(currentWindow)
+
+//Test loading a new file
+
+CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'('en_tn_55-1TI.tsv')
+
+if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
+	println('ERROR: User was not alerted to communications error after token was lost')
+
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the user was not alerted to communications error after token was lost.')
+} else {
+	println('User was alerted to the communications error because of lost token.')
 }
 
 WebUI.closeBrowser()

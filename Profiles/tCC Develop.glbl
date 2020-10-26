@@ -69,4 +69,9 @@
       <initValue>true</initValue>
       <name>openBrowser</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'en_tn_57-TIT.tsv'</initValue>
+      <name>tNFile</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>
