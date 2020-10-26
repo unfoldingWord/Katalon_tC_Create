@@ -44,7 +44,7 @@
    <testCaseLink>
       <guid>cf6facb6-c5b2-44ec-b29a-1d15ae1690d9</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Copy OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -74,7 +74,7 @@
    <testCaseLink>
       <guid>31b8d6d8-dcad-4e81-8291-7e5550602519</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -104,7 +104,7 @@
    <testCaseLink>
       <guid>1f10648c-f64a-44f9-985f-6c5c08676da6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit Outline</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -134,7 +134,7 @@
    <testCaseLink>
       <guid>2714ed1f-10f9-4b2d-912a-102fe1c71f99</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -164,13 +164,13 @@
    <testCaseLink>
       <guid>232f1a3d-1344-4eef-afad-d793502a351f</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Permissions</testCaseId>
    </testCaseLink>
    <testCaseLink>
       <guid>e83dae57-01d2-4991-a4b5-01afbf5517e1</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Multiple Sessions</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -201,6 +201,36 @@
          <type>DEFAULT</type>
          <value></value>
          <variableId>769e85b5-2e0f-41b7-80e7-740e1c809cde</variableId>
+      </variableLink>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>cca4de5c-d4be-453b-a460-33f0cd8b1909</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/tCC Test Cases/tCC Test App Crashes</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>416d5b60-981d-4959-916f-c9b2aa07e1f8</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>e3f878cb-cc30-45e2-955d-8fbc59b08e39</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>8df9d24e-f47a-4d14-b743-e77a11203ca4</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>489f32e6-b676-49a3-9874-bdb1f2cf6635</variableId>
       </variableLink>
    </testCaseLink>
 </TestSuiteEntity>

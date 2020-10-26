@@ -24,8 +24,7 @@ import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash when changing sections visible and invisible. ISSUE 365')
 
@@ -68,8 +67,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash after choosing a file from the drawer. ISSUE 428')
 
@@ -88,8 +86,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash when searching in tN. ISSUE 440')
 
@@ -110,8 +107,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash after paging forward twice. ISSUE 463')
 

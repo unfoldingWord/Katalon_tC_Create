@@ -26,8 +26,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
 String highlighted = 'rgba(255, 255, 0, 1)'
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
 
@@ -167,10 +166,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 WebUI.closeBrowser()
 
 // Test proper highlighting when Parashah Setumah marker appears in Hebrew
-//WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-//	, ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
-
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'('en_tn_16-NEH.tsv')
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_16-NEH.tsv'], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
 

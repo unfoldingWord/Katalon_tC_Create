@@ -49,8 +49,8 @@ GlobalVariable.openBrowser = false
 
 //Login to second session
 //    WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
-WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false], 
-    FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false, ('file') : ''],
+	FailureHandling.STOP_ON_FAILURE)
 
 GlobalVariable.openBrowser = true
 
@@ -138,8 +138,7 @@ WebUI.closeBrowser()
 
 println('Testing for user alert on 404 or 403 error')
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-		, ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 // Open a second browser tab
 if (myBrowser.contains('chrome')) {
@@ -160,7 +159,7 @@ WebUI.navigateToUrl(GlobalVariable.url)
 GlobalVariable.openBrowser = false
 
 //Login to second session
-WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false],
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : false, ('file') : ''],
 	FailureHandling.STOP_ON_FAILURE)
 
 GlobalVariable.openBrowser = true

@@ -26,8 +26,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
 String highlighted = 'rgba(255, 255, 0, 1)'
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 

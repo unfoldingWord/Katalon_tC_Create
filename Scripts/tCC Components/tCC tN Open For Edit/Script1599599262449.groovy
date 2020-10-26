@@ -41,4 +41,9 @@ if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource
     return null
 }
 
-WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : 'en_tn_57-TIT.tsv']))
+try {
+	myFile = file
+	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : myFile]))
+} catch (Exception e) {
+	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : GlobalVariable.tNFile]))
+}

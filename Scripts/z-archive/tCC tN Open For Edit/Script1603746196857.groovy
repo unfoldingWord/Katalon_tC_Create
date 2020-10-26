@@ -16,19 +16,29 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
-import org.openqa.selenium.Keys as Keys
-import groovy.transform.Field as Field
-import org.openqa.selenium.WebDriver as WebDriver
-import org.openqa.selenium.WebElement as WebElement
-import org.openqa.selenium.interactions.Actions as Actions
-import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
-import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+//LOGIN AND OPEN THE en-tN FOR EDITING
 
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'('en_tn_55-1TI.tsv')
+//WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
-if (!WebUI.waitForElementVisible(findTestObject('Page_tCC translationNotes/header_frontintro_Parmed',[('text') : '1TI front:intro']), 10, FailureHandling.OPTIONAL)) {
-	println('not found')
+if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
+        , ('resource') : 'unfoldingWord/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
+    KeywordUtil.markFailed('Exiting script because organization was not found..')
+
+    WebUI.closeBrowser()
+
+    return null
+} else if (GlobalVariable.alertFlag == true) {
+    if ($username == 'tc02') {
+        println('Exiting script because of permissions alert as expected.')
+    } else {
+        KeywordUtil.markFailed('Exiting script because of unexpected permissions alert.')
+    }
+    
+    WebUI.closeBrowser()
+
+    return null
 }
 
+WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : 'en_tn_57-TIT.tsv']))
