@@ -39,19 +39,15 @@ objectPage = 'Page_tCC translationNotes/'
 //Define and load the original language text array for ID xyz8'
 origQuote = []
 
-origQuote = ['Page_tCC translationNotes/text_OrigQuote-en-xyz8-Pavlos-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-dolos-1', 
-	'Page_tCC translationNotes/text_OrigQuote-en-xyz8-Theo-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-apstolos-1',
-    'Page_tCC translationNotes/text_OrigQuote-en-xyz8-d-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-Iiso-1', 
-	'Page_tCC translationNotes/text_OrigQuote-en-xyz8-Christo-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-kat-1',
-    'Page_tCC translationNotes/text_OrigQuote-en-xyz8-pstin-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-eklektn-1', 
-	'Page_tCC translationNotes/text_OrigQuote-en-xyz8-Theo-2', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-ka-1',
-    'Page_tCC translationNotes/text_OrigQuote-en-xyz8-epgnosin-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-alitheas-1', 
-	'Page_tCC translationNotes/text_OrigQuote-en-xyz8-ts-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-ka-2',
-    'Page_tCC translationNotes/text_OrigQuote-en-xyz8-efsveian-1']
+origQuote = ['text_OrigQuote-en-xyz8-Pavlos-1', 'text_OrigQuote-en-xyz8-dolos-1', 'text_OrigQuote-en-xyz8-Theo-1', 'text_OrigQuote-en-xyz8-apstolos-1'
+    , 'text_OrigQuote-en-xyz8-d-1', 'text_OrigQuote-en-xyz8-Iiso-1', 'text_OrigQuote-en-xyz8-Christo-1', 'text_OrigQuote-en-xyz8-kat-1'
+    , 'text_OrigQuote-en-xyz8-pstin-1', 'text_OrigQuote-en-xyz8-eklektn-1', 'text_OrigQuote-en-xyz8-Theo-2', 'text_OrigQuote-en-xyz8-ka-1'
+    , 'text_OrigQuote-en-xyz8-epgnosin-1', 'text_OrigQuote-en-xyz8-alitheas-1', 'text_OrigQuote-en-xyz8-ts-1', 'text_OrigQuote-en-xyz8-ka-2'
+    , 'text_OrigQuote-en-xyz8-efsveian-1']
 
-//for (def i : (0..origQuote.size() - 1)) {
-//    (origQuote[i]) = (objectPage + (origQuote[i]))
-//}
+for (def i : (0..origQuote.size() - 1)) {
+    (origQuote[i]) = (objectPage + (origQuote[i]))
+}
 
 // Show OrigQuotes
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))

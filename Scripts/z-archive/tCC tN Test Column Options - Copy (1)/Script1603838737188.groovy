@@ -37,26 +37,22 @@ page = 'Page_tCC translationNotes/'
 //def columns = new String[10]
 columns = []
 
-columns = ['Page_tCC translationNotes/columns_RowHeader', 'Page_tCC translationNotes/columns_Book', 
-	'Page_tCC translationNotes/columns_Chapter', 'Page_tCC translationNotes/columns_Verse', 'Page_tCC translationNotes/columns_ID', 
-	'Page_tCC translationNotes/columns_SupportReference', 'Page_tCC translationNotes/columns_OrigQuote', 
-	'Page_tCC translationNotes/columns_Occurrence', 'Page_tCC translationNotes/columns_GLQuote', 
-	'Page_tCC translationNotes/columns_OccurrenceNote']
+columns = ['columns_RowHeader', 'columns_Book', 'columns_Chapter', 'columns_Verse', 'columns_ID', 'columns_SupportReference'
+    , 'columns_OrigQuote', 'columns_Occurrence', 'columns_GLQuote', 'columns_OccurrenceNote']
 
 //def elements = new String[10][3]
 elements = ([][[]])
 
-elements = [['Page_tCC translationNotes/text_RowHeader_TIT frontintro', 'Page_tCC translationNotes/text_RowHeader_TIT 1intro', 
-	'Page_tCC translationNotes/text_RowHeader_Titus 11'], // 
-	['Page_tCC translationNotes/label_Book', 'Page_tCC translationNotes/text_Book_TIT'], //
-	['Page_tCC translationNotes/label_Chapter', 'Page_tCC translationNotes/text_Chapter_front', 'Page_tCC translationNotes/text_Chapter_1'], //
-	['Page_tCC translationNotes/label_Verse', 'Page_tCC translationNotes/text_Verse_intro', 'Page_tCC translationNotes/text_Verse_1'], //
-	['Page_tCC translationNotes/label_ID', 'Page_tCC translationNotes/text_ID_m2jl', 'Page_tCC translationNotes/text_ID_c7me'], //
-	['Page_tCC translationNotes/label_SupportReference', 'Page_tCC translationNotes/text_SupRef_figs-abstractnouns'], // 
-	['Page_tCC translationNotes/label_OrigQuote', 'Page_tCC translationNotes/text_OrigQuote1', 'Page_tCC translationNotes/text_OrigQuote2'], //
-	['Page_tCC translationNotes/label_Occurrence', 'Page_tCC translationNotes/text_Occurrence_0', 'Page_tCC translationNotes/text_Occurrence_1'], //
-	['Page_tCC translationNotes/label_GLQuote', 'Page_tCC translationNotes/text_GLQuote_for the faith', 'Page_tCC translationNotes/text_GLQuote_knowledge'], //
-	['Page_tCC translationNotes/label_OccurrenceNote', 'Page_tCC translationNotes/text_OccurrenceNote_Who wrote the Book of Titus']]
+elements = [['text_RowHeader_TIT frontintro', 'text_RowHeader_TIT 1intro', 'text_RowHeader_Titus 11' //
+    ], ['label_Book', 'text_Book_TIT' //
+    ], ['label_Chapter', 'text_Chapter_front', 'text_Chapter_1' //
+    ], ['label_Verse', 'text_Verse_intro', 'text_Verse_1' //
+    ], ['label_ID', 'text_ID_m2jl', 'text_ID_c7me' //
+    ], ['label_SupportReference', 'text_SupRef_figs-abstractnouns' //
+    ], ['label_OrigQuote', 'text_OrigQuote1', 'text_OrigQuote2' //
+    ], ['label_Occurrence', 'text_Occurrence_0', 'text_Occurrence_1' //
+    ], ['label_GLQuote', 'text_GLQuote_for the faith', 'text_GLQuote_knowledge' //
+    ], ['label_OccurrenceNote', 'text_OccurrenceNote_Who wrote the Book of Titus']]
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
@@ -65,16 +61,15 @@ println('Setting all columns OFF')
 KeywordUtil.logInfo('Setting all columns OFF')
 
 for (def c : (0..columns.size() - 1)) {
-//    col = (page + (columns[c]))
-    col = columns[c]
+    col = (page + (columns[c]))
+
     WebUI.uncheck(findTestObject(col), FailureHandling.OPTIONAL)
 }
 
 //One by one set each column on and test for expected fields
 for (def c : (0..columns.size() - 1)) {
-//    col = (page + (columns[c]))
-	col = (columns[c])
-	
+    col = (page + (columns[c]))
+
     WebUI.click(findTestObject(col))
 
     WebUI.verifyElementChecked(findTestObject(col), 1, FailureHandling.CONTINUE_ON_FAILURE)
@@ -84,9 +79,8 @@ for (def c : (0..columns.size() - 1)) {
     KeywordUtil.logInfo(('Testing for ' + col) + ' elements visible.')
 
     for (def e : (0..(elements[c]).size() - 1)) {
-//        ele = (page + ((elements[c])[e]))
-		ele = ((elements[c])[e])
-		
+        ele = (page + ((elements[c])[e]))
+
         println('looking for ' + ele)
 
         KeywordUtil.logInfo('looking for ' + ele)
@@ -108,8 +102,7 @@ for (def c : (0..columns.size() - 1)) {
 
     for (def e : (0..(elements[c]).size() - 1)) {
         ele = (page + ((elements[c])[e]))
-		ele = ((elements[c])[e])
-		
+
         println('looking for ' + ele)
 
         KeywordUtil.logInfo('looking for ' + ele)
@@ -130,8 +123,7 @@ for (def c : (0..columns.size() - 1)) {
 
 KeywordUtil.logInfo('Testing Expand all Scripture option.')
 
-//col = (page + (columns[0]))
-col = columns[0]
+col = (page + (columns[0]))
 
 WebUI.click(findTestObject(col))
 
