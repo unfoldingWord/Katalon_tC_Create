@@ -20,10 +20,14 @@ import org.apache.commons.io.FileUtils
 
 import javax.swing.*
 
+// THIS NEEDS TO POINT TO THE TOP LEVEL SCRIPTS FOLDER
+//      vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+path = "/Users/cckozie/git/Katalon/tC Create Project/Scripts/"
+//	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+dirLen = path.length()
 list = []
 dirList = []
-path = "/Users/cckozie/git/Katalon/tC Create Project/Scripts/"
-dirLen = path.length()
 
 dir = new File(path)
 dir.eachFileRecurse (FileType.DIRECTORIES) { file ->

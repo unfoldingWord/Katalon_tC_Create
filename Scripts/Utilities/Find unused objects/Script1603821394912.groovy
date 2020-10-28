@@ -20,15 +20,19 @@ import org.apache.commons.io.FileUtils
 
 import javax.swing.*
 
+// THIS NEEDS TO POINT TO THE TOP LEVEL OBJECT REPOSITORY
+//              vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+dir = new File("/Users/cckozie/git/Katalon/tC Create Project/Object Repository")
+//			    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 divider = '\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 def list = []
 scripts = [divider]
 
 
-// BUILD THE LIST OF WEB ELEMENT OBJECTS
+// WEB ELEMENT OBJECTS
 objects = [divider]
 
-dir = new File("/Users/cckozie/git/Katalon/tC Create Project/Object Repository")
 dir.eachFileRecurse (FileType.FILES) { file ->
   list << file
 }
