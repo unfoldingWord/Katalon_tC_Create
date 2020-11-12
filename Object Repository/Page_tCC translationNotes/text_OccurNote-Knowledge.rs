@@ -6,10 +6,6 @@
    <elementGuidId>a1450c29-ce64-47d9-941d-66c1ec2ea449</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>div.cell-3-9.jss305 > div.jss310 > div.jss306 > div.jss317 > div.jss318 > p > strong</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>//tr[@id='MUIDataTableBodyRow-3']/td[4]/div/div/div/div/div/div/p/strong</value>
       </entry>
@@ -17,8 +13,12 @@
          <key>BASIC</key>
          <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-3-9 jss305&quot;]/div[@class=&quot;jss310&quot;]/div[@class=&quot;jss306&quot;]/div[@class=&quot;jss317&quot;]/div[@class=&quot;jss318&quot;]/p[1]/strong[1][count(. | //*[(text() = 'knowledge' or . = 'knowledge')]) = count(//*[(text() = 'knowledge' or . = 'knowledge')])]</value>
       </entry>
+      <entry>
+         <key>CSS</key>
+         <value>div.cell-3-9.jss305 > div.jss310 > div.jss306 > div.jss317 > div.jss318 > p > strong</value>
+      </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>

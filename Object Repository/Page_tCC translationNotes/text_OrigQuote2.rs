@@ -10,11 +10,15 @@
          <value>//tr[@id='MUIDataTableBodyRow-2']/td/div/div/div/div/div/div/p</value>
       </entry>
       <entry>
+         <key>BASIC</key>
+         <value>//*[(text() = 'κατὰ πίστιν' or . = 'κατὰ πίστιν')]</value>
+      </entry>
+      <entry>
          <key>CSS</key>
          <value>div.cell-2-6.jss6499 > div.jss6504 > div.jss6500 > div.jss6505 > div.jss6506 > p</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>

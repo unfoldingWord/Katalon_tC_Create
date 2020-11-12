@@ -61,7 +61,7 @@ WebUI.click(findTestObject('Page_tCC translationNotes/columns_OrigQuote'))
 WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 
 // Verify that the GL OrigQuote is as expected (εὐσέβεια)
-String glText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote-xyz8-efsveian'))
+String glText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote-xyz8'))
 
 String enText = WebUI.getText(findTestObject(origQuote[16]))
 
@@ -119,6 +119,8 @@ setGLOrigQuote('paste', '')
 
 enText = WebUI.getText(findTestObject(origQuote[3]))
 
+WebUI.delay(1)
+
 if (!(testHighlightStatus(origQuote[3]))) {
     println(enText + ' is not highlighted as expected')
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because ' + enText) + ' is not highlighted as expected.')
@@ -135,6 +137,8 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
     copyText()
 
     setGLOrigQuote('paste', '')
+	
+	WebUI.delay(1)
 
     if (!(WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), 'κατὰ πίστιν ἐκλεκτῶν', 
         FailureHandling.CONTINUE_ON_FAILURE))) {
@@ -145,8 +149,33 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
     }
     
     testHighlight(7, 9)
+	
+	// Test that copied highlighted original language word is not pasted highlighted
+	WebUI.doubleClick(findTestObject(origQuote[7]))
+	
+	copyText()
+	
+	setGLOrigQuote('paste', '')
+	
+	enText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'))
+	
+	WebUI.delay(1)
 
-    // Test pasting bolded text
+	if (myBrowser.contains('firefox')) {
+		result = testHighlightStatus('Page_tCC translationNotes/span_GL_OrigQuoteText')
+	} else {
+		if (WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 'background-color') == highlighted) {
+			result = true
+		}
+	}
+	if (result) {
+		println('ERROR: The GL Quote ' + enText + ' is highlighted after the paste')
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL Quoate ' + enText + ' is highlighted after the paste, but it should not be.')
+	} else {
+		println(enText + ' is not highlighted as desired')
+	}
+	
+	// Test pasting bolded text
     WebUI.doubleClick(findTestObject('Page_tCC translationNotes/text_OccurNote-Knowledge'))
 
     copyText()
@@ -157,11 +186,11 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 
     WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
 
-    if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-afterPaste')).contains('**')) {
-        println('ERROR: pasted text is formatted')
-        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted bold text was bolded.')
+    if (!WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-Preview')).contains('**')) {
+        println('ERROR: pasted text is not formatted')
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted bold text was not bolded.')
     } else {
-        println('text is not formatted')
+        println('text is properly formatted')
     }
 } else {
     println('Bypassing multiword paste and default format check')
@@ -181,6 +210,12 @@ WebUI.click(findTestObject('Page_tCC translationNotes/filterOption_Chapter3'))
 WebUI.delay(3)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
+
+if (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage')) != 25) {
+	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage'))
+	WebUI.delay(1)
+	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/option_RowsPerPage25'))
+}
 
 if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
 	println('ERROR: Jericho is not highlighted')
@@ -208,11 +243,13 @@ def setGLOrigQuote(def fnc, def quote) {
         WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'))
 
         if (system.contains('Windows')) {
-            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.CONTROL, 
-                    Keys.SHIFT, 'v'))
+//            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.CONTROL, 
+//                    Keys.SHIFT, 'v'))
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.CONTROL, 'v'))
         } else if (myBrowser.contains('firefox')) {
-            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.COMMAND, 
-                    Keys.SHIFT, 'v'))
+//            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.COMMAND, 
+//                    Keys.SHIFT, 'v'))
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.COMMAND, 'v'))
         } else {
             WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.SHIFT, Keys.INSERT))
         }
@@ -226,9 +263,10 @@ def setGLOrigQuote(def fnc, def quote) {
 def printHighlightStatus(def element, def elementText) {
     hText = 'highlighted'
 
-    highlighted = 'rgba(255, 255, 0, 1)'
+//    highlighted = 'rgba(255, 255, 0, 1)'
 
-    if (WebUI.getCSSValue(findTestObject(element), 'background-color') != highlighted) {
+//    if (WebUI.getCSSValue(findTestObject(element), 'background-color') != highlighted ||
+	if (WebUI.getAttribute(findTestObject(element), 'data-testselected', FailureHandling.OPTIONAL) != 'true') {
         hText = ('not ' + hText)
     }
     
@@ -240,7 +278,9 @@ def testHighlightStatus(def element) {
 
     highlighted = 'rgba(255, 255, 0, 1)'
 
-    if (WebUI.getCSSValue(findTestObject(element), 'background-color') == highlighted) {
+//	println('++++++++ data-testselected for ' + element + ' is ' + WebUI.getAttribute(findTestObject(element), 'data-testselected', FailureHandling.STOP_ON_FAILURE))
+ //   if (WebUI.getCSSValue(findTestObject(element), 'background-color') == highlighted ||
+	if (WebUI.getAttribute(findTestObject(element), 'data-testselected', FailureHandling.OPTIONAL) == 'true') {
         flag = true
     }
     
@@ -270,9 +310,9 @@ def dragIt(def from, def to) {
 
 def testHighlight(def from, def to) {
     for (def i : (0..origQuote.size - 1)) {
+		word = WebUI.getText(findTestObject(origQuote[i]))
         if ((i >= from) && (i <= to)) {
             if (!(testHighlightStatus(origQuote[i]))) {
-				word = WebUI.getText(findTestObject(origQuote[i]))
                 println(word + ' should be highlighted but is not.<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
 				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + word + ' should be highlighted but is not.')
             } else {

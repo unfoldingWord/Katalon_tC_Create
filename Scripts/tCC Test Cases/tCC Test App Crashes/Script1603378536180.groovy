@@ -55,7 +55,7 @@ println('Testing for app crash when changing sections visible and invisible. ISS
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 
-if (!(WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'), 1, FailureHandling.OPTIONAL))) {
+if (!(WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'), 3, FailureHandling.OPTIONAL))) {
     println('ERROR: tA target text not found after sections were opened')
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA target text was not found after sections were opened. Assuming app crashed.')
@@ -107,15 +107,15 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_08-RUT.tsv'], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash after paging forward twice. ISSUE 463')
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_PageForward'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
 
 WebUI.delay(2)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_PageForward'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
 
 if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
     println('ERROR: Repo chip is not present after paging forward twice')

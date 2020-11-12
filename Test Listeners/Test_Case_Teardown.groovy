@@ -22,6 +22,8 @@ import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
 
+// Modified 11/06/20	Print the browser used on summary
+
 class Test_Case_Teardown {
 	/**
 	 * Executes after every test case ends.
@@ -29,13 +31,14 @@ class Test_Case_Teardown {
 	 */
 	@AfterTestCase
 	def sampleAfterTestCase(TestCaseContext testCaseContext) {
-		String separator = '==========================================================================================================================='
+		String browser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
+		String separator = '==================================================================================================================================================='
 		println(separator)
 		String prefix = ' +++++++++++ '
 		if (testCaseContext.getTestCaseStatus() != 'PASSED') {
 			prefix = ' ---------------------- '
 		}
-		println(prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' ' + testCaseContext.getTestCaseStatus() + prefix)
+		println(prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseContext.getTestCaseStatus() + prefix)
 		GlobalVariable.tsMessages.add('##' + testCaseContext.getTestCaseId() )
 		
 		if (GlobalVariable.tcMessages.size() > 0) {

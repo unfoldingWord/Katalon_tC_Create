@@ -6,12 +6,12 @@
    <elementGuidId>2a9825f2-c3f4-4b94-865a-bf45e038ea0b</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-66 jss55 undefined MuiPaper-elevation4-73 MuiPaper-rounded-67&quot;]/div[@class=&quot;MuiToolbar-root-109 MuiToolbar-regular-111 jss94 MuiToolbar-gutters-110&quot;]/div[@class=&quot;jss98&quot;]/div[@class=&quot;jss175&quot;]/button[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss174&quot;][count(. | //*[@type = 'button']) = count(//*[@type = 'button'])]</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>(//button[@type='button'])[7]</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-66 jss55 undefined MuiPaper-elevation4-73 MuiPaper-rounded-67&quot;]/div[@class=&quot;MuiToolbar-root-109 MuiToolbar-regular-111 jss94 MuiToolbar-gutters-110&quot;]/div[@class=&quot;jss98&quot;]/div[@class=&quot;jss175&quot;]/button[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss174&quot;][count(. | //*[@type = 'button']) = count(//*[@type = 'button'])]</value>
       </entry>
       <entry>
          <key>CSS</key>

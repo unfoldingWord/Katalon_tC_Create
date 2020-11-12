@@ -46,7 +46,7 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
 WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
 
-if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-afterPaste')).contains('**')) {
+if (WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8-Preview')).contains('**')) {
     println('text is formatted')
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the pasted text was formatted.')

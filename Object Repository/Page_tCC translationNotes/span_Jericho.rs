@@ -11,7 +11,10 @@
       </entry>
       <entry>
          <key>CSS</key>
-         <value></value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[@data-test = 'aligned-word-object' and (text() = 'Jericho' or . = 'Jericho')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

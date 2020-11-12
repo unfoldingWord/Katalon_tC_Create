@@ -17,6 +17,10 @@ import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
+// Modified 11/06/20	Added Scroll to top and wait in order to allow Save button to be clicked on Firefox
+//						Added CustomKeywords send fail messages om failures
+//						Verified that timeout has not occurred on waiting for Save button to not be clickable
+
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
@@ -35,12 +39,19 @@ println('Setting original language quote to ' + newOrigQuote)
 
 WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), newOrigQuote)
 
+WebUI.scrollToPosition(0, 0)
+
+WebUI.delay(1)
+
 //In v1.0.4 the save button is enabled without the blur when running Katalon scripts
 //WebUI.clickOffset(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), 0, -20)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
 
-WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled'), 10)
+if (!WebUI.waitForElementNotClickable(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 10)) {
+	println('ERROR: Save button was not disabled after 10 seconds')
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the Save button was not disabled after 10 seconds.')
+}
 
 WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), newOrigQuote)
 
@@ -58,7 +69,10 @@ origQuote2 = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQu
 
 println((((('At ' + GlobalVariable.url) + ' before was ') + origQuote) + ' and after is ') + origQuote2)
 
-WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), newOrigQuote)
+if (!WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), newOrigQuote)) {
+	println('ERROR: GL quote text is not as expected')
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL quote text is not as expected.')
+}
 
 WebUI.closeBrowser()
 

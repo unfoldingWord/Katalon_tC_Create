@@ -2,7 +2,7 @@
 <TestCaseEntity>
    <description></description>
    <name>tCC tA Test Block Quotes and Sections</name>
-   <tag>Issues 321, 356, 424, 428, 437</tag>
+   <tag>Issues 356, 437</tag>
    <comment></comment>
    <testCaseGuid>16826d59-5581-47e2-87f9-41c0572bfed2</testCaseGuid>
    <variable>

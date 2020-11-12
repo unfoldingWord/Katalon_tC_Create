@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>test tN highlighting - Copy (2)</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>3840559d-3166-4e24-b7e6-a44fa16ef385</testCaseGuid>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>ec377dc8-bcdd-4cae-bb36-7eab105bb179</id>
+      <masked>false</masked>
+      <name>$username</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>9cdd7680-2eb9-4eca-8b35-7bdfbfa49af2</id>
+      <masked>false</masked>
+      <name>$password</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description>not used except in Archives</description>
+      <id>43f8bc8e-fb32-400f-b2dd-9871b7bed097</id>
+      <masked>false</masked>
+      <name>$origQuote</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description>not used except in Archives</description>
+      <id>8b279895-028d-40d4-88d5-7e95cd8e9eae</id>
+      <masked>false</masked>
+      <name>$newOrigQuote</name>
+   </variable>
+</TestCaseEntity>

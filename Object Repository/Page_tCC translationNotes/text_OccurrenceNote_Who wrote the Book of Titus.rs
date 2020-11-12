@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[@id = 'whowrotethebookoftitus' and (text() = 'Who wrote the Book of Titus?' or . = 'Who wrote the Book of Titus?')]</value>
+         <value>//*[(text() = 'Who wrote the Book of Titus?' or . = 'Who wrote the Book of Titus?')]</value>
       </entry>
       <entry>
          <key>CSS</key>
@@ -28,7 +28,7 @@
       <value>h3</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>id</name>
       <type>Main</type>

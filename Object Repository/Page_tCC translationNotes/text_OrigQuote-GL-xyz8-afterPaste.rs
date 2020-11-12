@@ -3,15 +3,15 @@
    <description></description>
    <name>text_OrigQuote-GL-xyz8-afterPaste</name>
    <tag></tag>
-   <elementGuidId>7dd9a2c4-a1bf-49e8-a7c4-3fda73aa17fd</elementGuidId>
+   <elementGuidId>8e9e2109-9787-48bd-b29d-773e475b7dad</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>div.cell-3-6.jss305 > div.jss310 > div.jss307 > div.jss317 > pre.jss320 > code.jss319</value>
+         <key>XPATH</key>
+         <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/div</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
+         <key>CSS</key>
+         <value>div.cell-3-6.jss252 > div.jss257 > div.jss254 > div.jss264 > pre.jss267 > div.jss266</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -21,14 +21,7 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>code</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>class</name>
-      <type>Main</type>
-      <value>jss319</value>
+      <value>div</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -36,6 +29,13 @@
       <name>dir</name>
       <type>Main</type>
       <value>auto</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>jss266</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -49,62 +49,62 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>​ἐπίγνωσιν** knowledge**</value>
+      <value>**knowledge**</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-3-6 jss305&quot;]/div[@class=&quot;jss310&quot;]/div[@class=&quot;jss307&quot;]/div[@class=&quot;jss317&quot;]/pre[@class=&quot;jss320&quot;]/code[@class=&quot;jss319&quot;]</value>
+      <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-3-6 jss252&quot;]/div[@class=&quot;jss257&quot;]/div[@class=&quot;jss254&quot;]/div[@class=&quot;jss264&quot;]/pre[@class=&quot;jss267&quot;]/div[@class=&quot;jss266&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
+      <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/div</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[9]/following::code[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[9]/following::div[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='ἐπίγνωσιν'])[3]/following::code[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ἐπίγνωσιν'])[3]/following::div[4]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[8]/preceding::code[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='knowledge'])[3]/preceding::div[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[9]/preceding::code[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[8]/preceding::div[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='​ἐπίγνωσιν** knowledge**']/parent::*</value>
+      <value>//*/text()[normalize-space(.)='**knowledge**']/parent::*</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//tr[4]/td[3]/div/div/div/div[2]/div/pre/code</value>
+      <value>//tr[4]/td[3]/div/div/div/div[2]/div/pre/div</value>
    </webElementXpaths>
 </WebElementEntity>

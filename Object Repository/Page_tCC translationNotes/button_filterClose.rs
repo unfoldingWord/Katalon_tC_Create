@@ -10,12 +10,12 @@
          <value>(//button[@type='button'])[179]</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>button.MuiButtonBase-root-162.MuiIconButton-root-154.jss106</value>
+         <key>BASIC</key>
+         <value>//*[@type = 'button' and @aria-label = 'Close']</value>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value>/html[1]/body[1]/div[@class=&quot;MuiPopover-root-172&quot;]/div[@class=&quot;MuiPaper-root-66 MuiPopover-paper-173 jss105 MuiPaper-elevation2-71 MuiPaper-rounded-67&quot;]/button[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss106&quot;][count(. | //*[@type = 'button' and @aria-label = 'Close']) = count(//*[@type = 'button' and @aria-label = 'Close'])]</value>
+         <key>CSS</key>
+         <value>button.MuiButtonBase-root-162.MuiIconButton-root-154.jss106</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -56,7 +56,7 @@
       <value>Close</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>

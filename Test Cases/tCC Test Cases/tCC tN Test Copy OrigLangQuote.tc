@@ -2,7 +2,7 @@
 <TestCaseEntity>
    <description></description>
    <name>tCC tN Test Copy OrigLangQuote</name>
-   <tag>Issues 251, 358</tag>
+   <tag>Issues 251, 321, 358, 424</tag>
    <comment></comment>
    <testCaseGuid>cddac132-0395-43dc-b0b6-caf6caa189be</testCaseGuid>
    <variable>

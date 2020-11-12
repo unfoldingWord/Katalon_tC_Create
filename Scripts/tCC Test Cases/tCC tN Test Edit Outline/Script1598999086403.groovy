@@ -55,9 +55,9 @@ for (def i : (0..2)) {
 
 WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
 
-WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled'), 10)
+WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 10)
 
 WebUI.closeBrowser()
 
@@ -85,9 +85,9 @@ for (def i : (0..2)) {
 
 WebUI.clickOffset(findTestObject('Page_tCC translationNotes/tNText_GLOutlinePoint1'), -500, 0)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
 
-WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled'), 10)
+WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), 10)
 
 WebUI.closeBrowser()
 

@@ -10,12 +10,12 @@
          <value>(//button[@type='button'])[4]</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>span > button.MuiButtonBase-root-712.MuiIconButton-root-703.jss653</value>
-      </entry>
-      <entry>
          <key>BASIC</key>
          <value>//*[@data-testid = 'View Columns-iconButton']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>span > button.MuiButtonBase-root-712.MuiIconButton-root-703.jss653</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>

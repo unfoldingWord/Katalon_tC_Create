@@ -24,7 +24,7 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], Fai
 WebUI.delay(5)
 
 try {
-	WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+	WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.OPTIONAL)
 	WebUI.delay(2)
 	WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
 } catch (Exception e) {

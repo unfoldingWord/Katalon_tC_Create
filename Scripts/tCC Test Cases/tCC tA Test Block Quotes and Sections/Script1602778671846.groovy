@@ -33,10 +33,9 @@ WebUI.click(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/header_BentOver'))
 
-WebUI.delay(2)
-
 if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver')).contains('Yahweh'))) {
     println('ERROR: Block quote text was deleted')
+
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because block quote text was deleted.')
 } else {
     println('Block quote text is correct')
@@ -47,63 +46,127 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
 
     WebUI.click(findTestObject('Page_tCC translationAcademy/section_Having BIRTH PAINS'))
 
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.END))
+    elementBirthPains = 'Page_tCC translationAcademy/text_Having Birth Pains header'
 
-    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.SPACE))
-	
-	if (WebUI.getText(findTestObject('Page_tCC translationAcademy/text_birthPains')).contains('&gt;')) {
-		println('ERROR: "&gt;" was displayed instead of ">" for block quotes')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because "&gt;" was displayed instead of ">" for block quotes.')
-	    WebUI.click(findTestObject('Page_tCC translationAcademy/button_Preview'))
-		WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
-		WebUI.delay(2)
-	} else {
+    WebUI.sendKeys(findTestObject(elementBirthPains), Keys.chord(Keys.COMMAND, Keys.DOWN))
 
-	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.ENTER))
+    WebUI.sendKeys(findTestObject(elementBirthPains), Keys.chord(Keys.SPACE))
+
+    WebUI.delay(1)
+
+    if (WebUI.getText(findTestObject(elementBirthPains)).contains('&gt;')) {
+        println('ERROR: "&gt;" was displayed instead of ">" for block quotes')
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because "&gt;" was displayed instead of ">" for block quotes.')
+
+        WebUI.click(findTestObject('Page_tCC translationAcademy/button_Preview'))
+
+        WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
+
+        WebUI.delay(2)
+    } else {
+ 		
+		try {
+		
+	        WebUI.sendKeys(findTestObject(elementBirthPains), Keys.chord(Keys.ENTER), FailureHandling.CONTINUE_ON_FAILURE)
+			
+			WebUI.sendKeys(findTestObject(elementBirthPains), '> This is line 1', FailureHandling.STOP_ON_FAILURE)
 	
-	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), '> This is line 1')
+	        WebUI.sendKeys(findTestObject(elementBirthPains), Keys.chord(Keys.ENTER), FailureHandling.CONTINUE_ON_FAILURE)
 	
-	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), Keys.chord(Keys.ENTER))
-	
-	    WebUI.sendKeys(findTestObject('Page_tCC translationAcademy/text_birthPains'), '> This is line 2')
-	
-	    WebUI.click(findTestObject('Page_tCC translationAcademy/button_preview'))
-	
-	    WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/paragraph_My little children'), 2)
-	
-	    if (WebUI.getText(findTestObject('Page_tCC translationAcademy/paragraph_My little children')).contains('ULT) This is line 1 This is line 2')) {
-	        println('ERROR: line feeds were deleted in block quotes')	
-	        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because line feeds were deleted in block quotes.')
-	    } else {
-	        println('Line feeds were correctly included in block quotes')
-	    }
-	}
+	        WebUI.sendKeys(findTestObject(elementBirthPains), '> This is line 2', FailureHandling.CONTINUE_ON_FAILURE)
+			
+		} catch (Exception e) {
+			
+			println('ERROR: Failed to send keystrokes to the block')
+			
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because script was unable to send keystrokes to the block.')
+		}
+
+        WebUI.click(findTestObject('Page_tCC translationAcademy/button_preview'))
+
+        WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/paragraph_My little children'), 2)
+
+        if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/paragraph_My little children')).contains('ULT) This is line 1 This is line 2'))) {
+            println('ERROR: line feeds were deleted in block quotes')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because line feeds were deleted in block quotes.')
+        } else {
+            println('Line feeds were correctly included in block quotes')
+        }
+    }
 } else {
     println('Test for block quote line feeds was bypassed')
 }
 
 println('Testing for sections visible and invisible')
+
+println('Showing sections')
+
+WebUI.delay(1)
+
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 
-WebUI.verifyElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'))
+if (!(WebUI.verifyElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver')))) {
+    println('ERROR: tA text for "Bent over" is not visible when sections are open')
 
-WebUI.verifyElementVisible(findTestObject('Page_tCC translationAcademy/text_BirthPains'))
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text for "Bent over" is not visible when sections are open.')
+} else {
+    println('tA text for "Bent over" is visible when sections are open')
+}
+
+if (!(WebUI.verifyElementVisible(findTestObject('Page_tCC translationAcademy/text_Be in pain and labor to give birth')))) {
+    println('ERROR: tA text for "Be in pain and labor" is not visible when sections are open')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text for "Be in pain and labor" is not visible when sections are open.')
+} else {
+    println('tA text for "Be in pain and labor" is visible when sections are open')
+}
+
+println('Hiding sections')
+
+WebUI.delay(2)
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 
-WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'))
+if (!(WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_BentOver')))) {
+    println('ERROR: tA text for "Bent over" is visible when sections are closed')
 
-WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_BirthPains'))
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text for "Bent over" is visible when sections are closed.')
+} else {
+    println('tA text for "Bent over" is not visible when sections are closed as expected')
+
+}
+
+present = WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/text_Be in pain and labor to give birth'), 1, FailureHandling.OPTIONAL)
+
+if (present && (!WebUI.verifyElementNotVisible(findTestObject('Page_tCC translationAcademy/text_Be in pain and labor to give birth'), FailureHandling.OPTIONAL))) {
+    println('ERROR: tA text for "Be in pain and labor" is visible when sections are closed')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text for "Be in pain and labor" is visible when sections are closed.')
+
+} else {
+    println('tA text for "Be in pain and labor" is not visible when sections are closed as expected')
+}
 
 println('Testing for sections and blocks visible')
+
+println('Showing sections and blocks')
+
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/button_Blocks'))
 
-if (!WebUI.waitForElementPresent(findTestObject('Page_tCC translationAcademy/text_BentOver'), 1, FailureHandling.OPTIONAL) ||
-	!WebUI.waitForElementPresent(findTestObject('Page_tCC translationAcademy/text_BirthPains'), 1, FailureHandling.OPTIONAL)) {
-	println('ERROR: tA text is not visible when Sections and Blocks have been clicked')
-	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text is not visible when Sections and Blocks have been clicked.')
+WebUI.delay(1)
+
+if (!(WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/text_BentOver'), 1, FailureHandling.OPTIONAL)) || 
+(!WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/text_Be in pain and labor to give birth'), 1, 
+    FailureHandling.OPTIONAL))) {
+    println('ERROR: tA text is not visible when Sections and Blocks have are opened')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because tA text is not visible when Sections and Blocks are open.')
+} else {
+    println('tA text is visible with Sections and Blocks open as expected')
 }
 
 WebUI.closeBrowser()

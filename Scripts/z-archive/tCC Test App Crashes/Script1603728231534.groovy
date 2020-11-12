@@ -90,11 +90,11 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$user
 
 println('Testing for app crash after paging forward twice. ISSUE 463')
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_PageForward'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
 
 WebUI.delay(2)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_PageForward'))
+WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
 
 if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
     println('ERROR: Repo chip is not present after paging forward twice')

@@ -6,16 +6,16 @@
    <elementGuidId>c851ef44-1fc5-4ae4-990d-f15066393891</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>button.MuiButtonBase-root-162.MuiIconButton-root-154.jss106</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>(//button[@type='button'])[179]</value>
       </entry>
       <entry>
          <key>BASIC</key>
          <value>//*[@type = 'button' and @aria-label = 'Close']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.MuiButtonBase-root-162.MuiIconButton-root-154.jss106</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>

@@ -6,6 +6,10 @@
    <elementGuidId>f1d8a3d9-4c40-4185-bc04-ecfb6518806e</elementGuidId>
    <selectorCollection>
       <entry>
+         <key>BASIC</key>
+         <value>//*[@type = 'button' and (text() = 'Login to try again...' or . = 'Login to try again...')]</value>
+      </entry>
+      <entry>
          <key>XPATH</key>
          <value>(//button[@type='button'])[179]</value>
       </entry>
@@ -14,7 +18,7 @@
          <value>button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.jss5638.MuiButton-containedPrimary.MuiButton-fullWidth</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
