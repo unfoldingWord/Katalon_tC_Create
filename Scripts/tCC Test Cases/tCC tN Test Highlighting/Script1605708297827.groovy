@@ -27,7 +27,43 @@ import org.openqa.selenium.Point as Point
 import java.io.File as File
 import org.sikuli.script.*
 
-myFile = 'en_tn_41-MAT.tsv'
+myFile = 'en_tn_57-TIT.tsv'
+
+(width, height) = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getScreenResolution'()
+
+int xOffset = (width / 2) - 200
+
+println('xOffset is ' + xOffset)
+
+int yOffset = (-(height) / 2) + 100
+
+println('yOffset is ' + yOffset)
+
+WebUI.openBrowser('https://git.door43.org/unfoldingWord/en_tn/raw/branch/master/' + myFile)
+
+WebUI.maximizeWindow()
+
+WebUI.rightClickOffset(findTestObject('Page_tCC translationNotes/pre_RawText'), xOffset, yOffset)
+
+WebUI.delay(1)
+
+Screen s = new Screen()
+
+if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/saveAs.png', 5)) {
+	s.click()
+}
+
+if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/save3.png', 5)) {
+	WebUI.delay(1)
+
+	s.click()
+}
+
+if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/replace.png', 5)) {
+	WebUI.delay(1)
+
+	s.click()
+}
 
 details = false
 

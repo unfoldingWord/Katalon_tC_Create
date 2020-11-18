@@ -17,7 +17,7 @@ import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import org.sikuli.script.*
 
-if (1 == 2) {
+if (1 == 1) {
     (width, height) = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getScreenResolution'()
 
     int xOffset = (width / 2) - 200
@@ -28,7 +28,6 @@ if (1 == 2) {
 
     println('yOffset is ' + yOffset)
 
-    //if (GlobalVariable.openBrowser) {
     WebUI.openBrowser('https://git.door43.org/unfoldingWord/en_tn/raw/branch/master/en_tn_57-TIT.tsv')
 
     WebUI.maximizeWindow()
@@ -58,52 +57,53 @@ if (1 == 2) {
     new File('/Users/cckozie/Downloads/en_tn_57-TIT.tsv').eachLine({ def line ->
             println(line)
         })
+} else {
+
+	ids = []
+	
+	origQuotes = []
+	
+	first = true
+	
+	new File('/Users/cckozie/Downloads/en_tn_57-TIT.tsv').splitEachLine('\t', { def fields ->
+	        if ((fields[4]) != '') {
+	            if (!(first)) {
+	                println(((fields[3]) + ':') + (fields[5]))
+	
+	                ids.add(fields[3])
+	
+	                origQuotes.add(fields[5])
+	            } else {
+	                first = false
+	            }
+	        }
+	    } //Read data from CSV
+	    )
+	
+	//println(var1)
+	return false
+	
+	
+	//CustomKeywords.'unfoldingWord_Keywords.SikuliFunctions.fileSaveAs'()
+	
+	//WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
+	WebUI.delay(1)
+	
+	return false
+	
+	WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+	
+	WebUI.click(findTestObject('Object Repository/recordings/span_English - unfoldingWorden_tnmaster'))
+	
+	WebUI.switchToWindowTitle('unfoldingWord/en_tn: unfoldingWord® Translation Notes - en_tn_57-TIT.tsv at master - en_tn - Door43 Content Service')
+	
+	WebUI.click(findTestObject('Object Repository/recordings/a_Raw'))
+	
+	WebUI.rightClickOffset(findTestObject('recordings/pre_RawText'), xOffset, yOffset)
+	
+	WebUI.delay(1)
+	
+	//WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
+	WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
+	
 }
-
-ids = []
-
-origQuotes = []
-
-first = true
-
-new File('/Users/cckozie/Downloads/en_tn_57-TIT.tsv').splitEachLine('\t', { def fields ->
-        if ((fields[4]) != '') {
-            if (!(first)) {
-                println(((fields[3]) + ':') + (fields[5]))
-
-                ids.add(fields[3])
-
-                origQuotes.add(fields[5])
-            } else {
-                first = false
-            }
-        }
-    } //Read data from CSV
-    )
-
-//println(var1)
-return false
-
-
-//CustomKeywords.'unfoldingWord_Keywords.SikuliFunctions.fileSaveAs'()
-
-//WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
-WebUI.delay(1)
-
-return false
-
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.click(findTestObject('Object Repository/recordings/span_English - unfoldingWorden_tnmaster'))
-
-WebUI.switchToWindowTitle('unfoldingWord/en_tn: unfoldingWord® Translation Notes - en_tn_57-TIT.tsv at master - en_tn - Door43 Content Service')
-
-WebUI.click(findTestObject('Object Repository/recordings/a_Raw'))
-
-WebUI.rightClickOffset(findTestObject('recordings/pre_RawText'), xOffset, yOffset)
-
-WebUI.delay(1)
-
-//WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
-WebUI.clickOffset(findTestObject('recordings/pre_RawText'), xOffset + 50, yOffset + 80)
-
