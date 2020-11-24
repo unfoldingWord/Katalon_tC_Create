@@ -4,32 +4,32 @@
    <name>tCC tN Test Highlighting</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>e107e748-ded6-44b8-a90b-cb57427fa16f</testCaseGuid>
+   <testCaseGuid>bc765b5e-2a11-4b52-9f3e-bc937d2189d3</testCaseGuid>
    <variable>
       <defaultValue>''</defaultValue>
       <description></description>
-      <id>16683fa9-2b86-4a37-9076-31743e02625c</id>
+      <id>a24f613d-e56c-4eef-b8d7-ec366c66fb75</id>
       <masked>false</masked>
       <name>$username</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description></description>
-      <id>89d7415d-188e-4012-b5b7-c7f92141bee4</id>
+      <id>87d6694e-0c6a-4910-a9eb-27bbb63ec5ab</id>
       <masked>false</masked>
       <name>$password</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description>not used except in Archives</description>
-      <id>d2b576fb-0f3f-4fd7-a58d-c3af977a2f14</id>
+      <id>f20fe275-852c-449c-806e-2d23f46cc3ed</id>
       <masked>false</masked>
       <name>$origQuote</name>
    </variable>
    <variable>
       <defaultValue>''</defaultValue>
       <description>not used except in Archives</description>
-      <id>f3f33323-2af7-44ba-88ad-66e14d3aed6f</id>
+      <id>fab18c98-6b0d-4a19-a2e3-521ff0a6b376</id>
       <masked>false</masked>
       <name>$newOrigQuote</name>
    </variable>

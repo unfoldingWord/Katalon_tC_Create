@@ -6,12 +6,7 @@
    <elementGuidId>4952b6a5-72f3-42b7-a90d-569468a9162c</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/div</value>
-      </entry>
-      <entry>
          <key>CSS</key>
-         <value></value>
       </entry>
       <entry>
          <key>BASIC</key>
@@ -31,8 +26,12 @@
   
 > My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)')]</value>
       </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/div</value>
+      </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>

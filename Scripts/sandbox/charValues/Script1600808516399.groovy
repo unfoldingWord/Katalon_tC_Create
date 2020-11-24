@@ -17,6 +17,30 @@ import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.configuration.RunConfiguration as RC
 import java.io.File
 
+myFile = 'en_tn_08-RUT.tsv'
+println(myFile)
+//myFile.each {a -> 
+//	println a
+//}
+
+return false
+
+puncts = [',',';',':','"','?','.']
+
+s1 = 'וַ⁠יָּ֥מָת אֱלִימֶ֖לֶךְ אִ֣ישׁ נָעֳמִ֑י וַ⁠תִּשָּׁאֵ֥ר הִ֖יא וּ⁠שְׁנֵ֥י בָנֶֽי⁠הָ׃'
+s2 = 'הִ֖יא וּ⁠שְׁנֵ֥י בָנֶֽי⁠הָ׃'
+//s1 = 'וַ⁠יָּ֥מָת אֱלִימֶ֖לֶךְ אִ֣ישׁ נָעֳמִ֑י וַ⁠תִּשָּׁאֵ֥ר הִ֖יא וּ⁠שְׁנֵ֥י'
+//s2 = 'הִ֖יא וּ⁠שְׁנֵ֥י'
+for (punct in puncts) {
+	s1 = s1.replace(punct,'')
+	s2 = s2.replace(punct,'')
+}
+println(s1)
+println(s2)
+s3 = s1.indexOf(s2)
+println(s3)
+
+return false
 myFile = 'en_tn_41-MAT.tsv'
 fName = 'test.txt'
 highlighted = 'rgba(255, 255, 0, 1)'
