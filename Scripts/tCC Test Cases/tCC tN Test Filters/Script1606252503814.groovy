@@ -27,115 +27,125 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
     FailureHandling.STOP_ON_FAILURE)
 
-chpts = ['3','All','1','2','front']
+chpts = ['3', 'All', '1', '2', 'front']
 
-for (chpt in chpts) {
-	filterByChapter(chpt)
+for (def chpt : chpts) {
+    filterByChapter(chpt)
 }
 
 WebUI.delay(2)
 
-refs = ['figs-explicit','figs-ellipsis','All','translate-names','grammar-connect-logic-result','figs-personification']
+refs = ['figs-explicit', 'figs-ellipsis', 'All', 'translate-names', 'grammar-connect-logic-result', 'figs-personification']
 
-for (ref in refs) {
-	filterBySupportRef(ref)
+for (def ref : refs) {
+    filterBySupportRef(ref)
 }
 
 WebUI.delay(2)
-	
+
 WebUI.closeBrowser()
 
-def filterByChapter(chpt) {
-	if (chpt != 'All') {
-		intro = 'TIT ' + chpt + ':intro'
-	} else {
-		intro = 'TIT front:intro'
-	}
-	
-	badge = 'Chapter - ' + chpt
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
-	
-	WebUI.delay(1)
-		
-	WebUI.click(findTestObject('Page_tCC translationNotes/list_chapter'))
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/filter_Chapter_Parmed', [('chapter') : chpt]))
-	
-	if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/header_chapterIntro_Parmed',[('introText') : intro]), 1)) {
-		println('ERROR: Intro header ' + intro + ' not found')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the intro header ' + intro + ' was not found.')
-	} else {
-		println('Intro header ' + intro + ' was found')
-	}
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
-	
-	WebUI.scrollToPosition(0, 0)
-	
-	if (chpt != 'All') {
-		WebUI.clickOffset(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]), 0, 0)
-	}
+def filterByChapter(def chpt) {
+    if (chpt != 'All') {
+        intro = (('TIT ' + chpt) + ':intro')
+    } else {
+        intro = 'TIT front:intro'
+    }
+    
+    badge = ('Chapter - ' + chpt)
 
-	intro = 'TIT front:intro'
-	
-	if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/header_chapterIntro_Parmed',[('introText') : intro]), 1)) {
-		println('ERROR: Intro header ' + intro + ' not found after clicking on badge')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the intro header ' + intro + ' was not found after clicking on badge.')
-	} else {
-		println('Intro header ' + intro + ' was found')
-	}
-	
-	WebUI.delay(1)
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
+
+    WebUI.delay(1)
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/list_chapter'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_Chapter_Parmed', [('chapter') : chpt]))
+
+    if (!(WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/header_chapterIntro_Parmed', [('introText') : intro]), 
+        1))) {
+        println(('ERROR: Intro header ' + intro) + ' not found')
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the intro header ' + intro) + 
+            ' was not found.')
+    } else {
+        println(('Intro header ' + intro) + ' was found')
+    }
+    
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
+
+    WebUI.scrollToPosition(0, 0)
+
+    if (chpt != 'All') {
+//        WebUI.clickOffset(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]), 0, 0)
+        WebUI.click(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]))
+    }
+    
+    intro = 'TIT front:intro'
+
+    if (!(WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/header_chapterIntro_Parmed', [('introText') : intro]), 
+        1))) {
+        println(('ERROR: Intro header ' + intro) + ' not found after clicking on badge')
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the intro header ' + intro) + 
+            ' was not found after clicking on badge.')
+    } else {
+        println(('Intro header ' + intro) + ' was found')
+    }
+    
+    WebUI.delay(1)
 }
 
-def filterBySupportRef(ref) {
-	if (ref == 'All') {
-		myRef = 'empty'
-	} else {
-		myRef = ref
-	}
-	
-	
-	badge = 'SupportReference - ' + ref
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
-	
-	WebUI.delay(1)
-		
-	WebUI.click(findTestObject('Page_tCC translationNotes/list_supportRef'))
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/filter_SupportRef_Parmed', [('supportRef') : ref]))
-	
-	refText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/para_firstSupportRef'))
-	
-	if (refText != myRef) {
-		println('ERROR: SupportReference is ' + refText + ' but should be ' + myRef)
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the SupportReference is ' + refText + ' but should be ' + ref)
-	} else {
-		println('SupportReference ' + myRef + ' was found')
-	}
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
-	
-	WebUI.scrollToPosition(0, 0)
-	
-	if (ref != 'All') {
-		WebUI.clickOffset(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]), 0, 0)
-	}
+def filterBySupportRef(def ref) {
+    if (ref == 'All') {
+        myRef = 'empty'
+    } else {
+        myRef = ref
+    }
+    
+    badge = ('SupportReference - ' + ref)
 
-	firstRef = 'empty'
-	
-	refText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/para_firstSupportRef'))
-	
-	if (refText != firstRef) {
-		println('ERROR: First SupportReference is ' + refText + ' but should be ' + firstRef)
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the first SupportReference is ' + refText + ' but should be ' + firstRef)
-	} else {
-		println('The first SupportReference ' + refText + ' was found')
-	}
-	
-	WebUI.delay(1)
-		
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
+
+    WebUI.delay(1)
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/list_supportRef'))
+
+    WebUI.click(findTestObject('Page_tCC translationNotes/filter_SupportRef_Parmed', [('supportRef') : ref]))
+
+    refText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/para_firstSupportRef'))
+
+    if (refText != myRef) {
+        println((('ERROR: SupportReference is ' + refText) + ' but should be ') + myRef)
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'((('Test failed because the SupportReference is ' + 
+            refText) + ' but should be ') + ref)
+    } else {
+        println(('SupportReference ' + myRef) + ' was found')
+    }
+    
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
+
+    WebUI.scrollToPosition(0, 0)
+
+    if (ref != 'All') {
+//        WebUI.clickOffset(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]), 0, 0)
+        WebUI.click(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]))
+    }
+    
+    firstRef = 'empty'
+
+    refText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/para_firstSupportRef'))
+
+    if (refText != firstRef) {
+        println((('ERROR: First SupportReference is ' + refText) + ' but should be ') + firstRef)
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'((('Test failed because the first SupportReference is ' + 
+            refText) + ' but should be ') + firstRef)
+    } else {
+        println(('The first SupportReference ' + refText) + ' was found')
+    }
+    
+    WebUI.delay(1)
 }
 
