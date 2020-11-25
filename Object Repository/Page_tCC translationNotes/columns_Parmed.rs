@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>columns_Book</name>
+   <name>columns_Parmed</name>
    <tag></tag>
-   <elementGuidId>964d44d1-5aac-4b5b-882e-87c162471171</elementGuidId>
+   <elementGuidId>9b46d3dd-0f11-41ea-aada-34493fb264da</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
+         <value></value>
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//input[@value='Book']</value>
+         <value>//input[@value='${column}']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -27,7 +28,7 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>jss31837</value>
+      <value>jss2196</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -55,7 +56,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>/html[1]/body[1]/div[@class=&quot;MuiPopover-root-172&quot;]/div[@class=&quot;MuiPaper-root-66 MuiPopover-paper-173 MuiPaper-elevation2-71 MuiPaper-rounded-67&quot;]/fieldset[@class=&quot;MuiFormControl-root-31819 jss31811&quot;]/div[@class=&quot;MuiFormGroup-root-31823 jss31813&quot;]/label[@class=&quot;MuiFormControlLabel-root-31825 jss31814&quot;]/span[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss31834 MuiCheckbox-root-31830 jss31816 MuiCheckbox-colorPrimary-31832 jss31815 MuiIconButton-colorPrimary-158&quot;]/span[@class=&quot;MuiIconButton-label-161&quot;]/input[@class=&quot;jss31837&quot;]</value>
+      <value>/html[1]/body[1]/div[@class=&quot;MuiPopover-root-173&quot;]/div[@class=&quot;MuiPaper-root-67 MuiPopover-paper-174 MuiPaper-elevation2-72 MuiPaper-rounded-68&quot;]/fieldset[@class=&quot;MuiFormControl-root-2178 jss2170&quot;]/div[@class=&quot;MuiFormGroup-root-2182 jss2172&quot;]/label[@class=&quot;MuiFormControlLabel-root-2184 jss2173&quot;]/span[@class=&quot;MuiButtonBase-root-163 MuiIconButton-root-155 jss2193 MuiCheckbox-root-2189 jss2175 MuiCheckbox-colorPrimary-2191 jss2174 MuiIconButton-colorPrimary-159&quot;]/span[@class=&quot;MuiIconButton-label-162&quot;]/input[@class=&quot;jss2196&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>

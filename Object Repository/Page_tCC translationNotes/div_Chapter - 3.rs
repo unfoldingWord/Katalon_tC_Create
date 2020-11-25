@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>filterOption_Chapter3</name>
+   <name>div_Chapter - 3</name>
    <tag></tag>
-   <elementGuidId>4d0456b4-0e50-409a-a980-89e82ad9a6a4</elementGuidId>
+   <elementGuidId>f6c89e44-906b-4fa3-b30c-0c20908acbce</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//div[@id='menu-Chapter']/div[3]/ul/li[5]</value>
-      </entry>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[@role = 'option' and (text() = '3' or . = '3')]</value>
+         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div</value>
       </entry>
       <entry>
          <key>CSS</key>
+         <value>div.MuiChip-root-2289.jss178.MuiChip-deletable-2296</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -24,90 +21,76 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>li</value>
+      <value>div</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>role</name>
+      <type>Main</type>
+      <value>button</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root-163 MuiListItem-root-6717 MuiMenuItem-root-6714 MuiMenuItem-gutters-6715 MuiListItem-gutters-6722 MuiListItem-button-6723</value>
+      <value>MuiChip-root-2289 jss178 MuiChip-deletable-2296</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tabindex</name>
       <type>Main</type>
-      <value>-1</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>role</name>
-      <type>Main</type>
-      <value>option</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>aria-disabled</name>
-      <type>Main</type>
-      <value>false</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>data-value</name>
-      <type>Main</type>
-      <value>3</value>
+      <value>0</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>3</value>
+      <value>Chapter - 3</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;menu-Chapter&quot;)/div[@class=&quot;MuiPaper-root-67 MuiMenu-paper-310 MuiPopover-paper-174 MuiPaper-elevation8-78 MuiPaper-rounded-68&quot;]/ul[@class=&quot;MuiList-root-6710 MuiMenu-list-311 MuiList-padding-6711&quot;]/li[@class=&quot;MuiButtonBase-root-163 MuiListItem-root-6717 MuiMenuItem-root-6714 MuiMenuItem-gutters-6715 MuiListItem-gutters-6722 MuiListItem-button-6723&quot;]</value>
+      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-67 jss56 undefined MuiPaper-elevation4-74 MuiPaper-rounded-68&quot;]/div[@class=&quot;jss177&quot;]/div[@class=&quot;MuiChip-root-2289 jss178 MuiChip-deletable-2296&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//div[@id='menu-Chapter']/div[3]/ul/li[5]</value>
+      <value>//div[@id='root']/div/div/div/div[2]/div[2]/div</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='front'])[1]/following::li[3]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - translate_test/en_tn/tc01-tc-create-1'])[1]/following::div[8]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='All'])[3]/following::li[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - unfoldingWord/en_tn/master'])[1]/following::div[10]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='3']/parent::*</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='rowHeader'])[1]/preceding::div[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//li[5]</value>
+      <value>//div[2]/div[2]/div</value>
    </webElementXpaths>
 </WebElementEntity>

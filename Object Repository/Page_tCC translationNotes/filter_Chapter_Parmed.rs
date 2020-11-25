@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>filterOption_Chapter3</name>
+   <name>filter_Chapter_Parmed</name>
    <tag></tag>
-   <elementGuidId>4d0456b4-0e50-409a-a980-89e82ad9a6a4</elementGuidId>
+   <elementGuidId>09efec79-a847-49dd-876e-a15be987bb94</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
          <value>//div[@id='menu-Chapter']/div[3]/ul/li[5]</value>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value>//*[@role = 'option' and (text() = '3' or . = '3')]</value>
+         <key>CSS</key>
+         <value></value>
       </entry>
       <entry>
-         <key>CSS</key>
+         <key>BASIC</key>
+         <value>//*[@data-value = '${chapter}']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -31,7 +32,7 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root-163 MuiListItem-root-6717 MuiMenuItem-root-6714 MuiMenuItem-gutters-6715 MuiListItem-gutters-6722 MuiListItem-button-6723</value>
+      <value>MuiButtonBase-root-163 MuiListItem-root-2251 MuiMenuItem-root-2248 MuiMenuItem-gutters-2249 MuiListItem-gutters-2256 MuiListItem-button-2257</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -41,7 +42,7 @@
       <value>-1</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>role</name>
       <type>Main</type>
@@ -55,14 +56,14 @@
       <value>false</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>data-value</name>
       <type>Main</type>
-      <value>3</value>
+      <value>${chapter}</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
@@ -73,7 +74,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;menu-Chapter&quot;)/div[@class=&quot;MuiPaper-root-67 MuiMenu-paper-310 MuiPopover-paper-174 MuiPaper-elevation8-78 MuiPaper-rounded-68&quot;]/ul[@class=&quot;MuiList-root-6710 MuiMenu-list-311 MuiList-padding-6711&quot;]/li[@class=&quot;MuiButtonBase-root-163 MuiListItem-root-6717 MuiMenuItem-root-6714 MuiMenuItem-gutters-6715 MuiListItem-gutters-6722 MuiListItem-button-6723&quot;]</value>
+      <value>id(&quot;menu-Chapter&quot;)/div[@class=&quot;MuiPaper-root-67 MuiMenu-paper-310 MuiPopover-paper-174 MuiPaper-elevation8-78 MuiPaper-rounded-68&quot;]/ul[@class=&quot;MuiList-root-2244 MuiMenu-list-311 MuiList-padding-2245&quot;]/li[@class=&quot;MuiButtonBase-root-163 MuiListItem-root-2251 MuiMenuItem-root-2248 MuiMenuItem-gutters-2249 MuiListItem-gutters-2256 MuiListItem-button-2257&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
