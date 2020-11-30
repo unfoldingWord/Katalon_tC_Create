@@ -29,8 +29,8 @@ import org.sikuli.script.*
 
 // ============= CURRENTLY IGNORES OCCURRANCE NUMBER WHEN PROCESSING ELLIPSIS =============
 
-myFile = 'en_tn_50-EPH.tsv'
-myId = 'abdg'
+myFile = 'en_tn_50-EPH.tsv' // SET TO FILE TO BE TESTED
+myId = ''					// SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STARTS WITH FIRST ID.
 
 
 if (!new File('/Users/cckozie/Downloads/' + myFile).exists()) {

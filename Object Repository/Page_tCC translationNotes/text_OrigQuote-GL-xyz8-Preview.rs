@@ -7,11 +7,11 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/div</value>
+         <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>div.cell-3-6.jss252 > div.jss257 > div.jss254 > div.jss264 > pre.jss267 > div.jss266</value>
+         <value>div.cell-3-6.jss2427 > div.jss2432 > div.jss2429 > div.jss2439 > pre.jss2442 > code.jss2441</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -21,7 +21,14 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>div</value>
+      <value>code</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>jss2441</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -29,13 +36,6 @@
       <name>dir</name>
       <type>Main</type>
       <value>auto</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>class</name>
-      <type>Main</type>
-      <value>jss266</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -56,42 +56,42 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-3-6 jss252&quot;]/div[@class=&quot;jss257&quot;]/div[@class=&quot;jss254&quot;]/div[@class=&quot;jss264&quot;]/pre[@class=&quot;jss267&quot;]/div[@class=&quot;jss266&quot;]</value>
+      <value>id(&quot;MUIDataTableBodyRow-3&quot;)/td[@class=&quot;MuiTableCell-root-2389 MuiTableCell-body-2391 jss2415&quot;]/div[@class=&quot;jss2415&quot;]/div[@class=&quot;cell-3-6 jss2427&quot;]/div[@class=&quot;jss2432&quot;]/div[@class=&quot;jss2429&quot;]/div[@class=&quot;jss2439&quot;]/pre[@class=&quot;jss2442&quot;]/code[@class=&quot;jss2441&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/div</value>
+      <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/pre/code</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[9]/following::div[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[9]/following::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='ἐπίγνωσιν'])[3]/following::div[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ἐπίγνωσιν'])[3]/following::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='knowledge'])[3]/preceding::div[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[8]/preceding::code[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[8]/preceding::div[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[9]/preceding::code[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -105,6 +105,6 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//tr[4]/td[3]/div/div/div/div[2]/div/pre/div</value>
+      <value>//tr[4]/td[3]/div/div/div/div[2]/div/pre/code</value>
    </webElementXpaths>
 </WebElementEntity>

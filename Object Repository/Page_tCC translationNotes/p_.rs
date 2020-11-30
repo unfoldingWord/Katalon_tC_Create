@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>text_GLQuote-xyz8</name>
+   <name>p_</name>
    <tag></tag>
-   <elementGuidId>650482af-90c7-477d-90c2-bbebc4161f70</elementGuidId>
+   <elementGuidId>9a8efdcf-8e14-4506-bd54-0525bfa2c1ee</elementGuidId>
    <selectorCollection>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[(text() = '​' or . = '​')]</value>
-      </entry>
       <entry>
          <key>XPATH</key>
          <value>//tr[@id='MUIDataTableBodyRow-3']/td[3]/div/div/div/div[2]/div/div/p</value>
@@ -18,7 +14,7 @@
          <value>div.cell-3-6.jss252 > div.jss257 > div.jss254 > div.jss264 > div.jss265 > p</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -32,7 +28,7 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>​</value>
+      <value>ἐπίγνωσιν</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>

@@ -99,7 +99,7 @@ printHighlightStatus(origQuote[16], enText)
 
 enText = WebUI.getText(findTestObject(origQuote[2]))
 
-setGLOrigQuote('', enText)
+setGLOrigQuote('', enText, true)
 
 printHighlightStatus(origQuote[2], enText)
 
@@ -115,7 +115,7 @@ WebUI.doubleClick(findTestObject(origQuote[3]))
 
 copyText()
 
-setGLOrigQuote('paste', '')
+setGLOrigQuote('paste', '', true)
 
 enText = WebUI.getText(findTestObject(origQuote[3]))
 
@@ -136,7 +136,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 
     copyText()
 
-    setGLOrigQuote('paste', '')
+    setGLOrigQuote('paste', '', true)
 	
 	WebUI.delay(1)
 
@@ -155,24 +155,40 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 	
 	copyText()
 	
-	setGLOrigQuote('paste', '')
+	setGLOrigQuote('paste', '', true)
+	
+	WebUI.doubleClick(findTestObject(origQuote[7]))
+	
+	copyText()
+	
+	setGLOrigQuote('paste', '', false)
 	
 	enText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'))
 	
 	WebUI.delay(1)
+	
+	if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 2)) {
 
-	if (myBrowser.contains('firefox')) {
-		result = testHighlightStatus('Page_tCC translationNotes/span_GL_OrigQuoteText')
-	} else {
-		if (WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 'background-color') == highlighted) {
-			result = true
+		if (myBrowser.contains('firefox')) {
+			result = testHighlightStatus('Page_tCC translationNotes/span_GL_OrigQuoteText')
+		} else {
+			if (WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 'background-color') == highlighted) {
+				result = true
+			}
 		}
-	}
-	if (result) {
-		println('ERROR: The GL Quote ' + enText + ' is highlighted after the paste')
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL Quoate ' + enText + ' is highlighted after the paste, but it should not be.')
+		if (result) {
+			println('ERROR: The GL Quote ' + enText + ' is highlighted after the paste')
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL Quoate ' + enText + ' is highlighted after the paste, but it should not be.')
+		} else {
+			println(enText + ' is not highlighted as desired')
+		}
+		
+	    WebUI.clickOffset(findTestObject('Page_tCC translationNotes/label_OrigQuote'), -10, -10)
+	
 	} else {
-		println(enText + ' is not highlighted as desired')
+	
+		println('No span was found in the OrigQuote field indicating pasted text was not highlighted as desired')
+	
 	}
 	
 	// Test pasting bolded text
@@ -180,7 +196,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 
     copyText()
 
-    setGLOrigQuote('paste', '')
+    setGLOrigQuote('paste', '', true)
 
     WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
@@ -200,6 +216,8 @@ WebUI.closeBrowser()
 
 // Test proper highlighting when Parashah Setumah marker appears in Hebrew
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_16-NEH.tsv'], FailureHandling.STOP_ON_FAILURE)
+
+WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_filterOpen'), 10)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
 
@@ -236,7 +254,7 @@ def copyText() {
     }
 }
 
-def setGLOrigQuote(def fnc, def quote) {
+def setGLOrigQuote(def fnc, def quote, clickOut) {
     if (fnc == 'paste') {
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), '')
 
@@ -256,8 +274,11 @@ def setGLOrigQuote(def fnc, def quote) {
     } else {
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), quote)
     }
-    
-    WebUI.clickOffset(findTestObject('Page_tCC translationNotes/label_OrigQuote'), -10, -10)
+	
+	if (clickOut) {
+		WebUI.clickOffset(findTestObject('Page_tCC translationNotes/label_OrigQuote'), -10, -10)
+	}
+		
 }
 
 def printHighlightStatus(def element, def elementText) {
