@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>p_xyz8</name>
+   <name>p_IdRow3</name>
    <tag></tag>
    <elementGuidId>026f3244-b7a4-4ae6-abea-0a62ca546f86</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>div.cell-3-4.jss252 > div.jss257 > div.jss253 > div.jss264 > div.jss265 > p</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>//tr[@id='MUIDataTableBodyRow-3']/td[2]/div/div/div/div/div/div/p</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>div.cell-3-4.jss252 > div.jss257 > div.jss253 > div.jss264 > div.jss265 > p</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

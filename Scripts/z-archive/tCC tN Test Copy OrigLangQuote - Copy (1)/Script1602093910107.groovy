@@ -129,7 +129,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 	
 	setGLOrigQuote('paste', '')
 	
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
+	WebUI.click(findTestObject('null'))
 
 	WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
 	

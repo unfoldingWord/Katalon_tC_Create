@@ -15,14 +15,9 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-if (1 == 2) {
-	WebUI.openBrowser('https://stackoverflow.com/questions/16715942/find-if-character-is-an-ascii-character-in-groovy')
-	
-	text = WebUI.getText(findTestObject('Object Repository/recordings/code_int code'))
-	println(text)
-	for (c in text) {
-		println(c + ':' + (int) c)
-	}
-}
-lf = (char)10
-println('a' + lf + 'b')
+WebUI.openBrowser('www.google.com')
+
+println('this is a passing test')
+
+WebUI.closeBrowser()
+

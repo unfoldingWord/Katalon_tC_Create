@@ -6,12 +6,12 @@
    <elementGuidId>27ed9bb3-21f8-486b-8e74-6d508212c601</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>CSS</key>
-         <value>div.jss497 > button.MuiButtonBase-root-481.MuiIconButton-root-473.jss499</value>
+         <key>XPATH</key>
+         <value>//div[@id='header-1-1-rtc9']/div/div/div/div[2]/div/div/button[2]</value>
       </entry>
       <entry>
-         <key>XPATH</key>
-         <value>(//button[@type='button'])[22]</value>
+         <key>CSS</key>
+         <value>div.jss497 > button.MuiButtonBase-root-481.MuiIconButton-root-473.jss499</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

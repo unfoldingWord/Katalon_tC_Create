@@ -42,7 +42,7 @@ if (!(WebUI.getText(findTestObject('Page_tCC translationAcademy/text_BentOver'))
 }
 
 if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4')) {
-    WebUI.click(findTestObject('Page_tCC translationAcademy/button_Preview'))
+    WebUI.click(findTestObject('Page_tC Create/button_Preview'))
 
     WebUI.click(findTestObject('Page_tCC translationAcademy/section_Having BIRTH PAINS'))
 
@@ -59,7 +59,7 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
 
         CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because "&gt;" was displayed instead of ">" for block quotes.')
 
-        WebUI.click(findTestObject('Page_tCC translationAcademy/button_Preview'))
+        WebUI.click(findTestObject('Page_tC Create/button_Preview'))
 
         WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
 

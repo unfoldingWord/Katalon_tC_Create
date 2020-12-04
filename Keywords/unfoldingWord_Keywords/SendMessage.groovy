@@ -26,7 +26,7 @@ public class SendMessage {
 	def SendFailMessage(msg) {
 		//		println('The message is ' + msg)
 		GlobalVariable.tcMessages.add(msg)
-//		println('The global messages are ' + GlobalVariable.tcMessages)
+		//		println('The global messages are ' + GlobalVariable.tcMessages)
 		KeywordUtil.markFailed(msg)
 	}
 }

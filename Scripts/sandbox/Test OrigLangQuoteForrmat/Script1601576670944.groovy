@@ -42,7 +42,7 @@ WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
 
 WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.SHIFT, Keys.INSERT))
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
+WebUI.click(findTestObject('null'))
 
 WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/Titus 11_note'), 2)
 

@@ -22,6 +22,10 @@ import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
 
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
+import java.io.File as File
+
 class Test_Suite_Teardown {
 	/**
 	 * Executes after every test suite ends.
@@ -29,84 +33,77 @@ class Test_Suite_Teardown {
 	 */
 	@AfterTestSuite
 	def sampleAfterTestSuite(TestSuiteContext testSuiteContext) {
-		String separator = 'vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv'
+//	    LocalDateTime myDateObj = LocalDateTime.now();
+//	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
+//	    String formattedDate = myDateObj.format(myFormatObj)
+//		fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
+		Date now = new Date()
+		//nFormat = ('MMddyyhhmmss')
+		fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
+		String msg = ""
+		String fName = "test_suite-" + formattedDate + ".txt"
+		File oFile = new File('/Users/cckozie/Katalon Studio/Files/' + fName)
+		String separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 		println(separator)
-		String prefix = '>>>>>>>>>'
+		String prefix = ">>>>>>>>>"
 		boolean hdr = false
 		boolean first = true
 		boolean error = false
 //		println(GlobalVariable.tsMessages)
-//		println('hdr is '+hdr)
-//		println('first is '+ first)
-//		println('error is '+error)
 		for (def i : (0..GlobalVariable.tsMessages.size()-1)) {
-//			println(i)
-		
-			if (GlobalVariable.tsMessages[i].length() > 2) {
-//				println('more than 2')
-//				println('hdr is '+hdr)
-//				println('first is '+ first)
-//				println('error is '+error)
-				if (GlobalVariable.tsMessages[i][0..1] == '##') {
-//					println('##')
-//					println('hdr is '+hdr)
-//					println('first is '+ first)
-//					println('error is '+error)
+			if (GlobalVariable.tsMessages[i] != null && GlobalVariable.tsMessages[i].length() > 2) {
+				if (GlobalVariable.tsMessages[i][0..1] == "##") {
 					if (!first) {
-//						println('not first')
-//						println('hdr is '+hdr)
-//						println('first is '+ first)
-//						println('error is '+error)
 						if (hdr) {
-//							println('hdr')
-//							println('hdr is '+hdr)
-//							println('first is '+ first)
-//							println('error is '+error)
-							println('+++++++++++++++++++ PASSED +++++++++++++++++++++')
+							if (!error) {
+								msg = "+++++++++++++++++++ PASSED +++++++++++++++++++++"
+							}
+							println(msg)
+							oFile.append(msg + '\n')
 							error = false
 						}
-						println('\n        ----------------------------------------\n')
+						if (error) {
+							msg = "******************* FAILED *********************"
+							println(msg)
+							oFile.append(msg + '\n\n')
+							error = false
+						}
+						msg = "\n        ----------------------------------------\n"
+						println(msg)
+						oFile.append(msg)
 					}
-					println(prefix + GlobalVariable.tsMessages[i][2..GlobalVariable.tsMessages[i].length()-1])
+					msg = prefix + GlobalVariable.tsMessages[i][2..GlobalVariable.tsMessages[i].length()-1]
+					println(msg)
+					oFile.append(msg + '\n')
 					hdr = true
 					first = false
-//					println('hdr is '+hdr)
-//					println('first is '+ first)
-//					println('error is '+error)
 				} else {
-//					println('not ##')
-//					println('hdr is '+hdr)
-//					println('first is '+ first)
-//					println('error is '+error)
-					println(GlobalVariable.tsMessages[i])
+					msg = GlobalVariable.tsMessages[i]
+					println(msg)
+					oFile.append(msg + '\n')
 					hdr = false
 					error = true
 				}
 			} else {
-//				println('less than 2')
-//				println('hdr is '+hdr)
-//				println('first is '+ first)
-//				println('error is '+error)
-				println(GlobalVariable.tsMessages[i])
+				msg = GlobalVariable.tsMessages[i]
+				println(msg)
+				oFile.append(msg + '\n')
 				hdr = false
 			}
-			if (error) {
-//				println('error')
-//				println('hdr is '+hdr)
-//				println('first is '+ first)
-//				println('error is '+error)
-				println('******************* FAILED *********************')
-				error = false
-			}
 		}
-		if (hdr) {
-//			println('hdr 2')
-//			println('hdr is '+hdr)
-//			println('first is '+ first)
-//			println('error is '+error)
-			println('+++++++++++++++++++ PASSED +++++++++++++++++++++')
+		if (error) {
+			msg = "******************* FAILED *********************"
+			println(msg)
+			oFile.append(msg + '\n\n')
+			error = false
+		}
+		if (hdr && !error) {
+			msg = "+++++++++++++++++++ PASSED +++++++++++++++++++++"
+			println(msg)
+			oFile.append(msg + '\n\n')
 		} 
 		
-	println('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+	msg = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+	println(msg)
 	}
 }

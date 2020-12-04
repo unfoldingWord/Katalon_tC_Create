@@ -6,19 +6,19 @@
    <elementGuidId>2a9825f2-c3f4-4b94-865a-bf45e038ea0b</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(//button[@type='button'])[7]</value>
+         <key>BASIC</key>
+         <value>//*[@type = 'button' and @aria-label = 'Save']</value>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-66 jss55 undefined MuiPaper-elevation4-73 MuiPaper-rounded-67&quot;]/div[@class=&quot;MuiToolbar-root-109 MuiToolbar-regular-111 jss94 MuiToolbar-gutters-110&quot;]/div[@class=&quot;jss98&quot;]/div[@class=&quot;jss175&quot;]/button[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss174&quot;][count(. | //*[@type = 'button']) = count(//*[@type = 'button'])]</value>
+         <key>XPATH</key>
+         <value>(//button[@type='button'])[8]</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>div.jss175 > button.MuiButtonBase-root-162.MuiIconButton-root-154.jss174</value>
+         <value>div.jss176 > button.MuiButtonBase-root-163.MuiIconButton-root-155.jss175</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -32,7 +32,7 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root-162 MuiIconButton-root-154 jss174</value>
+      <value>MuiButtonBase-root-163 MuiIconButton-root-155 jss175</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -51,16 +51,23 @@
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
+      <name>aria-label</name>
+      <type>Main</type>
+      <value>Save</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-66 jss55 undefined MuiPaper-elevation4-73 MuiPaper-rounded-67&quot;]/div[@class=&quot;MuiToolbar-root-109 MuiToolbar-regular-111 jss94 MuiToolbar-gutters-110&quot;]/div[@class=&quot;jss98&quot;]/div[@class=&quot;jss175&quot;]/button[@class=&quot;MuiButtonBase-root-162 MuiIconButton-root-154 jss174&quot;]</value>
+      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-67 jss56 undefined MuiPaper-elevation4-74 MuiPaper-rounded-68&quot;]/div[@class=&quot;MuiToolbar-root-110 MuiToolbar-regular-112 jss95 MuiToolbar-gutters-111&quot;]/div[@class=&quot;jss99&quot;]/div[@class=&quot;jss176&quot;]/button[@class=&quot;MuiButtonBase-root-163 MuiIconButton-root-155 jss175&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:attributes</name>
       <type>Main</type>
-      <value>(//button[@type='button'])[7]</value>
+      <value>(//button[@type='button'])[8]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -74,14 +81,14 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - translate_test/en_tn/tcc001-tc-create-1'])[1]/following::button[5]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - translate_test/en_tn/tc01-tc-create-1'])[1]/following::button[6]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - unfoldingWord/en_tn/master'])[1]/following::button[5]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='English - unfoldingWord/en_tn/master'])[1]/following::button[6]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -95,7 +102,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='SupportReference'])[1]/preceding::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='ID'])[1]/preceding::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

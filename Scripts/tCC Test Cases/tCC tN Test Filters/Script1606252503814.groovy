@@ -35,10 +35,14 @@ for (def chpt : chpts) {
 
 WebUI.delay(2)
 
-refs = ['figs-explicit', 'figs-ellipsis', 'All', 'translate-names', 'grammar-connect-logic-result', 'figs-personification']
+refs = ['figs-explicit', 'figs-ellipsis', 'All', 'translate-names', 'grammar-connect-logic-goal', 'figs-personification']
 
 for (def ref : refs) {
+//	println('Testing supportReference ' + ref)
     filterBySupportRef(ref)
+//	if (ref == refs[4]) {
+//		return false
+//	}
 }
 
 WebUI.delay(2)
@@ -129,7 +133,6 @@ def filterBySupportRef(def ref) {
     WebUI.scrollToPosition(0, 0)
 
     if (ref != 'All') {
-//        WebUI.clickOffset(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]), 0, 0)
         WebUI.click(findTestObject('Page_tCC translationNotes/badge_Filter_Parmed', [('badgeText') : badge]))
     }
     
@@ -145,7 +148,8 @@ def filterBySupportRef(def ref) {
     } else {
         println(('The first SupportReference ' + refText) + ' was found')
     }
-    
+	
     WebUI.delay(1)
+	
 }
 

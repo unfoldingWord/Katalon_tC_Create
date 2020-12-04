@@ -3,19 +3,15 @@
    <description></description>
    <name>button_MoveRow_xyz8Down</name>
    <tag></tag>
-   <elementGuidId>54341ca0-16f3-4433-a432-459a254930f7</elementGuidId>
+   <elementGuidId>cb4cb9e9-63ca-43b2-b239-2a3eba52f88b</elementGuidId>
    <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='header-1-1-xyz8']/div/div/div/div[2]/div/div/button[2]</value>
+      </entry>
       <entry>
          <key>CSS</key>
          <value>div.jss712 > button.MuiButtonBase-root-696.MuiIconButton-root-688.jss714</value>
-      </entry>
-      <entry>
-         <key>BASIC</key>
-         <value>//*[@type = 'button']</value>
-      </entry>
-      <entry>
-         <key>XPATH</key>
-         <value>(//button[@type='button'])[29]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -53,7 +49,7 @@
       <matchCondition>equals</matchCondition>
       <name>aria-describedby</name>
       <type>Main</type>
-      <value>mui-22860</value>
+      <value>mui-78932</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
