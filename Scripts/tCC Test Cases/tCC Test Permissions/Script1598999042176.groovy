@@ -45,5 +45,7 @@ if (!WebUI.verifyElementPresent(findTestObject('Page_tC Create/msg_Password is I
 	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the invalid password message was not displayed.')
 } 
 		
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

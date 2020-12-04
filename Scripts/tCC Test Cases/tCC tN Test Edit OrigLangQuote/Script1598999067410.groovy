@@ -74,5 +74,7 @@ if (!WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_Orig
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the GL quote text is not as expected.')
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

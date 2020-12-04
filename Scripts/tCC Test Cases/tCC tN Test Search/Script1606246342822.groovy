@@ -81,5 +81,7 @@ if (!(WebUI.verifyTextPresent(myText, false))) {
 
 WebUI.delay(1)
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

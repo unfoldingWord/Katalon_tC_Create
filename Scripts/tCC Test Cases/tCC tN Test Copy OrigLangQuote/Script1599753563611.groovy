@@ -242,6 +242,8 @@ if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
 	println('Jericho is highlighted as expected')
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 
 def copyText() {

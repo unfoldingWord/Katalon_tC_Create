@@ -179,5 +179,7 @@ if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5,
 	println('User was alerted to the communications error because of lost token.')
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

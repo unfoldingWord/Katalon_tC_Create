@@ -178,5 +178,7 @@ if (!(WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/te
     println('tA text is visible with Sections and Blocks open as expected')
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

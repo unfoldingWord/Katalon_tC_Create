@@ -98,5 +98,7 @@ for (def i : (0..2)) {
     WebUI.verifyElementText(findTestObject(glArray[i]), WebUI.getText(findTestObject(enArray[i])))
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

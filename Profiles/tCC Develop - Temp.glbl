@@ -74,4 +74,9 @@
       <initValue>'en_tn_57-TIT.tsv'</initValue>
       <name>tNFile</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>false</initValue>
+      <name>scriptRunning</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

@@ -35,10 +35,14 @@ class Test_Case_Teardown {
 		String separator = '==================================================================================================================================================='
 		println(separator)
 		String prefix = ' +++++++++++ '
-		if (testCaseContext.getTestCaseStatus() != 'PASSED') {
+		String testCaseStatus = testCaseContext.getTestCaseStatus()
+		if (GlobalVariable.scriptRunning) {
+			testCaseStatus = 'FAILED'
+		}
+		if (testCaseStatus != 'PASSED'  ) {
 			prefix = ' ---------------------- '
 		}
-		println(prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseContext.getTestCaseStatus() + prefix)
+		println(prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseStatus + prefix)
 		GlobalVariable.tsMessages.add('##' + testCaseContext.getTestCaseId() )
 		
 		if (GlobalVariable.tcMessages.size() > 0) {
@@ -47,6 +51,12 @@ class Test_Case_Teardown {
 				println(GlobalVariable.tcMessages[i])
 				GlobalVariable.tsMessages.add(GlobalVariable.tcMessages[i])
 			}
+		}
+		
+		if (GlobalVariable.scriptRunning) {
+			String msg = '\\\\\\\\\\\\\\\\\\\\ SCRIPT ABENDED //////////'
+			println(msg)
+			GlobalVariable.tsMessages.add(msg)
 		}
 	println(separator)
 	}

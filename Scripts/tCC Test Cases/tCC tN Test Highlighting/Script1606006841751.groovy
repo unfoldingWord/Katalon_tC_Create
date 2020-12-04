@@ -546,6 +546,8 @@ ids.each({ def id ->
 
 println(errors + ' highlighting errors found in ' + myFile)
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 
 def testWordHighlight(def sp, def state) {

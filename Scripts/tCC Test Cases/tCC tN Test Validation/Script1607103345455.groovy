@@ -152,6 +152,8 @@ if (prioritys.size() > 1) {
 	println('There are no validation errors in the csv file')
 }
 
+GlobalVariable.scriptRunning = false
+		
 WebUI.closeBrowser()
 
 def getValidationFiles(def testFile) {

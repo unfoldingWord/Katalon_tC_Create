@@ -15,43 +15,54 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+    FailureHandling.STOP_ON_FAILURE)
 
 if (1 == 2) {
-	numStr = ''
-	myFile.each {a ->
-		if (a.isNumber()) {
-			numStr += a
-		}
-	}
-	num = numStr.toInteger()
-	if (num < 40) {
-		OT = true
-	} else {
-		OT = false
-	}
+    numStr = ''
+
+    myFile.each({ def a ->
+            if (a.isNumber()) {
+                numStr += a
+            }
+        })
+
+    num = numStr.toInteger()
+
+    if (num < 40) {
+        OT = true
+    } else {
+        OT = false
+    }
 }
 
 books = []
+
 new File('/Users/cckozie/Documents/Sikuli/Files/Bible_Books.csv').splitEachLine(',', { def fields ->
-	bookNum = fields[0]
-	
-	if (bookNum.length() < 2) {
-		bookNum = '0' + bookNum
-	}
+        bookNum = (fields[0])
 
-	bookAbrv = fields[1]
-	
-	bookName = 'en_tn_' + bookNum + '-' + bookAbrv + '.tsv'
-	
-	books.add(bookName)
+        if (bookNum.length() < 2) {
+            bookNum = ('0' + bookNum)
+        }
+        
+        bookAbrv = (fields[1])
 
-})
+        bookName = (((('en_tn_' + bookNum) + '-') + bookAbrv) + '.tsv')
+
+        books.add(bookName)
+    })
 
 println(books)
 
-for (book in books) {
-	println('Opening ' + book)
-	CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'(book)
-	WebUI.delay(2)
+for (def book : books) {
+    println('Opening ' + book)
+
+    CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'(book)
+
+    WebUI.delay(2)
 }
+
+GlobalVariable.scriptRunning = false
+
+WebUI.closeBrowser()
+

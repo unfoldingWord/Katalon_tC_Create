@@ -34,6 +34,6 @@ class Test_Case_Setup {
 		GlobalVariable.tcMessages = []
 		def executionProfile = RC.getExecutionProfile()		
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
-		
+		GlobalVariable.scriptRunning = true
 	}
 }

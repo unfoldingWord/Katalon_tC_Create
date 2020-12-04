@@ -91,6 +91,8 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
 
 testToolTip('Page_tCC translationNotes/button_PreviousPage', 'Previous Page') //WebUI.waitForElementVisible(findTestObject('Page_tCC translationNotes/button_AddARow_Intro'), 1)
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 
 def testToolTip(def object, def toolTip) {

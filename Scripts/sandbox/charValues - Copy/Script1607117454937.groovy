@@ -15,11 +15,3 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.openBrowser('www.google.com')
-
-println('this is a passing test')
-
-WebUI.closeBrowser()
-
-GlobalVariable.scriptRunning = false
-

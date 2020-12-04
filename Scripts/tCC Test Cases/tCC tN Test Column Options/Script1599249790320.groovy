@@ -171,5 +171,7 @@ if (WebUI.verifyElementPresent(findTestObject(ele), 1, FailureHandling.CONTINUE_
     println('ERROR: scripture pane is not present.')
 }
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

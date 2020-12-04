@@ -33,15 +33,9 @@ class Test_Suite_Teardown {
 	 */
 	@AfterTestSuite
 	def sampleAfterTestSuite(TestSuiteContext testSuiteContext) {
-//	    LocalDateTime myDateObj = LocalDateTime.now();
-//	    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
-//	    String formattedDate = myDateObj.format(myFormatObj)
-//		fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
 		Date now = new Date()
-		//nFormat = ('MMddyyhhmmss')
-		fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
 		String msg = ""
-		String fName = "test_suite-" + formattedDate + ".txt"
+		String fName = 'test_suite-' + now.format('MMddyyhhmmss') + '.txt'
 		File oFile = new File('/Users/cckozie/Katalon Studio/Files/' + fName)
 		String separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 		println(separator)
@@ -49,7 +43,6 @@ class Test_Suite_Teardown {
 		boolean hdr = false
 		boolean first = true
 		boolean error = false
-//		println(GlobalVariable.tsMessages)
 		for (def i : (0..GlobalVariable.tsMessages.size()-1)) {
 			if (GlobalVariable.tsMessages[i] != null && GlobalVariable.tsMessages[i].length() > 2) {
 				if (GlobalVariable.tsMessages[i][0..1] == "##") {

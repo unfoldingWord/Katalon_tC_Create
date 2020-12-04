@@ -127,5 +127,7 @@ if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5,
 
 WebUI.delay(2)
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 

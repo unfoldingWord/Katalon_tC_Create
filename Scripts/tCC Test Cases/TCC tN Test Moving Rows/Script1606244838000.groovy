@@ -173,5 +173,7 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath
 
 WebUI.delay(1)
 
+GlobalVariable.scriptRunning = false
+
 WebUI.closeBrowser()
 
