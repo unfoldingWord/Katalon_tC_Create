@@ -16,30 +16,21 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-// /Users/cckozie/Katalon Studio/Files/Reference/Validation-en_tn_57-TIT.tsv_base.csv
-// Lines 4,6,7
+WebUI.openBrowser('www.google.com')
 
-testLines = [4,6,7]
+WebUI.click(findTestObject('recordings/input_Search'))
 
-baseLines = []
-new File('/Users/cckozie/Katalon Studio/Files/Reference/Validation-en_tn_57-TIT.tsv_base.csv').eachLine({ def line ->
-//	println(line)
-	baseLines.add(line)
-})
+WebUI.sendKeys(findTestObject('recordings/input_Search'), 'abcde')
 
-newLines = []
-new File('/Users/cckozie/Downloads/Validation-en_tn_57-TIT.tsv-2020-12-07T23_10_10.404Z.csv').eachLine({ def line ->
-//	println(line)
-	newLines.add(line)
-})
+WebUI.sendKeys(findTestObject('recordings/input_Search'), Keys.chord(Keys.LEFT))
 
-//for (baseLine in baseLines) {
-//for (line in testLines) {
-testLines.each({ def line ->
-	for (newLine in newLines) {
-		if (newLine == baseLines[line]) {
-			println('ERROR: Validation file line ' + (line + 1) + ' [' + newLine + '] still exists after being fixed')
-		}
-		
-	}
-})
+WebUI.delay(2)
+
+WebUI.sendKeys(findTestObject('recordings/input_Search'), Keys.chord(Keys.LEFT,Keys.LEFT))
+
+WebUI.delay(5)
+
+WebUI.closeBrowser()
+
+GlobalVariable.scriptRunning = false
+
