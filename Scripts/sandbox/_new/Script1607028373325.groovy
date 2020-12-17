@@ -34,8 +34,8 @@ WebUI.delay(2)
 WebUI.click(findTestObject('recordings/verse_1-2'))
 
 for (def i : (1..20)) {
-    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.PAGE_DOWN))
-
-//    WebUI.delay(1)
+    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.PAGE_DOWN)) //    WebUI.delay(1)
 }
+
+WebUI.closeBrowser()
 
