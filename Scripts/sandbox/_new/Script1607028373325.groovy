@@ -16,30 +16,26 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-// /Users/cckozie/Katalon Studio/Files/Reference/Validation-en_tn_57-TIT.tsv_base.csv
-// Lines 4,6,7
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+    FailureHandling.STOP_ON_FAILURE)
 
-testLines = [4,6,7]
+WebUI.scrollToElement(findTestObject('recordings/button_ExpandChapter'), 2)
 
-baseLines = []
-new File('/Users/cckozie/Katalon Studio/Files/Reference/Validation-en_tn_57-TIT.tsv_base.csv').eachLine({ def line ->
-//	println(line)
-	baseLines.add(line)
-})
+WebUI.delay(2)
 
-newLines = []
-new File('/Users/cckozie/Downloads/Validation-en_tn_57-TIT.tsv-2020-12-07T23_10_10.404Z.csv').eachLine({ def line ->
-//	println(line)
-	newLines.add(line)
-})
+WebUI.click(findTestObject('recordings/button_ExpandChapter'))
 
-//for (baseLine in baseLines) {
-//for (line in testLines) {
-testLines.each({ def line ->
-	for (newLine in newLines) {
-		if (newLine == baseLines[line]) {
-			println('ERROR: Validation file line ' + (line + 1) + ' [' + newLine + '] still exists after being fixed')
-		}
-		
-	}
-})
+WebUI.delay(2)
+
+WebUI.mouseOver(findTestObject('recordings/verse_1-2'))
+
+WebUI.delay(2)
+
+WebUI.click(findTestObject('recordings/verse_1-2'))
+
+for (def i : (1..20)) {
+    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.PAGE_DOWN))
+
+//    WebUI.delay(1)
+}
+

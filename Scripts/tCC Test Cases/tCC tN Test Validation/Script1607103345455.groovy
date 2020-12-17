@@ -16,15 +16,22 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-// NEED TO ADD TESTS FOR THE INITIAL PROBLEMS WHEN ATTEMPTING TO RESOLVE ERRORS IN TN
 // NEED TO ADD TESTS FOR THE INTRODUCTION OF ERRORS AFTER FIXING THE EXISTING ONES
 dirName = '/Users/cckozie/Downloads'
 
 baseDir = '/Users/cckozie/Katalon Studio/Files/Reference/'
 
-testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv']
+testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_43-LUK.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_52-COL.tsv']
 
-for (def fileNum : (0..testFiles.size() - 1)) {
+start = 0
+start = 6
+
+end = testFiles.size() - 1
+end = 6
+
+for (def fileNum : (start..end)) {
+	errorFlag = false
+	
     testFile = (testFiles[fileNum])
 
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
@@ -49,17 +56,34 @@ for (def fileNum : (0..testFiles.size() - 1)) {
     // Run the validation
     (vSize, newContent) = runValidation(initSize, testFile)
 
-    println('newContent:' + newContent)
+    if (fileNum == 1) {
+        error = '916,1,1,5,xyz8,OrigQuote,,εὐσέβειαν​,Unable to find original language quote in verse text,'
 
+        highlighted = 'rgba(255, 255, 0, 1)'
+
+        background = WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_OLW_Parmed', [('myDiv') : 'id("header-1-1-xyz8")'
+                    , ('chpt') : '1', ('verse') : '1', ('wordNum') : '17']), 'background-color')
+
+        if (newContent.contains(error) && (background == highlighted)) {
+			errorFlag = true
+            println('ERROR: Validator reports "unable to find original language quote" in ' + testFiles + ' on ID xyz8 even though it is highlighted')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the validator reports "unable to find original language quote" in ' + testFile + ' on ID xyz8 even though it is highlighted.')
+        }
+    }
+    
+    //    println('newContent:' + newContent)
     // Test to see if the validation results are what was expected based on the originally saved validation file
     if (newContent != baseContent) {
-        println('ERROR: Initial validation content does not match the base content')
+		errorFlag = true
+        println('ERROR: Initial validation content  in ' + testFiles[fileNum] + ' does not match the base content')
 
-        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the initial validation content does not match the base content.')
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the initial validation content  in ' + testFiles[fileNum] + ' does not match the base content.')
 
         WebUI.closeBrowser()
 
-        return false
+        continue
+		
     } else {
         println('Initial content matches the base content')
     }
@@ -75,7 +99,7 @@ for (def fileNum : (0..testFiles.size() - 1)) {
 
     WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 
-    if (fileNum == 0) {
+    if (fileNum == 0) {	
         // Fix the en_tn_50-EPH.tsv validation errors
         u2bwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
 
@@ -102,11 +126,12 @@ for (def fileNum : (0..testFiles.size() - 1)) {
         WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'abbw')
 
         WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), abbwNewQuote)
-		
-		testLines = [1,2]
 
+        testLines = [1, 2]
+		
     } else if (fileNum == 1) {
 	
+        // Fix the en_tn_57-TIT.tsv validation errors
         WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
         WebUI.click(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'))
@@ -122,20 +147,20 @@ for (def fileNum : (0..testFiles.size() - 1)) {
                 Keys.DOWN, Keys.BACK_SPACE))
 
         WebUI.delay(1)
-		
+
         WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
-		rtc9NewQuote = '​κατὰ πίστιν'
-		
-		WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+        rtc9NewQuote = '​κατὰ πίστιν'
 
-		WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'rtc9')
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
-		WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), rtc9NewQuote)
-		
-		WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
-		
-		xyz8NewQuote = 'εὐσέβειαν'
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'rtc9')
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), rtc9NewQuote)
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
+
+        xyz8NewQuote = 'εὐσέβειαν'
 
         WebUI.scrollToPosition(0, 0)
 
@@ -145,22 +170,139 @@ for (def fileNum : (0..testFiles.size() - 1)) {
 
         WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
-		WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'xyz8')
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'xyz8')
 
-		WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
+
+        testLines = [4, 6, 7]
 		
-		testLines = [4,6,7]
+    } else if (fileNum == 2) {
+		// Fix the en_tn_42-MRK.tsv validation errors
+	
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'eke3')
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
+
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'hm98')
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'))
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), Keys.chord(Keys.COMMAND, Keys.RIGHT))
 		
+		WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), '.)')
+		
+		testLines = [1,3]
+		
+    } else if (fileNum == 3) {	
+		// Check for the invalid error in en_tn_43-LUK.tsv 
+	
+		error = '620,1,35,99,nd3z,OrigQuote,,"(""=D34/H22)Πνεῦμα …",Seems original language quote might not start at the beginning of a word,'
+		if (newContent.contains(error)) {
+			errorFlag = true
+			println('ERROR: Validator reports a 620 error in ' + testFile + ' when the original text snippet is preceded with a double quote')
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the validator reports a 620 error in ' + testFile + ' when the original text snippet is preceded with a double quote.')
+		}
+	
+		continue
+		
+    } else if (fileNum == 4) {	
+		// Fix the en_tn_45-ACT.tsv validation errors
+		WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
+	
+		WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
+
+		WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+		WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+		WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'p5cd')
+
+		WebUI.delay(1)
+	
+		WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
+	
+		testLines = [17]
+	
+    } else if (fileNum == 5) {	
+		// Check for the invalid error in en_tn_46-ROM.tsv 
+	
+		error = '621,3,15,227,vds1,OrigQuote,33,…αι αἷμα(…=D8230/H2026),Seems original language quote might not finish at the end of a word,'
+		if (newContent.contains(error)) {
+			errorFlag = true
+			println('ERROR: Validator reports a 621 error in ' + testFile + ' when the original text snippet is followed by an ellipsis')
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the validator reports a 621 error in ' + testFile + ' when the original text snippet is followed by an ellipsis.')
+		}
+	
+		continue
+	
+    } else if (fileNum == 6) {	
+		// Fix the en_tn_52-COL.tsv validation errors
+		WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+		WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'x5g8')
+
+		WebUI.delay(1)
+	
+		noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
+			
+		noteText = noteText.replace('perfectly together.','perfectly together.”')
+	
+		WebUI.setText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'), noteText)
+		
+		WebUI.delay(1)
+	
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+		WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
+	
+		WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'GLQuote']))
+
+		WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+		WebUI.delay(1)
+	
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'd39x')
+		
+		noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'))
+		
+		noteText = noteText.replace('fulfill it','fulfill it.”')
+	
+		WebUI.setText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'), noteText)
+		
+		WebUI.delay(1)
+	
+		testLines = [1,2]
+	
     }
     
     // Rerun the validation
     initSize = vSize
 
     (vSize, newContent, myFile) = runValidation(initSize, testFile)
-	
+
     println('newContent:' + newContent)
-	
-	testOutput(testLines, baseFile, myFile)
+
+    testOutput(testLines, baseFile, myFile)
 	
     // Read the file into field lists
     prioritys = []
@@ -204,39 +346,48 @@ for (def fileNum : (0..testFiles.size() - 1)) {
 
             locations.add(fields[9])
         })
+	
 
-    if (fileNum == 0) {
-        // Test to see if there are more rows than just the header/labels row
-        if (prioritys.size() > 1) {
-            println('ERROR: Validation errors remain in csv file')
-
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because validation errors remain in csv file.')
-
-            println(newContent)
-        } else {
-            println('There are no validation errors in the csv file')
-        }
+    if (1 == 2) {
+	    // Test to see if there are more rows than just the header/labels row
+	    if (prioritys.size() > 1) {
+			errorFlag = true
+	        println('ERROR: Validation errors  in ' + testFiles[fileNum] + ' remain in csv file')
+	
+	        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because validation errors  in ' + testFiles[fileNum] + ' remain in csv file.')
+	
+	        println(newContent)
+	    } else {
+	        println('There are no remaining validation errors in ' + testFile)
+	    }
     }
-    
+	
+    if (!errorFlag) {
+		println('\n=>=>=>=>=>=>=>=>=> No errors were found when processing ' + testFile + '\n')
+	}
+	
     WebUI.closeBrowser()
 }
 
 GlobalVariable.scriptRunning = false
 
-WebUI.closeBrowser()
- // Get list of files in the Download folder
- // Add the validation files to a list
+WebUI.closeBrowser( // Get list of files in the Download folder
+    ) // Add the validation files to a list
 // Wait for the validation file to be downloaded
 // Sort the list
 // Get the name of the last (newest) file in the list
+//	for (file in files) {
+//	testLines = [4,6,7]
+//	println(line)
+//	println(line)
+//for (baseLine in baseLines) {
+//for (line in testLines) {
 
 def getValidationFiles(def testFile) {
-	
     List files = new File(dirName).list()
-	
+
     vFiles = []
 
-//	for (file in files) {
     files.each({ def file ->
             if (file.contains('Validation-' + testFile)) {
                 vFiles.add(file)
@@ -247,6 +398,10 @@ def getValidationFiles(def testFile) {
 }
 
 def runValidation(def initSize, def testFile) {
+//	WebUI.scrollToPosition(0, 0)
+	
+	WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_validate'),30)
+	
     WebUI.click(findTestObject('Page_tCC translationNotes/button_validate'))
 
     vSize = initSize
@@ -274,31 +429,30 @@ def runValidation(def initSize, def testFile) {
     return [vSize, newContent, myFile]
 }
 
-def testOutput(testLines, baseFile, testFile) {
-//	testLines = [4,6,7]
-	
-	baseLines = []
-	new File(baseFile).eachLine({ def line ->
-	//	println(line)
-		baseLines.add(line)
-	})
-	
-	newLines = []
-	new File(testFile).eachLine({ def line ->
-	//	println(line)
-		newLines.add(line)
-	})
-	
-	//for (baseLine in baseLines) {
-	//for (line in testLines) {
+def testOutput(def testLines, def baseFile, def testFile) {
+    baseLines = []
+
+    new File(baseFile).eachLine({ def line ->
+            baseLines.add(line)
+        })
+
+    newLines = []
+
+    new File(testFile).eachLine({ def line ->
+            newLines.add(line)
+        })
+
+//	for (line in testLines) {
 	testLines.each({ def line ->
-		for (newLine in newLines) {
-			if (newLine == baseLines[line]) {
-				println('ERROR: Validation file line ' + (line + 1) + ' [' + newLine + '] still exists after being fixed')
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because validation file line ' + (line + 1) + ' [' + newLine + '] still exists after being fixed.')
-			}
-			
-		}
-	})
-	
+        for (def i : (0..newLines.size()-1)) {
+            if (newLines[i] == baseLines[line]) {
+				int lineNum = line + 1
+				errorFlag = true
+                println('ERROR: Validation file line ' + lineNum + ' [' + newLines[i] + ']  in ' + testFile + ' still exists after being fixed')
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because validation file line ' + 
+                    lineNum + ' [' + newLines[i] + ']  in ' + testFile + ' still exists after being fixed.')
+            }
+        }
+    })
 }
+

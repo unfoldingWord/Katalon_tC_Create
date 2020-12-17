@@ -79,7 +79,7 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_ExpandChapter'))
 
 WebUI.scrollToPosition(0, 2800)
 
-WebUI.delay(1)
+WebUI.delay(5)
 
 WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/p_figs-abstractnouns'))
 
