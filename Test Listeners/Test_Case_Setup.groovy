@@ -31,9 +31,19 @@ class Test_Case_Setup {
 	 */
 	@BeforeTestCase
 	def sampleBeforeTestCase(TestCaseContext testCaseContext) {
+		println('setup start')
 		GlobalVariable.tcMessages = []
 		def executionProfile = RC.getExecutionProfile()		
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
+		if (GlobalVariable.pcUser == '' && 1 == 2) {
+			def dirName = RC.getProjectDir()
+			GlobalVariable.projectPath = dirName
+			def slash2 = dirName.indexOf('/',2)
+			def slash3 = dirName.indexOf('/',slash2+1)
+			def user = dirName.substring(slash2+1,slash3)
+			GlobalVariable.pcUser = user
+		}
 		GlobalVariable.scriptRunning = true
+		println('setup success')
 	}
 }

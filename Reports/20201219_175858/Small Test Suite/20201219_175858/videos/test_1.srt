@@ -1,0 +1,171 @@
+1
+00:00:00,621 --> 00:00:09,279
+1. openBrowser("www.google.com")
+
+2
+00:00:09,291 --> 00:00:09,299
+5. println("this is a passing test")
+
+3
+00:00:09,300 --> 00:00:09,599
+9. closeBrowser()
+
+4
+00:00:09,638 --> 00:00:09,646
+13. scriptRunning = false
+
+5
+00:00:09,646 --> 00:00:09,770
+1. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+6
+00:00:09,772 --> 00:00:09,778
+5. separator = "==================================================================================================================================================="
+
+7
+00:00:09,793 --> 00:00:09,806
+9. println(separator)
+
+8
+00:00:09,808 --> 00:00:09,809
+13. prefix = " +++++++++++ "
+
+9
+00:00:09,810 --> 00:00:09,830
+17. testCaseStatus = testCaseContext.getTestCaseStatus()
+
+10
+00:00:09,831 --> 00:00:09,850
+21. if (scriptRunning)
+
+11
+00:00:09,851 --> 00:00:09,854
+25. if (testCaseStatus != "PASSED")
+
+12
+00:00:09,855 --> 00:00:09,860
+29. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix)
+
+13
+00:00:09,861 --> 00:00:09,862
+33. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+14
+00:00:09,863 --> 00:00:09,865
+37. if (tcMessages.size() > 0)
+
+15
+00:00:09,866 --> 00:00:09,867
+41. if (scriptRunning)
+
+16
+00:00:09,867 --> 00:00:09,885
+45. if (testCount > 0)
+
+17
+00:00:09,885 --> 00:00:09,891
+49. println(separator)
+
+18
+00:00:11,977 --> 00:00:11,983
+1. now = new java.util.Date()
+
+19
+00:00:11,983 --> 00:00:11,987
+5. msg = ""
+
+20
+00:00:11,988 --> 00:00:11,994
+9. fName = "test_suite-" + now.format("MMddyyhhmmss") + ".txt"
+
+21
+00:00:11,995 --> 00:00:11,997
+13. oFile = new java.io.File((((/Users/ + internal.GlobalVariable.pcUser) + /Katalon Studio/Files/) + fName))
+
+22
+00:00:11,997 --> 00:00:11,999
+17. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+23
+00:00:11,999 --> 00:00:12,000
+21. println(separator)
+
+24
+00:00:12,000 --> 00:00:12,001
+25. prefix = ">>>>>>>>>"
+
+25
+00:00:12,002 --> 00:00:12,002
+29. hdr = false
+
+26
+00:00:12,003 --> 00:00:12,004
+33. first = true
+
+27
+00:00:12,004 --> 00:00:12,005
+37. error = false
+
+28
+00:00:12,005 --> 00:00:12,017
+41. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+29
+00:00:12,017 --> 00:00:12,022
+1. if (tsMessages[i] != null && tsMessages[i].length() > 2)
+
+30
+00:00:12,023 --> 00:00:12,027
+1. if (tsMessages[i][(0..1)] == "##")
+
+31
+00:00:12,027 --> 00:00:12,028
+1. if (!(first))
+
+32
+00:00:12,028 --> 00:00:12,029
+5. msg = prefix + tsMessages[i][(2..(internal.GlobalVariable.tsMessages[i].length() - 1))]
+
+33
+00:00:12,030 --> 00:00:12,031
+9. println(msg)
+
+34
+00:00:12,031 --> 00:00:12,037
+13. oFile.append(msg + "
+")
+
+35
+00:00:12,037 --> 00:00:12,038
+17. hdr = true
+
+36
+00:00:12,039 --> 00:00:12,040
+21. first = false
+
+37
+00:00:12,040 --> 00:00:12,041
+45. if (error)
+
+38
+00:00:12,042 --> 00:00:12,043
+49. if (hdr && !(error))
+
+39
+00:00:12,043 --> 00:00:12,043
+1. msg = "+++++++++++++++++++ PASSED +++++++++++++++++++++"
+
+40
+00:00:12,044 --> 00:00:12,045
+5. println(msg)
+
+41
+00:00:12,045 --> 00:00:12,046
+9. oFile.append(msg + "
+
+")
+
+42
+00:00:12,046 --> 00:00:12,047
+53. msg = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
+

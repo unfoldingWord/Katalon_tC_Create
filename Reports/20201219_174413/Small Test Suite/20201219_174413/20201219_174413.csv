@@ -1,0 +1,20 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+Small Test Suite,Chrome 87.0.4280.88,,,2020-12-19 17:44:19,2020-12-19 17:44:43,24.785s,FAILED
+,,,,,,,
+Test Cases/sandbox/pass test,Chrome 87.0.4280.88,,,2020-12-19 17:44:20,2020-12-19 17:44:33,13.510s,PASSED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-19 17:44:20,2020-12-19 17:44:21,0.832s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-19 17:44:22,2020-12-19 17:44:31,8.931s,PASSED
+"println(""this is a passing test"")",Chrome 87.0.4280.88,,,2020-12-19 17:44:31,2020-12-19 17:44:31,0.010s,PASSED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-19 17:44:31,2020-12-19 17:44:31,0.200s,PASSED
+scriptRunning = false,Chrome 87.0.4280.88,,,2020-12-19 17:44:31,2020-12-19 17:44:31,0.001s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-19 17:44:31,2020-12-19 17:44:31,0.187s,PASSED
+Video,Chrome 87.0.4280.88,,,2020-12-19 17:44:33,2020-12-19 17:44:33,0.001s,PASSED
+,,,,,,,
+Test Cases/sandbox/fail test,Chrome 87.0.4280.88,,,2020-12-19 17:44:33,2020-12-19 17:44:43,9.993s,FAILED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-19 17:44:33,2020-12-19 17:44:34,0.037s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-19 17:44:34,2020-12-19 17:44:41,7.002s,PASSED
+"println(""this is a failing test"")",Chrome 87.0.4280.88,,,2020-12-19 17:44:41,2020-12-19 17:44:41,0.002s,PASSED
+"unfoldingWord_Keywords.SendMessage.SendFailMessage(""Failing test was run"")",Chrome 87.0.4280.88,,,2020-12-19 17:44:41,2020-12-19 17:44:41,0.025s,FAILED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-19 17:44:41,2020-12-19 17:44:41,0.174s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-19 17:44:41,2020-12-19 17:44:41,0.048s,PASSED
+Video,Chrome 87.0.4280.88,,,2020-12-19 17:44:43,2020-12-19 17:44:43,0.001s,PASSED

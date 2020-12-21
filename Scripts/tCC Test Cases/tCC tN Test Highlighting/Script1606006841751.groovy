@@ -33,7 +33,7 @@ myFile = 'en_tn_50-EPH.tsv' // SET TO FILE TO BE TESTED
 myId = ''					// SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STARTS WITH FIRST ID.
 
 
-if (!new File('/Users/cckozie/Downloads/' + myFile).exists()) {
+if (!new File('/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile).exists()) {
 	(width, height) = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getScreenResolution'()
 	
 	int xOffset = (width / 2) - 200
@@ -54,17 +54,17 @@ if (!new File('/Users/cckozie/Downloads/' + myFile).exists()) {
 	
 	Screen s = new Screen()
 	
-	if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/saveAs.png', 5)) {
+	if (s.exists(GlobalVariable.projectPath + '/Images/saveAs.png', 5)) {
 		s.click()
 	}
 	
-	if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/save3.png', 5)) {
+	if (s.exists(GlobalVariable.projectPath + '/Images/save3.png', 5)) {
 		WebUI.delay(1)
 	
 		s.click()
 	}
 	
-	if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/replace.png', 5)) {
+	if (s.exists(GlobalVariable.projectPath + '/Images/replace.png', 5)) {
 		WebUI.delay(1)
 	
 		s.click()
@@ -114,7 +114,7 @@ paged = false
 
 puncts = [',',';',':','"','?','.']
 
-new File('/Users/cckozie/Downloads/' + myFile).splitEachLine('\t', { def fields ->
+new File('/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile).splitEachLine('\t', { def fields ->
         if ((fields[2]) != 'intro') {
             if (!(first)) {
                 (fields[5]) = (fields[5]).trim()
@@ -178,7 +178,7 @@ now = new Date()
 //nFormat = ('MMddyyhhmmss')
 fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
 
-oFile = new File('/Users/cckozie/Katalon Studio/Files/' + fName)
+oFile = new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName)
 
 oFile.delete()
 

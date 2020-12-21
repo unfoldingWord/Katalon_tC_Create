@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Small Test Suite" time="18.436" tests="1" failures="0" skips="0" errors="0">
+   <testsuite name="Small Test Suite" tests="1" failures="0" errors="0" time="18.436" skips="0" timestamp="2020-12-19 19:40:28" hostname="cckozie - 192.168.1.2" id="Test Suites/Small Test Suite">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201219_194022/Small Test Suite/20201219_194022"/>
+         <property name="logFiles" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201219_194022/Small Test Suite/20201219_194022/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="cckozie - 192.168.1.2"/>
+         <property name="os" value="Mac OS X 64bit"/>
+         <property name="katalonVersion" value="7.8.1.208"/>
+         <property name="browser" value="Chrome 87.0.4280.88"/>
+         <property name="hostAddress" value="192.168.1.2"/>
+         <property name="sessionId" value="eb7eb9507ada532dbdf0d8a2bd977756"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation { proxyOption=NO_PROXY, proxyServerType=HTTP, username=, password=********, proxyServerAddress=, proxyServerPort=0, executionList=&quot;&quot;, isApplyToDesiredCapabilities=true }"/>
+         <property name="platform" value="Mac OS X"/>
+      </properties>
+      <testcase name="Test Cases/sandbox/pass test" time="16.368" classname="Test Cases/sandbox/pass test" status="PASSED">
+         <system-out><![CDATA[2020-12-19 19:40:30 - [TEST_CASE][PASSED] - Test Cases/sandbox/pass test: Test Cases/sandbox/pass test
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is tCC Develop
+
+2020-12-19 19:40:30 - [MESSAGE][INFO] - Execution profile is tCC Develop
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - if (pcUser == ""): null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-19 19:40:30 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-19 19:40:31 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-19 19:40:32 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-19 19:40:33 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-19 19:40:44 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - println("this is a passing test"): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-19 19:40:44 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 19:40:44 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix: null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - println(separator): null
+
+2020-12-19 19:40:44 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-19 19:40:46 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/pass test' .
+
+2020-12-19 19:40:46 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/pass test' .]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-19 19:40:28 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-out>
+      <system-err><![CDATA[2020-12-19 19:40:28 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-err>
+   </testsuite>
+</testsuites>

@@ -15,27 +15,8 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
+import com.kms.katalon.core.configuration.RunConfiguration
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
-    FailureHandling.STOP_ON_FAILURE)
 
-WebUI.scrollToElement(findTestObject('recordings/button_ExpandChapter'), 2)
-
-WebUI.delay(2)
-
-WebUI.click(findTestObject('recordings/button_ExpandChapter'))
-
-WebUI.delay(2)
-
-WebUI.mouseOver(findTestObject('recordings/verse_1-2'))
-
-WebUI.delay(2)
-
-WebUI.click(findTestObject('recordings/verse_1-2'))
-
-for (def i : (1..20)) {
-    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.PAGE_DOWN)) //    WebUI.delay(1)
-}
-
-WebUI.closeBrowser()
-
+String dirName = RunConfiguration.getProjectDir()
+println(dirName)

@@ -59,8 +59,12 @@ folders.each {
 		
 		            if (text.contains(searchText)) {
 						
-		                loc = it.path.lastIndexOf('/')
-		
+						if (it.path.contains('/Keywords/') || it.path.contains('/Test Listeners/')) {
+							loc = it.path.lastIndexOf('groovy')
+						} else {
+						    loc = it.path.lastIndexOf('/')							println('/')
+						}
+						
 		                script = it.path.substring(0, loc)
 		
 		                loc = script.lastIndexOf('/')

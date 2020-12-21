@@ -19,26 +19,32 @@ import groovy.io.FileType
 import org.apache.commons.io.FileUtils
 
 import javax.swing.*
-
-// THIS NEEDS TO POINT TO THE TOP LEVEL SCRIPTS FOLDER
-//      vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-path = "/Users/cckozie/git/Katalon/tC Create Project/Scripts/"
-//	    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-dirLen = path.length()
+folders = ['Scripts', 'Keywords']
 list = []
 dirList = []
 
-dir = new File(path)
-dir.eachFileRecurse (FileType.DIRECTORIES) { file ->
-  list << file
-}
+for (folder in folders) {
 
-list.each {
-	p = it.path
-	dir = p.substring(dirLen)
-	if (!dir.contains('/') && !dir.contains('archive')) {
-		dirList.add(p)
+//path = GlobalVariable.projectPath+ '/Scripts/'
+	path = GlobalVariable.projectPath + '/' + folder + '/'
+	
+	
+	dirLen = path.length()
+	dir = new File(path)
+	dir.eachFileRecurse (FileType.DIRECTORIES) { file ->
+	  list << file
+	}
+	
+	list.each {
+		p = it.path
+		dir = p.substring(dirLen)
+		if (!dir.contains('/') && !dir.contains('archive')) {
+			dirList.add(p)
+		}
 	}
 }
+
+path = GlobalVariable.projectPath + '/Test Listeners'
+dirList.add(path)
+println(dirList)
 return dirList

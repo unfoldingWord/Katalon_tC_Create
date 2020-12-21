@@ -27,8 +27,8 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$user
 
 testFiles = []
 
-allBooks = '/Users/cckozie/Documents/Sikuli/Files/Bible_Books.csv'
-ntBooks = '/Users/cckozie/Documents/Sikuli/Files/NT_Books.csv'
+allBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Bible_Books.csv'
+ntBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/NT_Books.csv'
 
 myBooks = allBooks
 
@@ -46,7 +46,7 @@ new File(myBooks).splitEachLine(',', { def fields ->
         testFiles.add(bookName)
     })
 
-dirName = '/Users/cckozie/Downloads'
+dirName = '/Users/' + GlobalVariable.pcUser + '/Downloads'
 
 myPrioritys = []
 
@@ -55,7 +55,7 @@ errorRows = []
 now = new Date()
 
 fName = 'Unique_Validation_Errors-' + now.format('MMddyyhhmmss') + '.csv'
-oFile = new File('/Users/cckozie/Katalon Studio/Files/' + fName)
+oFile = new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName)
 
 //for (def testFile in testFiles) {
 testFiles.each({ def testFile ->

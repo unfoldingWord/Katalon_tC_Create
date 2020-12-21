@@ -1,0 +1,112 @@
+1
+00:00:00,466 --> 00:00:09,384
+1. openBrowser("www.google.com")
+
+2
+00:00:09,400 --> 00:00:09,409
+5. println("this is a passing test")
+
+3
+00:00:09,410 --> 00:00:09,610
+9. closeBrowser()
+
+4
+00:00:09,611 --> 00:00:09,614
+13. scriptRunning = false
+
+5
+00:00:09,615 --> 00:00:09,742
+1. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+6
+00:00:09,742 --> 00:00:09,743
+5. separator = "==================================================================================================================================================="
+
+7
+00:00:09,744 --> 00:00:09,745
+9. println(separator)
+
+8
+00:00:09,745 --> 00:00:09,746
+13. prefix = " +++++++++++ "
+
+9
+00:00:09,746 --> 00:00:09,775
+17. testCaseStatus = testCaseContext.getTestCaseStatus()
+
+10
+00:00:09,776 --> 00:00:09,777
+21. if (scriptRunning)
+
+11
+00:00:09,780 --> 00:00:09,781
+25. if (testCaseStatus != "PASSED")
+
+12
+00:00:09,781 --> 00:00:09,783
+29. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix)
+
+13
+00:00:09,784 --> 00:00:09,785
+33. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+14
+00:00:09,785 --> 00:00:09,787
+37. if (tcMessages.size() > 0)
+
+15
+00:00:09,788 --> 00:00:09,789
+41. if (scriptRunning)
+
+16
+00:00:09,798 --> 00:00:09,799
+45. if (testCount > 0)
+
+17
+00:00:09,800 --> 00:00:09,802
+49. println(separator)
+
+18
+00:00:11,867 --> 00:00:11,870
+1. println("setup start")
+
+19
+00:00:11,871 --> 00:00:11,871
+5. tcMessages = []
+
+20
+00:00:11,872 --> 00:00:11,873
+9. executionProfile = getExecutionProfile()
+
+21
+00:00:11,873 --> 00:00:11,875
+13. logInfo("Execution profile is " + executionProfile)
+
+22
+00:00:11,875 --> 00:00:11,876
+17. dirName = getProjectDir()
+
+23
+00:00:11,876 --> 00:00:11,877
+21. projectPath = dirName
+
+24
+00:00:11,878 --> 00:00:11,878
+25. slash2 = dirName.indexOf("/", 2)
+
+25
+00:00:11,879 --> 00:00:11,879
+29. slash3 = dirName.indexOf("/", slash2 + 1)
+
+26
+00:00:11,880 --> 00:00:11,880
+33. user = dirName.substring(slash2 + 1, slash3)
+
+27
+00:00:11,895 --> 00:00:11,895
+37. pcUser = user
+
+28
+00:00:11,896 --> 00:00:11,897
+41. scriptRunning = true
+

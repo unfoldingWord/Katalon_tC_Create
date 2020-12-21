@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Small Test Suite" time="27.497" tests="2" failures="1" skips="0" errors="0">
+   <testsuite name="Small Test Suite" tests="2" failures="1" errors="0" time="27.497" skips="0" timestamp="2020-12-19 17:32:25" hostname="cckozie - 192.168.1.2" id="Test Suites/Small Test Suite">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201219_173218/Small Test Suite/20201219_173218"/>
+         <property name="logFiles" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201219_173218/Small Test Suite/20201219_173218/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="cckozie - 192.168.1.2"/>
+         <property name="os" value="Mac OS X 64bit"/>
+         <property name="katalonVersion" value="7.8.1.208"/>
+         <property name="browser" value="Chrome 87.0.4280.88"/>
+         <property name="hostAddress" value="192.168.1.2"/>
+         <property name="sessionId" value="2d9c51d9d0e3483ebf6a6cd19ec0694e"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation { proxyOption=NO_PROXY, proxyServerType=HTTP, username=, password=********, proxyServerAddress=, proxyServerPort=0, executionList=&quot;&quot;, isApplyToDesiredCapabilities=true }"/>
+         <property name="platform" value="Mac OS X"/>
+      </properties>
+      <testcase name="Test Cases/sandbox/pass test" time="16.394" classname="Test Cases/sandbox/pass test" status="PASSED">
+         <system-out><![CDATA[2020-12-19 17:32:27 - [TEST_CASE][PASSED] - Test Cases/sandbox/pass test: Test Cases/sandbox/pass test
+
+2020-12-19 17:32:27 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-19 17:32:27 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is tCC Develop
+
+2020-12-19 17:32:28 - [MESSAGE][INFO] - Execution profile is tCC Develop
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - dirName = getProjectDir(): null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - projectPath = dirName: null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - slash2 = dirName.indexOf("/", 2): null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - slash3 = dirName.indexOf("/", slash2 + 1): null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - user = dirName.substring(slash2 + 1, slash3): null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - pcUser = user: null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-19 17:32:28 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-19 17:32:30 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-19 17:32:31 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-19 17:32:31 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-19 17:32:41 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-19 17:32:41 - [TEST_STEP][PASSED] - println("this is a passing test"): null
+
+2020-12-19 17:32:41 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-19 17:32:41 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-19 17:32:41 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-19 17:32:41 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-19 17:32:41 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 17:32:42 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - println(separator): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - println(prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-19 17:32:42 - [TEST_STEP][PASSED] - println(separator): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/pass test' .
+
+2020-12-19 17:32:44 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/pass test' .]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/sandbox/fail test" time="9.096" classname="Test Cases/sandbox/fail test" status="FAILED">
+         <failure type="FAILED" message="Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608420738804.run(TempTestSuite1608420738804.groovy:39)
+"/>
+         <system-out><![CDATA[2020-12-19 17:32:44 - [TEST_CASE][FAILED] - Test Cases/sandbox/fail test: Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608420738804.run(TempTestSuite1608420738804.groovy:39)
+
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is tCC Develop
+
+2020-12-19 17:32:44 - [MESSAGE][INFO] - Execution profile is tCC Develop
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - dirName = getProjectDir(): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - projectPath = dirName: null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - slash2 = dirName.indexOf("/", 2): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - slash3 = dirName.indexOf("/", slash2 + 1): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - user = dirName.substring(slash2 + 1, slash3): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - pcUser = user: null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-19 17:32:44 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-19 17:32:44 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-19 17:32:44 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-19 17:32:50 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-19 17:32:50 - [TEST_STEP][PASSED] - println("this is a failing test"): null
+
+2020-12-19 17:32:50 - [TEST_STEP][FAILED] - unfoldingWord_Keywords.SendMessage.SendFailMessage("Failing test was run"): com.kms.katalon.core.exception.StepFailedException: Failing test was run
+
+2020-12-19 17:32:50 - [MESSAGE][FAILED] - Failing test was run
+
+2020-12-19 17:32:50 - [MESSAGE][FAILED] - com.kms.katalon.core.exception.StepFailedException: Failing test was run
+
+2020-12-19 17:32:50 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-19 17:32:51 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 17:32:51 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - println(separator): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - testCaseStatus = "FAILED": null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - prefix = " ---------------------- ": null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - println(prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - for (def i : (0..(internal.GlobalVariable.tcMessages.size() - 1))): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - println(tcMessages[i]): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - tsMessages.add(tcMessages[i]): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - msg = "\\\\\\\\\\ SCRIPT ABENDED //////////": null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - tsMessages.add(msg): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-19 17:32:51 - [TEST_STEP][PASSED] - println(separator): null
+
+2020-12-19 17:32:53 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/fail test' .
+
+2020-12-19 17:32:53 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/fail test' .]]></system-out>
+         <system-err><![CDATA[2020-12-19 17:32:44 - [TEST_CASE][FAILED] - Test Cases/sandbox/fail test: Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608420738804.run(TempTestSuite1608420738804.groovy:39)]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-19 17:32:25 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-out>
+      <system-err><![CDATA[2020-12-19 17:32:25 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-err>
+   </testsuite>
+</testsuites>

@@ -1,0 +1,92 @@
+1
+00:00:00,647 --> 00:00:11,605
+1. openBrowser("www.google.com")
+
+2
+00:00:11,619 --> 00:00:11,623
+5. println("this is a passing test")
+
+3
+00:00:11,624 --> 00:00:11,772
+9. closeBrowser()
+
+4
+00:00:11,772 --> 00:00:11,780
+13. scriptRunning = false
+
+5
+00:00:11,780 --> 00:00:11,781
+1. suite = false
+
+6
+00:00:11,782 --> 00:00:11,789
+5. fileName = testSuiteLogFile
+
+7
+00:00:11,789 --> 00:00:11,793
+9. if (fileName.length() > 1)
+
+8
+00:00:11,793 --> 00:00:11,794
+1. suite = true
+
+9
+00:00:11,794 --> 00:00:11,795
+5. println("test case teardown in suite")
+
+10
+00:00:11,796 --> 00:00:11,797
+13. if (suite)
+
+11
+00:00:11,798 --> 00:00:11,846
+1. oFile = fileName
+
+12
+00:00:13,953 --> 00:00:13,956
+1. msg = ""
+
+13
+00:00:13,956 --> 00:00:13,957
+5. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+14
+00:00:13,958 --> 00:00:13,958
+9. println(separator)
+
+15
+00:00:13,959 --> 00:00:13,959
+13. prefix = ">>>>>>>>>"
+
+16
+00:00:13,960 --> 00:00:13,962
+17. hdr = false
+
+17
+00:00:13,962 --> 00:00:13,963
+21. first = true
+
+18
+00:00:13,964 --> 00:00:13,965
+25. error = false
+
+19
+00:00:13,965 --> 00:00:13,978
+29. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+20
+00:00:13,978 --> 00:00:13,983
+1. if (tsMessages[i] != null && tsMessages[i].length() > 2)
+
+21
+00:00:13,983 --> 00:00:13,984
+2. msg = tsMessages[i]
+
+22
+00:00:13,984 --> 00:00:13,990
+6. println(msg)
+
+23
+00:00:13,991 --> 00:00:13,992
+10. hdr = false
+

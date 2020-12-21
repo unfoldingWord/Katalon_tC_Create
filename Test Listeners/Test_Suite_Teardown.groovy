@@ -33,10 +33,10 @@ class Test_Suite_Teardown {
 	 */
 	@AfterTestSuite
 	def sampleAfterTestSuite(TestSuiteContext testSuiteContext) {
-		Date now = new Date()
+//		Date now = new Date()
 		String msg = ""
-		String fName = 'test_suite-' + now.format('MMddyyhhmmss') + '.txt'
-		File oFile = new File('/Users/cckozie/Katalon Studio/Files/' + fName)
+//		String fName = 'test_suite-' + now.format('MMddyyhhmmss') + '.txt'
+//		File oFile = new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName)
 		String separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
 		println(separator)
 		String prefix = ">>>>>>>>>"
@@ -52,48 +52,48 @@ class Test_Suite_Teardown {
 								msg = "+++++++++++++++++++ PASSED +++++++++++++++++++++"
 							}
 							println(msg)
-							oFile.append(msg + '\n')
+//							oFile.append(msg + '\n')
 							error = false
 						}
 						if (error) {
 							msg = "******************* FAILED *********************"
 							println(msg)
-							oFile.append(msg + '\n\n')
+//							oFile.append(msg + '\n\n')
 							error = false
 						}
 						msg = "\n        ----------------------------------------\n"
 						println(msg)
-						oFile.append(msg)
+//						oFile.append(msg)
 					}
 					msg = prefix + GlobalVariable.tsMessages[i][2..GlobalVariable.tsMessages[i].length()-1]
 					println(msg)
-					oFile.append(msg + '\n')
+//					oFile.append(msg + '\n')
 					hdr = true
 					first = false
 				} else {
 					msg = GlobalVariable.tsMessages[i]
 					println(msg)
-					oFile.append(msg + '\n')
+//					oFile.append(msg + '\n')
 					hdr = false
 					error = true
 				}
 			} else {
 				msg = GlobalVariable.tsMessages[i]
 				println(msg)
-				oFile.append(msg + '\n')
+//				oFile.append(msg + '\n')
 				hdr = false
 			}
 		}
 		if (error) {
 			msg = "******************* FAILED *********************"
 			println(msg)
-			oFile.append(msg + '\n\n')
+//			oFile.append(msg + '\n\n')
 			error = false
 		}
 		if (hdr && !error) {
 			msg = "+++++++++++++++++++ PASSED +++++++++++++++++++++"
 			println(msg)
-			oFile.append(msg + '\n\n')
+//			oFile.append(msg + '\n\n')
 		} 
 		
 	msg = "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"

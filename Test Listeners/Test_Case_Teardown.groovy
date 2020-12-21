@@ -21,6 +21,7 @@ import com.kms.katalon.core.annotation.AfterTestCase
 import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
+import java.io.File as File
 
 // Modified 11/06/20	Print the browser used on summary
 
@@ -31,9 +32,22 @@ class Test_Case_Teardown {
 	 */
 	@AfterTestCase
 	def sampleAfterTestCase(TestCaseContext testCaseContext) {
+		def suite = false
+		String fileName = GlobalVariable.testSuiteLogFile
+		if (fileName.length() > 1) {
+			suite = true
+			println('test case teardown in suite')
+			File oFile = new File(fileName)
+			oFile.append('this is a log file')
+			println('open log file at ' + fileName)
+		}
 		String browser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
 		String separator = '==================================================================================================================================================='
-		println(separator)
+		String msg = separator
+		println(msg)
+		if (suite) {
+			oFile.append(msg)
+		}
 		String prefix = ' +++++++++++ '
 		String testCaseStatus = testCaseContext.getTestCaseStatus()
 		if (GlobalVariable.scriptRunning) {
@@ -42,7 +56,11 @@ class Test_Case_Teardown {
 		if (testCaseStatus != 'PASSED'  ) {
 			prefix = ' ---------------------- '
 		}
-		println(prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseStatus + prefix)
+		msg = prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseStatus + prefix
+		println(msg)
+		if (suite) {
+			oFile.append(msg)
+		}
 		GlobalVariable.tsMessages.add('##' + testCaseContext.getTestCaseId() )
 		
 		if (GlobalVariable.tcMessages.size() > 0) {
@@ -54,10 +72,23 @@ class Test_Case_Teardown {
 		}
 		
 		if (GlobalVariable.scriptRunning) {
-			String msg = '\\\\\\\\\\\\\\\\\\\\ SCRIPT ABENDED //////////'
+			msg = '\\\\\\\\\\\\\\\\\\\\ SCRIPT ABENDED //////////'
 			println(msg)
+			if (suite) {
+				oFile.append(msg)
+			}
 			GlobalVariable.tsMessages.add(msg)
 		}
-	println(separator)
+		if (GlobalVariable.testCount > 0) {
+			msg = '\n' + GlobalVariable.testCount + ' tests were run. ' + GlobalVariable.passCount + ' tests passed. ' + GlobalVariable.errorCount + ' tests failed.'
+			println(msg)
+			if (suite) {
+				oFile.append(msg)
+			}
+		}
+		println(separator)
+		if (suite) {
+			oFile.append(separator)
+		}
 	}
 }

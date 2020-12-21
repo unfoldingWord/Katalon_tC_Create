@@ -20,7 +20,7 @@
    <testCaseLink>
       <guid>19f41e2b-be58-487f-9103-6f78eab75cf6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/sandbox/fail test</testCaseId>
    </testCaseLink>
    <testCaseLink>

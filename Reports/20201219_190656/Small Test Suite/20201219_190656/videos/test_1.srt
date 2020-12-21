@@ -1,0 +1,100 @@
+1
+00:00:00,434 --> 00:00:07,926
+1. openBrowser("www.google.com")
+
+2
+00:00:07,936 --> 00:00:07,957
+5. println("this is a passing test")
+
+3
+00:00:07,958 --> 00:00:08,179
+9. closeBrowser()
+
+4
+00:00:08,180 --> 00:00:08,185
+13. scriptRunning = false
+
+5
+00:00:08,185 --> 00:00:08,186
+1. suite = false
+
+6
+00:00:08,188 --> 00:00:08,191
+5. fileName = testSuiteLogFile
+
+7
+00:00:08,192 --> 00:00:08,193
+9. if (fileName.length() > 1)
+
+8
+00:00:08,193 --> 00:00:08,194
+1. suite = true
+
+9
+00:00:08,194 --> 00:00:08,196
+13. if (suite)
+
+10
+00:00:08,196 --> 00:00:08,197
+1. oFile = new java.io.File(fileName)
+
+11
+00:00:08,197 --> 00:00:08,385
+17. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+12
+00:00:08,386 --> 00:00:08,388
+21. separator = "==================================================================================================================================================="
+
+13
+00:00:08,388 --> 00:00:08,426
+25. msg = separator
+
+14
+00:00:10,510 --> 00:00:10,511
+1. msg = ""
+
+15
+00:00:10,512 --> 00:00:10,512
+5. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+16
+00:00:10,513 --> 00:00:10,524
+9. println(separator)
+
+17
+00:00:10,524 --> 00:00:10,527
+13. prefix = ">>>>>>>>>"
+
+18
+00:00:10,530 --> 00:00:10,532
+17. hdr = false
+
+19
+00:00:10,532 --> 00:00:10,533
+21. first = true
+
+20
+00:00:10,533 --> 00:00:10,534
+25. error = false
+
+21
+00:00:10,534 --> 00:00:10,550
+29. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+22
+00:00:10,551 --> 00:00:10,559
+1. if (tsMessages[i] != null && tsMessages[i].length() > 2)
+
+23
+00:00:10,559 --> 00:00:10,560
+2. msg = tsMessages[i]
+
+24
+00:00:10,560 --> 00:00:10,571
+6. println(msg)
+
+25
+00:00:10,572 --> 00:00:10,573
+10. hdr = false
+

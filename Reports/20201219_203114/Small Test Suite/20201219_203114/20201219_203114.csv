@@ -1,0 +1,8 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+Small Test Suite,,,,2020-12-19 20:31:19,2020-12-19 20:33:19,2m - 0.008s,FAILED
+,,,,,,,
+Test Cases/sandbox/pass test,,,,2020-12-19 20:31:22,2020-12-19 20:33:19,1m - 57.525s,FAILED
+Start listener action : sampleBeforeTestCase,,,,2020-12-19 20:31:22,2020-12-19 20:31:22,0.065s,PASSED
+"openBrowser(""www.google.com"")",,,,2020-12-19 20:31:48,2020-12-19 20:33:12,1m - 23.821s,FAILED
+Start listener action : sampleAfterTestCase,,,,2020-12-19 20:33:17,2020-12-19 20:33:17,0.108s,ERROR
+Video,,,,2020-12-19 20:33:19,2020-12-19 20:33:19,0.001s,PASSED

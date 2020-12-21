@@ -1,0 +1,108 @@
+1
+00:00:01,195 --> 00:00:11,857
+1. openBrowser("www.google.com")
+
+2
+00:00:11,875 --> 00:00:11,880
+5. println("this is a passing test")
+
+3
+00:00:11,880 --> 00:00:12,111
+9. closeBrowser()
+
+4
+00:00:12,111 --> 00:00:12,123
+13. scriptRunning = false
+
+5
+00:00:12,123 --> 00:00:12,250
+1. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+6
+00:00:12,250 --> 00:00:12,254
+5. separator = "==================================================================================================================================================="
+
+7
+00:00:12,255 --> 00:00:12,256
+9. println(separator)
+
+8
+00:00:12,256 --> 00:00:12,259
+13. prefix = " +++++++++++ "
+
+9
+00:00:12,260 --> 00:00:12,268
+17. testCaseStatus = testCaseContext.getTestCaseStatus()
+
+10
+00:00:12,269 --> 00:00:12,270
+21. if (scriptRunning)
+
+11
+00:00:12,270 --> 00:00:12,272
+25. if (testCaseStatus != "PASSED")
+
+12
+00:00:12,272 --> 00:00:12,276
+29. println(prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix)
+
+13
+00:00:12,276 --> 00:00:12,278
+33. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+14
+00:00:12,278 --> 00:00:12,280
+37. if (tcMessages.size() > 0)
+
+15
+00:00:12,281 --> 00:00:12,284
+41. if (scriptRunning)
+
+16
+00:00:12,284 --> 00:00:12,285
+45. if (testCount > 0)
+
+17
+00:00:12,286 --> 00:00:12,287
+49. println(separator)
+
+18
+00:00:14,406 --> 00:00:14,406
+1. tcMessages = []
+
+19
+00:00:14,407 --> 00:00:14,407
+5. executionProfile = getExecutionProfile()
+
+20
+00:00:14,408 --> 00:00:14,409
+9. logInfo("Execution profile is " + executionProfile)
+
+21
+00:00:14,410 --> 00:00:14,411
+13. dirName = getProjectDir()
+
+22
+00:00:14,411 --> 00:00:14,412
+17. projectPath = dirName
+
+23
+00:00:14,412 --> 00:00:14,413
+21. slash2 = dirName.indexOf("/", 2)
+
+24
+00:00:14,414 --> 00:00:14,414
+25. slash3 = dirName.indexOf("/", slash2 + 1)
+
+25
+00:00:14,415 --> 00:00:14,415
+29. user = dirName.substring(slash2 + 1, slash3)
+
+26
+00:00:14,416 --> 00:00:14,417
+33. pcUser = user
+
+27
+00:00:14,417 --> 00:00:14,418
+37. scriptRunning = true
+

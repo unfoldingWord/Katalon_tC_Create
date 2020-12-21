@@ -1,0 +1,120 @@
+1
+00:00:00,533 --> 00:00:10,123
+1. openBrowser("www.google.com")
+
+2
+00:00:10,139 --> 00:00:10,148
+5. println("this is a passing test")
+
+3
+00:00:10,148 --> 00:00:10,317
+9. closeBrowser()
+
+4
+00:00:10,317 --> 00:00:10,320
+13. scriptRunning = false
+
+5
+00:00:10,321 --> 00:00:10,322
+1. suite = false
+
+6
+00:00:10,322 --> 00:00:10,324
+5. fileName = testSuiteLogFile
+
+7
+00:00:10,324 --> 00:00:10,326
+9. if (fileName.length() > 1)
+
+8
+00:00:10,326 --> 00:00:10,327
+1. suite = true
+
+9
+00:00:10,328 --> 00:00:10,332
+5. println("test case teardown in suite")
+
+10
+00:00:10,333 --> 00:00:10,336
+13. if (suite)
+
+11
+00:00:10,344 --> 00:00:10,347
+1. oFile = new java.io.File(fileName)
+
+12
+00:00:10,348 --> 00:00:10,349
+5. println("open log file at " + fileName)
+
+13
+00:00:10,351 --> 00:00:10,448
+17. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+14
+00:00:10,449 --> 00:00:10,449
+21. separator = "==================================================================================================================================================="
+
+15
+00:00:10,450 --> 00:00:10,451
+25. msg = separator
+
+16
+00:00:10,451 --> 00:00:10,452
+29. println(msg)
+
+17
+00:00:10,452 --> 00:00:10,453
+33. if (suite)
+
+18
+00:00:10,453 --> 00:00:10,476
+1. oFile.append(msg)
+
+19
+00:00:12,587 --> 00:00:12,588
+1. msg = ""
+
+20
+00:00:12,588 --> 00:00:12,590
+5. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+21
+00:00:12,590 --> 00:00:12,594
+9. println(separator)
+
+22
+00:00:12,595 --> 00:00:12,595
+13. prefix = ">>>>>>>>>"
+
+23
+00:00:12,596 --> 00:00:12,597
+17. hdr = false
+
+24
+00:00:12,597 --> 00:00:12,598
+21. first = true
+
+25
+00:00:12,599 --> 00:00:12,606
+25. error = false
+
+26
+00:00:12,607 --> 00:00:12,645
+29. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+27
+00:00:12,646 --> 00:00:12,658
+1. if (tsMessages[i] != null && tsMessages[i].length() > 2)
+
+28
+00:00:12,658 --> 00:00:12,661
+2. msg = tsMessages[i]
+
+29
+00:00:12,662 --> 00:00:12,669
+6. println(msg)
+
+30
+00:00:12,670 --> 00:00:12,671
+10. hdr = false
+

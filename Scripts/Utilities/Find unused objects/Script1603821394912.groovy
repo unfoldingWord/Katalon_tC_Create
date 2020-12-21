@@ -22,7 +22,7 @@ import javax.swing.*
 
 // THIS NEEDS TO POINT TO THE TOP LEVEL OBJECT REPOSITORY
 //              vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-dir = new File("/Users/cckozie/git/Katalon/tC Create Project/Object Repository")
+dir = new File(GlobalVariable.projectPath + '/Object Repository')
 //			    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 divider = '\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
