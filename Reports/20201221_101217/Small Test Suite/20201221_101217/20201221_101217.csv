@@ -1,0 +1,11 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+Small Test Suite,Chrome 87.0.4280.88,,,2020-12-21 10:12:25,2020-12-21 10:12:42,17.003s,PASSED
+,,,,,,,
+Test Cases/sandbox/pass test,Chrome 87.0.4280.88,,,2020-12-21 10:12:28,2020-12-21 10:12:42,14.682s,PASSED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-21 10:12:28,2020-12-21 10:12:28,0.050s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-21 10:12:29,2020-12-21 10:12:40,10.502s,PASSED
+"println(""this is a passing test"")",Chrome 87.0.4280.88,,,2020-12-21 10:12:40,2020-12-21 10:12:40,0.010s,PASSED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-21 10:12:40,2020-12-21 10:12:40,0.227s,PASSED
+scriptRunning = false,Chrome 87.0.4280.88,,,2020-12-21 10:12:40,2020-12-21 10:12:40,0.001s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-21 10:12:40,2020-12-21 10:12:40,0.111s,ERROR
+Video,Chrome 87.0.4280.88,,,2020-12-21 10:12:42,2020-12-21 10:12:42,0.002s,PASSED

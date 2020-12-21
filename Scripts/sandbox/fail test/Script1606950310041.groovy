@@ -23,3 +23,5 @@ CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Failing tes
 
 WebUI.closeBrowser()
 
+GlobalVariable.scriptRunning = false
+

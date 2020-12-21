@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Small Test Suite" time="38.287" tests="3" failures="1" skips="0" errors="0">
+   <testsuite name="Small Test Suite" tests="3" failures="1" errors="0" time="38.287" skips="0" timestamp="2020-12-21 12:06:51" hostname="cckozie - 192.168.1.2" id="Test Suites/Small Test Suite">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201221_120641/Small Test Suite/20201221_120641"/>
+         <property name="logFiles" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201221_120641/Small Test Suite/20201221_120641/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="cckozie - 192.168.1.2"/>
+         <property name="os" value="Mac OS X 64bit"/>
+         <property name="katalonVersion" value="7.8.1.208"/>
+         <property name="browser" value="Chrome 87.0.4280.88"/>
+         <property name="hostAddress" value="192.168.1.2"/>
+         <property name="sessionId" value="43296f1e64410823a7c45e482dd0d04f"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation { proxyOption=NO_PROXY, proxyServerType=HTTP, username=, password=********, proxyServerAddress=, proxyServerPort=0, executionList=&quot;&quot;, isApplyToDesiredCapabilities=true }"/>
+         <property name="platform" value="Mac OS X"/>
+      </properties>
+      <testcase name="Test Cases/sandbox/pass test" time="14.2" classname="Test Cases/sandbox/pass test" status="PASSED">
+         <system-out><![CDATA[2020-12-21 12:06:53 - [TEST_CASE][PASSED] - Test Cases/sandbox/pass test: Test Cases/sandbox/pass test
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is default
+
+2020-12-21 12:06:53 - [MESSAGE][INFO] - Execution profile is default
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - if (pcUser == ""): null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-21 12:06:53 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-21 12:06:55 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:06:56 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-21 12:06:56 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-21 12:07:05 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println("this is a passing test"): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-21 12:07:05 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - suite = true: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println("test case teardown in suite"): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println("log file is at " + fileName): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:05 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:05 - [TEST_STEP][PASSED] - oFile.append(msg + "
+
+"): null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/pass test' .
+
+2020-12-21 12:07:07 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/pass test' .]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/sandbox/fail test" time="10.419" classname="Test Cases/sandbox/fail test" status="FAILED">
+         <failure type="FAILED" message="Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608574001883.run(TempTestSuite1608574001883.groovy:39)
+"/>
+         <system-out><![CDATA[2020-12-21 12:07:07 - [TEST_CASE][FAILED] - Test Cases/sandbox/fail test: Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608574001883.run(TempTestSuite1608574001883.groovy:39)
+
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is default
+
+2020-12-21 12:07:07 - [MESSAGE][INFO] - Execution profile is default
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - if (pcUser == ""): null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-21 12:07:07 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-21 12:07:08 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:07:08 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-21 12:07:08 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-21 12:07:15 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:07:15 - [TEST_STEP][PASSED] - println("this is a failing test"): null
+
+2020-12-21 12:07:15 - [TEST_STEP][FAILED] - unfoldingWord_Keywords.SendMessage.SendFailMessage("Failing test was run"): com.kms.katalon.core.exception.StepFailedException: Failing test was run
+
+2020-12-21 12:07:15 - [MESSAGE][FAILED] - Failing test was run
+
+2020-12-21 12:07:15 - [MESSAGE][FAILED] - com.kms.katalon.core.exception.StepFailedException: Failing test was run
+
+2020-12-21 12:07:15 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-21 12:07:16 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - suite = true: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println("test case teardown in suite"): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println("log file is at " + fileName): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:16 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - prefix = " ---------------------- ": null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - for (def i : (0..(internal.GlobalVariable.tcMessages.size() - 1))): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println(tcMessages[i]): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - tsMessages.add(tcMessages[i]): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:16 - [TEST_STEP][PASSED] - oFile.append(msg + "
+
+"): null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/fail test' .
+
+2020-12-21 12:07:18 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/fail test' .]]></system-out>
+         <system-err><![CDATA[2020-12-21 12:07:07 - [TEST_CASE][FAILED] - Test Cases/sandbox/fail test: Test Cases/sandbox/fail test FAILED.
+Reason:
+com.kms.katalon.core.exception.StepFailedException: Failing test was run
+	at com.kms.katalon.core.util.KeywordUtil.markFailed(KeywordUtil.java:19)
+	at com.kms.katalon.core.util.KeywordUtil$markFailed$0.call(Unknown Source)
+	at unfoldingWord_Keywords.SendMessage.SendFailMessage(SendMessage.groovy:30)
+	at unfoldingWord_Keywords.SendMessage.invokeMethod(SendMessage.groovy)
+	at com.kms.katalon.core.main.CustomKeywordDelegatingMetaClass.invokeStaticMethod(CustomKeywordDelegatingMetaClass.java:50)
+	at fail test.run(fail test:22)
+	at com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)
+	at com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)
+	at com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:393)
+	at com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:384)
+	at com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:363)
+	at com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:355)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:251)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608574001883.run(TempTestSuite1608574001883.groovy:39)]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/sandbox/abend test" time="11.161" classname="Test Cases/sandbox/abend test" status="PASSED">
+         <system-out><![CDATA[2020-12-21 12:07:18 - [TEST_CASE][PASSED] - Test Cases/sandbox/abend test: Test Cases/sandbox/abend test
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is default
+
+2020-12-21 12:07:18 - [MESSAGE][INFO] - Execution profile is default
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - if (pcUser == ""): null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-21 12:07:18 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-21 12:07:19 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:07:19 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-21 12:07:19 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-21 12:07:26 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-21 12:07:26 - [TEST_STEP][PASSED] - println("this is an abend test"): null
+
+2020-12-21 12:07:26 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-21 12:07:27 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - suite = true: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println("test case teardown in suite"): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println("log file is at " + fileName): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:27 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - testCaseStatus = "FAILED": null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - prefix = " ---------------------- ": null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - msg = "\\\\\\\\\\ SCRIPT ABENDED //////////": null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - tsMessages.add(msg): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 12:07:27 - [TEST_STEP][PASSED] - oFile.append(msg + "
+
+"): null
+
+2020-12-21 12:07:29 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/abend test' .
+
+2020-12-21 12:07:29 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/abend test' .]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-21 12:06:51 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-out>
+      <system-err><![CDATA[2020-12-21 12:06:51 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-err>
+   </testsuite>
+</testsuites>

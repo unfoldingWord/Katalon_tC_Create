@@ -1,0 +1,29 @@
+Suite/Test/Step Name,Browser,Description,Tag,Start time,End time,Duration,Status
+Small Test Suite,Chrome 87.0.4280.88,,,2020-12-21 11:58:00,2020-12-21 11:58:34,33.425s,FAILED
+,,,,,,,
+Test Cases/sandbox/pass test,Chrome 87.0.4280.88,,,2020-12-21 11:58:02,2020-12-21 11:58:16,13.559s,PASSED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:02,2020-12-21 11:58:02,0.023s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:04,2020-12-21 11:58:13,9.668s,PASSED
+"println(""this is a passing test"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:13,2020-12-21 11:58:13,0.004s,PASSED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-21 11:58:13,2020-12-21 11:58:13,0.232s,PASSED
+scriptRunning = false,Chrome 87.0.4280.88,,,2020-12-21 11:58:13,2020-12-21 11:58:13,0.000s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:13,2020-12-21 11:58:14,0.236s,PASSED
+Video,Chrome 87.0.4280.88,,,2020-12-21 11:58:16,2020-12-21 11:58:16,0.001s,PASSED
+,,,,,,,
+Test Cases/sandbox/fail test,Chrome 87.0.4280.88,,,2020-12-21 11:58:16,2020-12-21 11:58:25,9.343s,FAILED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:16,2020-12-21 11:58:16,0.019s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:16,2020-12-21 11:58:23,6.275s,PASSED
+"println(""this is a failing test"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:23,2020-12-21 11:58:23,0.002s,PASSED
+"unfoldingWord_Keywords.SendMessage.SendFailMessage(""Failing test was run"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:23,2020-12-21 11:58:23,0.034s,FAILED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-21 11:58:23,2020-12-21 11:58:23,0.252s,PASSED
+scriptRunning = false,Chrome 87.0.4280.88,,,2020-12-21 11:58:23,2020-12-21 11:58:23,0.001s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:23,2020-12-21 11:58:23,0.084s,PASSED
+Video,Chrome 87.0.4280.88,,,2020-12-21 11:58:25,2020-12-21 11:58:25,0.002s,PASSED
+,,,,,,,
+Test Cases/sandbox/abend test,Chrome 87.0.4280.88,,,2020-12-21 11:58:25,2020-12-21 11:58:34,8.563s,PASSED
+Start listener action : sampleBeforeTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:25,2020-12-21 11:58:25,0.010s,PASSED
+"openBrowser(""www.google.com"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:26,2020-12-21 11:58:31,5.724s,PASSED
+"println(""this is an abend test"")",Chrome 87.0.4280.88,,,2020-12-21 11:58:31,2020-12-21 11:58:31,0.001s,PASSED
+closeBrowser(),Chrome 87.0.4280.88,,,2020-12-21 11:58:31,2020-12-21 11:58:32,0.191s,PASSED
+Start listener action : sampleAfterTestCase,Chrome 87.0.4280.88,,,2020-12-21 11:58:32,2020-12-21 11:58:32,0.084s,PASSED
+Video,Chrome 87.0.4280.88,,,2020-12-21 11:58:34,2020-12-21 11:58:34,0.000s,PASSED

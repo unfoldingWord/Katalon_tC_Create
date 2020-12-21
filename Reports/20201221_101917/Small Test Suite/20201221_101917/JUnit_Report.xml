@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Small Test Suite" time="15.321" tests="1" failures="0" skips="0" errors="0">
+   <testsuite name="Small Test Suite" tests="1" failures="0" errors="0" time="15.321" skips="0" timestamp="2020-12-21 10:19:24" hostname="cckozie - 192.168.1.2" id="Test Suites/Small Test Suite">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201221_101917/Small Test Suite/20201221_101917"/>
+         <property name="logFiles" value="/Users/cckozie/git/Katalon/tC Create Project/Reports/20201221_101917/Small Test Suite/20201221_101917/execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="cckozie - 192.168.1.2"/>
+         <property name="os" value="Mac OS X 64bit"/>
+         <property name="katalonVersion" value="7.8.1.208"/>
+         <property name="browser" value="Chrome 87.0.4280.88"/>
+         <property name="hostAddress" value="192.168.1.2"/>
+         <property name="sessionId" value="75de4e62614e43542b76d0e25d276a1c"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation { proxyOption=NO_PROXY, proxyServerType=HTTP, username=, password=********, proxyServerAddress=, proxyServerPort=0, executionList=&quot;&quot;, isApplyToDesiredCapabilities=true }"/>
+         <property name="platform" value="Mac OS X"/>
+      </properties>
+      <testcase name="Test Cases/sandbox/pass test" time="13.354" classname="Test Cases/sandbox/pass test" status="PASSED">
+         <system-out><![CDATA[2020-12-21 10:19:26 - [TEST_CASE][PASSED] - Test Cases/sandbox/pass test: Test Cases/sandbox/pass test
+
+2020-12-21 10:19:26 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-21 10:19:26 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-21 10:19:26 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-21 10:19:26 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-21 10:19:26 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is default
+
+2020-12-21 10:19:27 - [MESSAGE][INFO] - Execution profile is default
+
+2020-12-21 10:19:27 - [TEST_STEP][PASSED] - if (pcUser == ""): null
+
+2020-12-21 10:19:27 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-21 10:19:27 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-21 10:19:28 - [TEST_STEP][PASSED] - openBrowser("www.google.com"): Browser is opened with url: 'www.google.com'
+
+2020-12-21 10:19:29 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-21 10:19:29 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-21 10:19:37 - [MESSAGE][PASSED] - Browser is opened with url: 'www.google.com'
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("this is a passing test"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-21 10:19:37 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-21 10:19:37 - [TEST_STEP][ERROR] - Start listener action : sampleAfterTestCase: org.codehaus.groovy.runtime.InvokerInvocationException: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.invokeMethod(Test_Case_Teardown.groovy)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeMethod(TestHooker.java:111)
+	at com.kms.katalon.core.context.internal.TestHooker.lambda$3(TestHooker.java:95)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeContextMethods(TestHooker.java:94)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.lambda$3(TestListenerCollector.java:88)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.handleListenerEvent(TestListenerCollector.java:85)
+	at com.kms.katalon.core.context.internal.ExecutionEventManager.publicEvent(ExecutionEventManager.java:36)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:273)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608567557864.run(TempTestSuite1608567557864.groovy:39)
+Caused by: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.sampleAfterTestCase(Test_Case_Teardown.groovy:55)
+	... 14 more
+
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - suite = true: null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("test case teardown in suite"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("define file"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("before append to file"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - oFile.append("this is a log file"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("after append"): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - println("open log file at " + fileName): null
+
+2020-12-21 10:19:37 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 10:19:38 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-21 10:19:38 - [TEST_STEP][ERROR] - if (suite): org.codehaus.groovy.runtime.InvokerInvocationException: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.invokeMethod(Test_Case_Teardown.groovy)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeMethod(TestHooker.java:111)
+	at com.kms.katalon.core.context.internal.TestHooker.lambda$3(TestHooker.java:95)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeContextMethods(TestHooker.java:94)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.lambda$3(TestListenerCollector.java:88)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.handleListenerEvent(TestListenerCollector.java:85)
+	at com.kms.katalon.core.context.internal.ExecutionEventManager.publicEvent(ExecutionEventManager.java:36)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:273)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608567557864.run(TempTestSuite1608567557864.groovy:39)
+Caused by: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.sampleAfterTestCase(Test_Case_Teardown.groovy:55)
+	... 14 more
+
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - println("before file append 2"): null
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-21 10:19:38 - [TEST_STEP][PASSED] - oFile.append(msg): null
+
+2020-12-21 10:19:38 - [TEST_STEP][ERROR] - writeStringToFile(oFile, msg): org.codehaus.groovy.runtime.InvokerInvocationException: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.invokeMethod(Test_Case_Teardown.groovy)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeMethod(TestHooker.java:111)
+	at com.kms.katalon.core.context.internal.TestHooker.lambda$3(TestHooker.java:95)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeContextMethods(TestHooker.java:94)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.lambda$3(TestListenerCollector.java:88)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.handleListenerEvent(TestListenerCollector.java:85)
+	at com.kms.katalon.core.context.internal.ExecutionEventManager.publicEvent(ExecutionEventManager.java:36)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:273)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608567557864.run(TempTestSuite1608567557864.groovy:39)
+Caused by: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.sampleAfterTestCase(Test_Case_Teardown.groovy:55)
+	... 14 more
+
+
+2020-12-21 10:19:38 - [MESSAGE][ERROR] - org.codehaus.groovy.runtime.InvokerInvocationException: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.invokeMethod(Test_Case_Teardown.groovy)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeMethod(TestHooker.java:111)
+	at com.kms.katalon.core.context.internal.TestHooker.lambda$3(TestHooker.java:95)
+	at com.kms.katalon.core.context.internal.TestHooker.invokeContextMethods(TestHooker.java:94)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.lambda$3(TestListenerCollector.java:88)
+	at com.kms.katalon.core.context.internal.TestListenerCollector.handleListenerEvent(TestListenerCollector.java:85)
+	at com.kms.katalon.core.context.internal.ExecutionEventManager.publicEvent(ExecutionEventManager.java:36)
+	at com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:273)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:203)
+	at com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:152)
+	at com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:95)
+	at com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)
+	at com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)
+	at TempTestSuite1608567557864.run(TempTestSuite1608567557864.groovy:39)
+Caused by: groovy.lang.MissingMethodException: No signature of method: Test_Case_Teardown.writeStringToFile() is applicable for argument types: (java.io.File, java.lang.String) values: [/Users/cckozie/Katalon Studio/Files/Small_Test_Suite-122120101925.txt, ...]
+	at Test_Case_Teardown.sampleAfterTestCase(Test_Case_Teardown.groovy:55)
+	... 14 more
+
+
+2020-12-21 10:19:40 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/sandbox/pass test' .
+
+2020-12-21 10:19:40 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/sandbox/pass test' .]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-21 10:19:24 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-out>
+      <system-err><![CDATA[2020-12-21 10:19:24 - [TEST_SUITE][INCOMPLETE] - Small Test Suite: null]]></system-err>
+   </testsuite>
+</testsuites>

@@ -20,8 +20,14 @@
    <testCaseLink>
       <guid>19f41e2b-be58-487f-9103-6f78eab75cf6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/sandbox/fail test</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>879bd78c-f025-470f-9629-2aa4db243ad9</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/sandbox/abend test</testCaseId>
    </testCaseLink>
    <testCaseLink>
       <guid>b70d856b-4c64-47da-833b-0ecf1fbdc7f4</guid>

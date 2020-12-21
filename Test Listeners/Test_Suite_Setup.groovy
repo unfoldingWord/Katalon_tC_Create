@@ -22,6 +22,8 @@ import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.context.TestCaseContext
 import com.kms.katalon.core.context.TestSuiteContext
 import com.kms.katalon.core.configuration.RunConfiguration as RC
+import java.time.LocalDateTime; // Import the LocalDateTime class
+import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 import java.io.File as File
 
 class Test_Suite_Setup {
@@ -42,7 +44,7 @@ class Test_Suite_Setup {
 		def loc = suite.indexOf('/')
 		def suiteName = suite.substring(loc+1,suite.length())
 		Date now = new Date()
-		String fName = suiteName + '-' + now.format('MMddyyhhmmss') + '.txt'
+		String fName = suiteName + '-' + now.format('yyMMddhhmmss') + '.txt'
 		fName = fName.replace(' ','_')
 		String fileName = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName
 		println('file is ' + fileName)

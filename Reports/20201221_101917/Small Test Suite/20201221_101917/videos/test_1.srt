@@ -1,0 +1,144 @@
+1
+00:00:00,709 --> 00:00:09,922
+1. openBrowser("www.google.com")
+
+2
+00:00:09,938 --> 00:00:09,943
+5. println("this is a passing test")
+
+3
+00:00:09,944 --> 00:00:10,138
+9. closeBrowser()
+
+4
+00:00:10,139 --> 00:00:10,142
+13. scriptRunning = false
+
+5
+00:00:10,143 --> 00:00:10,144
+1. suite = false
+
+6
+00:00:10,145 --> 00:00:10,146
+5. fileName = testSuiteLogFile
+
+7
+00:00:10,146 --> 00:00:10,147
+9. if (fileName.length() > 1)
+
+8
+00:00:10,147 --> 00:00:10,152
+1. suite = true
+
+9
+00:00:10,153 --> 00:00:10,154
+5. println("test case teardown in suite")
+
+10
+00:00:10,155 --> 00:00:10,156
+9. println("define file")
+
+11
+00:00:10,156 --> 00:00:10,157
+13. oFile = new java.io.File(fileName)
+
+12
+00:00:10,158 --> 00:00:10,159
+17. println("before append to file")
+
+13
+00:00:10,160 --> 00:00:10,166
+21. oFile.append("this is a log file")
+
+14
+00:00:10,167 --> 00:00:10,168
+25. println("after append")
+
+15
+00:00:10,169 --> 00:00:10,170
+29. println("open log file at " + fileName)
+
+16
+00:00:10,170 --> 00:00:10,257
+13. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+17
+00:00:10,258 --> 00:00:10,259
+17. separator = "==================================================================================================================================================="
+
+18
+00:00:10,260 --> 00:00:10,261
+21. msg = separator
+
+19
+00:00:10,262 --> 00:00:10,263
+25. println(msg)
+
+20
+00:00:10,265 --> 00:00:10,266
+29. if (suite)
+
+21
+00:00:10,266 --> 00:00:10,268
+1. println("before file append 2")
+
+22
+00:00:10,269 --> 00:00:10,271
+5. oFile = new java.io.File(fileName)
+
+23
+00:00:10,271 --> 00:00:10,272
+9. oFile.append(msg)
+
+24
+00:00:10,273 --> 00:00:10,405
+13. writeStringToFile(oFile, msg)
+
+25
+00:00:12,493 --> 00:00:12,493
+1. msg = ""
+
+26
+00:00:12,494 --> 00:00:12,494
+5. separator = "vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+
+27
+00:00:12,495 --> 00:00:12,497
+9. println(separator)
+
+28
+00:00:12,499 --> 00:00:12,500
+13. prefix = ">>>>>>>>>"
+
+29
+00:00:12,501 --> 00:00:12,502
+17. hdr = false
+
+30
+00:00:12,502 --> 00:00:12,503
+21. first = true
+
+31
+00:00:12,504 --> 00:00:12,505
+25. error = false
+
+32
+00:00:12,505 --> 00:00:12,518
+29. for (def i : (0..(internal.GlobalVariable.tsMessages.size() - 1)))
+
+33
+00:00:12,519 --> 00:00:12,523
+1. if (tsMessages[i] != null && tsMessages[i].length() > 2)
+
+34
+00:00:12,524 --> 00:00:12,526
+2. msg = tsMessages[i]
+
+35
+00:00:12,527 --> 00:00:12,533
+6. println(msg)
+
+36
+00:00:12,535 --> 00:00:12,538
+10. hdr = false
+

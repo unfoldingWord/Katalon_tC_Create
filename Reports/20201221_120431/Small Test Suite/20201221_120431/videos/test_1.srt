@@ -1,0 +1,168 @@
+1
+00:00:00,716 --> 00:00:14,052
+1. openBrowser("www.google.com")
+
+2
+00:00:14,069 --> 00:00:14,079
+5. println("this is a passing test")
+
+3
+00:00:14,079 --> 00:00:14,329
+9. closeBrowser()
+
+4
+00:00:14,332 --> 00:00:14,344
+13. scriptRunning = false
+
+5
+00:00:14,345 --> 00:00:14,346
+1. suite = false
+
+6
+00:00:14,346 --> 00:00:14,349
+5. fileName = testSuiteLogFile
+
+7
+00:00:14,351 --> 00:00:14,354
+9. if (fileName.length() > 1)
+
+8
+00:00:14,354 --> 00:00:14,356
+1. suite = true
+
+9
+00:00:14,356 --> 00:00:14,357
+5. println("test case teardown in suite")
+
+10
+00:00:14,358 --> 00:00:14,362
+9. println("log file is at " + fileName)
+
+11
+00:00:14,363 --> 00:00:14,710
+13. browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+
+12
+00:00:14,711 --> 00:00:14,712
+17. separator = "==================================================================================================================================================="
+
+13
+00:00:14,713 --> 00:00:14,715
+21. msg = separator
+
+14
+00:00:14,715 --> 00:00:14,727
+25. println(msg)
+
+15
+00:00:14,729 --> 00:00:14,731
+29. if (suite)
+
+16
+00:00:14,775 --> 00:00:14,776
+1. oFile = new java.io.File(fileName)
+
+17
+00:00:14,811 --> 00:00:14,848
+5. oFile.append(msg + "
+")
+
+18
+00:00:14,849 --> 00:00:14,850
+33. prefix = " +++++++++++ "
+
+19
+00:00:14,850 --> 00:00:14,861
+37. testCaseStatus = testCaseContext.getTestCaseStatus()
+
+20
+00:00:14,863 --> 00:00:14,865
+41. if (scriptRunning)
+
+21
+00:00:14,865 --> 00:00:14,870
+45. if (testCaseStatus != "PASSED")
+
+22
+00:00:14,870 --> 00:00:15,017
+49. msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix
+
+23
+00:00:15,017 --> 00:00:15,019
+53. println(msg)
+
+24
+00:00:15,019 --> 00:00:15,021
+57. if (suite)
+
+25
+00:00:15,022 --> 00:00:15,026
+1. oFile = new java.io.File(fileName)
+
+26
+00:00:15,026 --> 00:00:15,046
+5. oFile.append(msg + "
+")
+
+27
+00:00:15,046 --> 00:00:15,064
+61. tsMessages.add("##" + testCaseContext.getTestCaseId())
+
+28
+00:00:15,065 --> 00:00:15,079
+65. if (tcMessages.size() > 0)
+
+29
+00:00:15,080 --> 00:00:15,083
+69. if (scriptRunning)
+
+30
+00:00:15,084 --> 00:00:15,088
+73. if (testCount > 0)
+
+31
+00:00:15,089 --> 00:00:15,090
+77. msg = separator
+
+32
+00:00:15,091 --> 00:00:15,092
+81. println(msg)
+
+33
+00:00:15,093 --> 00:00:15,094
+85. if (suite)
+
+34
+00:00:15,095 --> 00:00:15,096
+1. oFile = new java.io.File(fileName)
+
+35
+00:00:15,096 --> 00:00:15,103
+5. oFile.append(msg + "
+
+")
+
+36
+00:00:17,253 --> 00:00:17,256
+1. println("setup start")
+
+37
+00:00:17,256 --> 00:00:17,258
+5. tcMessages = []
+
+38
+00:00:17,258 --> 00:00:17,259
+9. executionProfile = getExecutionProfile()
+
+39
+00:00:17,259 --> 00:00:17,266
+13. logInfo("Execution profile is " + executionProfile)
+
+40
+00:00:17,266 --> 00:00:17,269
+17. if (pcUser == "")
+
+41
+00:00:17,270 --> 00:00:17,271
+21. scriptRunning = true
+
