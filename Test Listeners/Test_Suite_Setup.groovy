@@ -46,7 +46,12 @@ class Test_Suite_Setup {
 		Date now = new Date()
 		String fName = suiteName + '-' + now.format('yyMMddhhmmss') + '.txt'
 		fName = fName.replace(' ','_')
-		String fileName = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName
+		String logsDir = '/Users/' + GlobalVariable.pcUser + GlobalVariable.logsDir
+		File lDir = new File(logsDir);
+		if (!lDir.isDirectory()) {
+			lDir.mkdirs()
+		}
+		String fileName = logsDir + '/' + fName
 		println('file is ' + fileName)
 //		File oFile = new File(fileName)
 //		oFile.append('this is a log file')

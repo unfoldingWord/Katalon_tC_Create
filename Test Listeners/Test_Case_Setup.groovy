@@ -37,6 +37,7 @@ class Test_Case_Setup {
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
 		if (GlobalVariable.pcUser == '') {
 			def dirName = RC.getProjectDir()
+			println('Project path is ' + dirName)
 			GlobalVariable.projectPath = dirName
 			def slash2 = dirName.indexOf('/',2)
 			def slash3 = dirName.indexOf('/',slash2+1)

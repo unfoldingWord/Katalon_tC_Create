@@ -116,6 +116,16 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
+      <initValue>0</initValue>
+      <name>expectedErrors</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'/Katalon Studio/Files/Logs'</initValue>
+      <name>logsDir</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
       <initValue>''</initValue>
       <name>testSuiteLogFile</name>
    </GlobalVariableEntity>

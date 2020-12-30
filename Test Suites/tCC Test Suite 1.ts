@@ -14,7 +14,7 @@
    <testCaseLink>
       <guid>2714ed1f-10f9-4b2d-912a-102fe1c71f99</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -44,7 +44,7 @@
    <testCaseLink>
       <guid>cca4de5c-d4be-453b-a460-33f0cd8b1909</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test App Crashes</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -74,7 +74,7 @@
    <testCaseLink>
       <guid>e83dae57-01d2-4991-a4b5-01afbf5517e1</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Multiple Sessions</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -110,13 +110,13 @@
    <testCaseLink>
       <guid>93c543f9-c0de-409f-ab94-96665c9d9ab0</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Permissions</testCaseId>
    </testCaseLink>
    <testCaseLink>
       <guid>04d94791-a73b-4c50-8886-8fb4a7f3508a</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Column Options</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -146,7 +146,7 @@
    <testCaseLink>
       <guid>cf6facb6-c5b2-44ec-b29a-1d15ae1690d9</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Copy OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -176,7 +176,7 @@
    <testCaseLink>
       <guid>31b8d6d8-dcad-4e81-8291-7e5550602519</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit OrigLangQuote</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -206,7 +206,7 @@
    <testCaseLink>
       <guid>1f10648c-f64a-44f9-985f-6c5c08676da6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Edit Outline</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -236,7 +236,7 @@
    <testCaseLink>
       <guid>978265ef-4661-41c4-8f8b-5c151904912c</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Filters</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -266,7 +266,7 @@
    <testCaseLink>
       <guid>dc93e628-075e-4988-b384-561e81134a5f</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Highlighting</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
@@ -326,7 +326,7 @@
    <testCaseLink>
       <guid>5034655e-53d8-4fd3-b032-908ec2ce7dcd</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Search</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>

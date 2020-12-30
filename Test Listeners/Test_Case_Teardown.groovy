@@ -100,7 +100,7 @@ class Test_Case_Teardown {
 		}
 		
 		if (GlobalVariable.testCount > 0) {
-			msg = '\n' + GlobalVariable.testCount + ' tests were run. ' + GlobalVariable.passCount + ' tests passed. ' + GlobalVariable.errorCount + ' tests failed.'
+			msg = '\n' + GlobalVariable.testCount + ' tests were run. ' + GlobalVariable.passCount + ' tests passed. ' + GlobalVariable.errorCount + ' tests failed with ' + GlobalVariable.expectedErrors + ' expected.'
 			println(msg)
 			if (suite) {
 				File oFile = new File(fileName)

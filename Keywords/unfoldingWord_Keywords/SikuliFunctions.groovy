@@ -48,17 +48,17 @@ class SikuliFunctions {
 	@Keyword
 	def fileSaveAs () {
 		Screen s = new Screen()
-//		def imagePath = '/Users/cckozie/git/Katalon/tC Create Project/Images/'
+		//		def imagePath = '/Users/cckozie/git/Katalon/tC Create Project/Images/'
 		def Pattern saveAs = New Pattern('/Users/cckozie/git/Katalon/tC Create Project/Images/SaveAsButton.png')
 		def Pattern save = New Pattern('/Users/cckozie/git/Katalon/tC Create Project/Images/SaveButton.png')
 		def Pattern replace = New Pattern('/Users/cckozie/git/Katalon/tC Create Project/Images/ReplaceButton.png')
-//		String tCCName = '/Users/cckozie/Katalon Studio/Sikuli Images/tCC_Name.png'
-//		Pattern name = new Pattern(tCCName)
+		//		String tCCName = '/Users/cckozie/Katalon Studio/Sikuli Images/tCC_Name.png'
+		//		Pattern name = new Pattern(tCCName)
 		s.click(saveAs)
 		wait(3)
-//		image = Pattern(imagePath+'SaveButton.png')
+		//		image = Pattern(imagePath+'SaveButton.png')
 		s.click(save)
-//		image = Pattern(imagePath+'ReplaceButton.png')
+		//		image = Pattern(imagePath+'ReplaceButton.png')
 		if (s.exists(return)) {
 			s.click()
 		}

@@ -26,9 +26,8 @@ testFiles = []
 
 allBooks = '/Users/cckozie/Documents/Sikuli/Files/Bible_Books.csv'
 ntBooks = '/Users/cckozie/Documents/Sikuli/Files/NT_Books.csv'
-otBooks = '/Users/cckozie/Documents/Sikuli/Files/OT_Books.csv'
 
-myBooks = otBooks
+myBooks = allBooks
 
 new File(myBooks).splitEachLine(',', { def fields ->
         bookNum = (fields[0])
@@ -72,9 +71,44 @@ testFiles.each({ def testFile ->
 	// Read the file into field lists
 	prioritys = []
 
+	chapters = []
+
+	verses = []
+
+	lines = []
+
+	ids = []
+
+	detailss = []
+
+	poss = []
+
+	excerpts = []
+
+	messages = []
+
+	locations = []
+
 	new File(myFile).splitEachLine(',', { def fields ->
 			prioritys.add(fields[0])
 
+			chapters.add(fields[1])
+
+			verses.add(fields[2])
+
+			lines.add(fields[3])
+
+			ids.add(fields[4])
+
+			detailss.add(fields[5])
+
+			poss.add(fields[6])
+
+			excerpts.add(fields[7])
+
+			messages.add(fields[8])
+
+			locations.add(fields[9])
 		})
 	
 	newLines = []

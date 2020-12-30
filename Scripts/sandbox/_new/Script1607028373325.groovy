@@ -15,8 +15,24 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
-import com.kms.katalon.core.configuration.RunConfiguration
+import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
+import java.awt.Toolkit as Toolkit
+import java.awt.datatransfer.StringSelection as StringSelection
+import java.awt.datatransfer.Clipboard as Clipboard
 
+dirName = (('/Users/' + GlobalVariable.pcUser) + '/Katalon Studio/Files/Logs')
 
-String dirName = RunConfiguration.getProjectDir()
-println(dirName)
+File f = new File(dirName);
+if (!f.isDirectory()) {
+	f.mkdirs()
+}
+
+fName = dirName + '/' + 'myLog.txt'
+
+File oFile = new File(fName)
+
+oFile.append('this is a test')
+	
+
+	
+	
