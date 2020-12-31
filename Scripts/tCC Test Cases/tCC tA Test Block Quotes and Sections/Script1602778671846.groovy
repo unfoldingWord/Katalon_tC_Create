@@ -80,7 +80,7 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
             CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because script was unable to send keystrokes to the block.')
         } 
         
-        WebUI.click(findTestObject('Page_tCC translationAcademy/button_preview'))
+        WebUI.click(findTestObject('Page_tC Create/button_preview'))
 
         WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/paragraph_My little children'), 2)
 		

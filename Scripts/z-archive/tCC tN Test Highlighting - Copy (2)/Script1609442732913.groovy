@@ -26,52 +26,49 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 import org.openqa.selenium.Point as Point
 import java.io.File as File
 import org.sikuli.script.*
-import java.awt.datatransfer.Clipboard as Clipboard
-import java.awt.datatransfer.Transferable as Transferable
-import java.awt.datatransfer.DataFlavor as DataFlavor
-import java.awt.Toolkit as Toolkit
-
 
 // ============= CURRENTLY IGNORES OCCURRANCE NUMBER WHEN PROCESSING ELLIPSIS =============
 
-download = true
-
-myFile = 'en_tn_65-3JN.tsv' // SET TO FILE TO BE TESTED
+myFile = 'en_tn_50-EPH.tsv' // SET TO FILE TO BE TESTED
 myId = ''					// SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STARTS WITH FIRST ID.
 
-fName = '/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile
 
-system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
-
-if (!new File(fName).exists() || download) {
-		
+if (!new File('/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile).exists()) {
+	(width, height) = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getScreenResolution'()
+	
+	int xOffset = (width / 2) - 200
+	
+//	println('xOffset is ' + xOffset)
+	
+	int yOffset = (-(height) / 2) + 100
+	
+//	println('yOffset is ' + yOffset)
+	
 	WebUI.openBrowser('https://git.door43.org/unfoldingWord/en_tn/raw/branch/master/' + myFile)
 	
 	WebUI.maximizeWindow()
 	
-	myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
-	
-	WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+	WebUI.rightClickOffset(findTestObject('Page_tCC translationNotes/pre_RawText'), xOffset, yOffset)
 	
 	WebUI.delay(1)
 	
-    if (system.contains('Windows')) {
-        WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
-    } else if (myBrowser.contains('firefox')) {
-        WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
-    } else {
-        WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
-    }
+	Screen s = new Screen()
 	
-	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
+	if (s.exists(GlobalVariable.projectPath + '/Images/saveAs.png', 5)) {
+		s.click()
+	}
 	
-	Transferable contents = clipboard.getContents(null)
+	if (s.exists(GlobalVariable.projectPath + '/Images/save3.png', 5)) {
+		WebUI.delay(1)
 	
-	fileText = ((contents.getTransferData(DataFlavor.stringFlavor)) as String)
-		
-	oFile = new File(fName)
+		s.click()
+	}
 	
-	oFile.write(fileText)
+	if (s.exists(GlobalVariable.projectPath + '/Images/replace.png', 5)) {
+		WebUI.delay(1)
+	
+		s.click()
+	}
 }
 
 numStr = ''
@@ -181,11 +178,9 @@ now = new Date()
 //nFormat = ('MMddyyhhmmss')
 fName = (((('highlights_' + myFile) + '-') + now.format('MMddyyhhmmss')) + '.txt')
 
-String logsDir = '/Users/' + GlobalVariable.pcUser + GlobalVariable.logsDir
-		
-oFile = new File(logsDir + '/' + fName)
+oFile = new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + fName)
 
-//oFile.delete()
+oFile.delete()
 
 i = 0
 

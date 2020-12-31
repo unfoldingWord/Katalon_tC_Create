@@ -16,23 +16,32 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
-import java.awt.Toolkit as Toolkit
-import java.awt.datatransfer.StringSelection as StringSelection
 import java.awt.datatransfer.Clipboard as Clipboard
+import java.awt.datatransfer.Transferable as Transferable
+import java.awt.datatransfer.DataFlavor as DataFlavor
+import java.awt.Toolkit as Toolkit
 
-dirName = (('/Users/' + GlobalVariable.pcUser) + '/Katalon Studio/Files/Logs')
+myFile = 'en_tn_65-3JN.tsv' // SET TO FILE TO BE TESTED
 
-File f = new File(dirName);
-if (!f.isDirectory()) {
-	f.mkdirs()
-}
+myId = '' // SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STARTS WITH FIRST ID.
 
-fName = dirName + '/' + 'myLog.txt'
+fName = ((('/Users/' + GlobalVariable.pcUser) + '/Downloads/') + myFile)
 
-File oFile = new File(fName)
+WebUI.openBrowser('https://git.door43.org/unfoldingWord/en_tn/raw/branch/master/' + myFile)
 
-oFile.append('this is a test')
-	
-println('testing')
-	
-	
+WebUI.maximizeWindow()
+
+WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+
+WebUI.delay(2)
+
+WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, Keys.INSERT))
+
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
+
+Transferable contents = clipboard.getContents(null)
+
+result = ((contents.getTransferData(DataFlavor.stringFlavor)) as String)
+
+println('result:' + result)
+

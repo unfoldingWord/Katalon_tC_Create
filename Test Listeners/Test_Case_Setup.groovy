@@ -35,15 +35,16 @@ class Test_Case_Setup {
 		GlobalVariable.tcMessages = []
 		def executionProfile = RC.getExecutionProfile()		
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
-		if (GlobalVariable.pcUser == '') {
+		if (GlobalVariable.pcUser == '' || GlobalVariable == null) {
 			def dirName = RC.getProjectDir()
 			println('Project path is ' + dirName)
 			GlobalVariable.projectPath = dirName
-			def slash2 = dirName.indexOf('/',2)
-			def slash3 = dirName.indexOf('/',slash2+1)
-			def user = dirName.substring(slash2+1,slash3)
+			def loc = dirName.indexOf('/Users/')
+			def git = dirName.indexOf('/git')
+			def user = dirName.substring(loc+7,git)
 			GlobalVariable.pcUser = user
 		}
+		println('pcUser is ' + GlobalVariable.pcUser + '.')
 		GlobalVariable.scriptRunning = true
 		println('setup success')
 	}

@@ -28,6 +28,8 @@ def prompt = {
     answer
 }
 
+system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
+
 searchText = prompt('Enter the text to search for:')
 
 divider = '\n<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>'
@@ -40,6 +42,12 @@ scripts = [divider]
 folders = WebUI.callTestCase(findTestCase('Utilities/Get script folders'), [:], FailureHandling.STOP_ON_FAILURE)
 
 //println(folders)
+
+if (system.contains('Windows')) {
+	slash = '\\'
+} else {
+	slash = '/'
+}
 
 folders.each {
 	if (!it.contains('groovy')) {
@@ -59,19 +67,19 @@ folders.each {
 		
 		            if (text.contains(searchText)) {
 						
-						if (it.path.contains('/Keywords/') || it.path.contains('/Test Listeners/')) {
+						if (it.path.contains('Keywords') || it.path.contains(/Test Listeners/)) {
 							loc = it.path.lastIndexOf('groovy')
 						} else {
-						    loc = it.path.lastIndexOf('/')							println('/')
+						    loc = it.path.lastIndexOf(slash)
 						}
 						
 		                script = it.path.substring(0, loc)
 		
-		                loc = script.lastIndexOf('/')
+		                loc = script.lastIndexOf(slash)
 		
 		                temp = script.substring(0, loc)
 		
-		                loc = temp.lastIndexOf('/')
+		                loc = temp.lastIndexOf(slash)
 		
 		                script = script.substring(loc + 1)
 						

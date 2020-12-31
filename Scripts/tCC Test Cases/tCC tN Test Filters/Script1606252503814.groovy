@@ -47,8 +47,6 @@ for (def ref : refs) {
 
 WebUI.delay(2)
 
-return false
-
 GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()

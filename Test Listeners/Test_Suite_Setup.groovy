@@ -34,14 +34,21 @@ class Test_Suite_Setup {
 	@BeforeTestSuite
 	def sampleBeforeTestSuite(TestSuiteContext testSuiteContext) {
 		println('running test suite ' + testSuiteContext.getTestSuiteId())
+//		def dirName = RC.getProjectDir()
+//		GlobalVariable.projectPath = dirName
+//		def slash2 = dirName.indexOf('/',2)
+//		def slash3 = dirName.indexOf('/',slash2+1)
+//		def user = dirName.substring(slash2+1,slash3)
+//		GlobalVariable.pcUser = user
 		def dirName = RC.getProjectDir()
+		println ('Project path is ' + dirName)
 		GlobalVariable.projectPath = dirName
-		def slash2 = dirName.indexOf('/',2)
-		def slash3 = dirName.indexOf('/',slash2+1)
-		def user = dirName.substring(slash2+1,slash3)
+		def loc = dirName.indexOf('/Users/')
+		def git = dirName.indexOf('/git')
+		def user = dirName.substring(loc+7,git)
 		GlobalVariable.pcUser = user
 		def suite = testSuiteContext.getTestSuiteId()
-		def loc = suite.indexOf('/')
+		loc = suite.indexOf('/')
 		def suiteName = suite.substring(loc+1,suite.length())
 		Date now = new Date()
 		String fName = suiteName + '-' + now.format('yyMMddhhmmss') + '.txt'
