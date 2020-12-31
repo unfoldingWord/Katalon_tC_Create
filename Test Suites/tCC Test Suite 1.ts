@@ -236,7 +236,7 @@
    <testCaseLink>
       <guid>978265ef-4661-41c4-8f8b-5c151904912c</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Filters</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>

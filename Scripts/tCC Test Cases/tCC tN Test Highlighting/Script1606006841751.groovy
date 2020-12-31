@@ -51,15 +51,17 @@ if (!new File(fName).exists() || download) {
 	
 	myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
 	
-	WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
-	
-	WebUI.delay(1)
-	
     if (system.contains('Windows')) {
+		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
+		WebUI.delay(1)
         WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
     } else if (myBrowser.contains('firefox')) {
+		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+		WebUI.delay(1)
         WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
     } else {
+		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+		WebUI.delay(1)
         WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
     }
 	

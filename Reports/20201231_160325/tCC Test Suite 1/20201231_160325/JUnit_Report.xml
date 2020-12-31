@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="tCC Test Suite 1" time="54.765" tests="1" failures="0" errors="0">
+   <testsuite name="tCC Test Suite 1" tests="1" failures="0" errors="0" time="54.765" timestamp="2020-12-31 16:03:28" hostname="cckoz - DESKTOP-6V33L62" id="Test Suites/tCC Test Suite 1">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\cckoz\\git\\Katalon_tC_Create\\Reports\\20201231_160325\\tCC Test Suite 1\\20201231_160325"/>
+         <property name="logFiles" value="C:\\Users\\cckoz\\git\\Katalon_tC_Create\\Reports\\20201231_160325\\tCC Test Suite 1\\20201231_160325\\execution0.log"/>
+         <property name="attachments" value="C:\Users\cckoz\git\Katalon_tC_Create\Reports\20201231_160325\tCC Test Suite 1\20201231_160325/videos\test_1.mov"/>
+         <property name="hostName" value="cckoz - DESKTOP-6V33L62"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="7.6.6.205"/>
+         <property name="browser" value="Chrome 87.0.4280.88"/>
+         <property name="hostAddress" value="192.168.1.8"/>
+         <property name="sessionId" value="b43c82b2084a0384399da51fc473cfa8"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation { proxyOption=NO_PROXY, proxyServerType=HTTP, username=, password=********, proxyServerAddress=, proxyServerPort=0, executionList=&quot;&quot;, isApplyToDesiredCapabilities=true }"/>
+         <property name="platform" value="Windows 10"/>
+      </properties>
+      <testcase name="Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections" time="48.876" classname="Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections" status="PASSED">
+         <system-out><![CDATA[2020-12-31 16:03:28 - [TEST_CASE][PASSED] - Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections: Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - Start listener action : sampleBeforeTestCase: null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - println("setup start"): null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - tcMessages = []: null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - executionProfile = getExecutionProfile(): null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - logInfo("Execution profile is " + executionProfile): Execution profile is tCC Develop
+
+2020-12-31 16:03:28 - [MESSAGE][INFO] - Execution profile is tCC Develop
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - if (pcUser == "" || internal.GlobalVariable == null): null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - println("pcUser is " + pcUser + "."): null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - scriptRunning = true: null
+
+2020-12-31 16:03:28 - [TEST_STEP][PASSED] - println("setup success"): null
+
+2020-12-31 16:03:29 - [TEST_STEP][PASSED] - callTestCase(findTestCase("tCC Components/tCC tA Open For Edit"), ["$username":"", "$password":"", "$origQuote":"", "$newOrigQuote":""], STOP_ON_FAILURE): Call Test Case 'Test Cases/tCC Components/tCC tA Open For Edit' successfully
+
+2020-12-31 16:03:29 - [TEST_CASE][PASSED] - Test Cases/tCC Components/tCC tA Open For Edit: Test Cases/tCC Components/tCC tA Open For Edit
+
+2020-12-31 16:03:29 - [TEST_STEP][PASSED] - callTestCase(findTestCase("tCC Components/tCC Login"), ["user":$username, "password":$password, "newSession":true], STOP_ON_FAILURE): Call Test Case 'Test Cases/tCC Components/tCC Login' successfully
+
+2020-12-31 16:03:30 - [TEST_CASE][PASSED] - Test Cases/tCC Components/tCC Login: Test Cases/tCC Components/tCC Login
+
+2020-12-31 16:03:30 - [TEST_STEP][PASSED] - if (newSession): null
+
+2020-12-31 16:03:30 - [TEST_STEP][PASSED] - if (openBrowser): Current window maximized
+
+2020-12-31 16:03:30 - [TEST_STEP][PASSED] - openBrowser(""): Browser is opened with url: ''
+
+2020-12-31 16:03:30 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-12-31 16:03:30 - [MESSAGE][INFO] - Action delay is set to 0 milliseconds
+
+2020-12-31 16:03:34 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-12-31 16:03:34 - [TEST_STEP][PASSED] - maximizeWindow(): Current window maximized
+
+2020-12-31 16:03:36 - [MESSAGE][PASSED] - Current window maximized
+
+2020-12-31 16:03:36 - [TEST_STEP][PASSED] - println("Opening " + url): null
+
+2020-12-31 16:03:36 - [TEST_STEP][PASSED] - navigateToUrl(url): Navigate to 'https://develop--tc-create-app.netlify.app/' successfully
+
+2020-12-31 16:03:41 - [MESSAGE][PASSED] - Navigate to 'https://develop--tc-create-app.netlify.app/' successfully
+
+2020-12-31 16:03:41 - [TEST_STEP][PASSED] - waitForElementVisible(findTestObject("Page_tC Create/text_tCCVersion"), 30): Object 'Object Repository/Page_tC Create/text_tCCVersion' is visible
+
+2020-12-31 16:03:42 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tC Create/text_tCCVersion' is visible
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - version = getText(findTestObject("Page_tC Create/text_tCCVersion")): Text of object 'Object Repository/Page_tC Create/text_tCCVersion' is: 'translationCore Create - v1.1.0-rc.1'
+
+2020-12-31 16:03:42 - [MESSAGE][PASSED] - Text of object 'Object Repository/Page_tC Create/text_tCCVersion' is: 'translationCore Create - v1.1.0-rc.1'
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - version = version: null
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - println("Version is " + version): null
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - if (user == ""): null
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - println("Logging in as " + user1Name): null
+
+2020-12-31 16:03:42 - [TEST_STEP][PASSED] - setText(findTestObject("Page_tC Create/input__username"), user1Name): Text 'tc01' is set on object 'Object Repository/Page_tC Create/input__username'
+
+2020-12-31 16:03:43 - [MESSAGE][PASSED] - Text 'tc01' is set on object 'Object Repository/Page_tC Create/input__username'
+
+2020-12-31 16:03:43 - [TEST_STEP][PASSED] - setText(findTestObject("Page_tC Create/input__password"), user1Password): Text 'tc01' is set on object 'Object Repository/Page_tC Create/input__password'
+
+2020-12-31 16:03:44 - [MESSAGE][PASSED] - Text 'tc01' is set on object 'Object Repository/Page_tC Create/input__password'
+
+2020-12-31 16:03:44 - [TEST_STEP][PASSED] - if (verifyElementPresent(findTestObject("Page_tC Create/button_Login"), 1, OPTIONAL)): null
+
+2020-12-31 16:03:44 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tC Create/button_Login' is present
+
+2020-12-31 16:03:44 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/button_Login")): Object: 'Object Repository/Page_tC Create/button_Login' is clicked on
+
+2020-12-31 16:03:44 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/button_Login' is clicked on
+
+2020-12-31 16:03:44 - [MESSAGE][PASSED] - Call Test Case 'Test Cases/tCC Components/tCC Login' successfully
+
+2020-12-31 16:03:44 - [TEST_STEP][PASSED] - if (callTestCase(findTestCase("tCC Components/tCC Select Org-Lang-Resource"), ["organization":"", "language":"", "resource":"unfoldingWord® Translation Academy"], STOP_ON_FAILURE) == false): Call Test Case 'Test Cases/tCC Components/tCC Select Org-Lang-Resource' successfully
+
+2020-12-31 16:03:44 - [TEST_CASE][PASSED] - Test Cases/tCC Components/tCC Select Org-Lang-Resource: Test Cases/tCC Components/tCC Select Org-Lang-Resource
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - if (organization == ""): null
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - organization = organization: null
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - if (language == ""): null
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - language = langCode: null
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - println("Choosing organization " + organization): null
+
+2020-12-31 16:03:45 - [TEST_STEP][PASSED] - if (waitForElementPresent(organization, 5, OPTIONAL) == false): Object 'Object Repository/Page_tC Create/listOrg_translate_test' is present
+
+2020-12-31 16:03:46 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tC Create/listOrg_translate_test' is present
+
+2020-12-31 16:03:46 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:03:46 - [TEST_STEP][PASSED] - click(organization): Object: 'Object Repository/Page_tC Create/listOrg_translate_test' is clicked on
+
+2020-12-31 16:03:47 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/listOrg_translate_test' is clicked on
+
+2020-12-31 16:03:47 - [TEST_STEP][PASSED] - alerted = waitForAlert(2): No alert found after 2 second(s).
+
+2020-12-31 16:03:49 - [MESSAGE][WARNING] - No alert found after 2 second(s).
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - if (alerted == true): null
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - else: Object: 'Object Repository/Page_tC Create/listOption_Language_Parmed' is clicked on
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - println("Not alerted on organization"): null
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - alertFlag = false: null
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - println("Choosing resource " + resource): null
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/resource_Parmed", ["resource":resource])): Object: 'Object Repository/Page_tC Create/resource_Parmed' is clicked on
+
+2020-12-31 16:03:49 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/resource_Parmed' is clicked on
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - println("Choosing language " + language): null
+
+2020-12-31 16:03:49 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/combo_Select Language")): Object: 'Object Repository/Page_tC Create/combo_Select Language' is clicked on
+
+2020-12-31 16:03:50 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/combo_Select Language' is clicked on
+
+2020-12-31 16:03:50 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/listOption_Language_Parmed", ["lang_code":language])): Object: 'Object Repository/Page_tC Create/listOption_Language_Parmed' is clicked on
+
+2020-12-31 16:03:50 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/listOption_Language_Parmed' is clicked on
+
+2020-12-31 16:03:50 - [TEST_STEP][PASSED] - return true: null
+
+2020-12-31 16:03:50 - [MESSAGE][PASSED] - Call Test Case 'Test Cases/tCC Components/tCC Select Org-Lang-Resource' successfully
+
+2020-12-31 16:03:50 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/span_translate")): Object: 'Object Repository/Page_tC Create/span_translate' is clicked on
+
+2020-12-31 16:03:51 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/span_translate' is clicked on
+
+2020-12-31 16:03:51 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/span_bita-humanbehavior")): Object: 'Object Repository/Page_tC Create/span_bita-humanbehavior' is clicked on
+
+2020-12-31 16:03:52 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/span_bita-humanbehavior' is clicked on
+
+2020-12-31 16:03:52 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/span_01.md")): Object: 'Object Repository/Page_tC Create/span_01.md' is clicked on
+
+2020-12-31 16:03:53 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/span_01.md' is clicked on
+
+2020-12-31 16:03:53 - [MESSAGE][PASSED] - Call Test Case 'Test Cases/tCC Components/tCC tA Open For Edit' successfully
+
+2020-12-31 16:03:53 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/section_BentOver")): Object: 'Object Repository/Page_tCC translationAcademy/section_BentOver' is clicked on
+
+2020-12-31 16:03:55 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/section_BentOver' is clicked on
+
+2020-12-31 16:03:55 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/text_BentOver")): Object: 'Object Repository/Page_tCC translationAcademy/text_BentOver' is clicked on
+
+2020-12-31 16:03:55 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/text_BentOver' is clicked on
+
+2020-12-31 16:03:55 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/header_BentOver")): Object: 'Object Repository/Page_tCC translationAcademy/header_BentOver' is clicked on
+
+2020-12-31 16:03:56 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/header_BentOver' is clicked on
+
+2020-12-31 16:03:56 - [TEST_STEP][PASSED] - if (!(getText(findTestObject("Page_tCC translationAcademy/text_BentOver")).contains("Yahweh"))): Text of object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is: 'Yahweh supports all who are falling and raises up all those who are bent over. (Psalm 145:14 ULT)'
+
+2020-12-31 16:03:56 - [MESSAGE][PASSED] - Text of object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is: 'Yahweh supports all who are falling and raises up all those who are bent over. (Psalm 145:14 ULT)'
+
+2020-12-31 16:03:56 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:03:56 - [TEST_STEP][PASSED] - println("Block quote text is correct"): null
+
+2020-12-31 16:03:56 - [TEST_STEP][PASSED] - if (unfoldingWord_Keywords.TestVersion.isVersionGreater("1.0.4")): null
+
+2020-12-31 16:03:56 - [MESSAGE][PASSED] - unfoldingWord_Keywords.TestVersion.isVersionGreater is PASSED
+
+2020-12-31 16:03:56 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/button_Preview")): Object: 'Object Repository/Page_tC Create/button_Preview' is clicked on
+
+2020-12-31 16:03:57 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/button_Preview' is clicked on
+
+2020-12-31 16:03:57 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/section_Having BIRTH PAINS")): Object: 'Object Repository/Page_tCC translationAcademy/section_Having BIRTH PAINS' is clicked on
+
+2020-12-31 16:03:58 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/section_Having BIRTH PAINS' is clicked on
+
+2020-12-31 16:03:58 - [TEST_STEP][PASSED] - elementBirthPains = "Page_tCC translationAcademy/blockquote_Be in pain and labor": null
+
+2020-12-31 16:03:58 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), Keys.chord(COMMAND, DOWN)): Keys 'META + DOWN + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:03:59 - [MESSAGE][PASSED] - Keys 'META + DOWN + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:03:59 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), Keys.chord(SPACE)): Keys 'SPACE + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:03:59 - [MESSAGE][PASSED] - Keys 'SPACE + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:03:59 - [TEST_STEP][PASSED] - delay(1): Delayed 1 second(s)
+
+2020-12-31 16:04:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-12-31 16:04:00 - [TEST_STEP][PASSED] - if (getText(findTestObject(elementBirthPains)).contains("&gt;")): Text of object 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor' is: '> ***Be in pain and labor to give birth***, daughter of Zion, like a ***woman in labor***.  
+> For now you will go out of the city, live in the field, and go to Babylon.  
+> There you will be rescued.  
+> There Yahweh will rescue you from the hand of your enemies. (Micah 4:10 ULT)
+  
+> For nation will rise against nation, and kingdom against kingdom. There will be famines and earthquakes in various places. But all these things are only the beginning of ***birth pains***. (Matthew 24:7-8 ULT)
+  
+> My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT) '
+
+2020-12-31 16:04:00 - [MESSAGE][PASSED] - Text of object 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor' is: '> ***Be in pain and labor to give birth***, daughter of Zion, like a ***woman in labor***.  
+> For now you will go out of the city, live in the field, and go to Babylon.  
+> There you will be rescued.  
+> There Yahweh will rescue you from the hand of your enemies. (Micah 4:10 ULT)
+  
+> For nation will rise against nation, and kingdom against kingdom. There will be famines and earthquakes in various places. But all these things are only the beginning of ***birth pains***. (Matthew 24:7-8 ULT)
+  
+> My little children, I am suffering ***labor pains*** for you again, until Christ will have been formed in you! (Galatians 4:19 ULT) '
+
+2020-12-31 16:04:00 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:00 - [TEST_STEP][PASSED] - try: Keys '> This is line 2' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:00 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), Keys.chord(ENTER), CONTINUE_ON_FAILURE): Keys 'ENTER + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:01 - [MESSAGE][PASSED] - Keys 'ENTER + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:01 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), "> This is line 1", STOP_ON_FAILURE): Keys '> This is line 1' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:01 - [MESSAGE][PASSED] - Keys '> This is line 1' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:01 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), Keys.chord(ENTER), CONTINUE_ON_FAILURE): Keys 'ENTER + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:02 - [MESSAGE][PASSED] - Keys 'ENTER + ' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:02 - [TEST_STEP][PASSED] - sendKeys(findTestObject(elementBirthPains), "> This is line 2", CONTINUE_ON_FAILURE): Keys '> This is line 2' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:02 - [MESSAGE][PASSED] - Keys '> This is line 2' sent to object: 'Object Repository/Page_tCC translationAcademy/blockquote_Be in pain and labor'
+
+2020-12-31 16:04:02 - [TEST_STEP][PASSED] - click(findTestObject("Page_tC Create/button_preview")): Object: 'Object Repository/Page_tC Create/button_preview' is clicked on
+
+2020-12-31 16:04:03 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tC Create/button_preview' is clicked on
+
+2020-12-31 16:04:03 - [TEST_STEP][PASSED] - scrollToElement(findTestObject("Page_tCC translationAcademy/paragraph_My little children"), 2): Scroll to object 'Object Repository/Page_tCC translationAcademy/paragraph_My little children' successfully
+
+2020-12-31 16:04:04 - [MESSAGE][PASSED] - Scroll to object 'Object Repository/Page_tCC translationAcademy/paragraph_My little children' successfully
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - bText = getText(findTestObject("Page_tCC translationAcademy/paragraph_My little children")): Text of object 'Object Repository/Page_tCC translationAcademy/paragraph_My little children' is: 'My little children, I am suffering labor pains for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)
+This is line 1
+This is line 2'
+
+2020-12-31 16:04:04 - [MESSAGE][PASSED] - Text of object 'Object Repository/Page_tCC translationAcademy/paragraph_My little children' is: 'My little children, I am suffering labor pains for you again, until Christ will have been formed in you! (Galatians 4:19 ULT)
+This is line 1
+This is line 2'
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - lf = 10: null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - eText = "ULT)" + lf + "This is line 1" + lf + "This is line 2": null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - if (!(bText.contains(eText))): null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - println("Line feeds were correctly included in block quotes"): null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - println("Testing for sections visible and invisible"): null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - println("Showing sections"): null
+
+2020-12-31 16:04:04 - [TEST_STEP][PASSED] - delay(1): Delayed 1 second(s)
+
+2020-12-31 16:04:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-12-31 16:04:05 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/button_Sections")): Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:06 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:06 - [TEST_STEP][PASSED] - if (!(verifyElementVisible(findTestObject("Page_tCC translationAcademy/text_BentOver")))): Object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is visible
+
+2020-12-31 16:04:07 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is visible
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - println("tA text for "Bent over" is visible when sections are open"): null
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - if (!(verifyElementVisible(findTestObject("Page_tCC translationAcademy/text_Be in pain and labor to give birth")))): Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is visible
+
+2020-12-31 16:04:07 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is visible
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - println("tA text for "Be in pain and labor" is visible when sections are open"): null
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - println("Hiding sections"): null
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - scrollToPosition(0, 0): Browser is scrolled to position x = 0, y = 0
+
+2020-12-31 16:04:07 - [MESSAGE][PASSED] - Browser is scrolled to position x = 0, y = 0
+
+2020-12-31 16:04:07 - [TEST_STEP][PASSED] - delay(2): Delayed 2 second(s)
+
+2020-12-31 16:04:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-12-31 16:04:09 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/button_Sections")): Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:10 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:10 - [TEST_STEP][PASSED] - if (!(verifyElementNotVisible(findTestObject("Page_tCC translationAcademy/text_BentOver")))): Object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is NOT visible
+
+2020-12-31 16:04:11 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is NOT visible
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - println("tA text for "Bent over" is not visible when sections are closed as expected"): null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - present = verifyElementPresent(findTestObject("Page_tCC translationAcademy/text_Be in pain and labor to give birth"), 1, OPTIONAL): Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is present
+
+2020-12-31 16:04:11 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is present
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - if (present && !(verifyElementNotVisible(findTestObject("Page_tCC translationAcademy/text_Be in pain and labor to give birth"), OPTIONAL))): Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is NOT visible
+
+2020-12-31 16:04:11 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is NOT visible
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - println("tA text for "Be in pain and labor" is not visible when sections are closed as expected"): null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - println("Testing for sections and blocks visible"): null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - println("Showing sections and blocks"): null
+
+2020-12-31 16:04:11 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/button_Sections")): Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:12 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/button_Sections' is clicked on
+
+2020-12-31 16:04:12 - [TEST_STEP][PASSED] - click(findTestObject("Page_tCC translationAcademy/button_Blocks")): Object: 'Object Repository/Page_tCC translationAcademy/button_Blocks' is clicked on
+
+2020-12-31 16:04:13 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_tCC translationAcademy/button_Blocks' is clicked on
+
+2020-12-31 16:04:13 - [TEST_STEP][PASSED] - delay(1): Delayed 1 second(s)
+
+2020-12-31 16:04:14 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-12-31 16:04:14 - [TEST_STEP][PASSED] - if (!(waitForElementVisible(findTestObject("Page_tCC translationAcademy/text_BentOver"), 1, OPTIONAL)) || !(waitForElementVisible(findTestObject("Page_tCC translationAcademy/text_Be in pain and labor to give birth"), 1, OPTIONAL))): Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is visible
+
+2020-12-31 16:04:14 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_BentOver' is visible
+
+2020-12-31 16:04:14 - [MESSAGE][PASSED] - Object 'Object Repository/Page_tCC translationAcademy/text_Be in pain and labor to give birth' is visible
+
+2020-12-31 16:04:14 - [TEST_STEP][PASSED] - else: null
+
+2020-12-31 16:04:14 - [TEST_STEP][PASSED] - println("tA text is visible with Sections and Blocks open as expected"): null
+
+2020-12-31 16:04:14 - [TEST_STEP][PASSED] - scriptRunning = false: null
+
+2020-12-31 16:04:14 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-31 16:04:15 - [MESSAGE][PASSED] - Browser is closed
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - Start listener action : sampleAfterTestCase: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - suite = false: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - fileName = testSuiteLogFile: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (fileName.length() > 1): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - suite = true: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - println("test case teardown in suite"): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - println("log file is at " + fileName): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion(): unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-31 16:04:15 - [MESSAGE][PASSED] - unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion is PASSED
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - separator = "===================================================================================================================================================": null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - prefix = " +++++++++++ ": null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - testCaseStatus = testCaseContext.getTestCaseStatus(): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (testCaseStatus != "PASSED"): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - msg = prefix + testCaseContext.getTestCaseId() + " on " + version + " running on " + browser + " " + testCaseStatus + prefix: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile.append(msg + "
+"): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - tsMessages.add("##" + testCaseContext.getTestCaseId()): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (scriptRunning): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (tcMessages.size() > 0): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (scriptRunning && 1 == 2): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (testCount > 0): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - msg = separator: null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - println(msg): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - if (suite): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile = new java.io.File(fileName): null
+
+2020-12-31 16:04:15 - [TEST_STEP][PASSED] - oFile.append(msg + "
+
+"): null
+
+2020-12-31 16:04:17 - [TEST_STEP][PASSED] - Video: Video recording for test case 'Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections' .
+
+2020-12-31 16:04:17 - [MESSAGE][INFO] - Video recording for test case 'Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections' .
+[[ATTACHMENT|C:\Users\cckoz\git\Katalon_tC_Create\Reports\20201231_160325\tCC Test Suite 1\20201231_160325/videos\test_1.mov]]]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-31 16:03:28 - [TEST_SUITE][PASSED] - tCC Test Suite 1: Test Cases/tCC Test Cases/tCC tA Test Block Quotes and Sections]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>
