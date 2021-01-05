@@ -6,7 +6,7 @@
    <defaultProfile>false</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'https://develop--tc-create-app.netlify.app/'</initValue>
+      <initValue>'https://5fea650543bf880007015349--tc-create-app.netlify.app/'</initValue>
       <name>url</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
@@ -81,12 +81,12 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'tc01'</initValue>
+      <initValue>'tcc001'</initValue>
       <name>validateUser</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'tc01'</initValue>
+      <initValue>'tcc001'</initValue>
       <name>validatePassword</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
