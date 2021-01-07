@@ -31,7 +31,7 @@ start = 0
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start
 
 errorCount = 0
 
@@ -66,6 +66,9 @@ for (def fileNum : (start..end)) {
     // Load the project in tN
     WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
             , ('$password') : GlobalVariable.validatePassword, ('file') : testFile], FailureHandling.STOP_ON_FAILURE)
+	
+	// Set validation level to High
+	retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'('low')
 
     // Run the validation
     (vSize, newContent) = runValidation(initSize, testFile)
@@ -585,9 +588,11 @@ for (def fileNum : (start..end)) {
         WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
         WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'ab01')
-
+		
+		// Insert 889 error
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_SupportReference_SearchId'), 'figs-doublenegative')
-
+		
+		// Insert 792 error
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '2')
 		
         WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
@@ -595,9 +600,10 @@ for (def fileNum : (start..end)) {
         WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
 
         WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
-
+		
 		WebUI.sendKeys(null, Keys.chord(Keys.TAB))
-
+		
+		// Prior to rc-3 this would cause a 450 error
         noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
 		println('noteText0:' + noteText)
 
@@ -640,7 +646,15 @@ for (def fileNum : (start..end)) {
 				prefix = '<< EXPECTED >> '
 				expectedCount ++
 			}
-			if (!errors[i]) {
+			if (i == 2) { //This error should not exist - there was a problem that caused errors when fixing tA links
+				if (errors[i]) {
+					println(prefix + 'ERROR: Validator reported an unexpected ' + prioritys[i] + ' error in ' + testFile)
+					CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator reported an unexpected ' + prioritys[i] + ' error in ' + testFile)
+					errorCount ++
+				} else {
+					passCount ++
+				}
+			} else if (!errors[i]) {
 				println(prefix + 'ERROR: Validator did not report an inserted ' + prioritys[i] + ' error in ' + testFile)			
 				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator did not report an inserted ' + prioritys[i] + ' error in ' + testFile)
 				errorCount ++	

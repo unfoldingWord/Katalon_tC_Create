@@ -129,4 +129,14 @@
       <initValue>''</initValue>
       <name>testSuiteLogFile</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>systemOS</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>browser</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

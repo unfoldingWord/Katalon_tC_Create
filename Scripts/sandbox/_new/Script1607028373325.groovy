@@ -21,27 +21,52 @@ import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
 
-myFile = 'en_tn_65-3JN.tsv' // SET TO FILE TO BE TESTED
+keyString = 'Keys.chord(Keys.CONTROL, "v")'
+def l1 = keyString.indexOf(',')
+def l2 = keyString.indexOf(')', l1)
+def chars = keyString.substring(l1+1, l2)
+keyString = Keys.chord(Keys.CONTROL,chars)
 
-myId = '' // SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STARTS WITH FIRST ID.
+println(chars)
+return false
+WebUI.openBrowser(GlobalVariable.url)
+WebUI.doubleClick(findTestObject('Object Repository/recordings/h1_Login'))
+//keys = 'Keys.chord(Keys.CONTROL, "c")'
+keys = 'Keys.chord(Keys.COMMAND, "c")'
 
-fName = ((('/Users/' + GlobalVariable.pcUser) + '/Downloads/') + myFile)
+element = 'null'
 
-WebUI.openBrowser('https://git.door43.org/unfoldingWord/en_tn/raw/branch/master/' + myFile)
+CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(element, keys)
 
-WebUI.maximizeWindow()
+element = findTestObject('Object Repository/Page_tC Create/input__username')
 
-WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+keys = 'Keys.chord(Keys.CONTROL, "v")'
 
-WebUI.delay(2)
+CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(element, keys)
 
-WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, Keys.INSERT))
+return false
 
-Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
+if ((GlobalVariable.browser == '') || (GlobalVariable.browser == null)) {
+    GlobalVariable.browser = unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion()
+}
 
-Transferable contents = clipboard.getContents(null)
+if (GlobalVariable.systemOS.contains('Windows')) {
+    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
 
-result = ((contents.getTransferData(DataFlavor.stringFlavor)) as String)
+    WebUI.delay(1)
 
-println('result:' + result)
+    WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
+} else if (GlobalVariable.browser.contains('firefox')) {
+    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+
+    WebUI.delay(1)
+
+    WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
+} else {
+    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+
+    WebUI.delay(1)
+
+    WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
+}
 

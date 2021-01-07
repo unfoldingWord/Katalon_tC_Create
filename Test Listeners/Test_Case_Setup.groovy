@@ -33,9 +33,12 @@ class Test_Case_Setup {
 	def sampleBeforeTestCase(TestCaseContext testCaseContext) {
 		println('setup start')
 		GlobalVariable.tcMessages = []
-		def executionProfile = RC.getExecutionProfile()		
+		def executionProfile = RC.getExecutionProfile()
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
-		if (GlobalVariable.pcUser == '' || GlobalVariable == null) {
+		if (GlobalVariable.systemOS == '' || GlobalVariable.systemOS == null) {
+			GlobalVariable.systemOS = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
+		}
+		if (GlobalVariable.pcUser == '' || GlobalVariable.pcUser == null) {
 			def dirName = RC.getProjectDir()
 			println('Project path is ' + dirName)
 			GlobalVariable.projectPath = dirName
@@ -44,7 +47,6 @@ class Test_Case_Setup {
 			def user = dirName.substring(loc+7,git)
 			GlobalVariable.pcUser = user
 		}
-		println('pcUser is ' + GlobalVariable.pcUser + '.')
 		GlobalVariable.scriptRunning = true
 		println('setup success')
 	}

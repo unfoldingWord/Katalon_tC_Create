@@ -41,7 +41,7 @@ myId = ''					// SET TO THE ID OF THE CHECK TO START TESTING WITH. IF EMPTY, STA
 
 fName = '/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile
 
-system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
+//system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
 
 if (!new File(fName).exists() || download) {
 		
@@ -49,13 +49,16 @@ if (!new File(fName).exists() || download) {
 	
 	WebUI.maximizeWindow()
 	
-	myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
+//	myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
+	if (GlobalVariable.browser == '' || GlobalVariable.browser == null) {
+		GlobalVariable.browser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
+	}
 	
-    if (system.contains('Windows')) {
+    if (GlobalVariable.systemOS.contains('Windows')) {
 		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
 		WebUI.delay(1)
         WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
-    } else if (myBrowser.contains('firefox')) {
+    } else if (GlobalVariable.browser.contains('firefox')) {
 		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
 		WebUI.delay(1)
         WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
@@ -70,8 +73,12 @@ if (!new File(fName).exists() || download) {
 	Transferable contents = clipboard.getContents(null)
 	
 	fileText = ((contents.getTransferData(DataFlavor.stringFlavor)) as String)
+	
+	println(fileText)
 		
 	oFile = new File(fName)
+	
+	oFile.delete()
 	
 	oFile.write(fileText)
 }

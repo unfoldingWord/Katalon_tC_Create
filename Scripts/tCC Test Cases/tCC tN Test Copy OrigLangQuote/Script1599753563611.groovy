@@ -167,12 +167,12 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 	
 	WebUI.delay(1)
 	
-	if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 2)) {
+	if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText - Save'), 2, FailureHandling.OPTIONAL)) {
 
 		if (myBrowser.contains('firefox')) {
-			result = testHighlightStatus('Page_tCC translationNotes/span_GL_OrigQuoteText')
+			result = testHighlightStatus('Page_tCC translationNotes/span_GL_OrigQuoteText - Save')
 		} else {
-			if (WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText'), 'background-color') == highlighted) {
+			if (WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_GL_OrigQuoteText - Save'), 'background-color') == highlighted) {
 				result = true
 			}
 		}

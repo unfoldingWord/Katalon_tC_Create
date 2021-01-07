@@ -31,7 +31,7 @@ public class GetTestingConfig {
 	}
 
 	@Keyword
-	def getBrowserAndVersion() {
+	def static getBrowserAndVersion() {
 		WebDriver driver = DriverFactory.getWebDriver()
 		String browserName = driver.capabilities['browserName']
 		return browserName

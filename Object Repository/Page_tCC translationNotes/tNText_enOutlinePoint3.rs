@@ -7,7 +7,7 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//tr[@id='MUIDataTableBodyRow-0']/td[3]/div/div/div/div/div/div/ol/li[3]</value>
+         <value>/html/body/div[1]/div/div/div/div[2]/div[3]/table/tbody/tr[1]/td[3]/div/div/div/div[1]/div/div/ol/li[3]</value>
       </entry>
       <entry>
          <key>CSS</key>
@@ -17,7 +17,7 @@
          <value>//*[(text() = 'Paul ends by sharing some of his plans and sending greetings to various believers (3:12-15)' or . = 'Paul ends by sharing some of his plans and sending greetings to various believers (3:12-15)')]</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
