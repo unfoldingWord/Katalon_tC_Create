@@ -21,6 +21,8 @@ println('this is a failing test')
 
 CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Failing test was run')
 
+CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('This is a normal message')
+
 WebUI.closeBrowser()
 
 GlobalVariable.scriptRunning = false

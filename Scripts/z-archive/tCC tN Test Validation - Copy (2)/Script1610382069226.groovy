@@ -15,37 +15,28 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
-import groovy.io.FileType as FileType
-import org.apache.commons.io.FileUtils as FileUtils
-import groovy.time.*
 
-// NEED TO ADD TESTS FOR THE ON-OPEN FILE SANITY TEST
+// NEED TO ADD TESTS FOR MULTIPLE VALIDATION LEVELS
 
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
 levelHigh = 800
-
 levelMedium = 600
-
-levelTestFile = baseDir + 'Validation-Test_[myLevel]_Level.tsv.csv'
 
 testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_43-LUK.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv'
     , 'en_tn_52-COL.tsv', 'en_tn_15-EZR.tsv', 'en_tn_56-2TI.tsv', 'en_tn_41-MAT.tsv']
 
 // expectedFails holds the list of rows (base 0) in the baseline csv files that currently are expected to fail when tested
-//Prior to v1.1.0-rc3
-//expectedFails = [('en_tn_57-TIT.tsv') : [1, 2], ('en_tn_43-LUK.tsv') : [0], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [
-//        0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1]]
-expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [
-	0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1]]
+expectedFails = [('en_tn_57-TIT.tsv') : [1, 2], ('en_tn_43-LUK.tsv') : [0], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [
+        0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1]]
 
-start = 0
+start = 8
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start+1
 
 errorCount = 0
 
@@ -59,8 +50,6 @@ defaultLevel = 'High'
 
 first = true
 
-timings = []
-
 for (def fileNum : (start..end)) {
     errorFlag = false
 
@@ -70,11 +59,12 @@ for (def fileNum : (start..end)) {
 
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
 
-	baseLines = removeExcerpts(baseFile) // Remove the excertps column because it sometimes changes even though the error didn't change
-	baseLines.each({ def line ->
-		println(line)
-	})
-	
+    bFile = new File(baseFile)
+
+    baseContent = bFile.text
+
+    println('baseContent:' + baseContent)
+
     // Get the count of how many validation files already exist for the file being tested
     println('testFile:' + testFile)
 
@@ -103,101 +93,84 @@ for (def fileNum : (start..end)) {
 	if (fileNum == 9) {
 		levels = ['High', 'Medium']
 		for (level in levels) {
-			testCount ++
 			error = false
+			testCount ++
 			retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'(level)
 			
 			(vSize, newContent, myFile) = runValidation(initSize, testFile) // Run the validation
-			
-			if (newContent != '') {  // newContent will be empty if the validator did not find any errors
+			if (newContent != '') {
 				new File(myFile).splitEachLine(',', { def fields ->
 					if (fields[0] != 'Priority') {
 						if ((level == 'High' && fields[0].toInteger() < levelHigh) || (level == 'Medium' && fields[0].toInteger() < levelMedium)) {
-					        errorCount ++
-							error = true
+					        error = true
 					        println('ERROR: Priority ' + fields[0] + ' errors were found in a validaiton level ' + level + ' csv file')
 					        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because priority ' + fields[0] + ' errors were found in a validaiton level ' + level + ' csv file.')
 						}
 					}
 				})
 			}
-			if (!error) {
-				passCount ++
-			}
-			
-			// This section tests to ensure that the script will find lower level errors by adding them to the validation file
-			found = false
-			levelFile = levelTestFile.replace('[myLevel]',level)
-			println('levelFile: ' + levelFile)
-			iFile = new File(levelFile)
-			String err = FileUtils.readFileToString(iFile)
-			if (newContent != '') {
-				oFile = new File(myFile)
-				oFile.append(err)
-			} else {
-				myFile = levelFile // If the validator did not report any errors, then use the level test file as the source
-			}
-			pList = []
-			testCount ++
-			new File(myFile).splitEachLine(',', { def fields ->
-				pList.add(fields[0])
-			})
-			pList = pList.sort()
-			if (pList[0] == 'Priority') {
-				pList.remove(0)
-			}		
-			if ((level == 'High' && pList[0].toInteger() < levelHigh) || (level == 'Medium' && pList[0].toInteger() < levelMedium)) {
-				passCount ++
-			} else {
-				println('ERROR: Script did not detect a lower Priority error while testing a validaiton level ' + level + ' csv file')
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('The script did not detect a lower Priority error while testing a validaiton level ' + level + ' csv file.')
-				errorCount ++
-			}
-			
+		if (error) {
+			errorCount ++
+		} else {
+			passCount ++
+		}
 		initSize = vSize
 		}
-
 	}
 	
 	// Set validation level to low
 	retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'('low')
 	
-	timeStart = new Date()
-
     // Run the validation
     (vSize, newContent, myFile) = runValidation(initSize, testFile)
-	
-	timeEnd =  new Date()
-	
-	TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
-	
-	timings.add(testFiles[fileNum] + ' : ' + timeElapsed)
-	
-	if (newContent == '') {  // The validator did not find any errors. Continue with next file.
-		msg = ('The validator found no errors in ' + testFile + '.' )
-		println(msg)
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-		continue
-	}
-		
+
+    //    println('newContent:' + newContent)
+    // Test to see if the validation results are what was expected based on the originally saved validation file
+    baseLines = []
+
+    new File(baseFile).eachLine({ def line ->
+            baseLines.add(line)
+        })
+
     println(baseLines)
-	
-	newLines = removeExcerpts(myFile)
 
+    newLines = []
 
-	fixedRows = []	// New array to hold the index of base file rows that no longer appear in the validation file - assume they're fixed
-	l = 0
+    new File(myFile).eachLine({ def line ->
+            newLines.add(line)
+        })
+
+    //	println(newLines)
+    errorFlag = false
+
     //	for (line in baseLines) {
     baseLines.each({ def line ->
-            if (!newLines.contains(line)) {
-				fixedRows.add(l)
-				msg = ('The error in row ' + (l+1) + ' in ' + testFile + '_base.csv' + ' was not found by the validator.' )
-				println(msg)
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+            if (!(line) in newLines) {
+                errorFlag = true
             }
-			l ++
         })
-		
+
+    testCount++
+
+    if (errorFlag) {
+        errorCount++
+
+        println(('ERROR: Initial validation content  in ' + testFile) + ' does not include the expected errors')
+
+        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the initial validation content  in ' + 
+            testFile) + ' does not match the base content.')
+
+        WebUI.closeBrowser()
+
+        continue
+        
+        WebUI.closeBrowser()
+    } else {
+        passCount++
+
+        println('Initial content matches the base content')
+    }
+    
     // Show the additional required columns
     WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
@@ -206,171 +179,144 @@ for (def fileNum : (start..end)) {
     WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'OrigQuote']))
 
     WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
-	
+
     if (fileNum == 0) {
         // Fix the en_tn_50-EPH.tsv validation errors
-		
-		if (!0 in fixedRows) {
-						
-	        u2bwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-	
-	        u2bwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-				
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'u2bw')
-	
-	        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), u2bwNewQuote)
-			
-		}
+        u2bwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
 
-		if (!1 in fixedRows) {
-						
-	        abbwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-	
-	        abbwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-	
-	        WebUI.scrollToPosition(0, 0)
-	
-	        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'abbw')
-	
-	        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), abbwNewQuote)
-			
-		}
-		 
+        u2bwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'u2bw')
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), u2bwNewQuote)
+
+        abbwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
+
+        abbwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
+
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'abbw')
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), abbwNewQuote) // Fix the en_tn_57-TIT.tsv validation errors
+        // Fix the en_tn_42-MRK.tsv validation errors
+        // Check for the invalid error in en_tn_43-LUK.tsv 
+        // Fix the en_tn_45-ACT.tsv validation errors
+        // Check for the invalid error in en_tn_46-ROM.tsv 
+        // Fix the en_tn_52-COL.tsv validation errors
+        // Check for the invalid errors in en_tn_15-EZR.tsv
+        //		errors.add(error)
+        //		
+        // Fix the en_tn_15-EZR.tsv figs-idioms error in zb3e
+        // Check for the invalid errors en_tn_56-2TI.tsv
+        // Check for the invalid errors en_tn_41-MAT.tsv
     } else if (fileNum == 1) {
-		// Fix the en_tn_57-TIT.tsv validation errors
-	
-		row = 2
-	
-		if (!row in fixedRows) {
-				
-	        testCount++
-	
-	        error = (baseLines[row])
-	
-	        highlighted = 'rgba(255, 255, 0, 1)'
-	
-	        background = WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_OLW_Parmed', [('myDiv') : 'id("header-1-1-xyz8")'
-	                    , ('chpt') : '1', ('verse') : '1', ('wordNum') : '17']), 'background-color')
-	
-	        if (newContent.contains(error) && (background == highlighted)) {
-	            errorFlag = true
-	
-	            errorCount++
-	
-	            prefix = test4Expected(testFile, row)
-	
-	            println(((prefix + 'ERROR: Validator reports "unable to find original language quote" in ') + testFile) + ' on ID xyz8 even though it is highlighted. (Issue 572)')
-	
-	            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports "unable to find original language quote" in ') + 
-	                testFile) + ' on ID xyz8 even though it is highlighted. (Issue 572)')
-	        } else {
-	            passCount++
-	        }
-	        
-	        baseLines.removeElement(error)
-			
-		}
+        testCount++
 
-		if (!0 in fixedRows) {
-				
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'), Keys.chord(Keys.UP, Keys.UP, 
-	                Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.BACK_SPACE))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'), Keys.chord(Keys.DOWN, Keys.BACK_SPACE, 
-	                Keys.DOWN, Keys.BACK_SPACE))
-	
-	        WebUI.delay(1)
-		}
-		
+        row = 2
 
-		if (!1 in fixedRows) {
-				
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'rtc9')
-	
-	        NewQuote = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_SourceOrigQuote_SearchId'))
-	
-	        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), NewQuote)
-			
-		}
+        error = (baseLines[row])
 
-		if (!2 in fixedRows) {
-				
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
-	
-	        xyz8NewQuote = 'εὐσέβειαν'
-	
-	        WebUI.scrollToPosition(0, 0)
-	
-	        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'xyz8')
-	
-	        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
-			
-		}
-		
-    } else if (fileNum == 2) { // Fixed errors in en_tn_42-MRK.tsv
-	
-		if (!0 in fixedRows) {
-				
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'eke3')
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
-		}
+        highlighted = 'rgba(255, 255, 0, 1)'
 
-		if (!1 in fixedRows) {
-				
-	        WebUI.scrollToPosition(0, 0)
-	
-	        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'hm98')
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'))
-	
-	        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), Keys.chord(Keys.COMMAND, Keys.RIGHT))
-	
-	        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), '.)')
-		}
-		
-    } else if (fileNum == 3) { // Fix errors in en_tn_43-LUK.tsv
-	
+        background = WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_OLW_Parmed', [('myDiv') : 'id("header-1-1-xyz8")'
+                    , ('chpt') : '1', ('verse') : '1', ('wordNum') : '17']), 'background-color')
+
+        if (newContent.contains(error) && (background == highlighted)) {
+            errorFlag = true
+
+            errorCount++
+
+            prefix = test4Expected(testFile, row)
+
+            println(((prefix + 'ERROR: Validator reports "unable to find original language quote" in ') + testFile) + ' on ID xyz8 even though it is highlighted. (Issue 572)')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports "unable to find original language quote" in ') + 
+                testFile) + ' on ID xyz8 even though it is highlighted. (Issue 572)')
+        } else {
+            passCount++
+        }
+        
+        baseLines.removeElement(error)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'))
+
+        WebUI.delay(1)
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'), Keys.chord(Keys.UP, Keys.UP, 
+                Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.RIGHT, Keys.BACK_SPACE))
+
+        WebUI.delay(1)
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'), Keys.chord(Keys.DOWN, Keys.BACK_SPACE, 
+                Keys.DOWN, Keys.BACK_SPACE))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'rtc9')
+
+        NewQuote = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_SourceOrigQuote_SearchId'))
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), NewQuote)
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
+
+        xyz8NewQuote = 'εὐσέβειαν'
+
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'xyz8')
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
+    } else if (fileNum == 2) {
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'eke3')
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
+
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'hm98')
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'))
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), Keys.chord(Keys.COMMAND, Keys.RIGHT))
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), '.)')
+    } else if (fileNum == 3) {
         testCount++
 
         row = 0
@@ -395,27 +341,21 @@ for (def fileNum : (start..end)) {
         continue
         
         WebUI.closeBrowser()
-		
-    } else if (fileNum == 4) {	// Fix errors in en_tn_45-ACT.tsv
-	
-		if (!0 in fixedRows) {		
+    } else if (fileNum == 4) {
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'p5cd')
-	
-	        WebUI.delay(1)
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
-		}
-		
-    } else if (fileNum == 5) {  // Fix errors in en_tn_46-ROM.tsv
+        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'p5cd')
+
+        WebUI.delay(1)
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
+    } else if (fileNum == 5) {
         testCount++
 
         row = 0
@@ -438,56 +378,45 @@ for (def fileNum : (start..end)) {
         }
         
         continue
-		
-    } else if (fileNum == 6) {	// Fix errors in en_tn_52-COL.tsv
-	
-		if (!0 in fixedRows) {		
+    } else if (fileNum == 6) {
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
-		        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-		
-		        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'x5g8')
-		
-		        WebUI.delay(1)
-		
-		        noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
-		
-		        noteText = noteText.replace('perfectly together.', 'perfectly together.”')
-		
-		        WebUI.setText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'), noteText)
-		
-	        WebUI.delay(1)
-	
-	        WebUI.scrollToPosition(0, 0)
-	
-	        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
-		}
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'x5g8')
 
-		if (!1 in fixedRows) {		
+        WebUI.delay(1)
 
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'GLQuote']))
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
-	
-	        WebUI.delay(1)
-	
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'd39x')
-	
-	        noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'))
-	
-	        noteText = noteText.replace('fulfill it', 'fulfill it.”')
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'), noteText)
-	
-	        WebUI.delay(1)
-		}
-		
-    } else if (fileNum == 7) { //en_tn_15-EZR.tsv
-	
-//		println(newContent)
+        noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
+
+        noteText = noteText.replace('perfectly together.', 'perfectly together.”')
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'), noteText)
+
+        WebUI.delay(1)
+
+        WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'GLQuote']))
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
+
+        WebUI.delay(1)
+
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'd39x')
+
+        noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'))
+
+        noteText = noteText.replace('fulfill it', 'fulfill it.”')
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'), noteText)
+
+        WebUI.delay(1)
+    } else if (fileNum == 7) {
         errors = []
 
         testCount++
@@ -516,7 +445,7 @@ for (def fileNum : (start..end)) {
         row = 1
 
         error = (baseLines[row])
-		
+
         if (newContent.contains(error)) {
             errorFlag = true
 
@@ -537,21 +466,17 @@ for (def fileNum : (start..end)) {
         for (def error : errors) {
             baseLines.removeElement(error)
         }
-		
-		if (!2 in fixedRows) {
         
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'zb3e')
-	
-	        WebUI.delay(1)
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/text_SupportReference_SearchId'), 'figs-idiom')
-	
-	        WebUI.delay(1)
-		}
-		
-    } else if (fileNum == 8) {	// Fix errors in en_tn_56-2TI.tsv
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'zb3e')
+
+        WebUI.delay(1)
+
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_SupportReference_SearchId'), 'figs-idiom')
+
+        WebUI.delay(1)
+    } else if (fileNum == 8) {
         testCount++
 
         row = 0
@@ -576,8 +501,7 @@ for (def fileNum : (start..end)) {
         baseLines.removeElement(error)
 
         continue
-		
-    } else if (fileNum == 9) {	// Fix errors in en_tn_41-MAT.tsv
+    } else if (fileNum == 9) {
         errors = []
 
         testCount++
@@ -630,30 +554,69 @@ for (def fileNum : (start..end)) {
             baseLines.removeElement(error)
         }
         
-		if (!2 in fixedRows) {
-        
-	        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'mxm2')
-	
-	        oNote = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
-	
-	        oNote = oNote.replace('[[rc://en/ta/man/translate/figs-ellipsis]]', '[[rc://*/ta/man/translate/figs-ellipsis]]')
-	
-	        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'), oNote)
-		}
-    }
-	
-	if (baseLines.size() > fixedRows.size()) {   
-    // Rerun the validation if any of the base file rows still existing in the validation file were fixed
-	    initSize = vSize
-	
-	    (vSize, newContent, myFile) = runValidation(initSize, testFile)
-	
-	    //    println('newContent:' + newContent)
-	    testOutput(baseLines, myFile)
-	}
+        WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'mxm2')
+
+        oNote = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
+
+        oNote = oNote.replace('[[rc://en/ta/man/translate/figs-ellipsis]]', '[[rc://*/ta/man/translate/figs-ellipsis]]')
+
+        WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'), oNote)
+    }
+    
+    // Rerun the validation
+    initSize = vSize
+
+    (vSize, newContent, myFile) = runValidation(initSize, testFile)
+
+    //    println('newContent:' + newContent)
+    testOutput(baseLines, myFile)
+
+    if (1 == 2) {
+        // Read the file into field lists
+        prioritys = []
+
+        chapters = []
+
+        verses = []
+
+        lines = []
+
+        ids = []
+
+        detailss = []
+
+        poss = []
+
+        excerpts = []
+
+        messages = []
+
+        locations = []
+
+        new File(myFile).splitEachLine(',', { def fields ->
+                prioritys.add(fields[0])
+
+                chapters.add(fields[1])
+
+                verses.add(fields[2])
+
+                lines.add(fields[3])
+
+                ids.add(fields[4])
+
+                detailss.add(fields[5])
+
+                poss.add(fields[6])
+
+                excerpts.add(fields[7])
+
+                messages.add(fields[8])
+
+                locations.add(fields[9])
+            })
+    }
     
     if (!(errorFlag)) {
         println(('\n=>=>=>=>=>=>=>=>=> No errors were found when processing ' + testFile) + '\n')
@@ -668,6 +631,8 @@ for (def fileNum : (start..end)) {
         WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 
         WebUI.scrollToPosition(0, 0)
+
+        WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
 
         WebUI.delay(1)
 
@@ -754,24 +719,15 @@ for (def fileNum : (start..end)) {
     WebUI.closeBrowser()
 }
 
-header = true
-println('<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>')
+println('<<<<<<<<<<>>>>>>>>>>')
 
-timings.each({def et ->
-	if (header) {
-		println('VALIDATION PROCESSING TIME')
-		header = false
-	}
-	println('    ' + et)
-})
-
-println('\n' + testCount + ' tests were run.')
+println(testCount + ' tests were run.')
 
 println(passCount + ' tests passed.')
 
 println(((errorCount + ' tests failed; ') + expectedCount) + ' expected.')
 
-println('<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>')
+println('<<<<<<<<<<>>>>>>>>>>')
 
 GlobalVariable.testCount = testCount
 
@@ -783,20 +739,20 @@ GlobalVariable.expectedErrors = expectedCount
 
 GlobalVariable.scriptRunning = false
 
-WebUI.closeBrowser()
-
-def removeExcerpts(vFile) {
-	lines = []
-	new File(vFile).splitEachLine('\\12', { def fields ->
-		line = fields[0]
-		int [] commas = line.findIndexValues {
-			it == ','
-		}
-		line = line.substring(0,commas[6]) + line.substring(commas[7])
-		lines.add(line)
-	})
-	return lines
-}
+WebUI.closeBrowser( // Get list of files in the Download folder
+    // Add the validation files to a list
+    ) // Wait for the validation file to be downloaded
+// Sort the list
+// Get the name of the last (newest) file in the list
+//	for (file in files) {
+//	testLines = [4,6,7]
+//	println(line)
+//	println(line)
+//for (baseLine in baseLines) {
+//for (line in testLines) {
+//def testOutput(def testLines, def baseFile, def testFile) {
+//println(newLines)
+//	for (line in testLines) {
 
 def test4Expected(def testFile, def row) {
     retCode = ''
@@ -836,36 +792,44 @@ def runValidation(def initSize, def testFile) {
     WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_validate'), 30)
 
     WebUI.click(findTestObject('Page_tCC translationNotes/button_validate'))
-	
-	WebUI.waitForElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'), 5)
-			
+
+    if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'), 
+        2)) {
+        println('waiting')
+		
+		done = false
+		empty = false
+		while(!done) {
+	        if (WebUI.waitForElementNotPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'),5)) {
+				done = true
+				
+			}
+			WebUI.delay(2)
+			if (WebUI.waitForAlert(5)) {
+				WebUI.delay(2)
+				WebUI.acceptAlert()
+				empty = true
+				done = true
+			}
+		}
+    }
+		
     vSize = initSize
 	
 	myFile = ''
 	
 	newContent = ''
-	
-	noFile = false
-	
-    while (vSize <= initSize && !noFile) { // && !WebUI.verifyAlertNotPresent(1)) {
-
-        vFiles = getValidationFiles(testFile)
-
-        vSize = vFiles.size()
-		
-		if (!WebUI.verifyAlertNotPresent(2, FailureHandling.OPTIONAL)) {
-			
-			noFile = true			
-			
-		}
-    }
-	
-	if (noFile) {
-		
-		WebUI.acceptAlert(FailureHandling.OPTIONAL) // It seems the verifyAlertNotPresent auto-accepts it when found????
-		
-	} else {
     
+	if (!empty) {
+	
+	    while (vSize <= initSize) {
+	        WebUI.delay(1)
+	
+	        vFiles = getValidationFiles(testFile)
+	
+	        vSize = vFiles.size()
+	    }
+	    
 	    vFiles = vFiles.toSorted()
 	
 	    myFile = (vFiles[(vFiles.size() - 1)])
@@ -875,11 +839,13 @@ def runValidation(def initSize, def testFile) {
 	    println('dirName2:' + dirName)
 	
 	    myFile = ((dirName + '/') + myFile)
-		
-		newContent = removeExcerpts(myFile)
+	
+	    nFile = new File(myFile)
+	
+	    newContent = nFile.text
 		
 	}
-	
+
     return [vSize, newContent, myFile]
 }
 
@@ -915,5 +881,4 @@ def testOutput(def baseLines, def myFile) {
             row++
         })
 }
-
 

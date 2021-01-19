@@ -106,13 +106,13 @@ public class HamburgerFunctions {
 			}
 		}
 		WebUI.delay(1)
-		
+
 		if (level.toLowerCase().contains('hi')) {
-			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_High'))			
+			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_High'))
 		} else if (level.toLowerCase().contains('me')) {
-			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_Medium'))			
+			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_Medium'))
 		} else 	if (level.toLowerCase().contains('lo')) {
-			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_Low'))			
+			WebUI.click(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_Low'))
 		}
 
 		if (!drawerOpen) {
@@ -124,7 +124,49 @@ public class HamburgerFunctions {
 			}
 		}
 		println('returning ' + retCode)
-		return retCode		
+		return retCode
 
 	}
+
+	@Keyword
+	def testValidationLevel(level) {
+		def retCode = true
+		def drawerOpen = WebUI.waitForElementPresent(findTestObject('Page_tC Create/button_DrawerClose'), 1, FailureHandling.OPTIONAL)
+		if (!drawerOpen) {
+			try {
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			} catch (Exception e) {
+				WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+			}
+		}
+		WebUI.delay(1)
+
+		if (level.toLowerCase().contains('hi')) {
+			level = 'High'
+		} else if (level.toLowerCase().contains('me')) {
+			level = 'Medium'
+		} else 	if (level.toLowerCase().contains('lo') || level.toLowerCase().contains('all')) {
+			level = 'Low'
+		}
+
+		if (WebUI.verifyElementChecked(findTestObject('Object Repository/Page_tC Create/radio_ValidationLevel_' + level), 1, FailureHandling.STOP_ON_FAILURE)) {
+			retCode = true
+		} else 	{
+			retCode = false
+		}
+
+		if (!drawerOpen) {
+			if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)) {
+				WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
+				WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+			} else {
+				retCode = false
+			}
+		}
+		println('returning ' + retCode)
+		return retCode
+
+	}
+
 }

@@ -24,9 +24,11 @@ import internal.GlobalVariable
 public class SendMessage {
 	@Keyword
 	def SendFailMessage(msg) {
-		//		println('The message is ' + msg)
 		GlobalVariable.tcMessages.add(msg)
-		//		println('The global messages are ' + GlobalVariable.tcMessages)
 		KeywordUtil.markFailed(msg)
+	}
+	@Keyword
+	def SendInfoMessage(msg) {
+		GlobalVariable.tcMessages.add('[INFO ONLY] ' + msg)
 	}
 }

@@ -52,7 +52,7 @@ class HotKeys {
 		if (GlobalVariable.browser == '' || GlobalVariable.browser == null) {
 			GlobalVariable.browser = GetTestingConfig.getBrowserAndVersion()
 		}
-		
+
 		if (element == 'null') {
 			element = null
 		}
@@ -83,7 +83,6 @@ class HotKeys {
 					keyString = Keys.chord(Keys.SHIFT, Keys.INSERT)
 				}
 			}
-
 		}
 		WebUI.sendKeys(element, keyString)
 	}
@@ -91,6 +90,5 @@ class HotKeys {
 	@Keyword
 	def sendKeys2() {
 		WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
-		
 	}
 }

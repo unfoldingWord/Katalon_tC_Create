@@ -15,13 +15,27 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.openBrowser('www.google.com')
+WebUI.openBrowser(GlobalVariable.url)
 
-println('this is a passing test')
+WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'))
 
-CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('This is a normal message')
+levels = ['High', 'Medium', 'Low']
+
+for (def level : levels) {
+	WebUI.click(findTestObject('Page_tC Create/radio_ValidationLevel_' + level))
+	println('testing level ' + level)
+    testSelected()
+}
 
 WebUI.closeBrowser()
 
-GlobalVariable.scriptRunning = false
+def testSelected() { 
+	for (level in levels) {
+	    if (WebUI.verifyElementChecked(findTestObject('Page_tC Create/radio_ValidationLevel_' + level), 1, FailureHandling.OPTIONAL)) {
+	        println(level + ' is selected')
+	    } else {
+	        println(level + ' is not selected')
+	    }
+	}
+}
 

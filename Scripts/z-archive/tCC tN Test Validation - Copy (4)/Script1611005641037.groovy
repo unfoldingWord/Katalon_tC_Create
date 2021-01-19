@@ -19,7 +19,7 @@ import groovy.io.FileType as FileType
 import org.apache.commons.io.FileUtils as FileUtils
 import groovy.time.*
 
-// NEED TO ADD TESTS FOR THE ON-OPEN FILE SANITY TEST
+// NEED TO ADD TESTS FOR SANITY TEST ON OPEN
 
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 
@@ -41,11 +41,11 @@ testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_
 expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [
 	0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1]]
 
-start = 0
+start = 9
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start
 
 errorCount = 0
 
@@ -70,11 +70,17 @@ for (def fileNum : (start..end)) {
 
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
 
-	baseLines = removeExcerpts(baseFile) // Remove the excertps column because it sometimes changes even though the error didn't change
+////    bFile = new File(baseFile)
+
+////    baseContent = bFile.text
+	
+	baseLines = removeExcerpts(baseFile)
 	baseLines.each({ def line ->
 		println(line)
 	})
 	
+////    println('baseContent:' + baseContent)
+
     // Get the count of how many validation files already exist for the file being tested
     println('testFile:' + testFile)
 
@@ -108,8 +114,7 @@ for (def fileNum : (start..end)) {
 			retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'(level)
 			
 			(vSize, newContent, myFile) = runValidation(initSize, testFile) // Run the validation
-			
-			if (newContent != '') {  // newContent will be empty if the validator did not find any errors
+			if (newContent != '') {
 				new File(myFile).splitEachLine(',', { def fields ->
 					if (fields[0] != 'Priority') {
 						if ((level == 'High' && fields[0].toInteger() < levelHigh) || (level == 'Medium' && fields[0].toInteger() < levelMedium)) {
@@ -124,19 +129,13 @@ for (def fileNum : (start..end)) {
 			if (!error) {
 				passCount ++
 			}
-			
-			// This section tests to ensure that the script will find lower level errors by adding them to the validation file
 			found = false
 			levelFile = levelTestFile.replace('[myLevel]',level)
 			println('levelFile: ' + levelFile)
 			iFile = new File(levelFile)
 			String err = FileUtils.readFileToString(iFile)
-			if (newContent != '') {
-				oFile = new File(myFile)
-				oFile.append(err)
-			} else {
-				myFile = levelFile // If the validator did not report any errors, then use the level test file as the source
-			}
+			oFile = new File(myFile)
+			oFile.append(err)
 			pList = []
 			testCount ++
 			new File(myFile).splitEachLine(',', { def fields ->
@@ -172,24 +171,34 @@ for (def fileNum : (start..end)) {
 	TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
 	
 	timings.add(testFiles[fileNum] + ' : ' + timeElapsed)
-	
-	if (newContent == '') {  // The validator did not find any errors. Continue with next file.
-		msg = ('The validator found no errors in ' + testFile + '.' )
-		println(msg)
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-		continue
-	}
 		
+    //    println('newContent:' + newContent)
+    // Test to see if the validation results are what was expected based on the originally saved validation file
+////.    baseLines = []
+
+////    new File(baseFile).eachLine({ def line ->
+////            baseLines.add(line)
+////        })
+
     println(baseLines)
+
+////    newLines = []
+
+////    new File(myFile).eachLine({ def line ->
+////            newLines.add(line)
+////        })
 	
 	newLines = removeExcerpts(myFile)
 
+    //	println(newLines)
+////    errorFlag = false
 
 	fixedRows = []	// New array to hold the index of base file rows that no longer appear in the validation file - assume they're fixed
 	l = 0
     //	for (line in baseLines) {
     baseLines.each({ def line ->
             if (!newLines.contains(line)) {
+////                errorFlag = true
 				fixedRows.add(l)
 				msg = ('The error in row ' + (l+1) + ' in ' + testFile + '_base.csv' + ' was not found by the validator.' )
 				println(msg)
@@ -197,7 +206,30 @@ for (def fileNum : (start..end)) {
             }
 			l ++
         })
-		
+	
+	if (1 == 2) {  //// THIS SECTION WAS REMOVED CUZ I'M NOW REPORTING ROWS THAT DON'T MATCH AS INFO MESSAGES AT THE END
+	    testCount++
+	
+	    if (errorFlag) {
+	        errorCount++
+	
+	        println(('ERROR: Initial validation content  in ' + testFile) + ' does not include the expected errors')
+	
+	        CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the initial validation content  in ' + 
+	            testFile) + ' does not match the base content.')
+	
+	        WebUI.closeBrowser()
+	
+	        continue
+	        
+	        WebUI.closeBrowser()
+	    } else {
+	        passCount++
+	
+	        println('Initial content matches the base content')
+	    }
+	}
+	
     // Show the additional required columns
     WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
@@ -495,6 +527,11 @@ for (def fileNum : (start..end)) {
         row = 0
 
         error = (baseLines[row])
+//		println('row 0 error: ' + error)
+		
+//		for (def i : (0..5)) {
+//			println(newContent[i])
+//		}
 
         if (newContent.contains(error)) {
             errorFlag = true
@@ -516,6 +553,7 @@ for (def fileNum : (start..end)) {
         row = 1
 
         error = (baseLines[row])
+//		println('row 1 error: ' + error)
 		
         if (newContent.contains(error)) {
             errorFlag = true
@@ -654,6 +692,50 @@ for (def fileNum : (start..end)) {
 	    testOutput(baseLines, myFile)
 	}
 
+    if (1 == 2) {
+        // Read the file into field lists
+        prioritys = []
+
+        chapters = []
+
+        verses = []
+
+        lines = []
+
+        ids = []
+
+        detailss = []
+
+        poss = []
+
+        excerpts = []
+
+        messages = []
+
+        locations = []
+
+        new File(myFile).splitEachLine(',', { def fields ->
+                prioritys.add(fields[0])
+
+                chapters.add(fields[1])
+
+                verses.add(fields[2])
+
+                lines.add(fields[3])
+
+                ids.add(fields[4])
+
+                detailss.add(fields[5])
+
+                poss.add(fields[6])
+
+                excerpts.add(fields[7])
+
+                messages.add(fields[8])
+
+                locations.add(fields[9])
+            })
+    }
     
     if (!(errorFlag)) {
         println(('\n=>=>=>=>=>=>=>=>=> No errors were found when processing ' + testFile) + '\n')
@@ -836,36 +918,44 @@ def runValidation(def initSize, def testFile) {
     WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_validate'), 30)
 
     WebUI.click(findTestObject('Page_tCC translationNotes/button_validate'))
-	
-	WebUI.waitForElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'), 5)
-			
+
+    if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'), 
+        2)) {
+        println('waiting')
+		
+		done = false
+		empty = false
+		while(!done) {
+	        if (WebUI.waitForElementNotPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'),5)) {
+				done = true
+				
+			}
+			WebUI.delay(2)
+			if (WebUI.waitForAlert(5)) {
+				WebUI.delay(2)
+				WebUI.acceptAlert()
+				empty = true
+				done = true
+			}
+		}
+    }
+		
     vSize = initSize
 	
 	myFile = ''
 	
 	newContent = ''
-	
-	noFile = false
-	
-    while (vSize <= initSize && !noFile) { // && !WebUI.verifyAlertNotPresent(1)) {
-
-        vFiles = getValidationFiles(testFile)
-
-        vSize = vFiles.size()
-		
-		if (!WebUI.verifyAlertNotPresent(2, FailureHandling.OPTIONAL)) {
-			
-			noFile = true			
-			
-		}
-    }
-	
-	if (noFile) {
-		
-		WebUI.acceptAlert(FailureHandling.OPTIONAL) // It seems the verifyAlertNotPresent auto-accepts it when found????
-		
-	} else {
     
+	if (!empty) {
+	
+	    while (vSize <= initSize) {
+	        WebUI.delay(1)
+	
+	        vFiles = getValidationFiles(testFile)
+	
+	        vSize = vFiles.size()
+	    }
+	    
 	    vFiles = vFiles.toSorted()
 	
 	    myFile = (vFiles[(vFiles.size() - 1)])
@@ -875,11 +965,15 @@ def runValidation(def initSize, def testFile) {
 	    println('dirName2:' + dirName)
 	
 	    myFile = ((dirName + '/') + myFile)
+	
+////	    nFile = new File(myFile)
+	
+////	    newContent = nFile.text
 		
 		newContent = removeExcerpts(myFile)
 		
 	}
-	
+
     return [vSize, newContent, myFile]
 }
 
@@ -915,5 +1009,4 @@ def testOutput(def baseLines, def myFile) {
             row++
         })
 }
-
 

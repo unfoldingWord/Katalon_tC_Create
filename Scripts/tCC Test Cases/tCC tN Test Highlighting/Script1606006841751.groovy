@@ -68,6 +68,8 @@ if (!new File(fName).exists() || download) {
         WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
     }
 	
+	return false
+	
 	Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
 	
 	Transferable contents = clipboard.getContents(null)

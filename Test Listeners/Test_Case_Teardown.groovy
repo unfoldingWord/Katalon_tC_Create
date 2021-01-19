@@ -36,7 +36,7 @@ class Test_Case_Teardown {
 	def sampleAfterTestCase(TestCaseContext testCaseContext) {
 		def suite = false
 		String fileName = GlobalVariable.testSuiteLogFile
-		if (fileName.length() > 1) {
+		if (fileName != null && fileName.length() > 1) {
 			suite = true
 			println('test case teardown in suite')
 			println('log file is at ' + fileName)
