@@ -139,4 +139,9 @@
       <initValue>''</initValue>
       <name>browser</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>timings</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

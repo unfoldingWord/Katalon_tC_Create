@@ -19,8 +19,7 @@ import groovy.io.FileType as FileType
 import org.apache.commons.io.FileUtils as FileUtils
 import groovy.time.*
 
-// 01/20/21 Added tests for validator on-open file sanity checks
-
+// NEED TO ADD TESTS FOR THE ON-OPEN FILE SANITY TEST
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
@@ -42,11 +41,11 @@ expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_46-ROM.tsv') : [0], ('en_tn
         0], ('en_tn_41-MAT.tsv') : [0, 1]]
 
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-start = 1
+start = 0
 
 end = (testFiles.size() - 1)
 
-end = start
+//end = start
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 
@@ -87,7 +86,7 @@ for (def fileNum : (start..end)) {
 
     // Load the project in tN
     WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-            , ('$password') : GlobalVariable.validatePassword, ('file') : testFiles[1]], FailureHandling.STOP_ON_FAILURE)
+            , ('$password') : GlobalVariable.validatePassword, ('file') : testFile], FailureHandling.STOP_ON_FAILURE)
 
     // If first time, verify the default validation level
     if (first) {
@@ -103,7 +102,7 @@ for (def fileNum : (start..end)) {
         } else {
             passCount++
         }
-		
+        
         first = false
     }
     

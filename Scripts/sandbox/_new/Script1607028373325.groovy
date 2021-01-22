@@ -21,6 +21,18 @@ import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
 
+str = 'TIT	front'
+str = 'TIT	front'
+println(str)
+str1 = str.substring(0,1)
+println(str1)
+int aint = (int) str1
+if (aint == 57344) {
+	str = str.substring(1)
+}
+println(str)
+
+return false
 keyString = 'Keys.chord(Keys.CONTROL, "v")'
 def l1 = keyString.indexOf(',')
 def l2 = keyString.indexOf(')', l1)

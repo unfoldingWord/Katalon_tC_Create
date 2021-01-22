@@ -20,9 +20,9 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords
 
 import internal.GlobalVariable
 
-import MobileBuiltInKeywords as Mobile
-import WSBuiltInKeywords as WS
-import WebUiBuiltInKeywords as WebUI
+//import MobileBuiltInKeywords as Mobile
+//import WSBuiltInKeywords as WS
+//import WebUiBuiltInKeywords as WebUI
 
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
@@ -59,8 +59,8 @@ class SikuliFunctions {
 		//		image = Pattern(imagePath+'SaveButton.png')
 		s.click(save)
 		//		image = Pattern(imagePath+'ReplaceButton.png')
-		if (s.exists(return)) {
-			s.click()
-		}
+//		if (s.exists(return)) {
+//			s.click()
+//		}
 	}
 }

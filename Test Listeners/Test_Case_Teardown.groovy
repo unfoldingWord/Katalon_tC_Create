@@ -108,6 +108,22 @@ class Test_Case_Teardown {
 			}
 		}
 		
+		if (GlobalVariable.timings.size() > 0) {
+			def first = true
+			GlobalVariable.timings.each ({ def et ->
+				msg = et
+				if (first) {
+					msg = '\n## Validation Processing Times ##\n' + msg
+					first = false
+				}
+				println(msg)
+				if (suite) {
+					File oFile = new File(fileName)
+					oFile.append(msg + '\n')
+				}
+			})
+			GlobalVariable.timings = ''
+		}
 		msg = separator
 		println(msg)
 		if (suite) {

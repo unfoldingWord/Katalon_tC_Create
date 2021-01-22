@@ -356,7 +356,7 @@
    <testCaseLink>
       <guid>c9ca77d9-3573-445d-9165-1c7c02ef16bf</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Validation</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

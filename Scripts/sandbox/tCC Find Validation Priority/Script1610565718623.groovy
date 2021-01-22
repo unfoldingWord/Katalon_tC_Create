@@ -29,9 +29,9 @@ import java.io.File as File
 // Will search OT, NT, ALL, or single book (determined by myBooks for more than one, 
 //		or set fileExists to true to test only an existing validation file in the Downloads folder
 
-fileExists = true //SET TO TRUE TO TEST EXISTING VALIDATION FILE AND SET FILE NAME BELOW AS myFile
+fileExists = false //SET TO TRUE TO TEST EXISTING VALIDATION FILE AND SET FILE NAME BELOW AS myFile
 
-findAll = true //FIND EVERY INSANCE OF THE ERROR. IF FALSE, STOP SEARCHING AFTER THE FIRST INSTANCE OF EACH CODE IN myPrioritys
+findAll = false //FIND EVERY INSANCE OF THE ERROR. IF FALSE, STOP SEARCHING AFTER THE FIRST INSTANCE OF EACH CODE IN myPrioritys
 
 if (!fileExists) {
 	WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
@@ -43,15 +43,16 @@ if (!fileExists) {
 	myFile = '/Users/cckozie/Downloads/Validation-en_tn_67-REV.tsv-2021-01-13T23_21_09.121Z.csv' //TEST EXISTING VALIDATION FILE
 }
 
-myPrioritys = ['621']
+myPrioritys = ['581']
 
 testFiles = []
 
 allBooks = '/Users/cckozie/Documents/Sikuli/Files/Bible_Books.csv'
 ntBooks = '/Users/cckozie/Documents/Sikuli/Files/NT_Books.csv'
 otBooks = '/Users/cckozie/Documents/Sikuli/Files/OT_Books.csv'
+epistleBooks = '/Users/cckozie/Documents/Sikuli/Files/Epistle_Books.csv'
 
-myBooks = ntBooks
+myBooks = epistleBooks
 
 if (!fileExists) {
 

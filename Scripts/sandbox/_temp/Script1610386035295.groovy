@@ -16,121 +16,60 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import groovy.io.FileType as FileType
 import org.apache.commons.io.FileUtils as FileUtils
-
 import java.awt.datatransfer.Clipboard as Clipboard
 import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
-
-import java.awt.datatransfer.StringSelection;
-
+import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 
-//Download tsv file
-//Save it with another name
-//Remove header row
-//Remove a tab
-//Replace DCS content
-//https://qa.door43.org/translate_test/en_t/src/branch/tc01-tc-create-1/en_tn_57-TIT.tsv
-//https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/en_tn_57-TIT.tsv
-user = 'tc01'
+line = 1
 
-myFile = 'en_tn_57-TIT.tsv' // SET TO FILE TO BE TESTED
+if (1 == 1) {
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser, ('$password') : GlobalVariable.validatePassword
+	, ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
-repoBase = 'https://qa.door43.org/translate_test/'
+currentWindow = WebUI.getWindowIndex()
 
-resource = myFile.substring(0, 5)
-
-myRepo = (((((repoBase + resource) + '/src/branch/') + user) + '-tc-create-1/') + myFile)
-
-baseDir = (GlobalVariable.projectPath + '/Data Files/')
-
-error1File = 'en_tn_57-TIT-no_header.tsv'
-
-restoreFile = 'en_tn_57-TIT-SAVE.tsv'
-
-myFile = restoreFile
-
-//CustomKeywords.'unfoldingWord_Keywords.Replace_Repo_Content.replaceContent'(myRepo,'')
-WebUI.openBrowser(myRepo)
-
-if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/icon_UserSignIn'), 1)) {
-    WebUI.click(findTestObject('Page_Git Repo/icon_UserSignIn'))
-
-    WebUI.setText(findTestObject('Page_Git Repo/input_Username'), GlobalVariable.user1Name)
-
-    WebUI.setText(findTestObject('Page_Git Repo/input_Password'), GlobalVariable.user1Password)
-
-    WebUI.click(findTestObject('Page_Git Repo/button_SignIn'))
-}
-
-WebUI.click(findTestObject('Page_Git Repo/icon_Edit'))
-
-WebUI.delay(3)
-
-row1Text = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/repoText_Row1'))
-
-row2Text = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/repoText_Row2'))
-
-println(row1Text)
-
-println(row2Text)
-
-//	WebUI.setText(findTestObject('Object Repository/Page_Git Repo/repoText_Row1'),'ABC')
-//	r2Text = row2Text.replaceFirst('\\9','X')
-//	row2Text = WebUI.setText(findTestObject('Object Repository/Page_Git Repo/repoText_Row2'), r2Text)
-WebUI.click(findTestObject('Page_Git Repo/span_ProjectTextHeader'))
-
-//    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, Keys.DOWN))
-//    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.TAB, Keys.TAB))
-WebUI.delay(3)
-
-WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
-
-WebUI.delay(1)
-
-WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.DELETE))
-
-iFile = new File(baseDir + myFile)
-
-String fileText = FileUtils.readFileToString(iFile)
-
-println(fileText)
-
-//String myString = "This text will be copied into clipboard"
-StringSelection stringSelection = new StringSelection(fileText)
-
-Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
-
-clipboard.setContents(stringSelection, null)
-
-WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'v'))
-
-WebUI.click(findTestObject('Page_Git Repo/button_CommitChanges'))
-
-return false
-
-if ((GlobalVariable.browser == '') || (GlobalVariable.browser == null)) {
-    GlobalVariable.browser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
-}
-
-if (GlobalVariable.systemOS.contains('Windows')) {
-    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
-
-    WebUI.delay(1)
-
-    WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
-} else if (GlobalVariable.browser.contains('firefox')) {
-    WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
-
-    WebUI.delay(1)
-
-    WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
+alertText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/alert_validator_Error_Msg'))
 } else {
-    WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'a'))
-
-    WebUI.delay(1)
-
-    WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
+alertText = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).\n ' +
+'On line 1 Bad TSV Header, expecting "Book,Chapter,Verse,ID,SupportReference,OrigQuote,Occurrence,GLQuote,OccurrenceNote"\n' +  
+'On line 22 Not enough columns, expecting 9, found 8\n' +
+'On line 26 Not enough columns, expecting 9, found 8\n' +  
+'On line 98 Not enough columns, expecting 9, found 8'
 }
 
+currentWindow = WebUI.getWindowIndex()
+
+alertText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/alert_validator_Error_Msg'))
+
+println(alertText)
+
+List lines = alertText.split( '\n').findAll {it}
+
+println(lines)
+
+WebUI.delay(2)
+
+for (line in lines) {
+	if (line.contains('line ')) {
+		lStart = line.indexOf('line ')
+		str = line.substring(lStart + 5)
+		lEnd = str.indexOf(' ')
+		lineNum = str.substring(0,lEnd)
+		WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/link_errorLine_Parmed', [('lineNum') : lineNum]))
+		WebUI.switchToWindowIndex(currentWindow + 1)
+		WebUI.waitForElementPresent(findTestObject('Page_Git Repo/repo_validator_lineNumber_parmed', [('lineNum') : lineNum]), 3)
+		lineClass = WebUI.getAttribute(findTestObject('Page_Git Repo/repo_validator_lineNumber_parmed', [('lineNum') : lineNum]), 'class', FailureHandling.OPTIONAL)
+		if (!lineClass.contains('active')) {
+			println('Row is not highlighted')
+		} else {
+			println('Row was correctly highlighted')
+		}
+		WebUI.closeWindowIndex(currentWindow + 1)
+		WebUI.delay(1)
+		WebUI.switchToWindowIndex(currentWindow)
+		WebUI.delay(1)
+	}
+}
