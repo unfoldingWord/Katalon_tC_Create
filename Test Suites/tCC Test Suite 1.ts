@@ -356,7 +356,13 @@
    <testCaseLink>
       <guid>c9ca77d9-3573-445d-9165-1c7c02ef16bf</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>false</isRun>
+      <isRun>true</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Validation</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>b504c900-f3ac-4805-b0cc-a481f6419457</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>false</isRun>
+      <testCaseId>Test Cases/tCC Test Cases/tCC tN Test On-Open Validator</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

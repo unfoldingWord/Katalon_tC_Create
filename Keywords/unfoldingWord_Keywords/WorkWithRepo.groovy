@@ -39,10 +39,14 @@ public class WorkWithRepo {
 		println('Loading file ' + file + ' into repo ' + repo)
 
 		// Open a firefox browser so that sendKeys will work
-		System.setProperty("webdriver.gecko.driver","/Applications/Katalon Studio.app/Contents/Eclipse/configuration/resources/drivers/firefox_mac/geckodriver");
-		WebDriver driver = new FirefoxDriver();
+		if (GlobalVariable.systemOS.contains('Windows')) {
+			System.setProperty("webdriver.gecko.driver","C:\\Users\\cckoz\\Katalon\\Katalon_Studio_Windows_64-7.9.0\\configuration\\resources\\drivers\\firefox_win64\\geckodriver.exe")
+		} else {
+			System.setProperty("webdriver.gecko.driver","/Applications/Katalon Studio.app/Contents/Eclipse/configuration/resources/drivers/firefox_mac/geckodriver");
+		}
+		WebDriver driver = new FirefoxDriver()
 		DriverFactory.changeWebDriver(driver)
-
+		
 		WebUI.navigateToUrl(repo)
 
 		if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/icon_UserSignIn'), 1)) {
@@ -65,7 +69,11 @@ public class WorkWithRepo {
 
 		WebUI.delay(1)
 
-		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+		if (GlobalVariable.systemOS.contains('Windows')) {
+			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
+		} else {
+			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
+		}
 
 		WebUI.delay(1)
 
@@ -80,7 +88,11 @@ public class WorkWithRepo {
 
 		clipboard.setContents(stringSelection, null)
 
-		WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'v'))
+		if (GlobalVariable.systemOS.contains('Windows')) {
+			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'v'))
+		} else {
+			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'v'))
+		}
 
 		WebUI.delay(1)
 

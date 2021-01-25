@@ -23,6 +23,13 @@ import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 
+file = 'Validation-en_tn_43-LUK.tsv-2021-01-25T19_47_10.013Z.csv'
+if (file.substring(file.length()-3) == 'csv') {
+	println('not')
+} else {
+	println('is')
+}
+return false
 line = 1
 
 if (1 == 1) {

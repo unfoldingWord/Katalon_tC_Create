@@ -22,6 +22,7 @@ import groovy.time.*
 // 01/20/21 Added tests for validator on-open file sanity checks
 
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
+println(dirName)
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
@@ -42,11 +43,11 @@ expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_46-ROM.tsv') : [0], ('en_tn
         0], ('en_tn_41-MAT.tsv') : [0, 1]]
 
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
-start = 1
+start = 0
 
 end = (testFiles.size() - 1)
 
-end = start
+//end = start
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 
@@ -87,7 +88,7 @@ for (def fileNum : (start..end)) {
 
     // Load the project in tN
     WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-            , ('$password') : GlobalVariable.validatePassword, ('file') : testFiles[1]], FailureHandling.STOP_ON_FAILURE)
+            , ('$password') : GlobalVariable.validatePassword, ('file') : testFile], FailureHandling.STOP_ON_FAILURE)
 
     // If first time, verify the default validation level
     if (first) {
@@ -833,19 +834,29 @@ def removeExcerpts(def vFile) {
     lines = []
 
     WebUI.delay(2)
-
-    new File(vFile).splitEachLine('\\12', { def fields ->
-            line = (fields[0])
-
-            int[] commas = line.findIndexValues({ 
-                    it == ','
-                })
-
-            line = (line.substring(0, commas[6]) + line.substring(commas[7]))
-
-            lines.add(line)
-        })
-
+	
+//    new File(vFile).splitEachLine('\\12', { def fields ->
+//            line = (fields[0])
+	
+	File file = new File(vFile)
+	file.withReader { reader ->
+		while ((line = reader.readLine()) != null) {
+			
+			int[] commas = line.findIndexValues({ 
+                it == ','
+            })
+			
+			if (commas.size() < 7) {
+				println('#################### not enough commas in line ' + line)
+			}
+			
+	        line = (line.substring(0, commas[6]) + line.substring(commas[7]))
+	
+	        lines.add(line)
+			
+		}
+    }
+			
     return lines
 }
 
@@ -873,7 +884,7 @@ def getValidationFiles(def testFile) {
     vFiles = []
 
     files.each({ def file ->
-            if (file.contains('Validation-' + testFile)) {
+            if (file.contains('Validation-' + testFile) && file.substring(file.length()-3) == 'csv') {
                 vFiles.add(file)
             }
         })

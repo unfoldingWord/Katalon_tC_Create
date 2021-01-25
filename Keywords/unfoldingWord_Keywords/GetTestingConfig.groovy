@@ -26,7 +26,7 @@ import java.awt.*
 
 public class GetTestingConfig {
 	@Keyword
-	def getOperatingSystem () {
+	def static getOperatingSystem () {
 		return(System.getProperty('os.name'))
 	}
 
