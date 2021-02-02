@@ -19,8 +19,6 @@ import groovy.io.FileType as FileType
 import org.apache.commons.io.FileUtils as FileUtils
 import groovy.time.*
 
-// 01/20/21 Added tests for validator on-open file sanity checks
-
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 println(dirName)
 

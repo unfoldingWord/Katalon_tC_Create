@@ -50,6 +50,7 @@ if (1 == 2) { // This resets the Titus text before processing the errors, but is
 	    CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, GlobalVariable.validateUser, 
 	        GlobalVariable.validatePassword)
 	}
+//	return false
 }
 //----------------------------------------------------------------------------------------------------------------------------------
 

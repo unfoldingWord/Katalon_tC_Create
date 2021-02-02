@@ -105,6 +105,10 @@ class Test_Case_Teardown {
 			if (suite) {
 				File oFile = new File(fileName)
 				oFile.append(msg + '\n')
+				GlobalVariable.testCount = ''
+				GlobalVariable.passCount = ''
+				GlobalVariable.errorCount = ''
+				GlobalVariable.expectedErrors = ''
 			}
 		}
 		
