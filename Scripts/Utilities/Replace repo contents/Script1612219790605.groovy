@@ -21,5 +21,8 @@ saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
 myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
 
-CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, GlobalVariable.validateUser,
-	GlobalVariable.validatePassword)
+user = GlobalVariable.validateUser
+
+password = GlobalVariable.validatePassword
+
+CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, user, password)
