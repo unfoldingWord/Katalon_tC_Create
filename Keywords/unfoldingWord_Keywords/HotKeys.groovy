@@ -71,7 +71,7 @@ class HotKeys {
 				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'c'))
 			} else if (function == 'paste') {
 				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'v'))
-			}else if (function == 'paste') {
+			}else if (function == 'all') {
 				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'a'))
 			}
 		} else if (GlobalVariable.systemOS.contains('Mac')) {
