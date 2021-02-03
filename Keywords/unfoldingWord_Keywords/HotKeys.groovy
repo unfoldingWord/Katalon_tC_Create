@@ -24,6 +24,10 @@ import internal.GlobalVariable
 //import WSBuiltInKeywords as WS
 //import WebUiBuiltInKeywords as WebUI
 
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.By
@@ -44,11 +48,14 @@ import com.kms.katalon.core.webui.exception.WebElementNotFoundException
 import org.openqa.selenium.Keys as Keys
 
 class HotKeys {
-	/**
-	 * Refresh browser
-	 */
+//
 	@Keyword
-	def sendKeys(element,keyString) {
+	
+	def sendKeys(element,function) {
+		// Supported functions: copy, paste, all
+		
+		function = function. toLowerCase()
+		
 		if (GlobalVariable.browser == '' || GlobalVariable.browser == null) {
 			GlobalVariable.browser = GetTestingConfig.getBrowserAndVersion()
 		}
@@ -57,38 +64,35 @@ class HotKeys {
 			element = null
 		}
 
-		keyString = keyString.replace(' ','')
-		keyString = keyString.replace("'",'"')
-
+		println('sendKeys to ' + element + ' in ' + GlobalVariable.browser + ' on ' + GlobalVariable.systemOS)
+		
 		if (GlobalVariable.systemOS.contains('Windows')) {
-			def l1 = keyString.indexOf('"')
-			def l2 = keyString.indexOf('"', l1)
-			def chars = keyString.substring(l1+1, l2)
-			keyString = Keys.chord(Keys.CONTROL,chars)
-		} else {
-			if (keyString.contains('Keys.CONTROL,"c"') || keyString.contains('Keys.COMMAND,"c"')) {
-				if (GlobalVariable.browser.contains('firefox')) {
-					println('firefox')
-					keyString = Keys.chord(Keys.COMMAND, 'c')
-				} else {
-					println('Chrome')
-					keyString = Keys.chord(Keys.CONTROL, Keys.INSERT)
-				}
-			} else if (keyString.contains('Keys.CONTROL,"v"') || keyString.contains('Keys.COMMAND,"v"')) {
-				if (GlobalVariable.browser.contains('firefox')) {
-					println('firefox')
-					keyString = Keys.chord(Keys.COMMAND, 'v')
-				} else {
-					println('Chrome')
-					keyString = Keys.chord(Keys.SHIFT, Keys.INSERT)
-				}
+			if (function == 'copy') {
+				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'c'))
+			} else if (function == 'paste') {
+				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'v'))
+			}else if (function == 'paste') {
+				WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, 'a'))
+			}
+		} else if (GlobalVariable.systemOS.contains('Mac')) {
+			if (function == 'all') {
+//					Object cmd = Keys.TAB
+					WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.COMMAND, 'a'))
+			} else {
+				if (GlobalVariable.browser.contains('firefox')) {				
+					if (function == 'copy') {
+						WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.COMMAND, 'c'))
+					} else if (function == 'paste') {
+						WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.COMMAND, 'v'))
+					}
+				} else if (GlobalVariable.browser.contains('chrome')) {				
+					if (function == 'copy') {
+						WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.CONTROL, Keys.INSERT))
+					} else if (function == 'paste') {
+						WebUI.sendKeys(findTestObject(element), Keys.chord(Keys.SHIFT, Keys.INSERT))
+				}				}
 			}
 		}
-		WebUI.sendKeys(element, keyString)
 	}
 
-	@Keyword
-	def sendKeys2() {
-		WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
-	}
 }

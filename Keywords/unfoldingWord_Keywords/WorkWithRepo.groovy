@@ -46,7 +46,7 @@ public class WorkWithRepo {
 		}
 		WebDriver driver = new FirefoxDriver()
 		DriverFactory.changeWebDriver(driver)
-		
+
 		WebUI.navigateToUrl(repo)
 
 		if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/icon_UserSignIn'), 1)) {

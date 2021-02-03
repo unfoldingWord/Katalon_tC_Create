@@ -26,3 +26,5 @@ user = GlobalVariable.validateUser
 password = GlobalVariable.validatePassword
 
 CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, user, password)
+
+GlobalVariable.scriptRunning = false

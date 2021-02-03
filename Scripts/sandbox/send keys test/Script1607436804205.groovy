@@ -16,21 +16,23 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('www.google.com')
+WebUI.openBrowser('https://develop--tc-create-app.netlify.app/')
 
-WebUI.click(findTestObject('recordings/input_Search'))
+WebUI.doubleClick(findTestObject('Page_tC Create/h1_Login'))
 
-WebUI.sendKeys(findTestObject('recordings/input_Search'), 'abcde')
+CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
 
-WebUI.sendKeys(findTestObject('recordings/input_Search'), Keys.chord(Keys.LEFT))
+CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'('Page_tC Create/input__username', 'paste')
 
 WebUI.delay(2)
 
-WebUI.sendKeys(findTestObject('recordings/input_Search'), Keys.chord(Keys.LEFT,Keys.LEFT))
+WebUI.click(findTestObject('Page_tC Create/h1_Login'))
+
+CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'All')
 
 WebUI.delay(5)
 
-WebUI.closeBrowser()
-
 GlobalVariable.scriptRunning = false
+
+WebUI.closeBrowser()
 
