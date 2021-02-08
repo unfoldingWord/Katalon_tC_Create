@@ -73,20 +73,34 @@ public class HamburgerFunctions {
 			try {
 				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
 			} catch (Exception e) {
-				WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2)
-				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+				println('verifying chip_repo present')	
+				if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2, FailureHandling.OPTIONAL)) {
+					println('not present')
+					retCode = false
+				} else {
+					println('attempting to scroll to chip_repo')
+					if (!WebUI.scrollToElement(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2, FailureHandling.OPTIONAL)) {
+						println('cannot scroll to chip_repo')
+						retCode = false
+					}
+				}
+				if (retCode) {
+					WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
+				}
 			}
 		}
-		WebUI.delay(2)
-		WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : name]))
-		//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
-
-		if (!drawerOpen) {
-			if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)) {
-				WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
-				WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
-			} else {
-				retCode = false
+		if (retCode) {
+			WebUI.delay(2)
+			WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : name]))
+			//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
+	
+			if (!drawerOpen) {
+				if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)) {
+					WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
+					WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+				} else {
+					retCode = false
+				}
 			}
 		}
 		println('returning ' + retCode)

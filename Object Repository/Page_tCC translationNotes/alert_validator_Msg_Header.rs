@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>alert_validator_Error_Msg</name>
+   <name>alert_validator_Msg_Header</name>
    <tag></tag>
-   <elementGuidId>ce50aca6-dc49-496c-8086-8bafe86c8489</elementGuidId>
+   <elementGuidId>664da1bd-5be2-4684-b8a7-d9c40060094a</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div</value>
+         <value>//div[@id='alert-dialog-title']</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>div.MuiPaper-root.MuiAlert-root.MuiAlert-standardError.MuiPaper-elevation0</value>
+         <value>#alert-dialog-title</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -28,55 +28,55 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0</value>
+      <value>MuiDialogTitle-root</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>role</name>
+      <name>id</name>
       <type>Main</type>
-      <value>alert</value>
+      <value>alert-dialog-title</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>ErrorOn line 1 Bad TSV Header, expecting &quot;Book,Chapter,Verse,ID,SupportReference,OrigQuote,Occurrence,GLQuote,OccurrenceNote&quot;   On line 22 Not enough columns, expecting 9, found 8   Please correct resource or close and select another</value>
+      <value>This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0&quot;]</value>
+      <value>id(&quot;alert-dialog-title&quot;)</value>
    </webElementProperties>
    <webElementXpaths>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>xpath:idRelative</name>
+      <name>xpath:attributes</name>
       <type>Main</type>
-      <value>//div[@id='root']/div/div/div</value>
+      <value>//div[@id='alert-dialog-title']</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn'])[1]/following::div[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn'])[1]/following::div[9]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_57-TIT.tsv'])[1]/following::div[8]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_57-TIT.tsv'])[1]/following::div[13]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div/div/div/div</value>
+      <value>//div[2]/div[3]/div/div</value>
    </webElementXpaths>
 </WebElementEntity>

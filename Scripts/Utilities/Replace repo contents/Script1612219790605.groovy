@@ -17,7 +17,11 @@ import internal.GlobalVariable as GlobalVariable
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
-saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
+goodFile = ('en_tn_57-TIT-SAVE.tsv')
+
+errFile = ('en_tn_57-TIT-both_errors.tsv')
+
+saveFile = baseDir + errFile
 
 myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>link_errorLine_Parmed</name>
+   <name>a_line 1</name>
    <tag></tag>
-   <elementGuidId>8ee017ee-3db0-48ea-8b21-64b3b11d320c</elementGuidId>
+   <elementGuidId>caa2a22d-cd88-4821-8dba-9cc6cc071a2e</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div/div[2]/p[1]/a</value>
+         <key>BASIC</key>
+         <value>//*[@href = 'https://qa.door43.org/translate_test/en_tn/blame/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv#L1' and (text() = 'line 1' or . = 'line 1')]</value>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value>//*[(text() = 'line ${lineNum}' or . = 'line ${lineNum}')]</value>
+         <key>XPATH</key>
+         <value>//p[@id='alert-dialog-description']/p/a</value>
       </entry>
       <entry>
          <key>CSS</key>
@@ -35,7 +35,7 @@
       <value>MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>href</name>
       <type>Main</type>
@@ -60,49 +60,35 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>line ${lineNum}</value>
+      <value>line 1</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0&quot;]/div[@class=&quot;MuiAlert-message&quot;]/p[@class=&quot;MuiTypography-root MuiTypography-body1&quot;]/a[@class=&quot;MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary&quot;]</value>
+      <value>id(&quot;alert-dialog-description&quot;)/p[@class=&quot;MuiTypography-root MuiTypography-body1&quot;]/a[@class=&quot;MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//div[@id='root']/div/div/div/div[2]/p/a</value>
+      <value>//p[@id='alert-dialog-description']/p/a</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Error'])[1]/following::a[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='`'])[2]/following::a[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn'])[1]/following::a[1]</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Capture object:'])[1]/preceding::a[1]</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
-      <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Alt'])[1]/preceding::a[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Alt'])[2]/following::a[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>alert_validator_Error_Msg</name>
+   <name>a_line 98</name>
    <tag></tag>
-   <elementGuidId>ce50aca6-dc49-496c-8086-8bafe86c8489</elementGuidId>
+   <elementGuidId>7781e2a2-10f7-4a9c-a75d-0554013aae7b</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div</value>
+         <value>//p[@id='alert-dialog-description']/p[4]/a</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>div.MuiPaper-root.MuiAlert-root.MuiAlert-standardError.MuiPaper-elevation0</value>
+         <value></value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -21,62 +21,76 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>div</value>
+      <value>a</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0</value>
+      <value>MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>https://qa.door43.org/translate_test/en_tn/blame/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv#L98</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>role</name>
+      <name>target</name>
       <type>Main</type>
-      <value>alert</value>
+      <value>_blank</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>rel</name>
+      <type>Main</type>
+      <value>noopener</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>ErrorOn line 1 Bad TSV Header, expecting &quot;Book,Chapter,Verse,ID,SupportReference,OrigQuote,Occurrence,GLQuote,OccurrenceNote&quot;   On line 22 Not enough columns, expecting 9, found 8   Please correct resource or close and select another</value>
+      <value>line 98</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;MuiPaper-root MuiAlert-root MuiAlert-standardError MuiPaper-elevation0&quot;]</value>
+      <value>id(&quot;alert-dialog-description&quot;)/p[@class=&quot;MuiTypography-root MuiTypography-body1&quot;]/a[@class=&quot;MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//div[@id='root']/div/div/div</value>
+      <value>//p[@id='alert-dialog-description']/p[4]/a</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn'])[1]/following::div[4]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Close'])[1]/preceding::a[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>xpath:neighbor</name>
+      <name>xpath:href</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='en_tn_57-TIT.tsv'])[1]/following::div[8]</value>
+      <value>//a[contains(@href, 'https://qa.door43.org/translate_test/en_tn/blame/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv#L98')]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//div/div/div/div</value>
+      <value>//p[4]/a</value>
    </webElementXpaths>
 </WebElementEntity>

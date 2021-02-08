@@ -17,19 +17,20 @@ import internal.GlobalVariable as GlobalVariable
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
-errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-both_errors.tsv']
+errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv']
 
 saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
 myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
 
 errorHeader = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).'
+//			   This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).
 
-start = 0
+start = 4
 
 end = (errFiles.size() - 1)
 
-//end = start
+end = start
 
 //----------------------------------------------------------------------------------------------------------------------------------
 if (1 == 2) { // This resets the Titus text before processing the errors, but is not necessary for production
@@ -39,7 +40,7 @@ if (1 == 2) { // This resets the Titus text before processing the errors, but is
 	currentWindow = WebUI.getWindowIndex()
 
 	// The on-open validator alert is always present (and Katalon thinks visible), so use its text to determine if it is actual visible
-	alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg'))
+	alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
 	println(alertText)
 	
 	if (alertText.contains('line')) {
@@ -71,13 +72,17 @@ for (def fNum : (start..end)) {
 	   
 	currentWindow = WebUI.getWindowIndex()
 
-    WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg'), 5)
+    WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'), 5)
 
-	alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg'))
-
-    println(alertText)
+	alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
 	
-	if (!alertText.contains(errorHeader)) {
+	alertHeader = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'))
+
+	println('Alert header:' + alertHeader)
+	
+    println('Alert text:' + alertText)
+	
+	if (!alertHeader.contains(errorHeader)) {
 		println('ERROR: On-open validator error does not contain expected header text')
         CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the on-open validator error does not contain expected header text.')
  	}
@@ -131,11 +136,25 @@ for (def fNum : (start..end)) {
     }
 }
 
-CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'('en_tn_56-2TI.tsv')
+nextFile = 'en_tn_56-2TI.tsv'
+retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'(nextFile)
 
-WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg'), 5)
+if (retCode) {
+	println('ERROR: The user is not forced to close the error message modal')
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the user is not forced to close the error message modal.')
+} else { 
 
-alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg'))
+	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_validator_Message_Close'))
+				
+	WebUI.click(findTestObject('Page_tC Create/resource_Parmed', [('resource') : 'unfoldingWord/en_tn']))
+	
+	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : 'en_tn_56-2TI.tsv']))
+	
+}
+
+WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'), 2)
+
+alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
 
 if (alertText.contains(errorHeader)) {
 	println('ERROR: On-open validator error message from the previous file is displayed on new file open')

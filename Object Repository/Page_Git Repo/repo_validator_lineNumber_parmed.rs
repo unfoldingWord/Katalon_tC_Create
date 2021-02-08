@@ -6,16 +6,16 @@
    <elementGuidId>37a939a2-1b56-45c7-874c-78e98a3e93b1</elementGuidId>
    <selectorCollection>
       <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)=concat('Update ', &quot;'&quot;, 'en_tn_57-TIT.tsv', &quot;'&quot;, '')])[7]/following::li[1]</value>
+      </entry>
+      <entry>
          <key>CSS</key>
          <value>li.L1.bottom-line.active</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[contains(@class, 'bottom-line active') and @rel = 'L${lineNum}']</value>
-      </entry>
-      <entry>
-         <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)=concat('Update ', &quot;'&quot;, 'en_tn_57-TIT.tsv', &quot;'&quot;, '')])[7]/following::li[1]</value>
+         <value>//*[contains(@class, 'active') and @rel = 'L${lineNum}']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -32,7 +32,7 @@
       <matchCondition>contains</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>bottom-line active</value>
+      <value>active</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
