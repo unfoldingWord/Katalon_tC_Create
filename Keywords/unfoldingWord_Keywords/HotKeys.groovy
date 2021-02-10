@@ -51,7 +51,7 @@ class HotKeys {
 	//
 	@Keyword
 
-	def sendKeys(element,function) {
+	def static sendKeys(element,function) {
 		// Supported functions: copy, paste, all
 
 		function = function. toLowerCase()

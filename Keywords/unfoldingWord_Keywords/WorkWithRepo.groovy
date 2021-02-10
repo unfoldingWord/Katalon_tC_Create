@@ -35,6 +35,10 @@ import java.awt.datatransfer.StringSelection;
 
 public class WorkWithRepo {
 	@Keyword
+	// 02/10/21 	Modified to use the HotKeys CustomKeyword instead of hard-coded select-all and paste
+	
+	def hot_keys = new HotKeys() // Have to redefine the CustomKeyword so that it can be used here in a CustomKeyword
+	
 	def replaceRepoContent(repo,file,user,password) {
 		println('Loading file ' + file + ' into repo ' + repo)
 
@@ -69,11 +73,7 @@ public class WorkWithRepo {
 
 		WebUI.delay(1)
 
-		if (GlobalVariable.systemOS.contains('Windows')) {
-			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'a'))
-		} else {
-			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'a'))
-		}
+		HotKeys.sendKeys(null, 'all')
 
 		WebUI.delay(1)
 
@@ -88,11 +88,7 @@ public class WorkWithRepo {
 
 		clipboard.setContents(stringSelection, null)
 
-		if (GlobalVariable.systemOS.contains('Windows')) {
-			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.CONTROL, 'v'))
-		} else {
-			WebUI.sendKeys(findTestObject(null), Keys.chord(Keys.COMMAND, 'v'))
-		}
+		HotKeys.sendKeys(null, 'paste')
 
 		WebUI.delay(1)
 

@@ -24,8 +24,6 @@ import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-// 02/10/21	Modified to use the HotKeys custom keyword for all copy and paste functions
-
 String highlighted = 'rgba(255, 255, 0, 1)'
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
@@ -115,7 +113,7 @@ if (!(testHighlightStatus(origQuote[2]))) {
 // Test single word copy and paste
 WebUI.doubleClick(findTestObject(origQuote[3]))
 
-CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+copyText()
 
 setGLOrigQuote('paste', '', true)
 
@@ -136,7 +134,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
     // This test will fail on Mac/Chrome prior to v1.0.5 because Paste and match style is not available in Katalon
     dragIt(7, 9)
 
-    CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+    copyText()
 
     setGLOrigQuote('paste', '', true)
 	
@@ -155,13 +153,13 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 	// Test that copied highlighted original language word is not pasted highlighted
 	WebUI.doubleClick(findTestObject(origQuote[7]))
 	
-	CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+	copyText()
 	
 	setGLOrigQuote('paste', '', true)
 	
 	WebUI.doubleClick(findTestObject(origQuote[7]))
 	
-	CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+	copyText()
 	
 	setGLOrigQuote('paste', '', false)
 	
@@ -196,7 +194,7 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 	// Test pasting bolded text
     WebUI.doubleClick(findTestObject('Page_tCC translationNotes/text_OccurNote-Knowledge'))
 
-    CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+    copyText()
 
     setGLOrigQuote('paste', '', true)
 
@@ -248,23 +246,35 @@ GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()
 
-//def copyText() {
-//	CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
-//}
+def copyText() {
+    if (system.contains('Windows')) {
+        WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, 'c'))
+    } else if (myBrowser.contains('firefox')) {
+        WebUI.sendKeys(null, Keys.chord(Keys.COMMAND, 'c'))
+    } else {
+        WebUI.sendKeys(null, Keys.chord(Keys.CONTROL, Keys.INSERT))
+    }
+}
 
 def setGLOrigQuote(def fnc, def quote, clickOut) {
-	
-		myElement = 'Page_tCC translationNotes/text_OrigQuote-GL-xyz8'
-		
     if (fnc == 'paste') {
-        WebUI.setText(findTestObject(myElement), '')
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), '')
 
-        WebUI.click(findTestObject(myElement))
-		
-		CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(myElement, 'paste')
+        WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'))
 
+        if (system.contains('Windows')) {
+//            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.CONTROL, 
+//                    Keys.SHIFT, 'v'))
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.CONTROL, 'v'))
+        } else if (myBrowser.contains('firefox')) {
+//            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.COMMAND, 
+//                    Keys.SHIFT, 'v'))
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.COMMAND, 'v'))
+        } else {
+            WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), Keys.chord(Keys.SHIFT, Keys.INSERT))
+        }
     } else {
-        WebUI.setText(findTestObject(myElement), quote)
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-xyz8'), quote)
     }
 	
 	if (clickOut) {

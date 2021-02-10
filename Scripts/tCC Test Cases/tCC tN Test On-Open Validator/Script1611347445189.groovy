@@ -26,11 +26,11 @@ myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-
 errorHeader = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).'
 //			   This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).
 
-start = 4
+start = 0
 
 end = (errFiles.size() - 1)
 
-end = start
+//end = start
 
 //----------------------------------------------------------------------------------------------------------------------------------
 if (1 == 2) { // This resets the Titus text before processing the errors, but is not necessary for production

@@ -19,8 +19,7 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
 //LOGIN AND OPEN THE en-tN FOR EDITING
 
-// 02/10/21	Replaced the try/catch with a test for length of the 'file' parameter (the 'file' parameter is effectively optional)
-
+//WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
 if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
@@ -44,11 +43,10 @@ if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource
 
 println('file is [' + file + ']')
 println('length is [' + file.length() + ']')
-
-if (file.length() > 0 && file.contains('.tsv')) {
+try {
 	myFile = file
 	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : myFile]))
-} else {
+} catch (Exception e) {
 	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : GlobalVariable.tNFile]))
 }
 

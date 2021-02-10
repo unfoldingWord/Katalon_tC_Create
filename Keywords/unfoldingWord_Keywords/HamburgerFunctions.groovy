@@ -73,7 +73,7 @@ public class HamburgerFunctions {
 			try {
 				WebUI.click(findTestObject('Page_tC Create/button_DrawerOpen'), FailureHandling.STOP_ON_FAILURE)
 			} catch (Exception e) {
-				println('verifying chip_repo present')	
+				println('verifying chip_repo present')
 				if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/chip_Repo'), 2, FailureHandling.OPTIONAL)) {
 					println('not present')
 					retCode = false
@@ -93,7 +93,7 @@ public class HamburgerFunctions {
 			WebUI.delay(2)
 			WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : name]))
 			//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
-	
+
 			if (!drawerOpen) {
 				if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)) {
 					WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
