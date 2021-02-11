@@ -21,6 +21,16 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
 // 02/10/21	Replaced the try/catch with a test for length of the 'file' parameter (the 'file' parameter is effectively optional)
 
+if (binding.hasVariable('file') && file.contains('.tsv')) {
+	myFile = file
+} else {
+	myFile = GlobalVariable.tNFile
+}
+
+println('tN file is ' + myFile)
+
+
+	
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
 if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
@@ -42,13 +52,15 @@ if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource
     return null
 }
 
-println('file is [' + file + ']')
-println('length is [' + file.length() + ']')
+//println('file is [' + file + ']')
+//println('length is [' + file.length() + ']')
 
-if (file.length() > 0 && file.contains('.tsv')) {
-	myFile = file
-	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : myFile]))
-} else {
-	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : GlobalVariable.tNFile]))
-}
+WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : myFile]))
+
+//if (file.length() > 0 && file.contains('.tsv')) {
+//	myFile = file
+//	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : myFile]))
+//} else {
+//	WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : GlobalVariable.tNFile]))
+//}
 
