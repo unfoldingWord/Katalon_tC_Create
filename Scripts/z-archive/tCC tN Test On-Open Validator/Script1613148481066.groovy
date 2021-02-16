@@ -15,22 +15,13 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-// 02/16/21	Modified to work in both Develop and Production
-
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
 errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv']
 
 saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
-if (GlobalVariable.url == 'create.translationcore.com') {
-	server = 'git'
-} else {
-	server = 'qa'
-}
-
-//myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
-myURL = 'https://' + server + '.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
+myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
 
 errorHeader = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).'
 //			   This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).

@@ -19,10 +19,6 @@ import groovy.io.FileType as FileType
 import org.apache.commons.io.FileUtils as FileUtils
 import groovy.time.*
 
-// 02/16/21	Modified to allow for changing priority numbers and messages in the validation csv file
-// 	- Replaced the removeExcerpts function with parseFile and modified the test to find the base file rows in the validation csv to match on
-//		Chapter AND Verse AND Line AND Row ID AND Details AND Char Pos AND (Priority OR Message)
-
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 println(dirName)
 
@@ -44,7 +40,7 @@ testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_
 expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [0, 1], ('en_tn_56-2TI.tsv') : [
         0], ('en_tn_41-MAT.tsv') : [0, 1]]
 
-//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+//VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 start = 0
 
 end = (testFiles.size() - 1)
@@ -74,14 +70,18 @@ for (def fileNum : (start..end)) {
 
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
 
-//    baseLines = removeExcerpts(baseFile) // Remove the excertps column because it sometimes changes even though the error didn't change
-	(basePrioritys, baseErrors, baseMessages) = parseFile(baseFile)
-	
+    baseLines = removeExcerpts(baseFile // Remove the excertps column because it sometimes changes even though the error didn't change
+        )
+
+    baseLines.each({ def line ->
+            println(line)
+        })
+
+    // Get the count of how many validation files already exist for the file being tested
     println('testFile:' + testFile)
 
     vFiles = getValidationFiles(testFile)
 
-    // Get the count of how many validation files already exist for the file being tested
     initSize = vFiles.size()
 
     // Load the project in tN
@@ -117,9 +117,8 @@ for (def fileNum : (start..end)) {
 
             retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'(level)
 
-//            (vSize, newContent, myFile) = runValidation(initSize, testFile) // Run the validation
-			(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
-			
+            (vSize, newContent, myFile) = runValidation(initSize, testFile // Run the validation
+                )
 
             if (newContent != '') {
                 // newContent will be empty if the validator did not find any errors
@@ -201,8 +200,7 @@ for (def fileNum : (start..end)) {
     timeStart = new Date()
 
     // Run the validation
-//    (vSize, newContent, myFile) = runValidation(initSize, testFile)
-	(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
+    (vSize, newContent, myFile) = runValidation(initSize, testFile)
 
     timeEnd = new Date()
 
@@ -210,8 +208,7 @@ for (def fileNum : (start..end)) {
 
     timings.add(((testFiles[fileNum]) + ' : ') + timeElapsed)
 
-//    if (newContent == '') {
-    if (newPrioritys.size() == 0) {
+    if (newContent == '') {
         // The validator did not find any errors. Continue with next file.
         msg = (('The validator found no errors in ' + testFile) + '.')
 
@@ -222,53 +219,28 @@ for (def fileNum : (start..end)) {
         continue
     }
     
-//    println(baseLines)
+    println(baseLines)
 
-//    newLines = removeExcerpts(myFile)
+    newLines = removeExcerpts(myFile)
 
     fixedRows = []
-	
-	if (1 == 2) { // Old way of testing for base validations not found in new validation file
 
-	    l = 0
-	
-	    //	for (line in baseLines) {
-	    baseLines.each({ def line ->
-	            if (!(newLines.contains(line))) {
-	                fixedRows.add(l)
-	
-	                msg = ((((('The error in row ' + (l + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
-	
-	                println(msg)
-	
-	                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-	            }
-	            
-	            l++
-	        })
-	}
-	
-	for (def row : (0 .. baseErrors.size()-1)) {
-		fnd = false
-		int[] found = newErrors.findIndexValues({
-			it == baseErrors[row]
-		})
-	//	println(found)
-		if (found.size() > 0) {
-			for (def i : (0 .. found.size()-1)) {
-				if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
-					fnd = true
-				}
-			}
-		}
-		if (!fnd) {
-			fixedRows.add(row)
-//			msg = ((((('The error in row ' + (l + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
-			msg = ((((('The error in row ' + (row + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
-			println(msg)
-			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-		}
-	}
+    l = 0
+
+    //	for (line in baseLines) {
+    baseLines.each({ def line ->
+            if (!(newLines.contains(line))) {
+                fixedRows.add(l)
+
+                msg = ((((('The error in row ' + (l + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
+
+                println(msg)
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+            }
+            
+            l++
+        })
 	
 	println('Fixed base rows in ' + testFile + ' = ' + fixedRows)
 
@@ -319,15 +291,14 @@ for (def fileNum : (start..end)) {
         if (!fixedRows.contains(row)) {
             testCount++
 
-//            error = (baseLines[row])
+            error = (baseLines[row])
 
             highlighted = 'rgba(255, 255, 0, 1)'
 
             background = WebUI.getCSSValue(findTestObject('Page_tCC translationNotes/span_OLW_Parmed', [('myDiv') : 'id("header-1-1-xyz8")'
                         , ('chpt') : '1', ('verse') : '1', ('wordNum') : '17']), 'background-color')
 
-//            if (newContent.contains(error) && (background == highlighted)) {
-            if (background == highlighted) {
+            if (newContent.contains(error) && (background == highlighted)) {
                 errorFlag = true
 
                 errorCount++
@@ -343,8 +314,7 @@ for (def fileNum : (start..end)) {
                 passCount++
             }
             
-//            baseLines.removeElement(error)
-			baseErrors.remove(row)
+            baseLines.removeElement(error)
         }
         
         if (!fixedRows.contains(0)) {
@@ -394,10 +364,7 @@ for (def fileNum : (start..end)) {
             WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
         }
     } else if (fileNum == 2) {
-		changeFlag = false
         if (!fixedRows.contains(0)) {
-			changeFlag = true
-			
             WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
             WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Occurrence']))
@@ -405,29 +372,23 @@ for (def fileNum : (start..end)) {
             WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 
             WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-			
-			WebUI.delay(1)
 
-			WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'eke3')
-			
+            WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'eke3')
+
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
         }
         
         if (!fixedRows.contains(1)) {
-			if (changeFlag) {
-				WebUI.scrollToPosition(0, 0)
+            WebUI.scrollToPosition(0, 0)
 
-				WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+            WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
 
-				WebUI.delay(1)
-			}
-			
+            WebUI.delay(1)
+
             WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
-			WebUI.delay(1)
+            WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'hm98')
 
-			WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), 'hm98')
-			
             WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'))
 
             WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), Keys.chord(Keys.COMMAND, 
@@ -439,12 +400,10 @@ for (def fileNum : (start..end)) {
         testCount++
 
         row = 0
-		
-        if (!fixedRows.contains(row)) {
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -483,11 +442,9 @@ for (def fileNum : (start..end)) {
 
         row = 0
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -552,11 +509,9 @@ for (def fileNum : (start..end)) {
 
         row = 0
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -575,11 +530,9 @@ for (def fileNum : (start..end)) {
 
         row = 1
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -594,13 +547,11 @@ for (def fileNum : (start..end)) {
             passCount++
         }
         
-//        errors.add(error)
+        errors.add(error)
 
- //       for (def error : errors) {
- //           baseLines.removeElement(error)
- //       }
-		
-		baseErrors.remove(row)
+        for (def error : errors) {
+            baseLines.removeElement(error)
+        }
         
         if (!fixedRows.contains(2)) {
             WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
@@ -618,11 +569,9 @@ for (def fileNum : (start..end)) {
 
         row = 0
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -637,8 +586,7 @@ for (def fileNum : (start..end)) {
             passCount++
         }
         
-//        baseLines.removeElement(error)
-		baseErrors.remove(row)
+        baseLines.removeElement(error)
 
         continue
     } else if (fileNum == 9) {
@@ -648,11 +596,9 @@ for (def fileNum : (start..end)) {
 
         row = 0
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -667,18 +613,15 @@ for (def fileNum : (start..end)) {
             passCount++
         }
         
-//        errors.add(error)
-		baseErrors.remove(row)
-		
+        errors.add(error)
+
         testCount++
 
         row = 1
 
-//        error = (baseLines[row])
+        error = (baseLines[row])
 
-//        if (newContent.contains(error)) {
-		if (!fixedRows.contains(row)) {
-			
+        if (newContent.contains(error)) {
             errorFlag = true
 
             errorCount++
@@ -693,14 +636,12 @@ for (def fileNum : (start..end)) {
             passCount++
         }
         
-//        errors.add(error)
+        errors.add(error)
 
-//        for (def error : errors) {
-//            baseLines.removeElement(error)
-//        }
-		
-		baseErrors.remove(row)
-		
+        for (def error : errors) {
+            baseLines.removeElement(error)
+        }
+        
         if (!fixedRows.contains(2)) {
             WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
 
@@ -714,17 +655,14 @@ for (def fileNum : (start..end)) {
         }
     }
     
-//    if (baseLines.size() > fixedRows.size()) {
-    if (baseErrors.size() > fixedRows.size()) {
+    if (baseLines.size() > fixedRows.size()) {
         // Rerun the validation if any of the base file rows still existing in the validation file were fixed
         initSize = vSize
 
-//        (vSize, newContent, myFile) = runValidation(initSize, testFile)
-		(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
-		
+        (vSize, newContent, myFile) = runValidation(initSize, testFile)
+
         //    println('newContent:' + newContent)
-//        testOutput(baseLines, myFile)
-        testOutput(baseErrors, myFile)
+        testOutput(baseLines, myFile)
     }
     
     if (!(errorFlag)) {
@@ -779,9 +717,8 @@ for (def fileNum : (start..end)) {
         // Rerun the validation
         initSize = vSize
 
-//        (vSize, newContent, myFile) = runValidation(initSize, testFile)
-		(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
-		
+        (vSize, newContent, myFile) = runValidation(initSize, testFile)
+
         prioritys = ['889', '886', '450', '792']
 
         errors = []
@@ -880,48 +817,6 @@ GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser() // && !WebUI.verifyAlertNotPresent(1)) {
 // It seems the verifyAlertNotPresent auto-accepts it when found????
-
-def parseFile (aFile) {
-	errs = []
-	priors = []
-	msgs = []
-	
-//	println(aFile)
-	File file = new File(aFile)
-	file.withReader { reader ->
-		while ((line = reader.readLine()) != null) {
-//			println(line)
-			int[] commas = line.findIndexValues({
-				it == ','
-			})
-			
-			count = commas.size()
-			if (count < 7) {
-				println('#################### not enough commas in line ' + line)
-			}
-			
-			err = line.substring(commas[0]+1, commas[6])
-			errs.add(err)
-			
-			prior = line.substring(0,commas[0])
-//			println('prior:' + prior)
-			priors.add(prior)
-			
-			if (count > 8) {
-				msg = line.substring(commas[7]+1, commas[8])
-			} else {
-				msg = line.substring(commas[7]+1)
-			}
-//			println('msg:' + msg)
-			msgs.add(msg)
-
-//			println(prior + ':' + err + ':' + msg)
-			
-		}
-	}
-	return [priors,errs,msgs]
-}
-
 
 def removeExcerpts(def vFile) {
     println(vFile)
@@ -1027,13 +922,10 @@ def runValidation(def initSize, def testFile) {
 
         myFile = ((dirName + '/') + myFile)
 
-//        newContent = removeExcerpts(myFile)
-		(newPrioritys, newErrors, newMessages) = parseFile(myFile)
-		
+        newContent = removeExcerpts(myFile)
     }
     
-//    return [vSize, newContent, myFile]
-	return [vSize, newPrioritys, newErrors, newMessages, myFile]
+    return [vSize, newContent, myFile]
 }
 
 def testOutput(def baseLines, def myFile) {

@@ -7,11 +7,15 @@
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//input[@value='`']</value>
+         <value>/html/body/div[1]/div/div/div/div[2]/div[1]/div[1]/div/div/div</value>
       </entry>
       <entry>
          <key>CSS</key>
-         <value>input.MuiInputBase-input-303.MuiInput-input-5651</value>
+         <value>input.MuiInputBase-input-303.MuiInput-input-2213</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[@type = 'text']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -49,28 +53,21 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiInputBase-input-303 MuiInput-input-5651</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>value</name>
-      <type>Main</type>
-      <value>`</value>
+      <value>MuiInputBase-input-303 MuiInput-input-2213</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-67 jss56 undefined MuiPaper-elevation4-74 MuiPaper-rounded-68&quot;]/div[@class=&quot;MuiToolbar-root-110 MuiToolbar-regular-112 jss95 MuiToolbar-gutters-111&quot;]/div[@class=&quot;jss97&quot;]/div[@class=&quot;jss5635&quot;]/div[@class=&quot;MuiFormControl-root-5640 MuiTextField-root-5639 jss5637 MuiFormControl-fullWidth-5643&quot;]/div[@class=&quot;MuiInputBase-root-295 MuiInput-root-5644 MuiInput-underline-5647 MuiInputBase-fullWidth-302 MuiInput-fullWidth-5650 Mui-focused Mui-focused MuiInputBase-formControl-296 MuiInput-formControl-5645&quot;]/input[@class=&quot;MuiInputBase-input-303 MuiInput-input-5651&quot;]</value>
+      <value>id(&quot;root&quot;)/div[@class=&quot;App&quot;]/div[1]/div[@class=&quot;jss50&quot;]/div[@class=&quot;MuiPaper-root-67 jss56 undefined MuiPaper-elevation4-74 MuiPaper-rounded-68&quot;]/div[@class=&quot;MuiToolbar-root-110 MuiToolbar-regular-112 jss95 MuiToolbar-gutters-111&quot;]/div[@class=&quot;jss97&quot;]/div[@class=&quot;jss2197&quot;]/div[@class=&quot;MuiFormControl-root-2202 MuiTextField-root-2201 jss2199 MuiFormControl-fullWidth-2205&quot;]/div[@class=&quot;MuiInputBase-root-295 MuiInput-root-2206 MuiInput-underline-2209 MuiInputBase-fullWidth-302 MuiInput-fullWidth-2212 Mui-focused Mui-focused MuiInputBase-formControl-296 MuiInput-formControl-2207&quot;]/input[@class=&quot;MuiInputBase-input-303 MuiInput-input-2213&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:attributes</name>
       <type>Main</type>
-      <value>//input[@value='`']</value>
+      <value>//input[@value='']</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

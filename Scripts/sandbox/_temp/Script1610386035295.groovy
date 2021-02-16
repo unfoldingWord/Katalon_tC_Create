@@ -23,60 +23,91 @@ import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 
-file = 'Validation-en_tn_43-LUK.tsv-2021-01-25T19_47_10.013Z.csv'
-if (file.substring(file.length()-3) == 'csv') {
-	println('not')
-} else {
-	println('is')
+value = CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.3')
+
+line = "792,21,37,2229,p5cd,Occurrence,,undefined,Invalid '11' occurrence field"
+
+int[] commas = line.findIndexValues({
+	it == ','
+})
+
+count = commas.size()
+if (count < 7) {
+	println('#################### not enough commas in line ' + line)
 }
+
+err = line.substring(commas[0]+1, commas[6])
+println('err:' + err)
+
 return false
-line = 1
 
-if (1 == 1) {
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser, ('$password') : GlobalVariable.validatePassword
-	, ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+nFile = '/Users/cckozie/Downloads/Validation-en_tn_42-MRK.tsv-2021-02-11T22_43_39.600Z.csv'
 
-currentWindow = WebUI.getWindowIndex()
+(newPrioritys, newErrors, newMessages) = parseFile(nFile)
 
-alertText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/alert_validator_Error_Msg'))
-} else {
-alertText = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).\n ' +
-'On line 1 Bad TSV Header, expecting "Book,Chapter,Verse,ID,SupportReference,OrigQuote,Occurrence,GLQuote,OccurrenceNote"\n' +  
-'On line 22 Not enough columns, expecting 9, found 8\n' +
-'On line 26 Not enough columns, expecting 9, found 8\n' +  
-'On line 98 Not enough columns, expecting 9, found 8'
-}
+bFile = '/Users/cckozie/git/Katalon/tC Create Project.save/Data Files/Validation-en_tn_42-MRK.tsv_base.csv'
 
-currentWindow = WebUI.getWindowIndex()
+(basePrioritys, baseErrors, baseMessages) = parseFile(bFile)
 
-alertText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/alert_validator_Error_Msg'))
-
-println(alertText)
-
-List lines = alertText.split( '\n').findAll {it}
-
-println(lines)
-
-WebUI.delay(2)
-
-for (line in lines) {
-	if (line.contains('line ')) {
-		lStart = line.indexOf('line ')
-		str = line.substring(lStart + 5)
-		lEnd = str.indexOf(' ')
-		lineNum = str.substring(0,lEnd)
-		WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/link_errorLine_Parmed', [('lineNum') : lineNum]))
-		WebUI.switchToWindowIndex(currentWindow + 1)
-		WebUI.waitForElementPresent(findTestObject('Page_Git Repo/repo_validator_lineNumber_parmed', [('lineNum') : lineNum]), 3)
-		lineClass = WebUI.getAttribute(findTestObject('Page_Git Repo/repo_validator_lineNumber_parmed', [('lineNum') : lineNum]), 'class', FailureHandling.OPTIONAL)
-		if (!lineClass.contains('active')) {
-			println('Row is not highlighted')
-		} else {
-			println('Row was correctly highlighted')
+for (def row : (0 .. baseErrors.size()-1)) {
+	fnd = false
+	int[] found = newErrors.findIndexValues({
+		it == baseErrors[row]
+	})
+//	println(found)
+	if (found.size() > 0) {
+		for (def i : (0 .. found.size()-1)) { 
+			if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
+				fnd = true
+				println('row ' + row + ' was found')
+			} else {
+				println('row ' + row + ' was not found A')
+			}
 		}
-		WebUI.closeWindowIndex(currentWindow + 1)
-		WebUI.delay(1)
-		WebUI.switchToWindowIndex(currentWindow)
-		WebUI.delay(1)
+	} else {
+		println('row ' + row + ' was not found B')
 	}
+	if (!fnd) {
+		println('the row was not found')
+	}
+}
+	
+def parseFile (aFile) {
+	errs = []
+	priors = []
+	msgs = []
+	
+	File file = new File(aFile)
+	file.withReader { reader ->
+		while ((line = reader.readLine()) != null) {
+			int[] commas = line.findIndexValues({
+				it == ','
+			})
+			
+			count = commas.size()
+			if (count < 7) {
+				println('#################### not enough commas in line ' + line)
+			}
+			
+			err = line.substring(commas[0]+1, commas[6])
+//			println('err:' + err)
+			errs.add(err)
+			
+			prior = line.substring(0,commas[0])
+//			println('prior:' + prior)
+			priors.add(prior)
+			
+			if (count > 8) {
+				msg = line.substring(commas[7]+1, commas[8])
+			} else {
+				msg = line.substring(commas[7]+1)
+			}
+//			println('msg:' + msg)
+			msgs.add(msg)
+
+//			println(prior + ':' + err + ':' + msg)
+			
+		}
+	}
+	return [priors,errs,msgs]
 }
