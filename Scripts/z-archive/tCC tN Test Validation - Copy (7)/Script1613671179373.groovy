@@ -49,7 +49,7 @@ start = 0
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 

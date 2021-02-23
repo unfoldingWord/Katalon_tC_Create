@@ -22,7 +22,7 @@ import groovy.time.*
 // 02/16/21	Modified to allow for changing priority numbers and messages in the validation csv file
 // 	- Replaced the removeExcerpts function with parseFile and modified the test to find the base file rows in the validation csv to match on
 //		Chapter AND Verse AND Line AND Row ID AND Details AND Char Pos AND (Priority OR Message)
-// 02/23/21	Added tests if NEH, GAL, JOS, JOL, and 2JN
+// 02/23/21	Added tests in NEH, GAL, JOS, JOL, and 2JN
 //	- Also rewrote using more functions because of too many lines of code for groovy
 
 
@@ -48,11 +48,11 @@ expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1,2,3,4],  
         0], ('en_tn_41-MAT.tsv') : [0, 1], ('en_tn_49-GAL.tsv') : [0], ('en_tn_06-JOS.tsv') : [0], ('en_tn_29-JOL.tsv') : [0]]
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 14
+start = 8
 
 end = (testFiles.size() - 1)
 
-end = start
+//end = start
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 
@@ -69,6 +69,7 @@ first = true
 timings = []
 
 for (def fileNum : (start..end)) {
+
     errorFlg = false
 
     testFile = (testFiles[fileNum])
@@ -247,7 +248,7 @@ for (def fileNum : (start..end)) {
 
     // Show the additional required columns
 	
-	columns = ['columns_ID', 'columns_OrigQuote']
+	columns = ['ID', 'OrigQuote']
 	CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
     if (fileNum == 0) {
@@ -349,7 +350,7 @@ for (def fileNum : (start..end)) {
         if (!fixedRows.contains(0)) {
 			changeFlag = true
 			
-			columns = ['columns_Occurrence']
+			columns = ['Occurrence']
 			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 			
 			searchFor('eke3')
@@ -403,7 +404,7 @@ for (def fileNum : (start..end)) {
 		
     } else if (fileNum == 4) {
         if (!fixedRows.contains(0)) {
-			columns = ['columns_Occurrence']
+			columns = ['Occurrence']
 			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
 			searchFor('p5cd')
@@ -457,7 +458,7 @@ for (def fileNum : (start..end)) {
         }
         
         if (!fixedRows.contains(1)) {
-			columns = ['columns_GLQuote']
+			columns = ['GLQuote']
 			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
             WebUI.delay(1)
@@ -506,8 +507,7 @@ for (def fileNum : (start..end)) {
         }
 		
     } else if (fileNum == 8) {
-        testCount++
-
+		
         row = 0
 
 		errorFlag = testBaseRow(row)
@@ -672,7 +672,8 @@ for (def fileNum : (start..end)) {
     
     // Insert errors into en_tn_50-EPH.tsv
     if (fileNum == 0) {
-		columns = ['columns_Occurrence']
+
+		columns = ['Occurrence']
 		CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
 		searchFor('ab01')
@@ -683,7 +684,7 @@ for (def fileNum : (start..end)) {
         // Insert 792 error
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '2')
 		
-		columns = ['columns_Occurrence']
+		columns = ['Occurrence']
 		CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
         WebUI.sendKeys(null, Keys.chord(Keys.TAB))
@@ -739,10 +740,22 @@ for (def fileNum : (start..end)) {
                 expectedCount++
             }
             
+            if (!(errors[i])) {
+                println((((prefix + 'ERROR: Validator did not report an inserted ') + (prioritys[i])) + ' error in ') + 
+                    testFile)
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'((((prefix + 'Test failed because the validator did not report an inserted ') + 
+                    (prioritys[i])) + ' error in ') + testFile)
+
+                errorCount++
+            } else {
+                passCount++
+            }
         }
     }
     
     WebUI.closeBrowser()
+	
 }
 
 // Add the timings to a global list to be output to the log file when running from a test suite

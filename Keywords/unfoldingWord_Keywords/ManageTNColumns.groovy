@@ -34,10 +34,11 @@ public class ManageTNColumns {
 			WebUI.delay(1)
 		}
 		for (column in columns) {
-			WebUI.click(findTestObject('Page_tCC translationNotes/' + column))
+			WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : column]))
 		}
 		if (!modalOpen) {
 			WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
 		}
 	}
+
 }

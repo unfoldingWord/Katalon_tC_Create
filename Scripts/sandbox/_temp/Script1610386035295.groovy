@@ -26,7 +26,7 @@ import org.openqa.selenium.Keys as Keys
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
 	, ('$password') : GlobalVariable.validatePassword, ('file') :  ''], FailureHandling.STOP_ON_FAILURE)
 
-columns = ['columns_ID', 'columns_OrigQuote']
-//columns = ['ID', 'OrigQuote']
+//columns = ['columns_ID', 'columns_OrigQuote']
+columns = ['ID', 'OrigQuote']
 
 CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
