@@ -23,91 +23,10 @@ import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 
-value = CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.3')
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+	, ('$password') : GlobalVariable.validatePassword, ('file') :  ''], FailureHandling.STOP_ON_FAILURE)
 
-line = "792,21,37,2229,p5cd,Occurrence,,undefined,Invalid '11' occurrence field"
+columns = ['columns_ID', 'columns_OrigQuote']
+//columns = ['ID', 'OrigQuote']
 
-int[] commas = line.findIndexValues({
-	it == ','
-})
-
-count = commas.size()
-if (count < 7) {
-	println('#################### not enough commas in line ' + line)
-}
-
-err = line.substring(commas[0]+1, commas[6])
-println('err:' + err)
-
-return false
-
-nFile = '/Users/cckozie/Downloads/Validation-en_tn_42-MRK.tsv-2021-02-11T22_43_39.600Z.csv'
-
-(newPrioritys, newErrors, newMessages) = parseFile(nFile)
-
-bFile = '/Users/cckozie/git/Katalon/tC Create Project.save/Data Files/Validation-en_tn_42-MRK.tsv_base.csv'
-
-(basePrioritys, baseErrors, baseMessages) = parseFile(bFile)
-
-for (def row : (0 .. baseErrors.size()-1)) {
-	fnd = false
-	int[] found = newErrors.findIndexValues({
-		it == baseErrors[row]
-	})
-//	println(found)
-	if (found.size() > 0) {
-		for (def i : (0 .. found.size()-1)) { 
-			if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
-				fnd = true
-				println('row ' + row + ' was found')
-			} else {
-				println('row ' + row + ' was not found A')
-			}
-		}
-	} else {
-		println('row ' + row + ' was not found B')
-	}
-	if (!fnd) {
-		println('the row was not found')
-	}
-}
-	
-def parseFile (aFile) {
-	errs = []
-	priors = []
-	msgs = []
-	
-	File file = new File(aFile)
-	file.withReader { reader ->
-		while ((line = reader.readLine()) != null) {
-			int[] commas = line.findIndexValues({
-				it == ','
-			})
-			
-			count = commas.size()
-			if (count < 7) {
-				println('#################### not enough commas in line ' + line)
-			}
-			
-			err = line.substring(commas[0]+1, commas[6])
-//			println('err:' + err)
-			errs.add(err)
-			
-			prior = line.substring(0,commas[0])
-//			println('prior:' + prior)
-			priors.add(prior)
-			
-			if (count > 8) {
-				msg = line.substring(commas[7]+1, commas[8])
-			} else {
-				msg = line.substring(commas[7]+1)
-			}
-//			println('msg:' + msg)
-			msgs.add(msg)
-
-//			println(prior + ':' + err + ':' + msg)
-			
-		}
-	}
-	return [priors,errs,msgs]
-}
+CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)

@@ -29,8 +29,9 @@ testFiles = []
 
 allBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Bible_Books.csv'
 ntBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/NT_Books.csv'
+someBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Some_Books.csv'
 
-myBooks = allBooks
+myBooks = someBooks
 
 new File(myBooks).splitEachLine(',', { def fields ->
         bookNum = (fields[0])
@@ -61,6 +62,8 @@ oFile = new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/' + 
 testFiles.each({ def testFile ->
     println('Opening ' + testFile)
 	
+	retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'('low')
+	
 	vFiles = getValidationFiles(testFile)
 	
 	initSize = vFiles.size()
@@ -69,68 +72,40 @@ testFiles.each({ def testFile ->
 
     WebUI.delay(2)
 	
+	println('processing ' + testFile)
+	
     (vSize, newContent, myFile) = runValidation(initSize, testFile)
+	
+	println(vSize)
+	println(newContent)
+	println(myFile)
 
 	// Read the file into field lists
 	prioritys = []
-
-	chapters = []
-
-	verses = []
-
-	lines = []
-
-	ids = []
-
-	detailss = []
-
-	poss = []
-
-	excerpts = []
-
-	messages = []
-
-	locations = []
-
-	new File(myFile).splitEachLine(',', { def fields ->
-			prioritys.add(fields[0])
-
-			chapters.add(fields[1])
-
-			verses.add(fields[2])
-
-			lines.add(fields[3])
-
-			ids.add(fields[4])
-
-			detailss.add(fields[5])
-
-			poss.add(fields[6])
-
-			excerpts.add(fields[7])
-
-			messages.add(fields[8])
-
-			locations.add(fields[9])
+	if (myFile.length() > 1) {
+	
+		new File(myFile).splitEachLine(',', { def fields ->
+				prioritys.add(fields[0])
+			})
+		
+		newLines = []
+		
+		new File(myFile).eachLine({ def line ->
+			newLines.add(line)
 		})
 	
-	newLines = []
-	
-	new File(myFile).eachLine({ def line ->
-		newLines.add(line)
-	})
-
-	for (def row : (0..prioritys.size()-1) ) {
-		if (!myPrioritys.contains(prioritys[row])) {
-			myPrioritys.add(prioritys[row])
-			errorRows.add(newLines[row])
-			oFile.append(testFile + ',' + newLines[row] + '\n')
+		for (def row : (0..prioritys.size()-1) ) {
+			if (!myPrioritys.contains(prioritys[row])) {
+				myPrioritys.add(prioritys[row])
+				errorRows.add(newLines[row])
+				oFile.append(testFile + ',' + newLines[row] + '\n')
+			}
 		}
+		
+		println(myPrioritys)
+		
+		println(errorRows)	
 	}
-	
-	println(myPrioritys)
-	
-	println(errorRows)	
 
 })
 
@@ -153,36 +128,49 @@ def getValidationFiles(def testFile) {
 	return vFiles
 }
 
-
 def runValidation(def initSize, def testFile) {
-	//	WebUI.scrollToPosition(0, 0)
+	WebUI.scrollToPosition(0, 0)
+
+	WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_validate'), 30)
+
+	WebUI.click(findTestObject('Page_tCC translationNotes/button_validate'))
+
+	WebUI.waitForElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/alert_ValidationRunning'), 5)
+
+	vSize = initSize
+
+	myFile = ''
+
+	newContent = ''
+
+	noFile = false
+
+	while ((vSize <= initSize) && !(noFile)) {
+		vFiles = getValidationFiles(testFile)
+
+		vSize = vFiles.size()
 		
-		WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_validate'),30)
-		
-		WebUI.click(findTestObject('Page_tCC translationNotes/button_validate'))
-	
-		vSize = initSize
-	
-		while (vSize <= initSize) {
-			WebUI.delay(5)
-	
-			vFiles = getValidationFiles(testFile)
-	
-			vSize = vFiles.size()
+		if (!(WebUI.verifyAlertNotPresent(2, FailureHandling.OPTIONAL))) {
+			noFile = true
 		}
-		
-		vFiles = vFiles.toSorted()
-	
-		myFile = (vFiles[(vFiles.size() - 1)])
-	
-		println('myFile:' + myFile)
-	
-		myFile = ((dirName + '/') + myFile)
-	
-		nFile = new File(myFile)
-	
-		newContent = nFile.text
-	
-		return [vSize, newContent, myFile]
 	}
+	
+	if (noFile) {
+		WebUI.acceptAlert(FailureHandling.OPTIONAL)
+	} else {
+		vFiles = vFiles.toSorted()
+
+		myFile = (vFiles[(vFiles.size() - 1)])
+
+		println('myFile:' + myFile)
+
+		println('dirName2:' + dirName)
+
+		myFile = ((dirName + '/') + myFile)
+		
+	}
+	
+    return [vSize, newContent, myFile]
+}
+
 	

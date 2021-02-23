@@ -25,23 +25,16 @@ import internal.GlobalVariable
 public class ManageTNColumns {
 	//UNDER CONSTRUCTION//
 	@Keyword
-	// Call with CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(column,toState)
-	def toggleColumn(column, toState) {
-		def newState = toState.toLowerCase()
-		//		def myState = ''
-		def modalOpen = WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'), 1)
+	// Could not figure out how to test the state, so this is strictly a toggle function
+	// Also, using the 'columns_Parmed' element does not work, so the actual element names need to be passed in the array
+	def toggleColumn(columns) {
+		def modalOpen = WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'), 1, , FailureHandling.OPTIONAL)
 		if (!modalOpen) {
 			WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 			WebUI.delay(1)
 		}
-		def myState = WebUI.verifyElementChecked(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Book']), FailureHandling.OPTIONAL)
-		if (myState) {
-			myState = 'on'
-		} else {
-			myState = 'off'
-		}
-		if (myState != newState) {
-			WebUI.click(findTestObject('Page_tCC translationNotes/columns_Parmed', [('column') : 'Book']))
+		for (column in columns) {
+			WebUI.click(findTestObject('Page_tCC translationNotes/' + column))
 		}
 		if (!modalOpen) {
 			WebUI.click(findTestObject('Page_tCC translationNotes/btnX_CloseColumns'))
