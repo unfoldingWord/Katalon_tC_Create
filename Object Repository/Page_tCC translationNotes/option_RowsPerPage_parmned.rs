@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>option_RowsPerPage25</name>
+   <name>option_RowsPerPage_parmned</name>
    <tag></tag>
-   <elementGuidId>c8dd3c4f-f07b-4b52-b160-ca7ed6e460a0</elementGuidId>
+   <elementGuidId>8130462c-d04a-4702-96a8-11f32e3d96a4</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//ul[@id='pagination-menu-list']/li[2]</value>
-      </entry>
-      <entry>
-         <key>CSS</key>
-         <value>li.MuiButtonBase-root-163.MuiListItem-root-6288.MuiMenuItem-root-6285.MuiTablePagination-menuItem-283.Mui-selected.MuiMenuItem-gutters-6286.MuiListItem-gutters-6293.MuiListItem-button-6294.Mui-selected</value>
+         <value>//ul[@id='pagination-menu-list']/li[${rows}]</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[(text() = '25' or . = '25')]</value>
+         <value>//*[@role = 'option' and (text() = '${rows}' or . = '${rows}')]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
       </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -32,17 +32,17 @@
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>MuiButtonBase-root-163 MuiListItem-root-6288 MuiMenuItem-root-6285 MuiTablePagination-menuItem-283 Mui-selected MuiMenuItem-gutters-6286 MuiListItem-gutters-6293 MuiListItem-button-6294 Mui-selected</value>
+      <value>MuiButtonBase-root-163 MuiListItem-root-2177 MuiMenuItem-root-2174 MuiTablePagination-menuItem-283 MuiMenuItem-gutters-2175 MuiListItem-gutters-2182 MuiListItem-button-2183</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tabindex</name>
       <type>Main</type>
-      <value>0</value>
+      <value>-1</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>role</name>
       <type>Main</type>
@@ -58,13 +58,6 @@
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>aria-selected</name>
-      <type>Main</type>
-      <value>true</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
       <name>data-value</name>
       <type>Main</type>
       <value>25</value>
@@ -74,14 +67,14 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>25</value>
+      <value>${rows}</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;pagination-menu-list&quot;)/li[@class=&quot;MuiButtonBase-root-163 MuiListItem-root-6288 MuiMenuItem-root-6285 MuiTablePagination-menuItem-283 Mui-selected MuiMenuItem-gutters-6286 MuiListItem-gutters-6293 MuiListItem-button-6294 Mui-selected&quot;]</value>
+      <value>id(&quot;pagination-menu-list&quot;)/li[@class=&quot;MuiButtonBase-root-163 MuiListItem-root-2177 MuiMenuItem-root-2174 MuiTablePagination-menuItem-283 MuiMenuItem-gutters-2175 MuiListItem-gutters-2182 MuiListItem-button-2183&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
@@ -107,8 +100,15 @@
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='25']/parent::*</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//li[2]</value>
+      <value>//ul/li[2]</value>
    </webElementXpaths>
 </WebElementEntity>

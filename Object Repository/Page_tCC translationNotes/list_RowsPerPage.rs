@@ -6,19 +6,19 @@
    <elementGuidId>55367df1-e625-44ad-8938-348814c399f9</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//div[@id='pagination-rows']</value>
-      </entry>
-      <entry>
          <key>CSS</key>
          <value>#pagination-rows</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='pagination-rows']</value>
       </entry>
       <entry>
          <key>BASIC</key>
          <value>//*[@id = 'pagination-rows']</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>BASIC</selectorMethod>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -60,7 +60,7 @@
       <matchCondition>equals</matchCondition>
       <name>aria-labelledby</name>
       <type>Main</type>
-      <value>mui-21773 pagination-rows</value>
+      <value>mui-52669 pagination-rows</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
@@ -77,11 +77,11 @@
       <value>pagination-rows</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>25</value>
+      <value>10</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -109,14 +109,14 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='מְשֻׁלָּ֥ם בֶּן־בֶּרֶכְיָ֖ה בֶּן־מְשֵׁיזַבְאֵ֑ל'])[3]/following::div[7]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[21]/following::div[8]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OrigQuote'])[51]/following::div[9]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[20]/following::div[11]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -137,7 +137,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='25']/parent::*</value>
+      <value>//*/text()[normalize-space(.)='10']/parent::*</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

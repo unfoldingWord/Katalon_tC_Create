@@ -117,7 +117,7 @@
       <guid>04d94791-a73b-4c50-8886-8fb4a7f3508a</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Column Options</testCaseId>
+      <testCaseId>Test Cases/z-archive/tCC tN Test Column Options (1)</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>

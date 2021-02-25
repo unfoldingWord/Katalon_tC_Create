@@ -22,11 +22,65 @@ import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
+import groovy.time.*
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-	, ('$password') : GlobalVariable.validatePassword, ('file') :  ''], FailureHandling.STOP_ON_FAILURE)
+rrows = 50
+String srRows = rrows
+text = '1-50 of 199'
+println(text.indexOf(srRows))
+//return false
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
-//columns = ['columns_ID', 'columns_OrigQuote']
-columns = ['ID', 'OrigQuote']
+WebUI.delay(1)
 
-CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+
+displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+
+println(displayRows)
+
+rows = 100
+
+WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
+
+WebUI.delay(1)
+
+timeStart = new Date()
+
+WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
+
+timeMid = new Date()
+
+TimeDuration timeMidElapsed = TimeCategory.minus(timeMid, timeStart)
+
+println(timeMidElapsed)
+
+while (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage')) == displayRows) {
+	println(WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage')))
+	WebUI.delay(1)
+}
+
+rowsText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+
+timeEnd = new Date()
+
+println(rowsText)
+
+String sRows = rows
+
+println(sRows)
+
+if (rowsText.indexOf(sRows) != 2) {
+	println('oops')
+} else {
+	println('yeah')
+}
+	
+TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
+
+println(timeElapsed)
+
+//println(WebUI.waitForElementNotClickable(findTestObject('Page_tCC translationNotes/list_RowsPerPage'),1))
+
+WebUI.delay(1)
+
+WebUI.closeBrowser()

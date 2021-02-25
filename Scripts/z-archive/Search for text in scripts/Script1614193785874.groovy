@@ -84,13 +84,10 @@ folders.each {
 		                script = script.substring(loc + 1)
 						
 //						println(it.path)
-						
-						if (!scripts.contains(script)) {
 		
-							scripts.add(script)
+		                scripts.add(script)
 		
-							count++
-						}
+		                count++
 		            }
 		        }
 			}

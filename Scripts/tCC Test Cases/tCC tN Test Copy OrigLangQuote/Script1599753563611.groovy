@@ -233,8 +233,8 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
 if (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage')) != 25) {
 	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage'))
 	WebUI.delay(1)
-	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/option_RowsPerPage25'))
-}
+	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 25]))
+	}
 
 if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
 	println('ERROR: Jericho is not highlighted')

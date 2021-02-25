@@ -60,8 +60,8 @@ testFiles.each({ def testFile ->
 			
 			WebUI.delay(1)
 			
-			WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/option_RowsPerPage25'))
-			
+			WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 25]))
+		
 	        atEnd = false
 	
 	        while (!(atEnd)) {
