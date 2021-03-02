@@ -48,7 +48,7 @@ expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1,2,3,4],  
         0], ('en_tn_41-MAT.tsv') : [0, 1], ('en_tn_49-GAL.tsv') : [0], ('en_tn_06-JOS.tsv') : [0], ('en_tn_29-JOL.tsv') : [0]]
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 8
+start = 0
 
 end = (testFiles.size() - 1)
 
@@ -330,7 +330,7 @@ for (def fileNum : (start..end)) {
         if (!fixedRows.contains(1)) {
 			searchFor('rtc9')
 			
-			NewQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_SourceOrigQuote_SearchId'))
+			NewQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Source_OrigQuote_SearchId'))
 			
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), NewQuote)
         }        

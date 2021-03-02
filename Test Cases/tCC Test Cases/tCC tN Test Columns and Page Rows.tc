@@ -2,7 +2,7 @@
 <TestCaseEntity>
    <description></description>
    <name>tCC tN Test Columns and Page Rows</name>
-   <tag>Issues tested: 160 455 498</tag>
+   <tag>Issues tested: 160 455</tag>
    <comment></comment>
    <testCaseGuid>6ef40a5a-447a-4cf3-bcf8-2c137ef0ef7c</testCaseGuid>
    <variable>

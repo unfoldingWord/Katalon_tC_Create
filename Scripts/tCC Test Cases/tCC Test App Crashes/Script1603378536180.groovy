@@ -24,6 +24,8 @@ import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
+// 03/01/21	Modified to use tCC md Open For Edit instead of tCC tA Open For Edit
+
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash when changing sections visible and invisible. ISSUE 365')
@@ -48,8 +50,11 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+//WebUI.callTestCase(findTestCase('tCC Components/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
+//        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crash when changing sections visible and invisible. ISSUE 428')
 

@@ -114,33 +114,33 @@
       <testCaseId>Test Cases/tCC Test Cases/tCC Test Permissions</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>04d94791-a73b-4c50-8886-8fb4a7f3508a</guid>
+      <guid>0b77037c-9b68-489c-b009-04bac4084f21</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/z-archive/tCC tN Test Column Options (1)</testCaseId>
+      <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Columns and Page Rows</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>79712a2d-b44b-47a0-9923-c4eafe51d1da</variableId>
+         <variableId>ebd78070-923d-49f2-ad3c-dd25d37c4069</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>466eab59-2b1e-47a5-b0f7-59094c19231f</variableId>
+         <variableId>d421b42f-d5fa-48c1-804a-3c321a9cf6e0</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>cf8d647b-8aaa-43e9-ad17-9d0601c46fc4</variableId>
+         <variableId>69bab9f0-302b-4fde-a5fb-79fda335e3e9</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>14c7088a-024c-4738-a470-7c32d05bab93</variableId>
+         <variableId>8c7d35d1-ccea-49ff-86f0-5a75822b9c0c</variableId>
       </variableLink>
    </testCaseLink>
    <testCaseLink>

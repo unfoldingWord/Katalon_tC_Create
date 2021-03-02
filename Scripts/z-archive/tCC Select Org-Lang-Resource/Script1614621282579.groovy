@@ -16,14 +16,12 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
 // SELECT THE ORGANIZATION, LANGUAGE, AND RESOURCE TO BE TESTED
-// 03/01/21	Modified to allow selecting md files by drilling down in file path when 'resource' is a List
 
 //INPUT PARAMETERS - 
 //	- organization (if blank will use the GlobalVariable.oganization)
-//	- resource (string or list)
+//	- resource
 //	- language	(if blank will use the GlobalVariable.langCode)
 
-println('resource is ' + resource)
 if (organization == "") {
 	organization = GlobalVariable.organization
 }
@@ -53,15 +51,7 @@ if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == fa
 		println('Not alerted on organization')
 
 		GlobalVariable.alertFlag = false
-		
-		if (resource instanceof List) {
-			listFlag = true
-			resources = resource
-			resource = resources[0]
-		} else {
-			listFlag = false
-		}
-		
+
 		println('Choosing resource ' + resource)
 
 		WebUI.click(findTestObject('Page_tC Create/resource_Parmed', [('resource') : resource]))
@@ -72,12 +62,6 @@ if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == fa
 
 		WebUI.click(findTestObject('Page_tC Create/listOption_Language_Parmed', [('lang_code') : language]))
 		
-		if (listFlag) {
-			for (def r : (1..resources.size()-1)) {
-				println('Choosing ' + resources[r])
-				WebUI.click(findTestObject('Page_tC Create/resource_Parmed', [('resource') : resources[r]]))
-			}
-		}
 	}
 	
 	return true

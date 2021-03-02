@@ -7,17 +7,20 @@
    <selectorCollection>
       <entry>
          <key>CSS</key>
-         <value></value>
       </entry>
       <entry>
          <key>XPATH</key>
          <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div/div/h4</value>
       </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>//h4[(text() = 'Having BIRTH PAINS mean suffering that is necessary to achieve a new condition' or . = 'Having BIRTH PAINS mean suffering that is necessary to achieve a new condition')]</value>
+      </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>

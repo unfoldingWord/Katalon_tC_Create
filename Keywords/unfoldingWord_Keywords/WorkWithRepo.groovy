@@ -65,7 +65,7 @@ public class WorkWithRepo {
 
 		WebUI.click(findTestObject('Page_Git Repo/icon_Edit'))
 
-		WebUI.waitForElementClickable(findTestObject('Page_Git Repo/span_ProjectTextHeader'), 5)
+		WebUI.waitForElementClickable(findTestObject('Page_Git Repo/span_ProjectTextHeader'), 15)
 
 		WebUI.delay(5)
 

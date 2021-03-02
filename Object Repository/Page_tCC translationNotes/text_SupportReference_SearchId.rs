@@ -6,12 +6,12 @@
    <elementGuidId>07349731-b2bd-47fc-bdce-9c48cafd4b73</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>/html/body/div[1]/div/div/div/div[2]/div[3]/table/tbody/tr/td[3]/div/div/div/div[2]/div/div/p</value>
+         <key>CSS</key>
+         <value>div.cell-14-5.jss252 > div.jss257 > div.jss254 > div.jss264 > div.jss265 > p</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>div.cell-18-5.jss3127 > div.jss3132 > div.jss3129 > div.jss3136 > div.jss3137 > p</value>
+         <key>XPATH</key>
+         <value>/html/body/div[1]/div/div/div/div[2]/div/div[3]/table/tbody/tr/td[3]/div/div/div/div[2]/div/div/p</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -28,21 +28,21 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>figs-idioms</value>
+      <value>figs-doublenegatives</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-18&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-18-5 jss3127&quot;]/div[@class=&quot;jss3132&quot;]/div[@class=&quot;jss3129&quot;]/div[@class=&quot;jss3136&quot;]/div[@class=&quot;jss3137&quot;]/p[1]</value>
+      <value>id(&quot;MUIDataTableBodyRow-14&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-14-5 jss252&quot;]/div[@class=&quot;jss257&quot;]/div[@class=&quot;jss254&quot;]/div[@class=&quot;jss264&quot;]/div[@class=&quot;jss265&quot;]/p[1]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//tr[@id='MUIDataTableBodyRow-18']/td[3]/div/div/div/div[2]/div/div/p</value>
+      <value>//tr[@id='MUIDataTableBodyRow-14']/td[3]/div/div/div/div[2]/div/div/p</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

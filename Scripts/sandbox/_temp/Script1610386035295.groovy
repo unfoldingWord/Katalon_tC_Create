@@ -23,64 +23,30 @@ import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 import groovy.time.*
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
 
-rrows = 50
-String srRows = rrows
-text = '1-50 of 199'
-println(text.indexOf(srRows))
-//return false
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+resource = ['unfoldingWord/en_obs-sn', 'content/', '01/', '01.md']
 
-WebUI.delay(1)
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 
+header = "God’s Spirit"
 
-displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+WebUI.scrollToElement(findTestObject('Object Repository/Page_tC Create/header_mdParmed', [('header') : header]) ,1)
 
-println(displayRows)
+WebUI.click(findTestObject('Object Repository/Page_tC Create/header_mdParmed', [('header') : header]))
 
-rows = 100
+WebUI.delay(2)
 
-WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
+WebUI.clickOffset(findTestObject('Page_tC Create/link_scripture_24_08'), 0, 0)
 
-WebUI.delay(1)
+if ((!WebUI.verifyElementPresent(findTestObject('Page_tC Create/link_scripture_24_08'), 1, FailureHandling.OPTIONAL)) ||
+	WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/h1_Page Not Found'), 1, FailureHandling.OPTIONAL)) {
 
-timeStart = new Date()
-
-WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
-
-timeMid = new Date()
-
-TimeDuration timeMidElapsed = TimeCategory.minus(timeMid, timeStart)
-
-println(timeMidElapsed)
-
-while (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage')) == displayRows) {
-	println(WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage')))
-	WebUI.delay(1)
-}
-
-rowsText = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
-
-timeEnd = new Date()
-
-println(rowsText)
-
-String sRows = rows
-
-println(sRows)
-
-if (rowsText.indexOf(sRows) != 2) {
-	println('oops')
-} else {
-	println('yeah')
-}
+	println('ERROR: Clicking on a scripture link in OBS-sn causes a 404 error')
 	
-TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
-
-println(timeElapsed)
-
-//println(WebUI.waitForElementNotClickable(findTestObject('Page_tCC translationNotes/list_RowsPerPage'),1))
-
-WebUI.delay(1)
-
-WebUI.closeBrowser()
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because clicking on a scripture link to in OBS-sn causes a 404 error.')
+} else {
+	println('no errors')
+	
+}

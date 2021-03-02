@@ -7,11 +7,10 @@
    <selectorCollection>
       <entry>
          <key>CSS</key>
-         <value></value>
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//div[@id='root']/div/div/div/div[2]/div[2]/div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/code</value>
+         <value>//div[3]/div[2]/div/div/div/div/div[2]/div[2]/div/pre/code</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

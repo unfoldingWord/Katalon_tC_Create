@@ -6,13 +6,12 @@
    <elementGuidId>ca908cc7-1695-457d-9b8d-d13b46ef9dd8</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>/html/body/div[1]/div/div/div/div[2]/div[3]/table/tbody/tr/td[4]/div/div/div/div[2]/div/div/p
-</value>
+         <key>CSS</key>
+         <value>div.cell-1696-6.jss23946 > div.jss23951 > div.jss23948 > div.jss23958 > div.jss23959 > p</value>
       </entry>
       <entry>
-         <key>CSS</key>
-         <value>div.cell-226-6.jss8277 > div.jss8282 > div.jss8279 > div.jss8286 > div.jss8287 > p</value>
+         <key>XPATH</key>
+         <value>/html/body/div[1]/div/div/div/div[2]/div/div[3]/table/tbody/tr/td[4]/div/div/div/div[2]/div/div/p</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -29,21 +28,21 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις</value>
+      <value>וְ⁠כָל־יִשְׂרָאֵל֩ בִּ⁠ימֵ֨י זְרֻבָּבֶ֜ל וּ⁠בִ⁠ימֵ֣י נְחֶמְיָ֗ה נֹֽתְנִ֛ים מְנָי֛וֹת הַ⁠מְשֹׁרְרִ֥ים</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-226&quot;)/td[@class=&quot;MuiTableCell-root-6227 MuiTableCell-body-6229 jss6253&quot;]/div[@class=&quot;jss6253&quot;]/div[@class=&quot;cell-226-6 jss8277&quot;]/div[@class=&quot;jss8282&quot;]/div[@class=&quot;jss8279&quot;]/div[@class=&quot;jss8286&quot;]/div[@class=&quot;jss8287&quot;]/p[1]</value>
+      <value>id(&quot;MUIDataTableBodyRow-1696&quot;)/td[@class=&quot;MuiTableCell-root-23908 MuiTableCell-body-23910 jss23934&quot;]/div[@class=&quot;jss23934&quot;]/div[@class=&quot;cell-1696-6 jss23946&quot;]/div[@class=&quot;jss23951&quot;]/div[@class=&quot;jss23948&quot;]/div[@class=&quot;jss23958&quot;]/div[@class=&quot;jss23959&quot;]/p[1]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//tr[@id='MUIDataTableBodyRow-226']/td[4]/div/div/div/div[2]/div/div/p</value>
+      <value>//tr[@id='MUIDataTableBodyRow-1696']/td[4]/div/div/div/div[2]/div/div/p</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -71,7 +70,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='OccurrenceNote'])[3]/preceding::p[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='portion'])[1]/preceding::p[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

@@ -6,12 +6,12 @@
    <elementGuidId>8b6486f7-41c1-4ed4-9ccd-6d556199a0fa</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>/html/body/div[1]/div/div/div/div[2]/div[3]/table/tbody/tr[1]/td[2]/div/div/div/div[1]/div/div</value>
-      </entry>
-      <entry>
          <key>CSS</key>
          <value>p</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>/html/body/div[1]/div/div/div/div[2]/div/div[3]/table/tbody/tr[1]/td[2]/div/div/div/div[1]/div/div/p</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -28,21 +28,21 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>figs-ellipsis</value>
+      <value>figs-explicit</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;MUIDataTableBodyRow-16&quot;)/td[@class=&quot;MuiTableCell-root-2409 MuiTableCell-body-2411 jss2435&quot;]/div[@class=&quot;jss2435&quot;]/div[@class=&quot;cell-16-5 jss2447&quot;]/div[@class=&quot;jss2452&quot;]/div[@class=&quot;jss2448&quot;]/div[@class=&quot;jss2459&quot;]/div[@class=&quot;jss2460&quot;]/p[1]</value>
+      <value>id(&quot;MUIDataTableBodyRow-27&quot;)/td[@class=&quot;MuiTableCell-root-214 MuiTableCell-body-216 jss240&quot;]/div[@class=&quot;jss240&quot;]/div[@class=&quot;cell-27-5 jss252&quot;]/div[@class=&quot;jss257&quot;]/div[@class=&quot;jss253&quot;]/div[@class=&quot;jss264&quot;]/div[@class=&quot;jss265&quot;]/p[1]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//tr[@id='MUIDataTableBodyRow-16']/td[2]/div/div/div/div/div/div/p</value>
+      <value>//tr[@id='MUIDataTableBodyRow-27']/td[2]/div/div/div/div/div/div/p</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -56,7 +56,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='spirit'])[1]/following::p[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='disobedient'])[1]/following::p[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
@@ -77,7 +77,7 @@
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>//*/text()[normalize-space(.)='figs-ellipsis']/parent::*</value>
+      <value>//*/text()[normalize-space(.)='figs-explicit']/parent::*</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

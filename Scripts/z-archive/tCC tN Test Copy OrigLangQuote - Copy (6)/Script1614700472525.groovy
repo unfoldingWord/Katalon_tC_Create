@@ -25,7 +25,6 @@ import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
 // 02/10/21	Modified to use the HotKeys custom keyword for all copy and paste functions
-// 03/02/21 Modified to add new scrolling because of unexpected changes in v1.2.0-rc2
 
 String highlighted = 'rgba(255, 255, 0, 1)'
 
@@ -52,6 +51,15 @@ origQuote = ['Page_tCC translationNotes/text_OrigQuote-en-xyz8-Pavlos-1', 'Page_
 	'Page_tCC translationNotes/text_OrigQuote-en-xyz8-ts-1', 'Page_tCC translationNotes/text_OrigQuote-en-xyz8-ka-2',
     'Page_tCC translationNotes/text_OrigQuote-en-xyz8-efsveian-1']
 
+//for (def i : (0..origQuote.size() - 1)) {
+//    (origQuote[i]) = (objectPage + (origQuote[i]))
+//}
+// Set rows/page to 10
+WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 10]))
 
 // Show OrigQuotes
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
@@ -121,7 +129,7 @@ if (!(testHighlightStatus(origQuote[2]))) {
     println(enText + ' is highlighted as expected')
 }
 
-// Scroll the xyz8 check into view (xyx8 is hidden under the scripture pane)
+// Scroll the xyz8 check into view
 WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), 1)
 
 // Test single word copy and paste
@@ -261,6 +269,9 @@ GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()
 
+//def copyText() {
+//	CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(null, 'copy')
+//}
 
 def setGLOrigQuote(def fnc, def quote, clickOut) {
 	
@@ -269,6 +280,14 @@ def setGLOrigQuote(def fnc, def quote, clickOut) {
     if (fnc == 'paste') {
         WebUI.setText(findTestObject(myElement), '')
 		
+//		WebUI.scrollToPosition(0, 0)
+		
+//		WebUI.delay(1)
+		
+//		WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/text_OrigQuote-GL-rtc9'), 1)
+		
+//		WebUI.delay(10)
+
         WebUI.click(findTestObject(myElement))
 		
 		CustomKeywords.'unfoldingWord_Keywords.HotKeys.sendKeys'(myElement, 'paste')

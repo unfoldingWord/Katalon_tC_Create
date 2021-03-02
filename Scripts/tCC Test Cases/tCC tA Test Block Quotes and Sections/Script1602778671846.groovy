@@ -1,4 +1,5 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -24,8 +25,11 @@ import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
+// 03/01/21 Modified to test for scripture links causing a 404 error (issue 679) and call tCC md Open For Edit instead of tCC tA Open For Edit
+
+resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/section_BentOver'))
 
@@ -178,6 +182,55 @@ if (!(WebUI.waitForElementVisible(findTestObject('Page_tCC translationAcademy/te
     println('tA text is visible with Sections and Blocks open as expected')
 }
 
+// Test that links don't cause a 404 error
+WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'))
+
+WebUI.click(findTestObject('Page_tCC translationAcademy/button_Blocks'))
+
+WebUI.delay(1)
+
+WebUI.scrollToPosition(0, 0)
+
+WebUI.clickOffset(findTestObject('Page_tCC translationAcademy/link_metonymies'), 0, 0)
+
+//WebUI.click(findTestObject('Page_tCC translationAcademy/link_metonymies'))
+
+WebUI.delay(2)
+
+if (WebUI.verifyElementNotPresent(findTestObject('Object Repository/Page_tC Create/p_Some common metonymies'), 1, FailureHandling.OPTIONAL) ||
+		WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/h1_Page Not Found'), 1, FailureHandling.OPTIONAL)) {
+	println('ERROR: Clicking on a scripture link in tA causes a 404 error')
+	
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because clicking on a scripture link in tA causes a 404 error.')
+	
+	WebUI.closeBrowser()
+	
+	return false
+}
+
+WebUI.closeBrowser()
+
+resource = ['unfoldingWord/en_obs-sn', 'content/', '01/', '01.md']
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
+
+header = "God’s Spirit"
+
+WebUI.scrollToElement(findTestObject('Object Repository/Page_tC Create/header_mdParmed', [('header') : header]) ,1)
+
+WebUI.click(findTestObject('Object Repository/Page_tC Create/header_mdParmed', [('header') : header]))
+
+WebUI.clickOffset(findTestObject('Page_tC Create/link_scripture_24_08'), 0, 0)
+
+WebUI.delay(2)
+
+if ((!WebUI.verifyElementPresent(findTestObject('Page_tC Create/link_scripture_24_08'), 1, FailureHandling.OPTIONAL)) ||
+	WebUI.verifyElementPresent(findTestObject('Page_tCC translationAcademy/h1_Page Not Found'), 1, FailureHandling.OPTIONAL)) {
+
+	println('ERROR: Clicking on a scripture link in OBS-sn causes a 404 error')
+	
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because clicking on a scripture link to in OBS-sn causes a 404 error.')
+}
 GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()

@@ -10,12 +10,12 @@
          <value>div.cell-2-6.jss304 > div.jss309 > div.jss306 > div.jss316 > div.jss317</value>
       </entry>
       <entry>
-         <key>BASIC</key>
-         <value>id(&quot;MUIDataTableBodyRow-2&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-2-6 jss304&quot;]/div[@class=&quot;jss309&quot;]/div[@class=&quot;jss306&quot;]/div[@class=&quot;jss316&quot;]/div[@class=&quot;jss317&quot;]</value>
-      </entry>
-      <entry>
          <key>XPATH</key>
          <value>//tr[@id='MUIDataTableBodyRow-2']/td[3]/div/div/div/div[2]/div/div</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>id(&quot;MUIDataTableBodyRow-2&quot;)/td[@class=&quot;MuiTableCell-root-222 MuiTableCell-body-224 jss210&quot;]/div[@class=&quot;jss210&quot;]/div[@class=&quot;cell-2-6 jss304&quot;]/div[@class=&quot;jss309&quot;]/div[@class=&quot;jss306&quot;]/div[@class=&quot;jss316&quot;]/div[@class=&quot;jss317&quot;]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>

@@ -16,9 +16,14 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.testobject.ConditionType
+
 
 // 10/19/20 Modified to include test for expand all scripture test
 // 10/21/20 Modified to include test for blue bar visible on file open
+// 02/25/21 Modified to add tests for number of rows on page
+
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(5)
@@ -33,12 +38,12 @@ try {
 }
 
 rows = WebUI.getText(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
-if (rows != 25) {
+if (rows != '25') {
 	println('ERROR: The initial rows per page is set to ' + rows + ' when it should be 25.')
 	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the initial rows per page is set to ' + rows + ' when it should be 25.')
 } 
 
-displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
 
 rowsList = [50, 100, 25, 10]
 
@@ -64,6 +69,17 @@ for (rows in rowsList) {
 		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows on page is ' + displayRows + ' when it should contain 1-' + sRow)
 	}
 	
+	// Count the number of SupportReference fields on the screen (this counts both from the source and target)
+	List elements = WebUI.findWebElements(
+	new TestObject().addProperty("xpath", ConditionType.EQUALS,"//*[@class = 'MuiTypography-root-114 jss255 MuiTypography-subtitle2-126 MuiTypography-colorTextSecondary-140 MuiTypography-alignLeft-129' and (text() = 'SupportReference' or . = 'SupportReference')]"),10)
+
+	totalRows = elements.size()/2
+	
+	if (totalRows != rows) {		
+		println('ERROR: Actual rows on page is ' + totalRows + ' when it should be ' + sRows)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the actual rows on the page is ' + totalRows + ' when it should be ' + sRow)
+	}
+
 }
 
 page = 'Page_tCC translationNotes/'
