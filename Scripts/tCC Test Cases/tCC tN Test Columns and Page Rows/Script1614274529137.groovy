@@ -103,7 +103,7 @@ elements = [['Page_tCC translationNotes/text_RowHeader_TIT frontintro', 'Page_tC
 	['Page_tCC translationNotes/label_Verse', 'Page_tCC translationNotes/text_Verse_intro', 'Page_tCC translationNotes/text_Verse_1'], //
 	['Page_tCC translationNotes/label_ID', 'Page_tCC translationNotes/text_ID_m2jl', 'Page_tCC translationNotes/text_ID_c7me'], //
 	['Page_tCC translationNotes/label_SupportReference', 'Page_tCC translationNotes/text_SupRef_figs-abstractnouns'], // 
-	['Page_tCC translationNotes/label_OrigQuote', 'Page_tCC translationNotes/text_OrigQuote1', 'Page_tCC translationNotes/text_OrigQuote2'], //
+	['Page_tCC translationNotes/label_OrigQuote_Text', 'Page_tCC translationNotes/text_OrigQuote1', 'Page_tCC translationNotes/text_OrigQuote2'], //
 	['Page_tCC translationNotes/label_Occurrence', 'Page_tCC translationNotes/text_Occurrence_0', 'Page_tCC translationNotes/text_Occurrence_1'], //
 	['Page_tCC translationNotes/label_GLQuote', 'Page_tCC translationNotes/text_GLQuote_for the faith', 'Page_tCC translationNotes/text_GLQuote_knowledge'], //
 	['Page_tCC translationNotes/label_OccurrenceNote', 'Page_tCC translationNotes/text_OccurrenceNote_Who wrote the Book of Titus']]

@@ -134,7 +134,7 @@ if ((rtc9Text != 'xyz8') || (xyz8Text != 'rtc9')) {
 
     println('xyz8:' + xyz8Text)
 
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows do not appear to have been moved before the Savce.')
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows do not appear to have been moved before the Save.')
 	WebUI.delay(10)
 } else {
 
