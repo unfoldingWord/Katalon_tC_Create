@@ -1,5 +1,4 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -27,36 +26,11 @@ import groovy.time.*
 import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.testobject.ConditionType
 
-value = 2.0893333333
-v1 = ((int) ((value + 0.005f) * 100)) / 100f
-println(v1)
-return false
-
-if (1 == 2) {
-	displayRows = '115-150 of 150'
-	
-	dashLoc = displayRows.indexOf('-')
-	
-	ofLoc = displayRows.indexOf('of')
-	
-	rowsLoc = displayRows.indexOf(' ', ofLoc)
-	
-	lRow = displayRows.substring(rowsLoc+1, displayRows.length())
-	
-	println(':'+lRow+':')
-	
-	pRow = displayRows.substring(dashLoc+1, dashLoc+1+lRow.length())
-	
-	println(':'+pRow+':')
-	
-	if (pRow == lRow) {
-		println('last page')
-	}
-	
-	return false
-}
+// Load a Matthew tN project and test how long it takes to page with the various rows/page options
 
 rowsList = [10, 25, 50, 100]
+
+timings = []
 
 avgTimes = []
 
@@ -65,7 +39,11 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$user
 
 for (rows in rowsList) {
 	
-	println('Timings test on ' + rows + ' rows.')
+	msg = 'Timings test on ' + rows + ' rows.'
+	
+	println(msg)
+	
+	timings.add(msg)
 
 	displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
 	
@@ -104,7 +82,7 @@ for (rows in rowsList) {
 	
 	times = []
 	
-	count = 3
+	count = 1
 	
 	for (def i : (1..count)) {
 		
@@ -120,11 +98,14 @@ for (rows in rowsList) {
 		
 		println(seconds + ' seconds')
 		
+		timings.add('Paging ' + rows + ' rows took ' + seconds + ' seconds.')
+		
 		totalTime += seconds
 		
 		times.add(seconds)
 		
 	}
+	timings.add(' ')
 	println('Max is ' + times.max())
 	println('Min is ' + times.min())
 	println('Average is ' + totalTime/count)
@@ -133,9 +114,24 @@ for (rows in rowsList) {
 }
 
 i = 0
+
 for (rows in rowsList) {
-	println('Average time to page ' + rows + ' rows is ' + avgTimes[i] + ' seconds, and ' + avgTimes[i]/rows + ' seconds/row.')
+	
+	avgTime = ((int) ((avgTimes[i] + 0.005f) * 100)) / 100f
+	
+	avgRowTime = ((int) ((avgTime/rows + 0.005f) * 100)) / 100f
+	
+	timing = 'Average time to page ' + rows + ' rows is ' + avgTime + ' seconds, and ' + avgRowTime + ' seconds/row.'
+	
+	println(timing)
+	
+	timings.add(timing)
+	
 	i ++
 }
+
+GlobalVariable.timings = timings
+
+GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()

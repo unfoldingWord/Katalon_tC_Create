@@ -24,7 +24,6 @@ import groovy.time.*
 //		Chapter AND Verse AND Line AND Row ID AND Details AND Char Pos AND (Priority OR Message)
 // 02/23/21	Added tests in NEH, GAL, JOS, JOL, and 2JN
 //	- Also rewrote using more functions because of too many lines of code for groovy
-// 03/04/21	Added a single test in 1TI for reporting wrong number of tabs when there actually are missing rows
 
 
 
@@ -40,8 +39,7 @@ levelMedium = 600
 levelTestFile = (baseDir + 'Validation-Test_[myLevel]_Level.tsv.csv')
 
 testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_43-LUK.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv'
-    , 'en_tn_52-COL.tsv', 'en_tn_15-EZR.tsv', 'en_tn_56-2TI.tsv', 'en_tn_41-MAT.tsv', 'en_tn_16-NEH.tsv', 'en_tn_49-GAL.tsv', 
-	'en_tn_06-JOS.tsv', 'en_tn_29-JOL.tsv', 'en_tn_64-2JN.tsv', 'en_tn_55-1TI.tsv']
+    , 'en_tn_52-COL.tsv', 'en_tn_15-EZR.tsv', 'en_tn_56-2TI.tsv', 'en_tn_41-MAT.tsv', 'en_tn_16-NEH.tsv', 'en_tn_49-GAL.tsv', 'en_tn_06-JOS.tsv', 'en_tn_29-JOL.tsv', 'en_tn_64-2JN.tsv']
 
 // expectedFails holds the list of rows (base 0) in the baseline csv files that currently are expected to fail when tested
 //Prior to v1.1.0-rc3
@@ -81,11 +79,11 @@ for (def fileNum : (start..end)) {
     testFile = (testFiles[fileNum])
 
     println('>>>>>>>> Running test on ' + testFile)
-	
+
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
-	
+
 	(basePrioritys, baseErrors, baseMessages) = parseFile(baseFile)
-				
+	
     println('testFile:' + testFile)
 
     vFiles = getValidationFiles(testFile)
@@ -228,35 +226,30 @@ for (def fileNum : (start..end)) {
     }
     
     fixedRows = []
-	
-	println('++++++++++++baseErrors.size() is ' + baseErrors.size())
-	
-	if (baseErrors.size() > 0) {
 		
-		for (def row : (0 .. baseErrors.size()-1)) {
-			fnd = false
-			int[] found = newErrors.findIndexValues({
-				it == baseErrors[row]
-			})
-		//	println(found)
-			if (found.size() > 0) {
-				for (def i : (0 .. found.size()-1)) {
-					if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
-						fnd = true
-					}
+	for (def row : (0 .. baseErrors.size()-1)) {
+		fnd = false
+		int[] found = newErrors.findIndexValues({
+			it == baseErrors[row]
+		})
+	//	println(found)
+		if (found.size() > 0) {
+			for (def i : (0 .. found.size()-1)) {
+				if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
+					fnd = true
 				}
 			}
-			if (!fnd) {
-				fixedRows.add(row)
-				msg = ((((('The error in row ' + (row + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
-				println(msg)
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-			}
 		}
-		
-		println('Fixed base rows in ' + testFile + ' = ' + fixedRows)
+		if (!fnd) {
+			fixedRows.add(row)
+			msg = ((((('The error in row ' + (row + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
+			println(msg)
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+		}
 	}
 	
+	println('Fixed base rows in ' + testFile + ' = ' + fixedRows)
+
     // Show the additional required columns
 	
 	columns = ['ID', 'OrigQuote']
@@ -663,22 +656,6 @@ for (def fileNum : (start..end)) {
 			} else {
 				passCount++
 			}
-		}
-		
-		continue
-		
-    } else if (fileNum == 15) {
-		
-		testCount++
-			
-		if (newPrioritys.contains('988') || newMessages.contains('Wrong number')) {
-			errorCount++
-			println('ERROR: Validator reported a 988 error for missing rows in ' + testFile + '.')
-			
-			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator reported a 988 error for missing rows in ' + testFile + '.')
-		} else {
-			
-			passCount++
 		}
 		
 		continue

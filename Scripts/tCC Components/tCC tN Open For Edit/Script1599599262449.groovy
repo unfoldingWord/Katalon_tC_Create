@@ -18,23 +18,27 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
 //LOGIN AND OPEN THE en-tN FOR EDITING
-
 // 02/10/21	Replaced the try/catch with a test for length of the 'file' parameter (the 'file' parameter is effectively optional)
+// 03/04/21 Modified to make language an option input parameter
 
 if (binding.hasVariable('file') && file.contains('.tsv')) {
 	myFile = file
 } else {
 	myFile = GlobalVariable.tNFile
 }
-
 println('tN file is ' + myFile)
 
+if (binding.hasVariable('language')) {
+	myLanguage = language
+} else {
+	myLanguage = ''
+}
+println('language is ' + myLanguage)
 
-	
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
-if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
-        , ('resource') : 'unfoldingWord/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
+if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : myLanguage, ('file') : myFile,
+         ('resource') : 'unfoldingWord/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
     KeywordUtil.markFailed('Exiting script because organization was not found..')
 
     WebUI.closeBrowser()

@@ -50,8 +50,6 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-//WebUI.callTestCase(findTestCase('tCC Components/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
-//        , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
 resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)

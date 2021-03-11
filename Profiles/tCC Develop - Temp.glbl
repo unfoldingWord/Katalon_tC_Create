@@ -6,7 +6,7 @@
    <defaultProfile>false</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'https://5fea650543bf880007015349--tc-create-app.netlify.app/'</initValue>
+      <initValue>'https://604351ba1d11bbe19dada29d--tc-create-app.netlify.app/'</initValue>
       <name>url</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>

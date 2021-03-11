@@ -24,7 +24,7 @@ import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
+WebUI.callTestCase(findTestCase('z-archive/tCC tA Open For Edit'), [('$username') : '', ('$password') : '', ('$origQuote') : ''
         , ('$newOrigQuote') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('Testing for app crassh when changing sections visible and invisible. ISSUE 428')

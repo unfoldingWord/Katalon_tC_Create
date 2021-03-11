@@ -16,7 +16,6 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
 // SELECT THE ORGANIZATION, LANGUAGE, AND RESOURCE TO BE TESTED
-
 // 03/01/21	Modified to allow selecting md files by drilling down in file path when 'resource' is a List
 
 //INPUT PARAMETERS - 
@@ -29,12 +28,10 @@ if (organization == "") {
 	organization = GlobalVariable.organization
 }
 
-println('language is ' + language)
 if (language == '') {
 	language = GlobalVariable.langCode
 }
 
-println('file is ' + file)
 println('Choosing organization ' + organization)
 
 if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == false) {

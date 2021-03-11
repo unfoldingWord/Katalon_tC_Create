@@ -117,7 +117,7 @@ class Test_Case_Teardown {
 			GlobalVariable.timings.each ({ def et ->
 				msg = et
 				if (first) {
-					msg = '\n## Validation Processing Times ##\n' + msg
+					msg = '\n## Processing Times ##\n' + msg
 					first = false
 				}
 				println(msg)

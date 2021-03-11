@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuiteEntity>
    <description></description>
-   <name>tCC Test Suite 1</name>
+   <name>tCC Test Suite Long Running</name>
    <tag></tag>
    <isRerun>false</isRerun>
    <mailRecipient></mailRecipient>
@@ -10,7 +10,7 @@
    <pageLoadTimeoutDefault>true</pageLoadTimeoutDefault>
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
    <rerunImmediately>false</rerunImmediately>
-   <testSuiteGuid>13a68aee-9492-4797-b16b-0f9b864e0be2</testSuiteGuid>
+   <testSuiteGuid>8851d8db-e7bc-4bd6-92da-6682399a90d7</testSuiteGuid>
    <testCaseLink>
       <guid>2714ed1f-10f9-4b2d-912a-102fe1c71f99</guid>
       <isReuseDriver>false</isReuseDriver>
@@ -366,9 +366,9 @@
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test On-Open Validator</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>c1e8d52a-feed-4795-828a-4c687a24a6c6</guid>
+      <guid>c3ba5352-a2d7-4711-98a8-f4323d2ac6a4</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Paging Performance</testCaseId>
+      <testCaseId>Test Cases/tCC Test Cases/tCC tN Test App Crash on Paging</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

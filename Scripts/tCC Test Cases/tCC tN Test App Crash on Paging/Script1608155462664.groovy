@@ -18,7 +18,7 @@ import java.time.LocalDateTime as LocalDateTime // Import the LocalDateTime clas
 import java.time.format.DateTimeFormatter as DateTimeFormatter // Import the DateTimeFormatter class
 import java.io.File as File
 
-// Loads all tN projects (all books or NT only - set myBooks) and pages to the end to test for app crash
+// Loads all tN projects (all books, NT only, or custom - set myBooks) and pages to the end to test for app crash
 // THIS TEST RUNS FOR ABOUT 1 HOUR WHEN TESTING ONLY THE NEW TESTAMENT BOOKS
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
@@ -32,7 +32,7 @@ ntBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/NT_Books.
 
 someBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Some_Books.csv'
 
-myBooks = someBooks
+myBooks = ntBooks
 
 new File(myBooks).splitEachLine(',', { def fields ->
         bookNum = (fields[0])
@@ -60,7 +60,7 @@ testFiles.each({ def testFile ->
 			
 			WebUI.delay(1)
 			
-			WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 25]))
+			WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 10]))
 		
 	        atEnd = false
 	

@@ -16,18 +16,12 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
 // 02/16/21	Modified to work in both Develop and Production
-// 03/04/21 Modified to test additional language files
-
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
 errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv']
 
 saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
-
-// Alternate languages/files to test
-langFiles = [('ru') : ['en_tn_57-TIT.tsv', 'en_tn_65-3JN.tsv'],
-				('hi') : ['en_tn_57-TIT.tsv', 'en_tn_67-REV']]
 
 if (GlobalVariable.url == 'create.translationcore.com') {
 	server = 'git'
@@ -181,20 +175,6 @@ WebUI.closeBrowser()
 // Restore the saved version of the file before exit
 CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, GlobalVariable.validateUser,
 	GlobalVariable.validatePassword)
-
-// Test other languages
-langFiles.each { language, files ->
-	files.each { file ->
-		WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser, ('$password') : GlobalVariable.validatePassword
-			, ('file') : file, ('language') : language], FailureHandling.STOP_ON_FAILURE)
-		if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, FailureHandling.OPTIONAL)) {
-			println('ERROR: On-open validator reports problems with ' + language + ' file ' + file)
-			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the on-open validator reports a problems with ' + language + ' file ' + file +'.')
-		}
-	}
-	
-	WebUI.closeBrowser()
-}
 
 GlobalVariable.scriptRunning = false
 
