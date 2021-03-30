@@ -83,6 +83,8 @@ if (CustomKeywords.'unfoldingWord_Keywords.TestVersion.isVersionGreater'('1.0.4'
 
             CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because script was unable to send keystrokes to the block.')
         } 
+		
+		WebUI.scrollToPosition(0, 0)
         
         WebUI.click(findTestObject('Page_tC Create/button_preview'))
 

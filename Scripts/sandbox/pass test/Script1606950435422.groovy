@@ -19,6 +19,15 @@ WebUI.openBrowser('www.google.com')
 
 println('this is a passing test')
 
+String js = 'alert("Login successful");'
+WebUI.executeJavaScript(js, null)
+
+WebUI.delay(2)
+
+WebUI.acceptAlert()
+
+WebUI.delay(2)
+
 CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('This is a normal message')
 
 WebUI.closeBrowser()

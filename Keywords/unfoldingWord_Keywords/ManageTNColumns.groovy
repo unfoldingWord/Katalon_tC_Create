@@ -23,7 +23,6 @@ import internal.GlobalVariable
 
 
 public class ManageTNColumns {
-	//UNDER CONSTRUCTION//
 	@Keyword
 	// Could not figure out how to test the state, so this is strictly a toggle function
 	// Also, using the 'columns_Parmed' element does not work, so the actual element names need to be passed in the array

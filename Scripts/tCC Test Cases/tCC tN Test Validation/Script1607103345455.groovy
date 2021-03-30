@@ -54,11 +54,11 @@ expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1,2,3,4],  
 validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgodprinciples']
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 0
+start = 11
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 

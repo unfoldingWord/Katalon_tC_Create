@@ -6,25 +6,37 @@
    <elementGuidId>42e2584e-2139-45c3-9e32-60cdc1cec3b7</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>(.//*[normalize-space(text()) and normalize-space(.)='Remember Me'])[1]/following::button[1]</value>
+         <key>BASIC</key>
+         <value>//button[@class = 'ui green button' and (text() = '
+					
+						Sign In
+					
+				' or . = '
+					
+						Sign In
+					
+				')]</value>
       </entry>
       <entry>
          <key>CSS</key>
          <value>button.ui.green.button</value>
       </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Remember this Device'])[1]/following::button[1]</value>
+      </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
@@ -46,14 +58,14 @@
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>/html[@class=&quot;theme-&quot;]/body[1]/div[@class=&quot;full height&quot;]/div[@class=&quot;user signin&quot;]/div[@class=&quot;ui container&quot;]/div[@class=&quot;ui attached segment&quot;]/form[@class=&quot;ui form&quot;]/div[@class=&quot;inline field&quot;]/button[@class=&quot;ui green button&quot;]</value>
+      <value>/html[@class=&quot;theme-&quot;]/body[1]/div[@class=&quot;full height&quot;]/div[@class=&quot;page-content user signin&quot;]/div[@class=&quot;ui middle very relaxed page grid&quot;]/div[@class=&quot;ui container column&quot;]/div[@class=&quot;ui attached segment&quot;]/form[@class=&quot;ui form&quot;]/div[@class=&quot;inline field&quot;]/button[@class=&quot;ui green button&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='Remember Me'])[1]/following::button[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Remember this Device'])[1]/following::button[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>

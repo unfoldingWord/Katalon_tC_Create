@@ -25,16 +25,15 @@ import internal.GlobalVariable as GlobalVariable
 //	- language	(if blank will use the GlobalVariable.langCode)
 
 println('resource is ' + resource)
+
 if (organization == "") {
 	organization = GlobalVariable.organization
 }
 
-println('language is ' + language)
 if (language == '') {
 	language = GlobalVariable.langCode
 }
 
-println('file is ' + file)
 println('Choosing organization ' + organization)
 
 if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == false) {

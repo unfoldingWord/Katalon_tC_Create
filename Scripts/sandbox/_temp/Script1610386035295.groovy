@@ -1,5 +1,4 @@
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
@@ -24,118 +23,72 @@ import java.awt.Toolkit as Toolkit
 import java.awt.datatransfer.StringSelection as StringSelection
 import org.openqa.selenium.Keys as Keys
 import groovy.time.*
-import com.kms.katalon.core.testobject.TestObject
-import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-value = 2.0893333333
-v1 = ((int) ((value + 0.005f) * 100)) / 100f
-println(v1)
-return false
+println('Testing for app crash after when adding data to deleted row. ISSUE 639')
 
-if (1 == 2) {
-	displayRows = '115-150 of 150'
-	
-	dashLoc = displayRows.indexOf('-')
-	
-	ofLoc = displayRows.indexOf('of')
-	
-	rowsLoc = displayRows.indexOf(' ', ofLoc)
-	
-	lRow = displayRows.substring(rowsLoc+1, displayRows.length())
-	
-	println(':'+lRow+':')
-	
-	pRow = displayRows.substring(dashLoc+1, dashLoc+1+lRow.length())
-	
-	println(':'+pRow+':')
-	
-	if (pRow == lRow) {
-		println('last page')
-	}
-	
-	return false
+IDs = ['e3ce', 'sshf', 'x93f', 'o6j4', 'z4ec']
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_55-1TI.tsv'], 
+    FailureHandling.STOP_ON_FAILURE)
+
+columns = ['Book', 'ID']
+
+CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+
+WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+set = false
+
+for (def id : IDs) {
+    WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), id)
+
+    book = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Book_SearchId'))
+
+    println(book)
+
+    println(book.length())
+
+    if (book.length() < 2) {
+        WebUI.setText(findTestObject('Page_tCC translationNotes/text_Book_SearchId'), '1TI')
+
+        WebUI.clickOffset(findTestObject('Page_tCC translationNotes/text_Book_SearchId'), 0, 100)
+
+        set = true
+    }
+    
+    if (set) {
+		
+        break
+		
+    } else {
+		
+        WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
+
+        WebUI.sendKeys(findTestObject('Page_tCC translationNotes/input_Search'), Keys.chord(Keys.BACK_SPACE, Keys.BACK_SPACE, 
+                Keys.BACK_SPACE, Keys.BACK_SPACE))
+    }
 }
 
-rowsList = [10, 25, 50, 100]
-
-avgTimes = []
-
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser, ('$password') : GlobalVariable.validatePassword
-	, ('file') : 'en_tn_42-MRK.tsv', ('language') : ''], FailureHandling.STOP_ON_FAILURE)
-
-for (rows in rowsList) {
+if (!set) {
+	println('ERROR: Failed to find any deleted row')
 	
-	println('Timings test on ' + rows + ' rows.')
-
-	displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
-	
-	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage'))
-	
-	WebUI.delay(1)
-	
-	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
-	
-	loops = 0
-
-	while (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage')) == displayRows && loops < 30) {
-		WebUI.delay(1)
-	}
-	
-	displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
-	
-	if (1 == 2) {
-	
-		println(displayRows)
-		
-		ofLoc = displayRows.indexOf('of')
-		
-		println(ofLoc)
-		
-		rowsLoc = displayRows.indexOf(' ', ofLoc)
-		
-		lRow = displayRows.substring(rowsLoc+1, displayRows.length())
-		
-		tRows = displayRows(displayRows.indexOf(' ',ofLoc)+2)
-		
-		println(tRows)
-	}
-	
-	totalTime = 0
-	
-	times = []
-	
-	count = 3
-	
-	for (def i : (1..count)) {
-		
-		timeStart = new Date()
-		
-		WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
-		
-		WebUI.waitForElementClickable(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'), 20)
-			
-		timeEnd = new Date()
-		
-		seconds = (timeEnd.getTime() - timeStart.getTime())/1000
-		
-		println(seconds + ' seconds')
-		
-		totalTime += seconds
-		
-		times.add(seconds)
-		
-	}
-	println('Max is ' + times.max())
-	println('Min is ' + times.min())
-	println('Average is ' + totalTime/count)
-	avgTimes.add(totalTime/count)
-	
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Could not execute test because no deleted row could be found.')
 }
 
-i = 0
-for (rows in rowsList) {
-	println('Average time to page ' + rows + ' rows is ' + avgTimes[i] + ' seconds, and ' + avgTimes[i]/rows + ' seconds/row.')
-	i ++
+WebUI.delay(2)
+
+if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
+    println('ERROR: Repo chip is not present after setting book on a deleted row')
+
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the repo chip is not present after setting book on a deleted row.')
+} else {
+    println('App did not crash after setting the book on a deleted row.')
 }
+
+WebUI.delay(2)
+
+GlobalVariable.scriptRunning = false
 
 WebUI.closeBrowser()
+
