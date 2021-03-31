@@ -24,54 +24,12 @@ import org.openqa.selenium.WebElement as WebElement
 import org.openqa.selenium.interactions.Actions as Actions
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
-import org.sikuli.script.*
 
 // 03/01/21 Modified to test for scripture links causing a 404 error (issue 679) and call tCC md Open For Edit instead of tCC tA Open For Edit
-// 03/31/21 Modified to add test for the icon bar reappearing after slight scroll up in md files (issue 717)
 
 resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
-
-// Use sikulix to test for proper redisplaying of the icon toolbar
-Screen s = new Screen()
-
-myImage = '/Users/' + GlobalVariable.pcUser + '/git/Katalon_tC_Create/Images/iconBar.png'
-
-Pattern icons = new Pattern(myImage).similar(0.50)
-
-found = s.exists(icons)
-
-if (!found) {
-	println('ERROR: The icon toolbar was not visible when the project was first opened')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible when the project was first opened.')
-}
-
-WebUI.scrollToPosition(0, 1000)
-
-WebUI.delay(1)
-
-found = s.exists(icons)
-
-if (found) {
-	println('ERROR: The icon toolbar was still visible after scrolling down')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was still visible after scrolling down.')
-}
-
-WebUI.scrollToPosition(0, 980)
-
-WebUI.delay(1)
-
-found = s.exists(icons)
-
-if (!found) {
-	println('ERROR: The icon toolbar was not visible after scrolling up slightly')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible after scrolling up slightly.')
-}
-
-WebUI.scrollToPosition(0, 0)
-
-WebUI.delay(1)
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/section_BentOver'))
 

@@ -14,39 +14,14 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
-import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
-import java.awt.datatransfer.Clipboard as Clipboard
-import java.awt.datatransfer.Transferable as Transferable
-import java.awt.datatransfer.DataFlavor as DataFlavor
-import java.awt.Toolkit as Toolkit
 
 resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], 
-    FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource],
+	FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(3)
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
-
-WebUI.delay(3)
-
-WebUI.scrollToPosition(0, 3000)
-
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
-
-WebUI.delay(3)
-
-return false
-
-WebUI.scrollToPosition(0, 790)
-
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+CustomKeywords.'sandbox.screenshotHelper.getWebElementScreenshot'(findTestObject('Page_tCC translationAcademy/div_Icon_Toolbar'))
 
 WebUI.closeBrowser()
-

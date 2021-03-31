@@ -17,12 +17,24 @@ import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
+// 03/31/21 Modified to add test for the icon bar height (issue 742)
+
 // TEST MOVING A ROW UP AND THEN BACK DOWN
 // REDO THE TEST BUT THIS TIME SAVING THE FILE AFTER THE FIRST MOVE, THEN SAVING
 // REOPEN THE SAVED PROJECT, VERIFY THAT THE CHANGED ORDER WAS SAVED, THEN RESTORE TO ORIGINAL ORDER
+
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(1)
+
+expectedHeight = 48
+
+barHeight = WebUI.getElementHeight(findTestObject('Page_tCC translationNotes/div_Icon_Toolbar'))
+
+if (barHeight != expectedHeight) {
+	println('ERROR: The icon bar height is ' + barHeight + ' pixels and ' + expectedHeight + ' was expected.')
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon bar height is ' + barHeight + ' pixels and ' + expectedHeight + ' was expected.')
+}
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
@@ -43,11 +55,10 @@ if ((rtc9Text != 'rtc9') || (xyz8Text != 'xyz8')) {
     println('xyz8:' + xyz8Text)
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows are not in the expected order.')
-	WebUI.delay(10)
+
+    WebUI.delay(10)
 } else {
-
-	println('Rows are in expected order when project is opened')
-
+    println('Rows are in expected order when project is opened')
 }
 
 WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/button_MoveRow_xyz8Up'), 1)
@@ -66,13 +77,11 @@ if ((rtc9Text != 'xyz8') || (xyz8Text != 'rtc9')) {
     println('xyz8:' + xyz8Text)
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows do not appear to have been moved.')
-	WebUI.delay(10)
+
+    WebUI.delay(10)
 } else {
-
-	println('Rows appear to have been moved as expected')
-
+    println('Rows appear to have been moved as expected')
 }
-
 
 WebUI.delay(1)
 
@@ -94,13 +103,11 @@ if ((rtc9Text != 'rtc9') || (xyz8Text != 'xyz8')) {
     println('xyz8:' + xyz8Text)
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows were not returned to the original order.')
-	WebUI.delay(10)
+
+    WebUI.delay(10)
 } else {
-
-	println('Rows were returned to their original positions')
-
+    println('Rows were returned to their original positions')
 }
-
 
 WebUI.scrollToElement(findTestObject('Page_tCC translationNotes/button_MoveRow_xyz8Up'), 1)
 
@@ -135,13 +142,11 @@ if ((rtc9Text != 'xyz8') || (xyz8Text != 'rtc9')) {
     println('xyz8:' + xyz8Text)
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows do not appear to have been moved before the Save.')
-	WebUI.delay(10)
+
+    WebUI.delay(10)
 } else {
-
-	println('Rows were moved and saved as expected')
-
+    println('Rows were moved and saved as expected')
 }
-
 
 WebUI.delay(1)
 
@@ -161,13 +166,11 @@ if ((rtc9Text != 'rtc9') || (xyz8Text != 'xyz8')) {
     println('xyz8:' + xyz8Text)
 
     CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the rows were not returned to the original order.')
-	WebUI.delay(10)
+
+    WebUI.delay(10)
 } else {
-
-	println('Rows have been returned to their original positions after save')
-
+    println('Rows have been returned to their original positions after save')
 }
-
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
 

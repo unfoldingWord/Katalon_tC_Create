@@ -14,39 +14,45 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
-import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
-import java.awt.datatransfer.Clipboard as Clipboard
-import java.awt.datatransfer.Transferable as Transferable
-import java.awt.datatransfer.DataFlavor as DataFlavor
-import java.awt.Toolkit as Toolkit
+import org.sikuli.script.*
 
 resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], 
-    FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource],
+	FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(3)
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+Screen s = new Screen()
 
-WebUI.delay(3)
+myImage = '/Users/cckozie/git/Katalon_tC_Create/Images/iconBar.png'
 
-WebUI.scrollToPosition(0, 3000)
+Pattern icons = new Pattern(myImage).similar(0.50)
 
-WebUI.delay(3)
+found = s.exists(icons)
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+println(found)
 
-WebUI.delay(3)
+WebUI.delay(1)
 
-return false
+WebUI.scrollToPosition(0, 1000)
 
-WebUI.scrollToPosition(0, 790)
+WebUI.delay(1)
 
-WebUI.delay(3)
+found = s.exists(icons)
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+println(found)
+
+WebUI.delay(1)
+
+WebUI.scrollToPosition(0, 980)
+
+WebUI.delay(1)
+
+found = s.exists(icons)
+
+println(found)
+
+WebUI.delay(1)
 
 WebUI.closeBrowser()
-
