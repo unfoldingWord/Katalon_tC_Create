@@ -34,44 +34,52 @@ resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 
 // Use sikulix to test for proper redisplaying of the icon toolbar
-Screen s = new Screen()
-
-myImage = '/Users/' + GlobalVariable.pcUser + '/git/Katalon_tC_Create/Images/iconBar.png'
-
-Pattern icons = new Pattern(myImage).similar(0.50)
-
-found = s.exists(icons)
-
-if (!found) {
-	println('ERROR: The icon toolbar was not visible when the project was first opened')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible when the project was first opened.')
+if (!GlobalVariable.systemOS.contains('Windows')) {
+	
+	Screen s = new Screen()
+	
+	myImage = '/Users/' + GlobalVariable.pcUser + '/git/Katalon_tC_Create/Images/iconBar.png'
+	
+	Pattern icons = new Pattern(myImage).similar(0.50)
+	
+	found = s.exists(icons)
+	
+	if (!found) {
+		println('ERROR: The icon toolbar was not visible when the project was first opened')
+	    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible when the project was first opened.')
+	}
+	
+	WebUI.scrollToPosition(0, 1000)
+	
+	WebUI.delay(1)
+	
+	found = s.exists(icons)
+	
+	if (found) {
+		println('ERROR: The icon toolbar was still visible after scrolling down')
+	    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was still visible after scrolling down.')
+	}
+	
+	WebUI.scrollToPosition(0, 980)
+	
+	WebUI.delay(1)
+	
+	found = s.exists(icons)
+	
+	if (!found) {
+		println('ERROR: The icon toolbar was not visible after scrolling up slightly')
+	    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible after scrolling up slightly.')
+	}
+	
+	WebUI.scrollToPosition(0, 0)
+	
+	WebUI.delay(1)
+	
+} else {
+	msg = 'Icon toolbar visibility test was bypassed because the tests are being run on Windows'
+	println(msg)
+    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
 }
-
-WebUI.scrollToPosition(0, 1000)
-
-WebUI.delay(1)
-
-found = s.exists(icons)
-
-if (found) {
-	println('ERROR: The icon toolbar was still visible after scrolling down')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was still visible after scrolling down.')
-}
-
-WebUI.scrollToPosition(0, 980)
-
-WebUI.delay(1)
-
-found = s.exists(icons)
-
-if (!found) {
-	println('ERROR: The icon toolbar was not visible after scrolling up slightly')
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the icon toolbar was not visible after scrolling up slightly.')
-}
-
-WebUI.scrollToPosition(0, 0)
-
-WebUI.delay(1)
 
 WebUI.click(findTestObject('Page_tCC translationAcademy/section_BentOver'))
 
