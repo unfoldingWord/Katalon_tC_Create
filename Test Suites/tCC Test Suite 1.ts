@@ -368,7 +368,7 @@
    <testCaseLink>
       <guid>c1e8d52a-feed-4795-828a-4c687a24a6c6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Paging Performance</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>
