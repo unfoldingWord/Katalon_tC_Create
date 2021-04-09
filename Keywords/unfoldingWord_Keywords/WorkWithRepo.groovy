@@ -37,11 +37,11 @@ public class WorkWithRepo {
 	@Keyword
 	// 02/10/21 	Modified to use the HotKeys CustomKeyword instead of hard-coded select-all and paste
 
-	def hot_keys = new HotKeys() // Have to redefine the CustomKeyword so that it can be used here in a CustomKeyword
-
 	def replaceRepoContent(repo,file,user,password) {
 		println('Loading file ' + file + ' into repo ' + repo)
 
+		def tab = '   '
+	
 		// Open a firefox browser so that sendKeys will work
 		if (GlobalVariable.systemOS.contains('Windows')) {
 			System.setProperty("webdriver.gecko.driver","C:\\Users\\cckoz\\Katalon\\Katalon_Studio_Windows_64-7.9.0\\configuration\\resources\\drivers\\firefox_win64\\geckodriver.exe")
@@ -66,8 +66,12 @@ public class WorkWithRepo {
 		WebUI.click(findTestObject('Page_Git Repo/icon_Edit'))
 
 		WebUI.waitForElementClickable(findTestObject('Page_Git Repo/span_ProjectTextHeader'), 15)
-
-		WebUI.delay(5)
+		
+		while (!WebUI.getText(findTestObject('Page_Git Repo/span_ProjectTextHeader'), FailureHandling.OPTIONAL).contains(tab)) {
+			WebUI.delay(1)
+		}
+		
+		WebUI.delay(2)
 
 		WebUI.click(findTestObject('Page_Git Repo/span_ProjectTextHeader'))
 
