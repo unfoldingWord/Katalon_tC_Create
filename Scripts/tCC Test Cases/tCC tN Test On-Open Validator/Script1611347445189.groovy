@@ -39,7 +39,6 @@ if (GlobalVariable.url == 'create.translationcore.com') {
 myURL = 'https://' + server + '.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
 
 errorHeader = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).'
-//			   This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).
 
 start = 0
 

@@ -27,9 +27,9 @@ WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$user
 
 testFiles = []
 
-allBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Bible_Books.csv'
-ntBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/NT_Books.csv'
-someBooks = '/Users/' + GlobalVariable.pcUser + '/Documents/Sikuli/Files/Some_Books.csv'
+allBooks = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/Bible_Books.csv'
+ntBooks = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/NT_Books.csv'
+someBooks = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/Some_Books.csv'
 
 myBooks = someBooks
 
