@@ -21,32 +21,20 @@ import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
 
-resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
+dcsRepo = 'https://qa.door43.org/translate_test/en_tn/raw/branch/tc01-tc-create-1/en_tn_43-LUK.tsv'
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], 
-    FailureHandling.STOP_ON_FAILURE)
+WebUI.openBrowser(dcsRepo)
 
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+//WebUI.navigateToUrl(dcsRepo)
 
 WebUI.delay(3)
 
-WebUI.scrollToPosition(0, 3000)
+text = WebUI.getText(findTestObject('Page_Git Repo/text_Full_Repo_Raw'))
 
-WebUI.delay(3)
+println(text)
 
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
+List lines = text.split( '\n' )
 
-WebUI.delay(3)
-
-return false
-
-WebUI.scrollToPosition(0, 790)
-
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationAcademy/button_Sections'), FailureHandling.OPTIONAL)
-
-WebUI.closeBrowser()
-
+lines.each {
+	println(it)
+}
