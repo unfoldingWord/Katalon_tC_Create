@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>resource_Parmed</name>
+   <name>resource_Parmed - Copy</name>
    <tag></tag>
-   <elementGuidId>cf6aa245-d678-4650-ba0a-5039f28c42fb</elementGuidId>
+   <elementGuidId>ddda7092-3892-463f-9c7c-7e366558085f</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>

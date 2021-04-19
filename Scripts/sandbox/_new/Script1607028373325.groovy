@@ -21,20 +21,16 @@ import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
 
-dcsRepo = 'https://qa.door43.org/translate_test/en_tn/raw/branch/tc01-tc-create-1/en_tn_43-LUK.tsv'
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('file') : 'en_tn_41-MAT.tsv'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.openBrowser(dcsRepo)
+WebUI.delay(30)
 
-//WebUI.navigateToUrl(dcsRepo)
+WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), FailureHandling.OPTIONAL)
 
-WebUI.delay(3)
-
-text = WebUI.getText(findTestObject('Page_Git Repo/text_Full_Repo_Raw'))
-
-println(text)
-
-List lines = text.split( '\n' )
-
-lines.each {
-	println(it)
+while (WebUI.verifyTextPresent('Save', false, FailureHandling.OPTIONAL)) {
+    println('Save present')
+	WebUI.mouseOverOffset(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), -100, 0)
 }
+
+//WebUI.verifyTextPresent('Save', false)
+

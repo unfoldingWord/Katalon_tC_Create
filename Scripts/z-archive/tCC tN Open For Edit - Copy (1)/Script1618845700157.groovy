@@ -38,7 +38,7 @@ println('language is ' + myLanguage)
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
 if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : myLanguage, ('file') : myFile,
-         ('resource') : '/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
+         ('resource') : 'unfoldingWord/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
     KeywordUtil.markFailed('Exiting script because organization was not found..')
 
     WebUI.closeBrowser()

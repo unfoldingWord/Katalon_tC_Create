@@ -18,7 +18,9 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
+//testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
+//testFiles = ['en_tn_42-MRK.tsv'] //,  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
+testFiles = ['en_tn_65-3JN.tsv']
 
 	testFiles.each { file ->
 	WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('file') : file], FailureHandling.STOP_ON_FAILURE)
@@ -103,49 +105,43 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	
 	    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
 	        myText)
+		
+		row ++
+		
+		myRow ++
 	
-	    repoLines.add(myRow)
-	
-	    repoTexts.add(myText)
-	
-	    row += 24
-	
-	    myRow += 24
-	
-	    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
-	
-	    myText = ((('Testing row ' + myRow) + ' ID = ') + myID)
-	
-	    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
-	        myText)
-	
-	    repoLines.add(myRow)
-	
-	    repoTexts.add(myText)
-	
-	    row = 1
-	
-	    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
-	
-	    count = 0
-	
-	    while ((count < 5) && !(WebUI.verifyElementClickable(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'), 
-	        FailureHandling.OPTIONAL))) {
-	        WebUI.delay(1)
-	
-	        count++
-	    }
-	    
-	    if (count >= 5) {
-	        println('Next Page was not clickable after 5 seconds, assuming last page.')
-	
-	        atEnd = true
-	    }
-	    
-	    pages++
+		if (row >= 25) {
+		    row = 1
+			
+			myRow = 1
+		
+		    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
+		
+		    count = 0
+		
+		    while ((count < 5) && !(WebUI.verifyElementClickable(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'), 
+		        FailureHandling.OPTIONAL))) {
+		        WebUI.delay(1)
+		
+		        count++
+		    }
+		    
+		    if (count >= 5) {
+		        println('Next Page was not clickable after 5 seconds, assuming last page.')
+		
+		        atEnd = true
+		    }
+		    
+		    pages++
+		}
 	}
 	
 	WebUI.click(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'))
+	
+	while (WebUI.verifyTextPresent('Save', false, FailureHandling.OPTIONAL)) {
+	    println('Save present')
+		WebUI.mouseOverOffset(findTestObject('Page_tCC translationNotes/button_SaveEnabled - xPath'), -100, 0)
+	}
 	
 	WebUI.delay(10)
 	

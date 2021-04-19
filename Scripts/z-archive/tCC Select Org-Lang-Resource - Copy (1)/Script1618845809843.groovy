@@ -64,13 +64,6 @@ if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == fa
 			listFlag = false
 		}
 		
-		rsrc = 'unfoldingWord' + resource
-		if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/resource_Parmed', [('resource') : rsrc]), 1, FailureHandling.OPTIONAL)) {
-			resource = rsrc
-		} else {
-			resource = 'Door43-Catalog' + resource
-		}
-		
 		println('Choosing resource ' + resource)
 
 		WebUI.click(findTestObject('Page_tC Create/resource_Parmed', [('resource') : resource]))
