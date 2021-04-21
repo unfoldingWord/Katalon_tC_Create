@@ -38,9 +38,13 @@ someBooks = filesPath + 'Some_Books.csv'
 oneBook = filesPath + 'One_Book.csv'
 epistleBooks = filesPath + 'Epistle_Books.csv'
 
-myBooks = oneBook
+myBooks = ntBooks
 
 testFiles = []
+
+tab = '\t'
+
+spaces = '    '
 
 new File(myBooks).splitEachLine(',', { def fields ->
 		bookNum = (fields[0])
@@ -65,35 +69,63 @@ WebUI.maximizeWindow()
 
 testFiles.each { book ->
 	
-	repoFile = repoBase + 'en_tn_' + book + '.tsv'
+	file = 'en_tn_' + book + '.tsv'
+	
+	println('>>>>>>>>>> Processing ' + file + ' <<<<<<<<<<<')
+	
+	repoFile = repoBase + file
 	
 	WebUI.navigateToUrl(repoFile)
 	
-	WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)
+	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
 	
-	WebUI.delay(2)
-	
-	xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-	
-	getRowIDs(xPath)
+		WebUI.delay(2)
+			
+		xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
+		
+		getRowIDs(xPath, file)
+		
+	} else {
+		msg = 'Bypassing ' + file + ' because it is not properly formatted.'
+		println(msg)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+		
+	}
 	
 }
 
-def getRowIDs(xPath) {
+GlobalVariable.scriptRunning = false
+
+WebUI.closeBrowser()
+
+
+def getRowIDs(xPath,file) {
 	WebDriver driver = DriverFactory.getWebDriver()
 	WebElement Table = driver.findElement(By.xpath(xPath))
 	List<WebElement> rows = Table.findElements(By.tagName('tr'))
 	rows_count = rows.size()
-	
+	dupCount = 0
 	def ids = [:]
-	for (int row = 0; row < rows_count; row++) {
-		List<WebElement> columns = rows.get(row).findElements(By.tagName('td'))
+//	for (int row = 0; row < rows_count; row++) {
+	r = 0
+	rows.each { row -> 
+		List<WebElement> columns = rows.get(r).findElements(By.tagName('td'))
 		id = columns.get(3).getText()
 		if (ids.containsKey(id)) {
 			row1 = ids.get(id)
-			println('##### ERROR: ID ' + id + ' is duplicateed in rows ' + row1 + ' and ' + row)
+			rowMsg = ('ID ' + id + ' is duplicateed in rows ' + row1 + ' and ' + r + ' in ' + file)
+			println('##### ERROR: ' + rowMsg)
+//			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(rowMsg)
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + rowMsg)
+			dupCount ++
 		} else {
-			ids.put(id,row)
+			ids.put(id,r)
 		}
+		r ++
+	}
+	if (dupCount < 1) { 
+		msg = 'No duplicate IDs found in ' + file
+		println(msg)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
 	}
 }		

@@ -57,7 +57,7 @@ new File(myBooks).splitEachLine(',', { def fields ->
 
 repoBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
 
-xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
+//xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
 
 WebUI.openBrowser('')
 
@@ -65,35 +65,67 @@ WebUI.maximizeWindow()
 
 testFiles.each { book ->
 	
-	repoFile = repoBase + 'en_tn_' + book + '.tsv'
+	file = 'en_tn_' + book + '.tsv'
+	
+	println('>>>>>>>>>> Processing ' + file + ' <<<<<<<<<<<')
+	
+	repoFile = repoBase + file
 	
 	WebUI.navigateToUrl(repoFile)
 	
-	WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)
+	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
 	
-	WebUI.delay(2)
-	
-	xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-	
-	getRowIDs(xPath)
+		WebUI.delay(2)
+			
+//		xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
+				
+		getRowIDs(file)
+		
+	} else {
+		msg = 'Bypassing ' + file + ' because it is not properly formatted.'
+		println(msg)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+		
+	}
 	
 }
 
-def getRowIDs(xPath) {
-	WebDriver driver = DriverFactory.getWebDriver()
-	WebElement Table = driver.findElement(By.xpath(xPath))
-	List<WebElement> rows = Table.findElements(By.tagName('tr'))
-	rows_count = rows.size()
-	
+GlobalVariable.scriptRunning = false
+
+WebUI.closeBrowser()
+
+
+def getRowIDs(file) {
+	r = 0
+	dupCount = 0
 	def ids = [:]
-	for (int row = 0; row < rows_count; row++) {
-		List<WebElement> columns = rows.get(row).findElements(By.tagName('td'))
-		id = columns.get(3).getText()
+	def chpts = []
+	def verss = []
+	table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
+	table.splitEachLine(' ', { def fields ->
+		book = fields[0]
+		chapter = fields[1]
+		verse = fields[2]
+		id = fields[3]
+		chpts.add(chapter)
+		verss.add(verse)
 		if (ids.containsKey(id)) {
 			row1 = ids.get(id)
-			println('##### ERROR: ID ' + id + ' is duplicateed in rows ' + row1 + ' and ' + row)
+			rowMsg = ('ID ' + id + ' is duplicateed in rows ' + row1 + ', Ref ' + chpts[row1] + ':' + verss[row1] + ', and ' + r + ', Ref ' + chapter + ':' + verse + ' in ' + file)
+			println('##### ERROR: ' + rowMsg)
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + rowMsg)
+			dupCount ++
 		} else {
-			ids.put(id,row)
+			ids.put(id,r)
 		}
+		r ++
+	})
+	
+	if (dupCount < 1) { 
+		msg = 'No duplicate IDs found in ' + file
+		println(msg)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+
 	}
+		
 }		
