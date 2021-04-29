@@ -25,8 +25,10 @@ import groovy.time.*
 // 02/23/21	Added tests in NEH, GAL, JOS, JOL, and 2JN
 //	- Also rewrote using more functions because of too many lines of code for groovy
 // 03/04/21	Added a single test in 1TI for reporting wrong number of tabs when there actually are missing rows
+// 04/29/21 Added option for not testing the Levels
+// 04/29/21 Added "alwaysErrors" processing for priorities that should never get reported
 
-
+// NEED TO RETHINK SOME ELEMENTS OF THIS SO THAT FUTURE CHANGES IN THE VALIDATOR DO NOT INVALIDATE MY POSITIVE TESTS
 
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 println(dirName)
@@ -44,21 +46,23 @@ testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_
 	'en_tn_06-JOS.tsv', 'en_tn_29-JOL.tsv', 'en_tn_64-2JN.tsv', 'en_tn_55-1TI.tsv']
 
 // expectedFails holds the list of rows (base 0) in the baseline csv files that currently are expected to fail when tested
-//Prior to v1.1.0-rc3
-//expectedFails = [('en_tn_57-TIT.tsv') : [1, 2], ('en_tn_43-LUK.tsv') : [0], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [
-//        0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1]]
 expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1,2,3,4],  ('en_tn_45-ACT.tsv') : [1], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [0, 1], ('en_tn_56-2TI.tsv') : [
         0], ('en_tn_41-MAT.tsv') : [0, 1], ('en_tn_49-GAL.tsv') : [0], ('en_tn_06-JOS.tsv') : [0], ('en_tn_29-JOL.tsv') : [0]]
 
 // These are the valid entries for SupportReference. All are 'starts with' except the last which is 'equals'.
 validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgodprinciples']
 
+// These are Priority (error) codes that should always cause reporting as errors regardless of what book/chapter/verse/ID they are reported on
+alwaysErrors = ['450']
+
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 0
+start = 9
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = start
+
+testLevels = false
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 
@@ -116,7 +120,7 @@ for (def fileNum : (start..end)) {
     }
     
     // If Matthew project test for validation levels
-    if (fileNum == 9) {
+    if (fileNum == 9 && testLevels) {
         levels = ['High', 'Medium']
 
         for (def level : levels) {
@@ -215,7 +219,11 @@ for (def fileNum : (start..end)) {
     TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
 
     timings.add(((testFiles[fileNum]) + ' : ') + timeElapsed)
-
+	
+	println(newPrioritys)
+	
+	println(alwaysErrors)
+	
     if (newPrioritys.size() == 0) {
         // The validator did not find any errors. Continue with next file.
         msg = (('The validator found no errors in ' + testFile) + '.')
@@ -227,6 +235,17 @@ for (def fileNum : (start..end)) {
         continue
     }
     
+	for (priority in  alwaysErrors) {	
+		testCount++
+		if (newPrioritys.contains(priority)) {
+			println('ERROR: the validator reported a priority ' + priority + ' error in ' + testFile + '.')
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('The test failed because the validator reported a priority ' + priority + ' error in ' + testFile + '.')
+			errorCount++
+		} else {
+			passCount++
+		}
+	}
+
     fixedRows = []
 	
 	println('++++++++++++baseErrors.size() is ' + baseErrors.size())
@@ -255,6 +274,7 @@ for (def fileNum : (start..end)) {
 		}
 		
 		println('Fixed base rows in ' + testFile + ' = ' + fixedRows)
+
 	}
 	
     // Show the additional required columns

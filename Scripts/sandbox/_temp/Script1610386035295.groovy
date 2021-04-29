@@ -25,8 +25,13 @@ import org.openqa.selenium.Keys as Keys
 import groovy.time.*
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-tab = 9
+a = ['Priority', 251, 252, 450, 104, 104, 104]
+a.removeAll('Priority')
 
-sTab = (char) tab
+b = [450]
 
-println('abc' + sTab + 'def')
+for (c in b) {
+	if (a.contains(c)) {
+		println('yes')
+	}
+}
