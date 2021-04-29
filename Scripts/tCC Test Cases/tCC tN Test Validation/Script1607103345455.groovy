@@ -29,6 +29,7 @@ import groovy.time.*
 // 04/29/21 Added "alwaysErrors" processing for priorities that should never get reported
 
 // NEED TO RETHINK SOME ELEMENTS OF THIS SO THAT FUTURE CHANGES IN THE VALIDATOR DO NOT INVALIDATE MY POSITIVE TESTS
+// Change to force git commmit
 
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
 println(dirName)
