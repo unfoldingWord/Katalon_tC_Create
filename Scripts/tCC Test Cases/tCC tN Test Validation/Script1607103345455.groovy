@@ -57,13 +57,13 @@ validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgod
 alwaysErrors = ['450']
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 9
+start = 10
 
 end = (testFiles.size() - 1)
 
 end = start
 
-testLevels = false
+testLevels = true
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 

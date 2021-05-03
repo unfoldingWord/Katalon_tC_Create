@@ -29,7 +29,8 @@ import org.sikuli.script.*
 // 03/01/21 Modified to test for scripture links causing a 404 error (issue 679) and call tCC md Open For Edit instead of tCC tA Open For Edit
 // 03/31/21 Modified to add test for the icon bar reappearing after slight scroll up in md files (issue 717)
 
-resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
+//resource = ['unfoldingWord/en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
+resource = ['en_ta', 'translate/', 'bita-humanbehavior/', '01.md']
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 
@@ -262,7 +263,7 @@ if (WebUI.verifyElementNotPresent(findTestObject('Object Repository/Page_tC Crea
 
 WebUI.closeBrowser()
 
-resource = ['unfoldingWord/en_obs-sn', 'content/', '01/', '01.md']
+resource = ['en_obs-sn', 'content/', '01/', '01.md']
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
 

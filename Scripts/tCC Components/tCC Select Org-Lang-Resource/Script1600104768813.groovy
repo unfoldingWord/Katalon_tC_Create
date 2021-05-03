@@ -64,7 +64,10 @@ if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == fa
 			listFlag = false
 		}
 		
-		rsrc = 'unfoldingWord' + resource
+		if (resource.indexOf('/') == 0) {
+			resource = resource.substring(1, resource.length())
+		}
+		rsrc = 'unfoldingWord/' + resource
 		if (WebUI.verifyElementPresent(findTestObject('Page_tC Create/resource_Parmed', [('resource') : rsrc]), 1, FailureHandling.OPTIONAL)) {
 			resource = rsrc
 		} else {
