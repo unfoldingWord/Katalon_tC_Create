@@ -36,13 +36,10 @@ if (1 == 2) {
     }
 }
 
-baseDir = (GlobalVariable.projectPath + '/Data Files/')
-
 books = []
 
-//new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/Bible_Books.csv').splitEachLine(',', { def fields ->
+new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/Bible_Books.csv').splitEachLine(',', { def fields ->
 //new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/NT_Books.csv').splitEachLine(',', { def fields ->
-new File(GlobalVariable.projectPath + '/Data Files/Reference/Bible_Books.csv').splitEachLine(',', { def fields ->
         bookNum = (fields[0])
 
         if (bookNum.length() < 2) {
