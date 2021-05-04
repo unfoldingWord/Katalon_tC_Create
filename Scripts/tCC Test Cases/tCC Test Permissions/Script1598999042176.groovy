@@ -20,7 +20,7 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : 'tc01', ('password') : 'tc01', ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
 if (!(WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
-        , ('resource') : 'unfoldingWord® Translation Academy'], FailureHandling.STOP_ON_FAILURE))) {
+        , ('resource') : 'en_ta'], FailureHandling.STOP_ON_FAILURE))) {
     KeywordUtil.markFailed('Exiting script because organization was not found.')
 	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the organization was not found.')
 }

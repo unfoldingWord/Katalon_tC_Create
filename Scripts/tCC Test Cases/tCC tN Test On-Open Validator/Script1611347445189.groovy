@@ -26,7 +26,7 @@ errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 
 saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
 // Alternate languages/files to test
-langFiles = [('ru') : ['en_tn_57-TIT.tsv', 'en_tn_65-3JN.tsv'],
+langFiles = [('ru') : ['en_tn_57-TIT.tsv', 'en_tn_65-3JN.tsv', 'en_tn_08-RUT.tsv'],
 				('hi') : ['en_tn_57-TIT.tsv', 'en_tn_67-REV']]
 
 if (GlobalVariable.url == 'create.translationcore.com') {
