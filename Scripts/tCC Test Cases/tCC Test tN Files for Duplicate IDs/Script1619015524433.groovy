@@ -38,7 +38,7 @@ someBooks = filesPath + 'Some_Books.csv'
 oneBook = filesPath + 'One_Book.csv'
 epistleBooks = filesPath + 'Epistle_Books.csv'
 
-myBooks = oneBook
+myBooks = otBooks
 
 testFiles = []
 
@@ -54,6 +54,7 @@ new File(myBooks).splitEachLine(',', { def fields ->
 		testFiles.add(bookNum + '-' + bookAbrv)
 	})
 
+//testFiles = ['63-1JN']
 
 repoBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
 
@@ -73,7 +74,8 @@ testFiles.each { book ->
 	
 	WebUI.navigateToUrl(repoFile)
 	
-	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
+	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15) || 
+		WebUI.waitForElementPresent(findTestObject('Page_Git Repo/header_Row'), 15)) {
 	
 		WebUI.delay(2)
 			
@@ -102,11 +104,13 @@ def getRowIDs(file) {
 	def chpts = []
 	def verss = []
 	table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
+//	println(table)
 	table.splitEachLine(' ', { def fields ->
 		book = fields[0]
 		chapter = fields[1]
 		verse = fields[2]
 		id = fields[3]
+//		println(id)
 		chpts.add(chapter)
 		verss.add(verse)
 		if (ids.containsKey(id)) {
