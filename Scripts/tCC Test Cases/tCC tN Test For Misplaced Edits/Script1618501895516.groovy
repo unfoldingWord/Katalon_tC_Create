@@ -18,9 +18,15 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
+baseRepo = 'https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/'
 
-	testFiles.each { file ->
+//testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
+//testFiles = ['en_tn_43-LUK.tsv']
+//testFiles = ['en_tn_65-3JN.tsv']
+testFiles = ['en_tn_57-TIT.tsv']
+
+testFiles.each { file ->
+//for (file in testFiles) {
 	WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('file') : file], FailureHandling.STOP_ON_FAILURE)
 	
 	WebUI.delay(15)
@@ -32,28 +38,11 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	
 	    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the initial rows per page is set to ' + 
 	        rows) + ' when it should be 25.')
+		return false
 	}
-	
-	displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
-	
-	rowsList = [50, 100, 25, 10]
-	
-	//	WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
-	//	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
-	displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
-	
-	// Count the number of SupportReference fields on the screen (this counts both from the source and target)
-	List elements = WebUI.findWebElements(new TestObject().addProperty('xpath', ConditionType.EQUALS, '//*[@class = \'MuiTypography-root-114 jss255 MuiTypography-subtitle2-126 MuiTypography-colorTextSecondary-140 MuiTypography-alignLeft-129\' and (text() = \'SupportReference\' or . = \'SupportReference\')]'), 
-	    10)
-	
-	totalRows = (elements.size() / 2)
-	
+		
 	page = 'Page_tCC translationNotes/'
 	
-	//dcsRepo = 'https://qa.door43.org/translate_test/en_tn/_edit/tc01-tc-create-1/en_tn_43-LUK.tsv'
-	dcsRepo = 'https://qa.door43.org/translate_test/en_tn/raw/branch/tc01-tc-create-1/en_tn_43-LUK.tsv'
-	
-	//def columns = new String[10]
 	columns = []
 	
 	columns = ['Page_tCC translationNotes/columns_Book', 'Page_tCC translationNotes/columns_Chapter', 'Page_tCC translationNotes/columns_Verse'
@@ -63,13 +52,6 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 	
 	KeywordUtil.logInfo('Setting all columns ON')
-	
-	for (def c : (0..columns.size() - 1)) {
-	    //    col = (page + (columns[c]))
-	    col = (columns[c])
-	
-	    WebUI.uncheck(findTestObject(col), FailureHandling.OPTIONAL)
-	}
 	
 	//One by one set each column on 
 	for (def c : (0..columns.size() - 1)) {
@@ -84,6 +66,8 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	
 	atEnd = false
 	
+	done = false
+	
 	pages = 0
 	
 	row = 1
@@ -94,53 +78,78 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	
 	repoTexts = []
 	
-	while (!(atEnd) && (pages < 250)) {
+	while (!(done) && (pages < 300)) {
 	    myRow += 1
+
+		if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]), 1, FailureHandling.OPTIONAL)) {
 	
-	    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
+		    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
+		
+		    myText = ((('Testing-row-' + myRow) + '-ID=') + myID)
+		
+		    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
+		        myText)
+			
+			println('Updated ID ' + myID + ' on row ' + (myRow-1))
+		
+		    repoLines.add(myRow)
+		
+		    repoTexts.add(myText)
+		
+		    row += 24
+		
+		    myRow += 24
+		
+			if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]), 1, FailureHandling.OPTIONAL)) {
 	
-	    myText = ((('Testing row ' + myRow) + ' ID = ') + myID)
+			    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
+				
+				while (myID.length() == 0) {
+					row -= 1
+					
+					myRow -= 1
+					
+					myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
+					
+				}
+			
+			    myText = ((('Testing-row-' + myRow) + '-ID=') + myID)
+			
+			    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
+			        myText)
+			
+				println('Updated ID ' + myID + ' on row ' + (myRow-1))
+			
+			    repoLines.add(myRow)
+			
+			    repoTexts.add(myText)
+			}
+		}
+		
+		if (!atEnd) {
 	
-	    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
-	        myText)
-	
-	    repoLines.add(myRow)
-	
-	    repoTexts.add(myText)
-	
-	    row += 24
-	
-	    myRow += 24
-	
-	    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]))
-	
-	    myText = ((('Testing row ' + myRow) + ' ID = ') + myID)
-	
-	    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
-	        myText)
-	
-	    repoLines.add(myRow)
-	
-	    repoTexts.add(myText)
-	
-	    row = 1
-	
-	    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
-	
-	    count = 0
-	
-	    while ((count < 5) && !(WebUI.verifyElementClickable(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'), 
-	        FailureHandling.OPTIONAL))) {
-	        WebUI.delay(1)
-	
-	        count++
-	    }
-	    
-	    if (count >= 5) {
-	        println('Next Page was not clickable after 5 seconds, assuming last page.')
-	
-	        atEnd = true
-	    }
+		    row = 1
+		
+		    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
+		
+		    count = 0
+		
+		    while ((count < 5) && !(WebUI.verifyElementClickable(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'), 
+		        FailureHandling.OPTIONAL))) {
+		        WebUI.delay(1)
+		
+		        count++
+		    }
+		    
+		    if (count >= 5) {
+		        println('Next Page was not clickable after 5 seconds, assuming last page.')
+		
+		        atEnd = true
+		    }
+			
+		} else {
+			done = true
+		}
 	    
 	    pages++
 	}
@@ -150,49 +159,45 @@ testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn
 	WebUI.delay(10)
 	
 	WebUI.closeBrowser()
-} 
 
-if (1 == 2) {
-	// Open a second browser tab
-	WebUI.executeJavaScript('window.open();', [])
-	
-	currentWindow = WebUI.getWindowIndex()
-	
-	//Go to new tab
-	WebUI.switchToWindowIndex(currentWindow + 1)
 	
 	// Navigate to dcs repo
+	dcsRepo = baseRepo + file 
 	
-	WebUI.navigateToUrl(dcsRepo)
+	WebUI.openBrowser(dcsRepo)
 	
-	WebUI.delay(3)
+	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
 	
-	println(repoLines)
-	println(repoTexts)
-	
-	text = WebUI.getText(findTestObject('Page_Git Repo/text_Full_Repo_Raw'))
-	
-	//println(text)
-	
-	List lines = text.split( '\n' )
-	
-	l = 0
-	
-	//for (def line : repoLines) {
-	repoLines.each { line -> 
+		WebUI.delay(2)
+			
+		table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
 		
-	//	println(line)
+		errorCount = 0
 		
-		text = lines[line-1]
-		
-		println(text)
-	
-	    if (!(text.contains(repoTexts[l]))) {
-	        println((((('ERROR: repo line ' + line) + ' text is ') + text) + ', expected to find ') + (repoTexts[l]))
-	    }
-		
-		l ++
+		row = 0
+		table.splitEachLine(' ', { def fields ->
+			book = fields[0]
+			chapter = fields[1]
+			verse = fields[2]
+			id = fields[3]
+			sRef = fields[4]
+			if (sRef.indexOf('Testing-row-') >= 0 ) {
+				if (fields[4].indexOf(fields[3]) < 0) {
+					println('ERROR: on row ' + (row+1) + ', ' + fields[3] + ' not found in ' + fields[4])
+					println('The ID is [' + fields[3] + '] and the SupportReference is [' + fields[4] + '].')
+					errorCount ++
+				} else {
+					println('Found match on row ' + (row+1))
+				}
+			}
+			row ++
+			
+		})
 	}
+	
+	println(errorCount + ' errors were found in ' + file + '.')
+	
+	WebUI.closeBrowser()
 }
 
 GlobalVariable.scriptRunning = false

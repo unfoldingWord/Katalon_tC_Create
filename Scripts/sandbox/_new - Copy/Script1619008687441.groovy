@@ -27,73 +27,46 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import com.kms.katalon.core.webui.driver.DriverFactory
 
-dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
+testRows = ['00', '01', '25', '26', '50', '51', '75', '76']
 
-filesPath = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/'
+// Navigate to dcs repo
+dcsRepo = 'https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/en_tn_43-LUK.tsv'
 
-allBooks = filesPath + 'Bible_Books.csv'
-ntBooks = filesPath + 'NT_Books.csv'
-otBooks = filesPath + 'OT_Books.csv'
-someBooks = filesPath + 'Some_Books.csv'
-oneBook = filesPath + 'One_Book.csv'
-epistleBooks = filesPath + 'Epistle_Books.csv'
+WebUI.openBrowser(dcsRepo)
 
-myBooks = oneBook
+if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
 
-testFiles = []
-
-new File(myBooks).splitEachLine(',', { def fields ->
-		bookNum = (fields[0])
-
-		if (bookNum.length() < 2) {
-			bookNum = ('0' + bookNum)
-		}
-		
-		bookAbrv = (fields[1])
-
-		testFiles.add(bookNum + '-' + bookAbrv)
-	})
-
-
-repoBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
-
-xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-
-WebUI.openBrowser('')
-
-WebUI.maximizeWindow()
-
-testFiles.each { book ->
-	
-	repoFile = repoBase + 'en_tn_' + book + '.tsv'
-	
-	WebUI.navigateToUrl(repoFile)
-	
-	WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)
-	
 	WebUI.delay(2)
 	
-	xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
+	errorCount = 0 
 	
-	getRowIDs(xPath)
+	table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
 	
-}
-
-def getRowIDs(xPath) {
-	WebDriver driver = DriverFactory.getWebDriver()
-	WebElement Table = driver.findElement(By.xpath(xPath))
-	List<WebElement> rows = Table.findElements(By.tagName('tr'))
-	rows_count = rows.size()
+	row = 0
 	
-	def ids = [:]
-	for (int row = 0; row < rows_count; row++) {
-		List<WebElement> columns = rows.get(row).findElements(By.tagName('td'))
-		id = columns.get(3).getText()
-		if (ids.containsKey(id)) {
-			row1 = ids.get(id)
-			println('##### ERROR: ID ' + id + ' is duplicateed in rows ' + row1 + ' and ' + row)
-		} else {
-			ids.put(id,row)
+	table.splitEachLine(' ', { def fields ->
+		book = fields[0]
+		chapter = fields[1]
+		verse = fields[2]
+		id = fields[3]
+		sRef = fields[4]
+		String sRow = row
+		if (sRow.length() < 2) {
+			sRow = '0' + sRow
 		}
-	}
-}		
+		l2 = sRow.substring(sRow.length()-2, sRow.length())
+		if (testRows.contains(l2) ) {
+			if (fields[4].indexOf(fields[3]) < 0) {
+				println('ERROR: on row ' + sRow + ', ' + fields[3] + ' not found in ' + fields[4])
+				println('The ID is [' + fields[3] + '] and the SupportReference is [' + fields[4] + '].\n')
+				errorCount ++
+			} else {
+				println('Found match on row ' + sRow)
+			}
+		}
+		row ++
+		
+	})
+	
+	println(errorCount + ' errors were detected.')
+}

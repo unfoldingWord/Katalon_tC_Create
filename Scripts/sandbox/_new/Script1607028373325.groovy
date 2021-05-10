@@ -27,73 +27,64 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import com.kms.katalon.core.webui.driver.DriverFactory
 
-dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
+repo = 'https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/en_tn_57-TIT.tsv'
 
-filesPath = '/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/'
+WebUI.openBrowser(repo)
 
-allBooks = filesPath + 'Bible_Books.csv'
-ntBooks = filesPath + 'NT_Books.csv'
-otBooks = filesPath + 'OT_Books.csv'
-someBooks = filesPath + 'Some_Books.csv'
-oneBook = filesPath + 'One_Book.csv'
-epistleBooks = filesPath + 'Epistle_Books.csv'
+table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
+table.splitEachLine(' ', { def fields ->
+	book = fields[0]
+	chapter = fields[1]
+	verse = fields[2]
+	id = fields[3]
+	sRef = fields[4]
+})
 
-myBooks = oneBook
+//myFile = '/Users/cckozie/Downloads/en_tn_43-LUK-line-edits.tsv'
+myFile = '/Users/cckozie/Downloads/en_tn_43-LUK-edit2.tsv'
 
-testFiles = []
+testRows = ['00', '01', '25', '26', '50', '51', '75', '76']
 
-new File(myBooks).splitEachLine(',', { def fields ->
-		bookNum = (fields[0])
+f3 = 'uk55'
+f4 = 'Testing row 2 ID = uk55'
 
-		if (bookNum.length() < 2) {
-			bookNum = ('0' + bookNum)
-		}
-		
-		bookAbrv = (fields[1])
+loc = f4.indexOf(f3)
+println('loc is ' + loc)
 
-		testFiles.add(bookNum + '-' + bookAbrv)
-	})
+row = 1
+String ssRow = row
+if (ssRow.length() < 2) {
+	ssRow = '0' + ssRow
+}
+l2 = ssRow.substring(ssRow.length()-2, ssRow.length())
+println(l2  + ':' +  l2.length())
 
-
-repoBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
-
-xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-
-WebUI.openBrowser('')
-
-WebUI.maximizeWindow()
-
-testFiles.each { book ->
-	
-	repoFile = repoBase + 'en_tn_' + book + '.tsv'
-	
-	WebUI.navigateToUrl(repoFile)
-	
-	WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)
-	
-	WebUI.delay(2)
-	
-	xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-	
-	getRowIDs(xPath)
-	
+if (testRows.contains(l2) ) {
+	if (f4.indexOf(f3) < 0) {
+		println('ERROR: on row ' + ssRow + ', ' + f3 + ' not found in ' + f4)
+	} else {
+		println('Found match on row ' + ssRow)
+	}
 }
 
-def getRowIDs(xPath) {
-	WebDriver driver = DriverFactory.getWebDriver()
-	WebElement Table = driver.findElement(By.xpath(xPath))
-	List<WebElement> rows = Table.findElements(By.tagName('tr'))
-	rows_count = rows.size()
-	
-	def ids = [:]
-	for (int row = 0; row < rows_count; row++) {
-		List<WebElement> columns = rows.get(row).findElements(By.tagName('td'))
-		id = columns.get(3).getText()
-		if (ids.containsKey(id)) {
-			row1 = ids.get(id)
-			println('##### ERROR: ID ' + id + ' is duplicateed in rows ' + row1 + ' and ' + row)
+//return false
+row = 0
+new File(myFile).splitEachLine('\t', { def fields ->
+	String sRow = row
+	if (sRow.length() < 2) {
+		sRow = '0' + sRow
+	}
+	l2 = sRow.substring(sRow.length()-2, sRow.length())
+//	println(l2)
+	if (testRows.contains(l2) ) {
+		if (fields[4].indexOf(fields[3]) < 0) {
+			println('ERROR: on row ' + sRow + ', ' + fields[3] + ' not found in ' + fields[4])
+			println('The ID is [' + fields[3] + '] and the SupportReference is [' + fields[4] + '].')
 		} else {
-			ids.put(id,row)
+			println('Found match on row ' + sRow)
 		}
 	}
-}		
+//	println(row + ' - ' + fields[3] + ' : ' + fields[4])
+	row ++
+})
+
