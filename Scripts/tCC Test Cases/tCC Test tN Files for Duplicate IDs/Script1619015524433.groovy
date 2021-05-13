@@ -38,7 +38,7 @@ someBooks = filesPath + 'Some_Books.csv'
 oneBook = filesPath + 'One_Book.csv'
 epistleBooks = filesPath + 'Epistle_Books.csv'
 
-myBooks = otBooks
+myBooks = ntBooks
 
 testFiles = []
 
@@ -56,7 +56,11 @@ new File(myBooks).splitEachLine(',', { def fields ->
 
 //testFiles = ['63-1JN']
 
-repoBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
+masterBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
+
+myRepoBase = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/'
+
+repoBase = myRepoBase
 
 //xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
 
@@ -72,24 +76,33 @@ testFiles.each { book ->
 	
 	repoFile = repoBase + file
 	
+	println('Testing ' + repoFile)
+	
 	WebUI.navigateToUrl(repoFile)
 	
-	if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15) || 
-		WebUI.waitForElementPresent(findTestObject('Page_Git Repo/header_Row'), 15)) {
-	
-		WebUI.delay(2)
-			
-//		xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
-				
-		getRowIDs(file)
-		
-	} else {
-		msg = 'Bypassing ' + file + ' because it is not properly formatted.'
+	if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/text_404_Error'), 1, FailureHandling.OPTIONAL)) {
+		msg = '404 error on ' + repoFile
 		println(msg)
 		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
 		
+	} else {
+		
+		if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15) || 
+			WebUI.waitForElementPresent(findTestObject('Page_Git Repo/header_Row'), 15)) {
+		
+			WebUI.delay(2)
+				
+	//		xPath = '/html/body/div[1]/div[2]/div[2]/div[5]/div/div/table/tbody'
+					
+			getRowIDs(file)
+			
+		} else {
+			msg = 'Bypassing ' + file + ' because it is not properly formatted.'
+			println(msg)
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+			
+		}
 	}
-	
 }
 
 GlobalVariable.scriptRunning = false

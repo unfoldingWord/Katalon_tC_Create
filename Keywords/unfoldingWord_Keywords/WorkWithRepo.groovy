@@ -95,8 +95,24 @@ public class WorkWithRepo {
 		HotKeys.sendKeys(null, 'paste')
 
 		WebUI.delay(1)
+		
+		def enabled = WebUI.verifyElementClickable(findTestObject('Object Repository/Page_Git Repo/button_CommitChanges'), FailureHandling.OPTIONAL)
 
-		WebUI.click(findTestObject('Page_Git Repo/button_CommitChanges'))
+		println('enabled is ' + enabled)
+
+		if (enabled) {
+			WebUI.click(findTestObject('Page_Git Repo/button_CommitChanges'))
+		} else {
+			WebUI.click(findTestObject('Page_Git Repo/button_Cancel'))
+		}
+//		if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/button_CommitChanges'), 3, FailureHandling.OPTIONAL)) {
+		
+//			WebUI.click(findTestObject('Page_Git Repo/button_CommitChanges'))
+
+//		} else {
+//			println('Commit button not enabled')
+//			WebUI.click(findTestObject('Page_Git Repo/button_Cancel'))
+//		}
 
 		WebUI.closeBrowser()
 

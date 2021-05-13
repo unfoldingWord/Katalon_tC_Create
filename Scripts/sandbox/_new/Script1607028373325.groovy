@@ -12,7 +12,7 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.webui.keyword.internal.WebUIAbstractKeyword
+import com.kms.katalon.core.webui.keyword.internal.WebUIAbstractKeyword as WebUIAbstractKeyword
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
@@ -21,70 +21,67 @@ import java.awt.datatransfer.Clipboard as Clipboard
 import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
+import org.openqa.selenium.By as By
+import org.openqa.selenium.WebDriver as WebDriver
+import org.openqa.selenium.WebElement as WebElement
+import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
-import org.openqa.selenium.By
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebElement
-import com.kms.katalon.core.webui.driver.DriverFactory
+WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser, ('$password') : GlobalVariable.validatePassword
+        , ('file') : 'GlobalVariable.tNFile]'], FailureHandling.STOP_ON_FAILURE)
 
-repo = 'https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/en_tn_57-TIT.tsv'
-
-WebUI.openBrowser(repo)
-
-table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
-table.splitEachLine(' ', { def fields ->
-	book = fields[0]
-	chapter = fields[1]
-	verse = fields[2]
-	id = fields[3]
-	sRef = fields[4]
-})
-
-//myFile = '/Users/cckozie/Downloads/en_tn_43-LUK-line-edits.tsv'
-myFile = '/Users/cckozie/Downloads/en_tn_43-LUK-edit2.tsv'
-
-testRows = ['00', '01', '25', '26', '50', '51', '75', '76']
-
-f3 = 'uk55'
-f4 = 'Testing row 2 ID = uk55'
-
-loc = f4.indexOf(f3)
-println('loc is ' + loc)
-
-row = 1
-String ssRow = row
-if (ssRow.length() < 2) {
-	ssRow = '0' + ssRow
-}
-l2 = ssRow.substring(ssRow.length()-2, ssRow.length())
-println(l2  + ':' +  l2.length())
-
-if (testRows.contains(l2) ) {
-	if (f4.indexOf(f3) < 0) {
-		println('ERROR: on row ' + ssRow + ', ' + f3 + ' not found in ' + f4)
-	} else {
-		println('Found match on row ' + ssRow)
-	}
-}
-
+//WebUI.clickOffset(findTestObject('Page_tCC translationNotes/link2'), -250, 0)
 //return false
+
+xPath = '/html/body/div[2]/div[3]/div/div[2]/p'
+
+WebDriver driver = DriverFactory.getWebDriver()
+
+WebElement Paragraph = driver.findElement(By.xpath(xPath))
+
+List rows = Paragraph.findElements(By.tagName('p'))
+
+List links = Paragraph.findElements(By.tagName('a'))
+
 row = 0
-new File(myFile).splitEachLine('\t', { def fields ->
-	String sRow = row
-	if (sRow.length() < 2) {
-		sRow = '0' + sRow
-	}
-	l2 = sRow.substring(sRow.length()-2, sRow.length())
-//	println(l2)
-	if (testRows.contains(l2) ) {
-		if (fields[4].indexOf(fields[3]) < 0) {
-			println('ERROR: on row ' + sRow + ', ' + fields[3] + ' not found in ' + fields[4])
-			println('The ID is [' + fields[3] + '] and the SupportReference is [' + fields[4] + '].')
-		} else {
-			println('Found match on row ' + sRow)
-		}
-	}
-//	println(row + ' - ' + fields[3] + ' : ' + fields[4])
-	row ++
-})
+links.each({
+		println('The row text is ' + rows[row].getText())
+        println(it.getText())
+		it.click()
+		row ++
+    })
+return false
+for (def row : (1..4)) {
+    if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/text_Validator_Message_Row_Parmed', 
+            [('row') : row]), 1)) {
+        text = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_Validator_Message_Row_Parmed', 
+                [('row') : row]))
+
+        println((('Text of row ' + row) + ' is ') + text)
+
+        width = WebUI.getElementWidth(findTestObject('Object Repository/Page_tCC translationNotes/text_Validator_Message_Row_Parmed', 
+                [('row') : row]))
+
+        println((('Width of row ' + row) + ' is ') + width)
+
+        height = WebUI.getElementHeight(findTestObject('Object Repository/Page_tCC translationNotes/text_Validator_Message_Row_Parmed', 
+                [('row') : row]))
+
+        println((('Width of row ' + row) + ' is ') + width)
+
+        println((('Height of row ' + row) + ' is ') + height)
+
+        linkOffset = ((width / 2) -25) * -1
+		
+		println('Clicking link on row ' + row)
+
+        WebUI.clickOffset(findTestObject('Object Repository/Page_tCC translationNotes/text_Validator_Message_Row_Parmed', 
+                [('row') : row]), -250, -528)
+		return false
+		WebUI.delay(5)
+    } else {
+        break
+    }
+}
+
+WebUI.clickOffset(findTestObject('Page_tCC translationNotes/link2'), -250, 0)
 
