@@ -41,7 +41,7 @@ epistleBooks = filesPath + 'Epistle_Books.csv'
 
 myBooks = ntBooks
 
-errorsOnly = true 
+dupsOnly = true 
 
 testFiles = []
 
@@ -105,10 +105,11 @@ testFiles.each { book ->
 	WebUI.navigateToUrl(repoFile)
 	
 	if (WebUI.verifyElementPresent(findTestObject('Page_Git Repo/text_404_Error'), 1, FailureHandling.OPTIONAL)) {
-		msg = '404 error on ' + repoFile
-		println(msg)
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-		
+		if (!dupesOnly) {
+			msg = '404 error on ' + repoFile
+			println(msg)
+			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+		}
 	} else {
 		
 		if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15) || 
@@ -162,7 +163,7 @@ def getRowIDs(file) {
 		r ++
 	})
 	
-	if (dupCount < 1 && !errorsOnly) { 
+	if (dupCount < 1 && !dupsOnly) { 
 		msg = 'No duplicate IDs found in ' + file
 		println(msg)
 		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
