@@ -144,4 +144,9 @@
       <initValue>''</initValue>
       <name>timings</name>
    </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>activeUser</name>
+   </GlobalVariableEntity>
 </GlobalVariableEntities>

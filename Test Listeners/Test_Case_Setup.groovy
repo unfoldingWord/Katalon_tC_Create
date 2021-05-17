@@ -36,6 +36,7 @@ class Test_Case_Setup {
 		GlobalVariable.tcMessages = []
 		def executionProfile = RC.getExecutionProfile()
 		KeywordUtil.logInfo('Execution profile is ' + executionProfile)
+		println('Execution profile is ' + executionProfile)
 		if (GlobalVariable.systemOS == '' || GlobalVariable.systemOS == null) {
 			GlobalVariable.systemOS = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
 		}

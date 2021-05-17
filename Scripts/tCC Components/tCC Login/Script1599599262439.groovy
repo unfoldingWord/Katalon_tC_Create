@@ -48,6 +48,8 @@ if (newSession) {
 if (user == "") {
 
 	println('Logging in as ' + GlobalVariable.user1Name)
+	
+	GlobalVariable.activeUser = GlobalVariable.user1Name
 
 	WebUI.setText(findTestObject('Page_tC Create/input__username'), GlobalVariable.user1Name)
 
@@ -67,6 +69,8 @@ else if (user != "?") {
 	
 	println('Logging in as ' + user)
 	
+	GlobalVariable.activeUser = user
+
 	WebUI.setText(findTestObject('Page_tC Create/input__username'), user)
 	
 	WebUI.setText(findTestObject('Page_tC Create/input__password'), password)

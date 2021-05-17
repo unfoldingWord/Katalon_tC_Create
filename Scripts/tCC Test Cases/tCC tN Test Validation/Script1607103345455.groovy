@@ -27,11 +27,10 @@ import groovy.time.*
 // 03/04/21	Added a single test in 1TI for reporting wrong number of tabs when there actually are missing rows
 // 04/29/21 Added option for not testing the Levels
 // 04/29/21 Added "alwaysErrors" processing for priorities that should never get reported
-
 // NEED TO RETHINK SOME ELEMENTS OF THIS SO THAT FUTURE CHANGES IN THE VALIDATOR DO NOT INVALIDATE MY POSITIVE TESTS
 // Change to force git commmit
-
 dirName = (('/Users/' + GlobalVariable.pcUser) + '/Downloads')
+
 println(dirName)
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
@@ -42,13 +41,16 @@ levelMedium = 600
 
 levelTestFile = (baseDir + 'Validation-Test_[myLevel]_Level.tsv.csv')
 
+ignoreOnOpenErrors = true
+
 testFiles = ['en_tn_50-EPH.tsv', 'en_tn_57-TIT.tsv', 'en_tn_42-MRK.tsv', 'en_tn_43-LUK.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv'
-    , 'en_tn_52-COL.tsv', 'en_tn_15-EZR.tsv', 'en_tn_56-2TI.tsv', 'en_tn_41-MAT.tsv', 'en_tn_16-NEH.tsv', 'en_tn_49-GAL.tsv', 
-	'en_tn_06-JOS.tsv', 'en_tn_29-JOL.tsv', 'en_tn_64-2JN.tsv', 'en_tn_55-1TI.tsv']
+    , 'en_tn_52-COL.tsv', 'en_tn_15-EZR.tsv', 'en_tn_56-2TI.tsv', 'en_tn_41-MAT.tsv', 'en_tn_16-NEH.tsv', 'en_tn_49-GAL.tsv'
+    , 'en_tn_06-JOS.tsv', 'en_tn_29-JOL.tsv', 'en_tn_64-2JN.tsv', 'en_tn_55-1TI.tsv']
 
 // expectedFails holds the list of rows (base 0) in the baseline csv files that currently are expected to fail when tested
-expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1,2,3,4],  ('en_tn_45-ACT.tsv') : [1], ('en_tn_46-ROM.tsv') : [0], ('en_tn_15-EZR.tsv') : [0, 1], ('en_tn_56-2TI.tsv') : [
-        0], ('en_tn_41-MAT.tsv') : [0, 1], ('en_tn_49-GAL.tsv') : [0], ('en_tn_06-JOS.tsv') : [0], ('en_tn_29-JOL.tsv') : [0]]
+expectedFails = [('en_tn_57-TIT.tsv') : [2], ('en_tn_43-LUK.tsv') : [1, 2, 3, 4], ('en_tn_45-ACT.tsv') : [1], ('en_tn_46-ROM.tsv') : [
+        0], ('en_tn_15-EZR.tsv') : [0, 1], ('en_tn_56-2TI.tsv') : [0], ('en_tn_41-MAT.tsv') : [0, 1], ('en_tn_49-GAL.tsv') : [
+        0], ('en_tn_06-JOS.tsv') : [0], ('en_tn_29-JOL.tsv') : [0]]
 
 // These are the valid entries for SupportReference. All are 'starts with' except the last which is 'equals'.
 validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgodprinciples']
@@ -57,13 +59,14 @@ validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgod
 alwaysErrors = ['450']
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 0
+start = 10
 
 end = (testFiles.size() - 1)
 
-//end = start
+end = (start + 1)
 
 testLevels = true
+
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 errorCount = 0
 
@@ -80,17 +83,16 @@ first = true
 timings = []
 
 for (def fileNum : (start..end)) {
-
     errorFlg = false
 
     testFile = (testFiles[fileNum])
 
     println('>>>>>>>> Running test on ' + testFile)
-	
+
     baseFile = (((baseDir + 'Validation-') + testFile) + '_base.csv')
-	
-	(basePrioritys, baseErrors, baseMessages) = parseFile(baseFile)
-				
+
+    (basePrioritys, baseErrors, baseMessages) = parseFile(baseFile)
+
     println('testFile:' + testFile)
 
     vFiles = getValidationFiles(testFile)
@@ -102,6 +104,21 @@ for (def fileNum : (start..end)) {
     WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
             , ('$password') : GlobalVariable.validatePassword, ('file') : testFile], FailureHandling.STOP_ON_FAILURE)
 
+    // Skip this project if there is an op-open validator error
+    if (ignoreOnOpenErrors) {
+        if (WebUI.verifyElementPresent(findTestObject('Object Repository/Page_tCC translationNotes/button_validator_Message_Close'), 3, FailureHandling.OPTIONAL)) {
+            msg = (testFile + ' was skipped because the on-open validator reported an error.')
+
+            println(msg)
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+
+            WebUI.delay(2)
+
+            continue
+        }
+    }
+    
     // If first time, verify the default validation level
     if (first) {
         testCount++
@@ -116,12 +133,12 @@ for (def fileNum : (start..end)) {
         } else {
             passCount++
         }
-		
+        
         first = false
     }
     
     // If Matthew project test for validation levels
-    if (fileNum == 9 && testLevels) {
+    if ((fileNum == 9) && testLevels) {
         levels = ['High', 'Medium']
 
         for (def level : levels) {
@@ -131,7 +148,7 @@ for (def fileNum : (start..end)) {
 
             retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseValidationLevel'(level)
 
-			(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
+            (vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
 
             if (newContent != '') {
                 // newContent will be empty if the validator did not find any errors
@@ -171,7 +188,8 @@ for (def fileNum : (start..end)) {
             if (newContent != '') {
                 oFile = new File(myFile)
 
-                oFile.append(err) // If the validator did not report any errors, then use the level test file as the source
+                oFile.append(err // If the validator did not report any errors, then use the level test file as the source
+                    )
             } else {
                 myFile = levelFile
             }
@@ -213,18 +231,18 @@ for (def fileNum : (start..end)) {
     timeStart = new Date()
 
     // Run the validation
-	(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
+    (vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
 
     timeEnd = new Date()
 
     TimeDuration timeElapsed = TimeCategory.minus(timeEnd, timeStart)
 
     timings.add(((testFiles[fileNum]) + ' : ') + timeElapsed)
-	
-	println(newPrioritys)
-	
-	println(alwaysErrors)
-	
+
+    println(newPrioritys)
+
+    println(alwaysErrors)
+
     if (newPrioritys.size() == 0) {
         // The validator did not find any errors. Continue with next file.
         msg = (('The validator found no errors in ' + testFile) + '.')
@@ -236,85 +254,95 @@ for (def fileNum : (start..end)) {
         continue
     }
     
-	for (priority in  alwaysErrors) {	
-		testCount++
-		if (newPrioritys.contains(priority)) {
-			println('ERROR: the validator reported a priority ' + priority + ' error in ' + testFile + '.')
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('The test failed because the validator reported a priority ' + priority + ' error in ' + testFile + '.')
-			errorCount++
-		} else {
-			passCount++
-		}
-	}
+    for (def priority : alwaysErrors) {
+        testCount++
 
+        if (newPrioritys.contains(priority)) {
+            println(((('ERROR: the validator reported a priority ' + priority) + ' error in ') + testFile) + '.')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((('The test failed because the validator reported a priority ' + 
+                priority) + ' error in ') + testFile) + '.')
+
+            errorCount++
+        } else {
+            passCount++
+        }
+    }
+    
     fixedRows = []
-	
-	println('++++++++++++baseErrors.size() is ' + baseErrors.size())
-	
-	if (baseErrors.size() > 0) {
-		
-		for (def row : (0 .. baseErrors.size()-1)) {
-			fnd = false
-			int[] found = newErrors.findIndexValues({
-				it == baseErrors[row]
-			})
-		//	println(found)
-			if (found.size() > 0) {
-				for (def i : (0 .. found.size()-1)) {
-					if (newPrioritys[found[i]] == basePrioritys[row] || newMessages[found[i]] == baseMessages[row]) {
-						fnd = true
-					}
-				}
-			}
-			if (!fnd) {
-				fixedRows.add(row)
-				msg = ((((('The error in row ' + (row + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
-				println(msg)
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
-			}
-		}
-		
-		println('Fixed base rows in ' + testFile + ' = ' + fixedRows)
 
-	}
-	
+    println('++++++++++++baseErrors.size() is ' + baseErrors.size())
+
+    if (baseErrors.size() > 0) {
+        for (def row : (0..baseErrors.size() - 1)) {
+            fnd = false
+
+            int[] found = newErrors.findIndexValues({ 
+                    it == (baseErrors[row])
+                })
+
+            //	println(found)
+            if (found.size() > 0) {
+                for (def i : (0..found.size() - 1)) {
+                    if (((newPrioritys[(found[i])]) == (basePrioritys[row])) || ((newMessages[(found[i])]) == (baseMessages[
+                    row]))) {
+                        fnd = true
+                    }
+                }
+            }
+            
+            if (!(fnd)) {
+                fixedRows.add(row)
+
+                msg = ((((('The error in row ' + (row + 1)) + ' in ') + testFile) + '_base.csv') + ' was not found by the validator.')
+
+                println(msg)
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+            }
+        }
+        
+        println((('Fixed base rows in ' + testFile) + ' = ') + fixedRows)
+    }
+    
     // Show the additional required columns
-	
-	columns = ['ID', 'OrigQuote']
-	CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+    columns = ['ID', 'OrigQuote']
+
+    CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
     if (fileNum == 0) {
         // Fix the en_tn_50-EPH.tsv validation errors
-        if (!fixedRows.contains(0)) {
+        if (!(fixedRows.contains(0))) {
             u2bwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
 
             u2bwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-			
-			searchFor('u2bw')
+
+            searchFor('u2bw')
 
             WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), u2bwNewQuote)
         }
         
-        if (!fixedRows.contains(1)) {
+        if (!(fixedRows.contains(1))) {
             abbwBaseQuote = 'ἑνὶ…ἐκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
 
             abbwNewQuote = 'ἑνὶ…ἑκάστῳ ἡμῶν ἐδόθη ἡ χάρις'
-			
-			closeAndSearchFor('abbw')
+
+            closeAndSearchFor('abbw')
 
             WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), abbwNewQuote)
-			
-			WebUI.scrollToPosition(0, 0)
-			
-			WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
-		
-			WebUI.delay(1)
+
+            WebUI.scrollToPosition(0, 0)
+
+            WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+            WebUI.delay(1)
         }
-		
+        //            WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
+        // Fix the en_tn_16-NEH.tsv validation errors
     } else if (fileNum == 1) {
         row = 2
 
-        if (!fixedRows.contains(row)) {
+        if (!(fixedRows.contains(row))) {
             testCount++
 
             highlighted = 'rgba(255, 255, 0, 1)'
@@ -338,10 +366,10 @@ for (def fileNum : (start..end)) {
                 passCount++
             }
             
-			baseErrors.remove(row)
+            baseErrors.remove(row)
         }
         
-        if (!fixedRows.contains(0)) {
+        if (!(fixedRows.contains(0))) {
             WebUI.click(findTestObject('Page_tCC translationNotes/button_Preview'))
 
             WebUI.click(findTestObject('Page_tCC translationNotes/text_Introduction to Titus'))
@@ -359,44 +387,43 @@ for (def fileNum : (start..end)) {
             WebUI.delay(1)
         }
         
-        if (!fixedRows.contains(1)) {
-			searchFor('rtc9')
-			
-			NewQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Source_OrigQuote_SearchId'))
-			
-            WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), NewQuote)
-        }        
-        if (!fixedRows.contains(2)) {
-//            WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), '')
+        if (!(fixedRows.contains(1))) {
+            searchFor('rtc9')
 
+            NewQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Source_OrigQuote_SearchId'))
+
+            WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), NewQuote)
+        }
+        
+        if (!(fixedRows.contains(2))) {
             xyz8NewQuote = 'εὐσέβειαν'
-			
-			closeAndSearchFor('xyz8')
+
+            closeAndSearchFor('xyz8')
 
             WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OrigQuote_SearchId'), xyz8NewQuote)
         }
-		
     } else if (fileNum == 2) {
-		changeFlag = false
-		
-        if (!fixedRows.contains(0)) {
-			changeFlag = true
-			
-			columns = ['Occurrence']
-			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
-			
-			searchFor('eke3')
-			
+        changeFlag = false
+
+        if (!(fixedRows.contains(0))) {
+            changeFlag = true
+
+            columns = ['Occurrence']
+
+            CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+
+            searchFor('eke3')
+
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
         }
         
-        if (!fixedRows.contains(1)) {
-			if (changeFlag) {
-				closeAndSearchFor('hm98')
-			} else {
-				searchFor('hm98')
-			}
-			
+        if (!(fixedRows.contains(1))) {
+            if (changeFlag) {
+                closeAndSearchFor('hm98')
+            } else {
+                searchFor('hm98')
+            }
+            
             WebUI.click(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'))
 
             WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), Keys.chord(Keys.COMMAND, 
@@ -405,63 +432,72 @@ for (def fileNum : (start..end)) {
             WebUI.sendKeys(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), '.)')
         }
     } else if (fileNum == 3) {
-		rows = [0, 1, 2, 3, 4]
-		
-		for (row in rows) {
-			
-			errorFlag = testBaseRow(row)
-				
-			if (errorFlag && row == 0) {
-		            println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ') + testFile) + ' when the original text snippet is preceded with a double quote. (Issue 574)')
-		            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') + 
-		                testFile) + ' when the original text snippet is preceded with a double quote. (Issue 574)')
-			} else if (errorFlag && row == 1) {
-				println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ') + testFile) + ' when the scripture link is correctly formated. (Issue 707)')
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') +
-					testFile) + ' when the scripture link is correctly formated. (Issue 707)')
-			} else if (errorFlag && row == 2) {
-				println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ') + testFile) + ' when there is an invisible non-breaking space in the OrigQuote field. (Issue 706)')
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') +
-					testFile) + '  when there is an invisible non-breaking space in the OrigQuote field. (Issue 706)')
-			} else if (errorFlag && row == 3) {
-				println(((prefix + 'ERROR: Validator should not report ' + basePrioritys[row] + ' errors on ID fields that begin with a number as in ' + testFile) + '. (Issue 704)'))
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') +
-					testFile) + '  when the ID field begins withn a number. (Issue 704)')
-			} else if (errorFlag && row == 4) {
-				println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ') + testFile) + ' when there is an invisible trailing space in the GLQuote field. (Issue 705)')
-				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') +
-					testFile) + '  when there is an invisible trailing space in the GLQuote field. (Issue 705)')
-			}
-		}
-		
-    } else if (fileNum == 4) {
-        if (!fixedRows.contains(0)) {
-			columns = ['Occurrence']
-			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+        rows = [0, 1, 2, 3, 4]
 
-			searchFor('p5cd')
+        for (def row : rows) {
+            errorFlag = testBaseRow(row)
+
+            if (errorFlag && (row == 0)) {
+                println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + 
+                    ' when the original text snippet is preceded with a double quote. (Issue 574)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                    (basePrioritys[row])) + ' error in ') + testFile) + ' when the original text snippet is preceded with a double quote. (Issue 574)')
+            } else if (errorFlag && (row == 1)) {
+                println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + 
+                    ' when the scripture link is correctly formated. (Issue 707)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                    (basePrioritys[row])) + ' error in ') + testFile) + ' when the scripture link is correctly formated. (Issue 707)')
+            } else if (errorFlag && (row == 2)) {
+                println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + 
+                    ' when there is an invisible non-breaking space in the OrigQuote field. (Issue 706)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                    (basePrioritys[row])) + ' error in ') + testFile) + '  when there is an invisible non-breaking space in the OrigQuote field. (Issue 706)')
+            } else if (errorFlag && (row == 3)) {
+                println(((((prefix + 'ERROR: Validator should not report ') + (basePrioritys[row])) + ' errors on ID fields that begin with a number as in ') + 
+                    testFile) + '. (Issue 704)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                    (basePrioritys[row])) + ' error in ') + testFile) + '  when the ID field begins withn a number. (Issue 704)')
+            } else if (errorFlag && (row == 4)) {
+                println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + 
+                    ' when there is an invisible trailing space in the GLQuote field. (Issue 705)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                    (basePrioritys[row])) + ' error in ') + testFile) + '  when there is an invisible trailing space in the GLQuote field. (Issue 705)')
+            }
+        }
+    } else if (fileNum == 4) {
+        if (!(fixedRows.contains(0))) {
+            columns = ['Occurrence']
+
+            CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+
+            searchFor('p5cd')
 
             WebUI.delay(1)
 
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '1')
         }
-		
-		row = 1
-		errorFlag = testBaseRow(row)
-			
-		if (errorFlag) {
-            println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ') + testFile) + ' when the " is not followed by a space. (Issue 708)')
-			
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ') + 
-                testFile) + ' when the " is not followed by a space. (Issue 708)')	
+        
+        row = 1
+
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
+            println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + ' when the " is not followed by a space. (Issue 708)')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                (basePrioritys[row])) + ' error in ') + testFile) + ' when the " is not followed by a space. (Issue 708)')
         }
-		
     } else if (fileNum == 5) {
         row = 0
 
-		errorFlag = testBaseRow(row)
-		
-		if (errorFlag) {
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
             println(((prefix + 'ERROR: Validator reports a 621 error in ') + testFile) + ' when the original text snippet is followed by an ellipsis.  (Issue 574)')
 
             CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 621 error in ') + 
@@ -469,10 +505,9 @@ for (def fileNum : (start..end)) {
         }
         
         continue
-		
     } else if (fileNum == 6) {
-        if (!fixedRows.contains(0)) {
-			searchFor('x5g8')
+        if (!(fixedRows.contains(0))) {
+            searchFor('x5g8')
 
             WebUI.delay(1)
 
@@ -489,13 +524,14 @@ for (def fileNum : (start..end)) {
             WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
         }
         
-        if (!fixedRows.contains(1)) {
-			columns = ['GLQuote']
-			CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+        if (!(fixedRows.contains(1))) {
+            columns = ['GLQuote']
+
+            CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
             WebUI.delay(1)
-			
-			searchFor('d39x')
+
+            searchFor('d39x')
 
             noteText = WebUI.getText(findTestObject('Page_tCC translationNotes/text_GLQuote_SearchId'))
 
@@ -505,46 +541,40 @@ for (def fileNum : (start..end)) {
 
             WebUI.delay(1)
         }
-		
     } else if (fileNum == 7) {
+        rows = [0, 1]
 
-        rows = [0,1]
-		
-		for (row in rows) {
+        for (def row : rows) {
+            errorFlag = testBaseRow(row)
 
-			errorFlag = testBaseRow(row)
-				
-			if (errorFlag && row == 0) {
-	            println(((prefix + 'ERROR: Validator reports a 106 error in ') + testFile) + ' although there is no leading space in OrigQuote. (Issue 601)')
-	
-	            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 106 error in ') + 
-	                testFile) + ' although there is no leading space in OrigQuote. (Issue 601)')
-				
-	        } else if (errorFlag && row == 1) {
-	            println(((prefix + 'ERROR: Validator incorrectly reports a 916 error in ') + testFile) + ' although the OrigQuote exactly matches the highlighted snippet.  (Issue 600)')
-	
-	            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 916 error in ') + 
-	                testFile) + ' although the OrigQuote exactly matches the highlighted snippet. (Issue 600)')
-	        }
-		}
+            if (errorFlag && (row == 0)) {
+                println(((prefix + 'ERROR: Validator reports a 106 error in ') + testFile) + ' although there is no leading space in OrigQuote. (Issue 601)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 106 error in ') + 
+                    testFile) + ' although there is no leading space in OrigQuote. (Issue 601)')
+            } else if (errorFlag && (row == 1)) {
+                println(((prefix + 'ERROR: Validator incorrectly reports a 916 error in ') + testFile) + ' although the OrigQuote exactly matches the highlighted snippet.  (Issue 600)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 916 error in ') + 
+                    testFile) + ' although the OrigQuote exactly matches the highlighted snippet. (Issue 600)')
+            }
+        }
         
-        if (!fixedRows.contains(2)) {
-			searchFor('zb3e')
- 
+        if (!(fixedRows.contains(2))) {
+            searchFor('zb3e')
+
             WebUI.delay(1)
 
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_SupportReference_SearchId'), 'figs-idiom')
 
             WebUI.delay(1)
         }
-		
     } else if (fileNum == 8) {
-		
         row = 0
 
-		errorFlag = testBaseRow(row)
-		
-		if (errorFlag) {
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
             println(((prefix + 'ERROR: Validator reports a 95 error in ') + testFile) + ' although there is no leading trailing space in OrigQuote. (Issue 588)')
 
             CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 95 error in ') + 
@@ -552,31 +582,27 @@ for (def fileNum : (start..end)) {
         }
         
         continue
-		
     } else if (fileNum == 9) {
-		
-        rows = [0,1]
-		
-		for (row in rows) {
+        rows = [0, 1]
 
-			errorFlag = testBaseRow(row)
-			
-			if (errorFlag && row == 0) {
-	            println(((prefix + 'ERROR: Validator reports a 786 error in ') + testFile) + ' for rows that do not reference scripture. (Issue 603)')
-	
-	            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 786 error in ') + 
-	                testFile) + ' for rows that do not reference scripture. (Issue 603)')
-				
-	        } else if (errorFlag && row == 1) {
-	            println(((prefix + 'ERROR: Validator reports a 786 error in ') + testFile) + ' for rows that contain multiple links even though one is entered in SupportReference. (Issue 606)')
-	
-	            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 786 error in ') + 
-	                testFile) + ' for rows that contain multiple links even though one is entered in SupportReference. (Issue 606)')
-	        }
-		}
-        		
-        if (!fixedRows.contains(2)) {
-			searchFor('mxm2')
+        for (def row : rows) {
+            errorFlag = testBaseRow(row)
+
+            if (errorFlag && (row == 0)) {
+                println(((prefix + 'ERROR: Validator reports a 786 error in ') + testFile) + ' for rows that do not reference scripture. (Issue 603)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 786 error in ') + 
+                    testFile) + ' for rows that do not reference scripture. (Issue 603)')
+            } else if (errorFlag && (row == 1)) {
+                println(((prefix + 'ERROR: Validator reports a 786 error in ') + testFile) + ' for rows that contain multiple links even though one is entered in SupportReference. (Issue 606)')
+
+                CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a 786 error in ') + 
+                    testFile) + ' for rows that contain multiple links even though one is entered in SupportReference. (Issue 606)')
+            }
+        }
+        
+        if (!(fixedRows.contains(2))) {
+            searchFor('mxm2')
 
             oNote = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
 
@@ -584,133 +610,127 @@ for (def fileNum : (start..end)) {
 
             WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/text_OccurrenceNote_SearchId'), oNote)
         }
-		
     } else if (fileNum == 10) {
-        // Fix the en_tn_16-NEH.tsv validation errors
-        if (!fixedRows.contains(0)) {
-			searchFor('j1o7')
-			
+        if (!(fixedRows.contains(0))) {
+            searchFor('j1o7')
+
             WebUI.delay(1)
 
-			oNote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
-			
-			oNote.replace('(../43/11.md)','(../12/44.md)')
+            oNote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
+
+            oNote.replace('(../43/11.md)', '(../12/44.md)')
 
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'), oNote)
         }
         
-        if (!fixedRows.contains(3)) {
-			closeAndSearchFor('y1jl')
+        if (!(fixedRows.contains(3))) {
+            closeAndSearchFor('y1jl')
 
-			oNote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
-			
-			oNote.replace('(../05/57.md)','(../07/57.md)')
+            oNote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'))
+
+            oNote.replace('(../05/57.md)', '(../07/57.md)')
 
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_OccurrenceNote_SearchId'), oNote)
         }
-		
-        if (!fixedRows.contains(4)) {
-			closeAndSearchFor('kr99')
+        
+        if (!(fixedRows.contains(4))) {
+            closeAndSearchFor('kr99')
 
-			oQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Source_OrigQuote_SearchId'))
+            oQuote = WebUI.getText(findTestObject('Page_tCC translationNotes/text_Source_OrigQuote_SearchId'))
 
             WebUI.setText(findTestObject('Page_tCC translationNotes/text_OrigQuote_SearchId'), oQuote)
         }
-		
     } else if (fileNum == 11) {
-
         row = 0
 
-		errorFlag = testBaseRow(row)
-		
-		if (errorFlag) {
-            println(((prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error "Unknown Bible book name in link" in ') + testFile) + '. (Issue 638)')
-			
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error "Unknown Bible book name in link" in ') + 
-                testFile) + ' . (Issue 638)')
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
+            println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error "Unknown Bible book name in link" in ') + 
+                testFile) + '. (Issue 638)')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                (basePrioritys[row])) + ' error "Unknown Bible book name in link" in ') + testFile) + ' . (Issue 638)')
         }
-		
-		continue
-		
+        
+        continue
     } else if (fileNum == 12) {
-
         row = 0
 
-		errorFlag = testBaseRow(row)
-		
-		if (errorFlag) {
-            println(prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ' + testFile + ' even though the snippet is highlighted and there are no other errors in the check. (Issue 714)')
-			
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ' + testFile + ' even though the snippet is highlighted and there are no other errors in the check. (Issue 714)')
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
+            println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + ' even though the snippet is highlighted and there are no other errors in the check. (Issue 714)')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                (basePrioritys[row])) + ' error in ') + testFile) + ' even though the snippet is highlighted and there are no other errors in the check. (Issue 714)')
         }
-		
-		continue
-	
+        
+        continue
     } else if (fileNum == 13) {
-
         row = 0
 
-		errorFlag = testBaseRow(row)
-		
-		if (errorFlag) {
-            println(prefix + 'ERROR: Validator reports a ' + basePrioritys[row] + ' error in ' + testFile + ' even though there does not appear to be a trailing word joiner. (Issue 711)')
-			
-            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator reports a ' + basePrioritys[row] + ' error in ' + testFile + ' even though there does not appear to be a trailing word joiner. (Issue 711)')
+        errorFlag = testBaseRow(row)
+
+        if (errorFlag) {
+            println(((((prefix + 'ERROR: Validator reports a ') + (basePrioritys[row])) + ' error in ') + testFile) + ' even though there does not appear to be a trailing word joiner. (Issue 711)')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator reports a ') + 
+                (basePrioritys[row])) + ' error in ') + testFile) + ' even though there does not appear to be a trailing word joiner. (Issue 711)')
         }
-		
-		continue
-		
+        
+        continue
     } else if (fileNum == 14) {
-		
-		rows = [0,1]
-		
-		for (row in rows) {
-		
-			testCount++
-			
-			if (fixedRows.contains(row)) {
-				errorCount++
-				if (row == 0) {
-					println('ERROR: Validator failed to report a ' + basePrioritys[row] + ' error in ' + testFile + '.')
-					
-					CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator failed to report a ' + basePrioritys[row] + ' error in ' + testFile + '.')
-					
-				} else if (row == 1) {
-					println('ERROR: Validator failed to report a ' + basePrioritys[row] + ' error in ' + testFile + '.')
-					
-					CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator failed to report a ' + basePrioritys[row] + ' error in ' + testFile + '.')
-				}
-		
-			} else {
-				passCount++
-			}
-		}
-		
-		continue
-		
+        rows = [0, 1]
+
+        for (def row : rows) {
+            testCount++
+
+            if (fixedRows.contains(row)) {
+                errorCount++
+
+                if (row == 0) {
+                    println(((('ERROR: Validator failed to report a ' + (basePrioritys[row])) + ' error in ') + testFile) + 
+                        '.')
+
+                    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator failed to report a ') + 
+                        (basePrioritys[row])) + ' error in ') + testFile) + '.')
+                } else if (row == 1) {
+                    println(((('ERROR: Validator failed to report a ' + (basePrioritys[row])) + ' error in ') + testFile) + 
+                        '.')
+
+                    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((((prefix + 'Test failed because the validator failed to report a ') + 
+                        (basePrioritys[row])) + ' error in ') + testFile) + '.')
+                }
+            } else {
+                passCount++
+            }
+        }
+        
+        continue
     } else if (fileNum == 15) {
-		
-		testCount++
-			
-		if (newPrioritys.contains('988') || newMessages.contains('Wrong number')) {
-			errorCount++
-			println('ERROR: Validator reported a 988 error for missing rows in ' + testFile + '.')
-			
-			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(prefix + 'Test failed because the validator reported a 988 error for missing rows in ' + testFile + '.')
-		} else {
-			
-			passCount++
-		}
-		
-		continue
+        testCount++
+
+        if (newPrioritys.contains('988') || newMessages.contains('Wrong number')) {
+            errorCount++
+
+            println(('ERROR: Validator reported a 988 error for missing rows in ' + testFile) + '.')
+
+            CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((prefix + 'Test failed because the validator reported a 988 error for missing rows in ') + 
+                testFile) + '.')
+        } else {
+            passCount++
+        }
+        
+        continue
     }
-	
+    
     if (baseErrors.size() > fixedRows.size()) {
         // Rerun the validation if any of the base file rows still existing in the validation file were fixed
         initSize = vSize
 
-		(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
-		
+        (vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
+
         testOutput(baseErrors, myFile)
     }
     
@@ -720,20 +740,21 @@ for (def fileNum : (start..end)) {
     
     // Insert errors into en_tn_50-EPH.tsv
     if (fileNum == 0) {
+        columns = ['Occurrence']
 
-		columns = ['Occurrence']
-		CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+        CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
-		searchFor('ab01')
+        searchFor('ab01')
 
         // Insert 889 error
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_SupportReference_SearchId'), 'figs-doublenegative')
 
         // Insert 792 error
         WebUI.setText(findTestObject('Page_tCC translationNotes/text_Occurrence_SearchId'), '2')
-		
-		columns = ['Occurrence']
-		CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
+
+        columns = ['Occurrence']
+
+        CustomKeywords.'unfoldingWord_Keywords.ManageTNColumns.toggleColumn'(columns)
 
         WebUI.sendKeys(null, Keys.chord(Keys.TAB))
 
@@ -755,8 +776,8 @@ for (def fileNum : (start..end)) {
         // Rerun the validation
         initSize = vSize
 
-		(vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
-		
+        (vSize, newPrioritys, newErrors, newMessages, myFile) = runValidation(initSize, testFile)
+
         prioritys = ['889', '886', '950', '792']
 
         errors = []
@@ -803,7 +824,6 @@ for (def fileNum : (start..end)) {
     }
     
     WebUI.closeBrowser()
-	
 }
 
 // Add the timings to a global list to be output to the log file when running from a test suite
@@ -841,47 +861,54 @@ GlobalVariable.expectedErrors = expectedCount
 
 GlobalVariable.scriptRunning = false
 
-WebUI.closeBrowser() 
-
-def parseFile (aFile) {
-	errs = []
-	priors = []
-	msgs = []
-	
-//	println(aFile)
-	File file = new File(aFile)
-	file.withReader { reader ->
-		while ((line = reader.readLine()) != null) {
+WebUI.closeBrowser() //	println(aFile)
 //			println(line)
-			int[] commas = line.findIndexValues({
-				it == ','
-			})
-			
-			count = commas.size()
-			if (count < 7) {
-				println('#################### not enough commas in line ' + line)
-			}
-			
-			err = line.substring(commas[0]+1, commas[6])
-			errs.add(err)
-			
-			prior = line.substring(0,commas[0])
 //			println('prior:' + prior)
-			priors.add(prior)
-			
-			if (count > 8) {
-				msg = line.substring(commas[7]+1, commas[8])
-			} else {
-				msg = line.substring(commas[7]+1)
-			}
 //			println('msg:' + msg)
-			msgs.add(msg)
-
 //			println(prior + ':' + err + ':' + msg)
-			
-		}
-	}
-	return [priors,errs,msgs]
+
+//WebUI.verifyElementClickable(findTestObject('Page_tCC translationNotes/button_onOpenValidator_Close'))
+
+def parseFile(def aFile) {
+    errs = []
+
+    priors = []
+
+    msgs = []
+
+    File file = new File(aFile)
+
+    file.withReader({ def reader ->
+            while ((line = reader.readLine()) != null) {
+                int[] commas = line.findIndexValues({ 
+                        it == ','
+                    })
+
+                count = commas.size()
+
+                if (count < 7) {
+                    println('#################### not enough commas in line ' + line)
+                }
+                
+                err = line.substring((commas[0]) + 1, commas[6])
+
+                errs.add(err)
+
+                prior = line.substring(0, commas[0])
+
+                priors.add(prior)
+
+                if (count > 8) {
+                    msg = line.substring((commas[7]) + 1, commas[8])
+                } else {
+                    msg = line.substring((commas[7]) + 1)
+                }
+                
+                msgs.add(msg)
+            }
+        })
+
+    return [priors, errs, msgs]
 }
 
 def test4Expected(def testFile, def row) {
@@ -908,7 +935,7 @@ def getValidationFiles(def testFile) {
     vFiles = []
 
     files.each({ def file ->
-            if (file.contains('Validation-' + testFile) && file.substring(file.length()-3) == 'csv') {
+            if (file.contains('Validation-' + testFile) && (file.substring(file.length() - 3) == 'csv')) {
                 vFiles.add(file)
             }
         })
@@ -956,11 +983,10 @@ def runValidation(def initSize, def testFile) {
 
         myFile = ((dirName + '/') + myFile)
 
-		(newPrioritys, newErrors, newMessages) = parseFile(myFile)
-		
+        (newPrioritys, newErrors, newMessages) = parseFile(myFile)
     }
     
-	return [vSize, newPrioritys, newErrors, newMessages, myFile]
+    return [vSize, newPrioritys, newErrors, newMessages, myFile]
 }
 
 def testOutput(def baseLines, def myFile) {
@@ -996,39 +1022,37 @@ def testOutput(def baseLines, def myFile) {
         })
 }
 
-def searchFor(value) {
-	WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
-	
-	WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), value)	
+def searchFor(def value) {
+    WebUI.click(findTestObject('Page_tCC translationNotes/button_Search'))
+
+    WebUI.setText(findTestObject('Page_tCC translationNotes/input_Search'), value)
 }
 
-def closeAndSearchFor(value) {
-	WebUI.scrollToPosition(0, 0)
-	
-	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+def closeAndSearchFor(def value) {
+    WebUI.scrollToPosition(0, 0)
 
-	WebUI.delay(1)
-	
-	searchFor(value)
+    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_SearchCloseX'))
+
+    WebUI.delay(1)
+
+    searchFor(value)
 }
 
-def testBaseRow(row) {
-	testCount++
+def testBaseRow(def row) {
+    testCount++
 
-	if (!fixedRows.contains(row)) {
+    if (!(fixedRows.contains(row))) {
+        errorFlag = true
 
-		errorFlag = true
+        errorCount++
 
-		errorCount++
+        prefix = test4Expected(testFile, row)
+    } else {
+        errorFlag = false
 
-		prefix = test4Expected(testFile, row)
-		
-	} else {
-		errorFlag = false
-		
-		passCount++
-		
-	}
-			
-	return errorFlag
+        passCount++
+    }
+    
+    return errorFlag
 }
+

@@ -31,6 +31,9 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 // - GOOD AND BAD TWL FILES
 // - GOOD AND BAD SOURCE FILES
 
+showAlertText = true
+
+testOtherLangs = true
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
@@ -113,6 +116,10 @@ for (def fNum : (start..end)) {
 
         CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the on-open validator error does not contain expected header text when testing ' + errFiles[fNum] + '.')
     }
+	
+	if (showAlertText) {
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('\nFull alert text for ' + errFiles[fNum] + ' is:\n' + alertHeader + '\n' + alertText + '\n')
+	}
     
     xPath = '/html/body/div[2]/div[3]/div/div[2]/p'
 
@@ -214,26 +221,28 @@ WebUI.closeBrowser()
 // Restore the saved version of the file before exit
 CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, GlobalVariable.validateUser, GlobalVariable.validatePassword)
 
-// Test other languages
-langFiles.each({ def language, def files ->
-        files.each({ def file ->
-                WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-                        , ('$password') : GlobalVariable.validatePassword, ('file') : file, ('language') : language], FailureHandling.STOP_ON_FAILURE)
-
-                if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, 
-                    FailureHandling.OPTIONAL)) {
-                    println((('ERROR: On-open validator reports problems with ' + language) + ' file ') + file)
-
-                    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((('Test failed because the on-open validator reports a problems with ' + 
-                        language) + ' file ') + file) + '.')
-					alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
-					CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Message text is: \n' + alertText + '\n')
-
-                }
-            })
-
-        WebUI.closeBrowser()
-    })
+if (testOtherLangs) {
+	// Test other languages
+	langFiles.each({ def language, def files ->
+	        files.each({ def file ->
+	                WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+	                        , ('$password') : GlobalVariable.validatePassword, ('file') : file, ('language') : language], FailureHandling.STOP_ON_FAILURE)
+	
+	                if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, 
+	                    FailureHandling.OPTIONAL)) {
+	                    println((('ERROR: On-open validator reports problems with ' + language) + ' file ') + file)
+						
+	                    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((('Test failed because the on-open validator reports a problems with ' + 
+	                        language) + ' file ') + file) + '.')
+						alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
+						CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Message text is: \n' + alertText + '\n')
+	
+	                }
+	            })
+	
+	        WebUI.closeBrowser()
+	    })
+}
 
 GlobalVariable.scriptRunning = false
 

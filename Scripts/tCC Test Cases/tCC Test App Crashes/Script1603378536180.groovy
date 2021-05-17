@@ -113,23 +113,30 @@ WebUI.closeBrowser()
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_08-RUT.tsv'], FailureHandling.STOP_ON_FAILURE)
 
-println('>>>>>>>>> Testing for app crash after paging forward twice. ISSUE 463')
+if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/button_validator_Message_Close'), 1, FailureHandling.OPTIONAL)) {
 
-WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
-
-WebUI.delay(2)
-
-WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
-
-if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
-    println('ERROR: Repo chip is not present after paging forward twice')
-
-    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the repo chip is not present after paging forward twice. Assuming app crashed.')
+	println('>>>>>>>>> Testing for app crash after paging forward twice. ISSUE 463')
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
+	
+	WebUI.delay(2)
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/button_NextPage'))
+	
+	if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
+	    println('ERROR: Repo chip is not present after paging forward twice')
+	
+	    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the repo chip is not present after paging forward twice. Assuming app crashed.')
+	} else {
+	    println('App did not crash after paging forward twice.')
+	}
+	
+	WebUI.delay(2)
 } else {
-    println('App did not crash after paging forward twice.')
+	msg = '>>>>>>>>> Testing for app crash after paging forward twice, ISSUE 463, was bypassed because of on-open validation errors'
+	println(msg)
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
 }
-
-WebUI.delay(2)
 
 WebUI.closeBrowser()
 

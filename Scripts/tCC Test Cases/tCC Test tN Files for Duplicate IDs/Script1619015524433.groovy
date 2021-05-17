@@ -21,6 +21,7 @@ import java.awt.datatransfer.Clipboard as Clipboard
 import java.awt.datatransfer.Transferable as Transferable
 import java.awt.datatransfer.DataFlavor as DataFlavor
 import java.awt.Toolkit as Toolkit
+import com.kms.katalon.core.configuration.RunConfiguration as RC
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
@@ -40,6 +41,8 @@ epistleBooks = filesPath + 'Epistle_Books.csv'
 
 myBooks = ntBooks
 
+errorsOnly = true 
+
 testFiles = []
 
 new File(myBooks).splitEachLine(',', { def fields ->
@@ -54,11 +57,29 @@ new File(myBooks).splitEachLine(',', { def fields ->
 		testFiles.add(bookNum + '-' + bookAbrv)
 	})
 
-//testFiles = ['63-1JN']
+//testFiles = ['43-LUK']
 
-masterBase = 'https://git.door43.org/Door43-Catalog/en_tn/src/branch/master/'
+executionProfile = RC.getExecutionProfile()
 
-myRepoBase = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/'
+if (executionProfile.indexOf('Develop') >= 0) {
+	server = 'qa'
+} else if (executionProfile.indexOf('Production') >= 0) {
+	server = 'git'
+} else {
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the server is indeterminate. Execution profile is ' + executionProfile + '.')
+}
+
+userTCC = 'tcc001'
+
+userTC = 'tc01'
+
+user = userTC
+
+catalogBase = 'https://' + server + '.door43.org/Door43-Catalog/en_tn/src/branch/master/'
+
+myRepoBase = 'https://' + server + '.door43.org/translate_test/en_tn/src/branch/' + user + '-tc-create-1/'
+
+uWBase = 'https://' + server + '.door43.org/unfoldingWord/en_tn/src/branch/master/'
 
 repoBase = myRepoBase
 
@@ -67,6 +88,9 @@ repoBase = myRepoBase
 WebUI.openBrowser('')
 
 WebUI.maximizeWindow()
+
+CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('Testing files in repo ' + repoBase)
+
 
 testFiles.each { book ->
 	
@@ -138,7 +162,7 @@ def getRowIDs(file) {
 		r ++
 	})
 	
-	if (dupCount < 1) { 
+	if (dupCount < 1 && !errorsOnly) { 
 		msg = 'No duplicate IDs found in ' + file
 		println(msg)
 		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
