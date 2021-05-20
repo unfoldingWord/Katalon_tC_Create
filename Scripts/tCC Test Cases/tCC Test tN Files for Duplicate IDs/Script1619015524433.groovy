@@ -57,7 +57,7 @@ new File(myBooks).splitEachLine(',', { def fields ->
 		testFiles.add(bookNum + '-' + bookAbrv)
 	})
 
-//testFiles = ['43-LUK']
+//testFiles = ['08-RUT']
 
 executionProfile = RC.getExecutionProfile()
 

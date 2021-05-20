@@ -76,6 +76,11 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
+      <initValue>'twl_TIT.tsv'</initValue>
+      <name>tWLFile</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
       <initValue>false</initValue>
       <name>scriptRunning</name>
    </GlobalVariableEntity>

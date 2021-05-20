@@ -24,7 +24,7 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 if (binding.hasVariable('file') && file.contains('.tsv')) {
 	myFile = file
 } else {
-	myFile = GlobalVariable.tNFile
+	myFile = GlobalVariable.tWLFile
 }
 println('tN file is ' + myFile)
 
@@ -37,8 +37,8 @@ println('language is ' + myLanguage)
 
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
-if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : 'translate_test', ('language') : myLanguage, ('file') : myFile,
-         ('resource') : '/en_tn'], FailureHandling.STOP_ON_FAILURE) == false) {
+if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : 'unfoldingWord', ('language') : myLanguage, ('file') : myFile,
+         ('resource') : '/en_twl'], FailureHandling.STOP_ON_FAILURE) == false) {
     KeywordUtil.markFailed('Exiting script because organization was not found..')
 
     WebUI.closeBrowser()

@@ -36,14 +36,14 @@ if (language == '') {
 
 println('Choosing organization ' + organization)
 
-if (WebUI.waitForElementPresent(findTestObject('Page_tC Create/listOrg_Parmed', [('organization') : organization]), 5, FailureHandling.OPTIONAL) == false) {
+if (WebUI.waitForElementPresent(organization, 5, FailureHandling.OPTIONAL) == false) {
 	println('Failed to find organization option. Suspect infinite spinner')
 
 	WebUI.takeScreenshot()
 
 	return false
 } else {
-	WebUI.click(findTestObject('Object Repository/Page_tC Create/listOrg_Parmed', [('organization') : organization]))
+	WebUI.click(organization)
 
 	alerted = WebUI.waitForAlert(2)
 

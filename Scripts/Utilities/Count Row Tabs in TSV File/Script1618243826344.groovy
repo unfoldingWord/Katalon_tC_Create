@@ -17,26 +17,64 @@ import internal.GlobalVariable as GlobalVariable
 
 import org.apache.commons.lang3.StringUtils
 
+tnHeader = 'Book	Chapter	Verse	ID	SupportReference	OrigQuote	Occurrence	GLQuote	OccurrenceNote'
 
-myFile = '/Users/cckozie/Downloads/ru_tn_57-TIT.tsv'
+twlHeader = 'Reference	ID	Tags	OrigWords	Occurrence	TWLink'
 
-rows = 0
+baseDir = '/Users/cckozie/git/Katalon_tC_Create/Data Files'
 
-errCount = 0
+List files = new File(baseDir).list()
 
-new File(myFile).eachLine { line ->
-		
-	count = StringUtils.countMatches(line, '\t')
+testFiles = []
+
+files.each({ def file ->
+		if (!file.contains('SAVE') && !file.contains('copy') && (file.substring(file.length() - 3) == 'tsv')) {
+			testFiles.add(file)
+		}
+	})
+
+testFiles.each { file ->
+//for (file in test)
 	
-	if (count != 8) {
-		count = 'ERROR ' + count
-		errCount ++
+	myFile = baseDir + '/' + file
+	
+	tabs = 8
+	
+	if (file.contains('twl')) {
+		tabs = 5
 	}
 	
-	line = line.replace('\t', '[TAB]')
-	println(count + ':' + line)
+	println('\nTesting ' + file + ', should have ' + tabs + ' tabs.')
+	
+	rows = 0
+	
+	errCount = 0
+	
+	row = 1
+	
+	new File(myFile).eachLine { line ->
+			
+		count = StringUtils.countMatches(line, '\t')
 		
-	rows ++
+		if (row == 1) {
+			line = line.trim()
+			if (tabs == 8 && line != tnHeader || tabs == 5 && line != twlHeader) {
+				println('Bad or missing header')
+				errCount ++
+			}
+		}
+		
+		if (count != tabs) {
+			count = 'ERROR ' + count
+			errCount ++
+			line = line.replace('\t', '[TAB]')
+			println('Row ' + row + ' has ' + count + ' tabs:' + line)
+		}
+			
+		rows ++
+		
+		row ++
+	}
+	println(rows + ' rows processed')
+	println(errCount + ' errors were found\n')
 }
-println(rows + ' rows processed')
-println(errCount + ' errors were found')

@@ -22,67 +22,28 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 // 02/16/21	Modified to work in both Develop and Production
 // 03/04/21 Modified to test additional language files
 // 05/11/21 Modified for on-open validation of both source and target files
-// 05/18/21 Added support for twl files and testing correctness of error messages
 
+// NEED TO UPDATE TO LOOK FOR CURRENT VALIDATOR MESSAGE HEADER TEXT
+// NEED TO VERIFY THAT CURRENT FOUND ERRORS ARE LEGITIMATE
 // NEED TO REVIEW TEARDOWN MESSAGES
 
 // NEED UPDATES TO TEST:
+// - GOOD AND BAD TWL FILES
 // - GOOD AND BAD SOURCE FILES
 
-showAlertText = false
+showAlertText = true
 
 testOtherLangs = true
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
-// All error files to test
-errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv',
-	'en_twl_TIT-missing_header.tsv', 'en_twl_TIT-bad-header.tsv', 'en_twl_TIT-missing_tabs.tsv', 'en_twl_TIT-extra_tabs.tsv']
+errFiles = ['en_tn_57-TIT-header_missing.tsv']//, 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv']
 
-// Error file alert messages
-alertTexts = ['On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"TIT, front, intro, m2jl, , ab, 0, , # Introduction to Titus<br><br>## Part 1: Ge..."   \
-On line 1 Headers different at character 1: B (x42) vs T (x54)   \
-On line 1 TSV Header has incorrect length, should be 82; found 3027',
-
-'On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, Quote, Occurren..."   \
-On line 1 Headers different at character 61: G (x47) vs Q (x51)   \
-On line 1 TSV Header has incorrect length, should be 82; found 80',
-
-'On line 35 Not enough columns, expecting 9, found 8',
-
-'On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"Book, Chpt, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, Occurrenc..."   \
-On line 1 Headers different at character 8: a (x61) vs p (x70)   \
-On line 1 TSV Header has incorrect length, should be 82; found 79   \
-On line 22 Not enough columns, expecting 9, found 8   \
-On line 26 Not enough columns, expecting 9, found 8   \
-On line 98 Not enough columns, expecting 9, found 8   \
-On line 187 Row ID is a duplicate of ID on row 26   \
-On line 187 Too many columns, expecting 9, found 10',
-
-'On line 1 Bad TSV Header, expecting:"Reference, ID, Tags, OrigWords, Occurrence, TWLink", found:"1:1, trr8, name, Παῦλος, 1, rc://*/tw/dict/bi..."   \
-On line 1 Headers different at character 1: R (x52) vs 1 (x31)   \
-On line 1 TSV Header has incorrect length, should be 45; found 54',
-
-'On line 1 Bad TSV Header, expecting:"Reference, ID, Tags, OrigWords, Occurrence, TWLink", found:"Reference, ID, Tags, OrigWords, Occurrence, O..."   \
-On line 1 Headers different at character 40: T (x54) vs O (x4F)   \
-On line 1 TSV Header has incorrect length, should be 45; found 53',
-
-'On line 12 Not enough columns, expecting 6, found 5   \
-On line 18 Not enough columns, expecting 6, found 4   \
-On line 47 Not enough columns, expecting 6, found 5',
-
-'On line 19 Too many columns, expecting 6, found 7   \
-On line 47 Too many columns, expecting 6, found 7']
-
-// Files expecting source errors
-sourceErrs = []
+saveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
 // Alternate languages/files to test
 langFiles = [('ru') : ['en_tn_57-TIT.tsv', 'en_tn_65-3JN.tsv', 'en_tn_08-RUT.tsv'], ('hi') : ['en_tn_57-TIT.tsv', 'en_tn_67-REV']]
-
-tnSaveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
-
-twlSaveFile = (baseDir + 'en_twl_TIT-SAVE.tsv')
+langFiles = [('ru') : ['en_tn_08-RUT.tsv']]
 
 if (GlobalVariable.url == 'create.translationcore.com') {
     server = 'git'
@@ -90,11 +51,10 @@ if (GlobalVariable.url == 'create.translationcore.com') {
     server = 'qa'
 }
 
-tnURL = (('https://' + server) + '.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv')
-twlURL = (('https://' + server) + '.door43.org/unfoldingWord/en_twl/src/branch/tcc001-tc-create-1/twl_TIT.tsv')
+//myURL = 'https://qa.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv'
+myURL = (('https://' + server) + '.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv')
 
-targetErrorHeader = 'This file cannot be opened by tC Create as there are errors in the target file. Please contact your administrator to address the following error(s)'
-sourceErrorHeader = 'This file cannot be opened by tC Create as there are errors in the Master file. Please contact your administrator to address the following error(s)'
+errorHeader = 'This file cannot be opened by tC Create. Please contact your administrator to address the following error(s).'
 
 start = 0
 
@@ -126,15 +86,6 @@ if (1 == 2) {
 
 //----------------------------------------------------------------------------------------------------------------------------------
 for (def fNum : (start..end)) {
-	
-	if (errFiles[fNum].substring(3,5) == 'tn') {
-		fileType = 'tn'
-		myURL = tnURL
-	} else {
-		fileType = 'twl'
-		myURL = twlURL
-	}
-	
     errFile = (baseDir + (errFiles[fNum]))
 
     WebUI.closeBrowser()
@@ -146,14 +97,9 @@ for (def fNum : (start..end)) {
 
     WebUI.delay(1)
 
-	if (fileType == 'tn') {
-	    WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-	            , ('$password') : GlobalVariable.validatePassword, ('file') : 'GlobalVariable.tNFile]'], FailureHandling.STOP_ON_FAILURE)
-	} else  {
-		WebUI.callTestCase(findTestCase('tCC Components/tCC tWL Open For Edit'), [('$username') : GlobalVariable.validateUser
-			, ('$password') : GlobalVariable.validatePassword, ('file') : 'GlobalVariable.tWLFile]'], FailureHandling.STOP_ON_FAILURE)
-	}
-	
+    WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+            , ('$password') : GlobalVariable.validatePassword, ('file') : 'GlobalVariable.tNFile]'], FailureHandling.STOP_ON_FAILURE)
+
     currentWindow = WebUI.getWindowIndex()
 
     WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'), 5)
@@ -166,29 +112,14 @@ for (def fNum : (start..end)) {
 
     println('Alert text:' + alertText)
 
-	if (sourceErrs.contains(fNum)) {
-		errorHeader = sourceErrorHeader
-	} else {
-		errorHeader = targetErrorHeader
-	}
-	
     if (!(alertHeader.contains(errorHeader))) {
         println('ERROR: On-open validator error does not contain expected header text')
 
         CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the on-open validator error does not contain expected header text when testing ' + errFiles[fNum] + '.')
     }
 	
-	alertText = alertText.replaceAll('\n', '')
-	alertText = alertText.trim()
-	println('Alert text length is ' + alertText.length())
-	println('Expected text length is ' + alertTexts[fNum].length())
-	if (alertText != alertTexts[fNum]) {
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('\n Unexpected alert text for ' + errFiles[fNum] + '\nExpected:\n' + alertTexts[fNum] + '\nFound:\n' + alertText + '\n')
-//		return false
-	}
-	
 	if (showAlertText) {
-		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('\nFull alert text for ' + errFiles[fNum] + ' is:\n' + alertHeader + '\n' + alertText + '\n')
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('\nFull alert text for ' + errFiles[fNum] + ' is:\n' + alertHeader + '\n' + alertText + '\n')
 	}
     
     xPath = '/html/body/div[2]/div[3]/div/div[2]/p'
@@ -288,48 +219,18 @@ if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_v
 
 WebUI.closeBrowser()
 
-// Restore the saved version of the files before exit
-CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(tnURL, tnSaveFile, GlobalVariable.validateUser, GlobalVariable.validatePassword)
-
-CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(twlURL, twlSaveFile, GlobalVariable.validateUser, GlobalVariable.validatePassword)
+// Restore the saved version of the file before exit
+CustomKeywords.'unfoldingWord_Keywords.WorkWithRepo.replaceRepoContent'(myURL, saveFile, GlobalVariable.validateUser, GlobalVariable.validatePassword)
 
 if (testOtherLangs) {
 	// Test other languages
 	langFiles.each({ def language, def files ->
-        files.each({ def file ->
-//	language = 'ru'
-//	file = 'en_tn_08-RUT.tsv'
-	
+	        files.each({ def file ->
 	                WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
 	                        , ('$password') : GlobalVariable.validatePassword, ('file') : file, ('language') : language], FailureHandling.STOP_ON_FAILURE)
-
-					errState = WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, 
-	                    FailureHandling.OPTIONAL)
-					
-					if (file == 'en_tn_08-RUT.tsv') {
-						
-						if (!errState) {
-							println('ERROR: On-open validator failed to report a duplicate ID in ' + language + ' file ' + file)
-							
-							CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed failed to report a duplicate ID in ' + language + ' file ' + file + '.')
-							
-						} else {
-							
-							alertText = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Error_Msg_2'))
-							
-							if (!alertText.contains('duplicate of ID')) {
-								println('ERROR: On-open validator failed to report a duplicate ID in ' + language + ' file ' + file)
-								
-								CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed failed to report a duplicate ID in ' + language + ' file ' + file + '.')
-								
-							} else {
-								CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'('Duplicate IDs found as expected in source of Russian ' + file)
-							}
-							
-						}
-						
-					} else if (errState) {
-						
+	
+	                if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, 
+	                    FailureHandling.OPTIONAL)) {
 	                    println((('ERROR: On-open validator reports problems with ' + language) + ' file ') + file)
 						
 	                    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(((('Test failed because the on-open validator reports a problems with ' + 
@@ -340,10 +241,9 @@ if (testOtherLangs) {
 	                }
 	            })
 	
-	        WebUI.closeBrowser()
+//	        WebUI.closeBrowser()
 	    })
 }
 
 GlobalVariable.scriptRunning = false
-WebUI.closeBrowser()
 

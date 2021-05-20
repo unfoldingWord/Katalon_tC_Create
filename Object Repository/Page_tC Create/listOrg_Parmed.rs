@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>listOrg_translate_test</name>
+   <name>listOrg_Parmed</name>
    <tag></tag>
-   <elementGuidId>02bfa44f-564b-49af-bff8-76862fb52cb4</elementGuidId>
+   <elementGuidId>03b5415d-177e-4355-8f1c-9fb0033b4c3d</elementGuidId>
    <selectorCollection>
       <entry>
          <key>CSS</key>
@@ -15,7 +15,7 @@
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//*[(text() = 'translate_test' or . = 'translate_test')]</value>
+         <value>//*[(text() = '${organization}' or . = '${organization}')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
@@ -39,7 +39,7 @@
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>translate_test</value>
+      <value>${organization}</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>

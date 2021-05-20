@@ -25,13 +25,15 @@ import org.openqa.selenium.Keys as Keys
 import groovy.time.*
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-a = ['Priority', 251, 252, 450, 104, 104, 104]
-a.removeAll('Priority')
+expected = 'On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"TIT, front, intro, m2jl, , ab, 0, , # Introduction to Titus<br><br>## Part 1: Ge..."   On line 1 Headers different at character 1: B (x42) vs T (x54)   On line 1 TSV Header has incorrect length, should be 82; found 3027'
+found = 'On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"TIT, front, intro, m2jl, , ab, 0, , # Introduction to Titus<br><br>## Part 1: Ge..."   On line 1 Headers different at character 1: B (x42) vs T (x54)   On line 1 TSV Header has incorrect length, should be 82; found 3027'
 
-b = [450]
-
-for (c in b) {
-	if (a.contains(c)) {
-		println('yes')
+l = 0
+for (c in expected) {
+	ordExp = (int) c
+	ordFnd = (int) found[l]
+	if (ordExp != ordFnd) {
+		println('Character number ' + l + ' does not match. ' + c + ':' + ordExp + ' vs ' + found[l] + ':' + ordFnd)
 	}
+	l ++
 }
