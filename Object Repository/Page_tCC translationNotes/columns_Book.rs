@@ -9,11 +9,15 @@
          <key>CSS</key>
       </entry>
       <entry>
+         <key>BASIC</key>
+         <value>//*[@type = 'checkbox' and @value = 'Book']</value>
+      </entry>
+      <entry>
          <key>XPATH</key>
          <value>//input[@value='Book']</value>
       </entry>
    </selectorCollection>
-   <selectorMethod>XPATH</selectorMethod>
+   <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
       <isSelected>false</isSelected>
@@ -44,7 +48,7 @@
       <value>false</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>value</name>
       <type>Main</type>

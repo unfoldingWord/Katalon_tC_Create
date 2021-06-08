@@ -191,6 +191,11 @@ for (def fNum : (start..end)) {
 		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('\nFull alert text for ' + errFiles[fNum] + ' is:\n' + alertHeader + '\n' + alertText + '\n')
 	}
     
+	///////// May want to consider using this instead of hard coded xPath//////
+	////TestObject tObj = findTestObject('Card_Settings/checkbox_Book')
+	////println "${tObj.findPropertyValue('xpath')}"
+	///////////
+
     xPath = '/html/body/div[2]/div[3]/div/div[2]/p'
 
     WebDriver driver = DriverFactory.getWebDriver()

@@ -18,22 +18,21 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-edit = true
+edit = false
 test = true
 
 //testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
 //testFiles = ['en_tn_42-MRK.tsv'] //,  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
 //testFiles = ['en_tn_16-NEH.tsv']
-//testFiles = ['en_tn_50-EPH.tsv']
+testFiles = ['en_tn_50-EPH.tsv']
 //testFiles = ['en_tn_43-LUK.tsv']
-testFiles = ['en_tn_55-1TI.tsv']
 
 repo = 'git'
 
 user = 'tcc001'
 
-//for (file in testFiles) {
-	testFiles.each { file ->
+for (file in testFiles) {
+//	testFiles.each { file ->
 	
 	if (edit) {
 	
@@ -49,7 +48,15 @@ user = 'tcc001'
 		    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the initial rows per page is set to ' + 
 		        rows) + ' when it should be 25.')
 		}
-				
+		
+		displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
+		
+		rowsList = [50, 100, 25, 10]
+		
+		//	WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
+		//	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
+		displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+		
 		// Count the number of SupportReference fields on the screen (this counts both from the source and target)
 		List elements = WebUI.findWebElements(new TestObject().addProperty('xpath', ConditionType.EQUALS, '//*[@class = \'MuiTypography-root-114 jss255 MuiTypography-subtitle2-126 MuiTypography-colorTextSecondary-140 MuiTypography-alignLeft-129\' and (text() = \'SupportReference\' or . = \'SupportReference\')]'), 
 		    10)
@@ -97,13 +104,17 @@ user = 'tcc001'
 		
 		myRow = row + 1
 		
+		println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 		while (!(atEnd) && (pages < 250)) {
 			
+//		    myRow += 1
+		
+			println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 			myID = 'unknown'
 		    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]), FailureHandling.OPTIONAL)
 		
-			myText = ((('Testing-row-' + myRow) + '-ID=') + myID)
-	
+		    myText = ((('Testing row ' + myRow) + ' ID = ') + myID)
+		
 		    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
 		        myText, FailureHandling.OPTIONAL)
 			
@@ -115,6 +126,9 @@ user = 'tcc001'
 			if (row >= 26) {
 			    row = 1
 				
+//				myRow 
+			
+				println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 			    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
 			
 			    count = 0

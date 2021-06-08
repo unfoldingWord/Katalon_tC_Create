@@ -18,22 +18,21 @@ import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 import com.kms.katalon.core.testobject.ConditionType as ConditionType
 
-edit = true
+edit = false
 test = true
 
 //testFiles = ['en_tn_23-ISA.tsv', 'en_tn_42-MRK.tsv',  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
 //testFiles = ['en_tn_42-MRK.tsv'] //,  'en_tn_44-JHN.tsv', 'en_tn_45-ACT.tsv', 'en_tn_46-ROM.tsv', 'en_tn_47-1CO.tsv', 'en_tn_48-2CO.tsv']
 //testFiles = ['en_tn_16-NEH.tsv']
 //testFiles = ['en_tn_50-EPH.tsv']
-//testFiles = ['en_tn_43-LUK.tsv']
-testFiles = ['en_tn_55-1TI.tsv']
+testFiles = ['en_tn_43-LUK.tsv']
 
 repo = 'git'
 
 user = 'tcc001'
 
-//for (file in testFiles) {
-	testFiles.each { file ->
+for (file in testFiles) {
+//	testFiles.each { file ->
 	
 	if (edit) {
 	
@@ -49,7 +48,15 @@ user = 'tcc001'
 		    CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(('Test failed because the initial rows per page is set to ' + 
 		        rows) + ' when it should be 25.')
 		}
-				
+		
+		displayRows = WebUI.getText(findTestObject('Page_tCC translationNotes/text_RowsOnPage'))
+		
+		rowsList = [50, 100, 25, 10]
+		
+		//	WebUI.click(findTestObject('Page_tCC translationNotes/list_RowsPerPage'))
+		//	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : rows]))
+		displayRows = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/text_RowsOnPage'))
+		
 		// Count the number of SupportReference fields on the screen (this counts both from the source and target)
 		List elements = WebUI.findWebElements(new TestObject().addProperty('xpath', ConditionType.EQUALS, '//*[@class = \'MuiTypography-root-114 jss255 MuiTypography-subtitle2-126 MuiTypography-colorTextSecondary-140 MuiTypography-alignLeft-129\' and (text() = \'SupportReference\' or . = \'SupportReference\')]'), 
 		    10)
@@ -97,13 +104,17 @@ user = 'tcc001'
 		
 		myRow = row + 1
 		
+		println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 		while (!(atEnd) && (pages < 250)) {
 			
+//		    myRow += 1
+		
+			println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 			myID = 'unknown'
 		    myID = WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/last_ID', [('line') : row]), FailureHandling.OPTIONAL)
 		
-			myText = ((('Testing-row-' + myRow) + '-ID=') + myID)
-	
+		    myText = ((('Testing row ' + myRow) + ' ID = ') + myID)
+		
 		    WebUI.setText(findTestObject('Object Repository/Page_tCC translationNotes/last_SupportReference', [('line') : row]), 
 		        myText, FailureHandling.OPTIONAL)
 			
@@ -115,6 +126,9 @@ user = 'tcc001'
 			if (row >= 26) {
 			    row = 1
 				
+//				myRow 
+			
+				println('\n>>>>> Row is ' + row + ', myRow is ' + myRow)
 			    WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_NextPage'))
 			
 			    count = 0
@@ -164,53 +178,66 @@ user = 'tcc001'
 
 	if (test) {
 		
-		repoLines = []
+			repoLines = []
+			
+			repoTexts = []
+			
+		// Open a second browser tab
+	//		WebUI.executeJavaScript('window.open();', [])
 		
-		repoTexts = []
+	//		currentWindow = WebUI.getWindowIndex()
 		
+		//Go to new tab
+	//		WebUI.switchToWindowIndex(currentWindow + 1)
+		
+		// Navigate to dcs repo
+		
+		//dcsRepo = 'https://qa.door43.org/translate_test/en_tn/_edit/tc01-tc-create-1/en_tn_43-LUK.tsv'
 	//	dcsRepo = 'https://git.door43.org/translate_test/en_tn/raw/branch/tcc001-tc-create-1/en_tn_43-LUK.tsv'
-//		dcsRepo = 'https://' + repo + '.door43.org/translate_test/en_tn/raw/branch/' + user + '-tc-create-1/' + file
-//		baseRepo = 'https://qa.door43.org/translate_test/en_tn/src/branch/tc01-tc-create-1/'
-		dcsRepo = 'https://' + repo + '.door43.org/translate_test/en_tn/src/branch/' + user + '-tc-create-1/' + file
-		
-		
+		dcsRepo = 'https://' + repo + '.door43.org/translate_test/en_tn/raw/branch/' + user + '-tc-create-1/' + file
+			
 		WebUI.openBrowser(null)
 		
 		WebUI.navigateToUrl(dcsRepo)
 		
-		if (WebUI.waitForElementPresent(findTestObject('Page_Git Repo/headerRow_Book'), 15)) {
+		WebUI.delay(3)
 		
-			WebUI.delay(5)
-				
-			table = WebUI.getText(findTestObject('Object Repository/Page_Git Repo/table_GitRepo'))
+		println(repoLines)
+		println(repoTexts)
+		
+		text = WebUI.getText(findTestObject('Page_Git Repo/text_Full_Repo_Raw'))
+		
+		//println(text)
+		
+		List lines = text.split( '\n' )
+		
+		l = 0
+		
+		errCount = 0
+		for (def line : repoLines) {
+//		repoLines.each { line -> 
 			
-			errorCount = 0
+			println(line)
 			
-			row = 0
-			table.splitEachLine(' ', { def fields ->
-				book = fields[0]
-				chapter = fields[1]
-				verse = fields[2]
-				id = fields[3]
-				sRef = fields[4]+fields[5]+fields[6]+fields[7]+fields[8]+fields[9]
-				if (sRef.indexOf('Testingrow') >= 0 ) {
-					if (sRef.indexOf(id) < 0) {
-						msg = 'ERROR: on row ' + (row+1) + ', ' + id + ' not found in ' + sRef + '. The ID is [' + id + '] and the SupportReference is [' + sRef + '].'
-						CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(msg)
-						return false
-						errorCount ++
-					}
-				}
-				row ++
+			text = lines[line-1]
+			
+			println(text)
+		
+		    if (!(text.contains(repoTexts[l]))) {
+				msg = (((('ERROR: repo line ' + line) + ' text is ') + text) + ', expected to find ') + (repoTexts[l])
+				CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'(msg)
+				println(msg)
 				
-			})
+				errCount ++
+		    }
+			
+			l ++
 		}
-		
-		println(errorCount + ' errors were found in ' + file + '.')
-	
-		WebUI.closeBrowser()
 	}
-
+	
+	println('\n>>>>>>>>> ' + errCount + ' misplaces edits were found in ' + file + '. >>>>>>>>>>\n')
+	
+	WebUI.closeBrowser()
 }
 
 GlobalVariable.scriptRunning = false
