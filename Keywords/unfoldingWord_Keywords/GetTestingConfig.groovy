@@ -18,6 +18,7 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
+import internal.GlobalVariable as GlobalVariable
 
 import org.openqa.selenium.Capabilities
 import org.openqa.selenium.WebDriver
@@ -54,5 +55,16 @@ public class GetTestingConfig {
 		}
 		String x1 = path1.substring(pos1+1 , path1.length()-3);
 		return(x1)
+	}
+
+	@Keyword
+	def getServer() {
+		def server
+		if (GlobalVariable.url == 'create.translationcore.com' || GlobalVariable.url.contains('stage')) {
+			server = 'git'
+		} else {
+			server = 'qa'
+		}
+		return server
 	}
 }

@@ -24,10 +24,6 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 // 05/11/21 Modified for on-open validation of both source and target files
 // 05/18/21 Added support for twl files and testing correctness of error messages
 
-// NEED TO REVIEW TEARDOWN MESSAGES
-
-// NEED UPDATES TO TEST:
-// - GOOD AND BAD SOURCE FILES
 
 showAlertText = false
 
@@ -37,7 +33,9 @@ baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
 // All error files to test
 errFiles = ['en_tn_57-TIT-header_missing.tsv', 'en_tn_57-TIT-header_error.tsv', 'en_tn_57-TIT-tab_error.tsv', 'en_tn_57-TIT-all_errors.tsv',
-	'en_twl_TIT-missing_header.tsv', 'en_twl_TIT-bad-header.tsv', 'en_twl_TIT-missing_tabs.tsv', 'en_twl_TIT-extra_tabs.tsv']
+	'en_twl_TIT-missing_header.tsv', 'en_twl_TIT-bad-header.tsv', 'en_twl_TIT-missing_tabs.tsv', 'en_twl_TIT-extra_tabs.tsv',
+	'en_tn_57-TIT-dupIds.tsv', 'en_twl_TIT-dupIds.tsv']
+
 
 // Error file alert messages
 alertTexts = ['On line 1 Bad TSV Header, expecting:"Book, Chapter, Verse, ID, SupportReference, OrigQuote, Occurrence, GLQuote, OccurrenceNote", found:"TIT, front, intro, m2jl, , ab, 0, , # Introduction to Titus<br><br>## Part 1: Ge..."   \
@@ -72,7 +70,16 @@ On line 18 Not enough columns, expecting 6, found 4   \
 On line 47 Not enough columns, expecting 6, found 5',
 
 'On line 19 Too many columns, expecting 6, found 7   \
-On line 47 Too many columns, expecting 6, found 7']
+On line 47 Too many columns, expecting 6, found 7',
+
+'On line 34 Row ID j1qq is a duplicate of ID on row undefined   \
+On line 191 Row ID j496 is a duplicate of ID on row 185   \
+On line 199 Row ID j496 is a duplicate of ID on row 185',
+
+'On line 11 Row ID f44k is a duplicate of ID on row undefined   \
+On line 164 Row ID yu3w is a duplicate of ID on row 24   \
+On line 222 Row ID yu3w is a duplicate of ID on row 24']
+
 
 // Files expecting source errors
 sourceErrs = []
@@ -84,11 +91,7 @@ tnSaveFile = (baseDir + 'en_tn_57-TIT-SAVE.tsv')
 
 twlSaveFile = (baseDir + 'en_twl_TIT-SAVE.tsv')
 
-if (GlobalVariable.url == 'create.translationcore.com') {
-    server = 'git'
-} else {
-    server = 'qa'
-}
+server = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getServer'()
 
 tnURL = (('https://' + server) + '.door43.org/translate_test/en_tn/src/branch/tcc001-tc-create-1/en_tn_57-TIT.tsv')
 twlURL = (('https://' + server) + '.door43.org/unfoldingWord/en_twl/src/branch/tcc001-tc-create-1/twl_TIT.tsv')
@@ -96,15 +99,15 @@ twlURL = (('https://' + server) + '.door43.org/unfoldingWord/en_twl/src/branch/t
 targetErrorHeader = 'This file cannot be opened by tC Create as there are errors in the target file. Please contact your administrator to address the following error(s)'
 sourceErrorHeader = 'This file cannot be opened by tC Create as there are errors in the Master file. Please contact your administrator to address the following error(s)'
 
-start = 0
+start = 8
 
 end = (errFiles.size() - 1)
 
-//end = start
+end = start + 1
 //----------------------------------------------------------------------------------------------------------------------------------
 if (1 == 2) {
     // This resets the Titus text before processing the errors, but is not necessary for production
-    WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+    WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : GlobalVariable.validateUser
             , ('$password') : GlobalVariable.validatePassword, ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
     currentWindow = WebUI.getWindowIndex()
@@ -147,11 +150,11 @@ for (def fNum : (start..end)) {
     WebUI.delay(1)
 
 	if (fileType == 'tn') {
-	    WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
-	            , ('$password') : GlobalVariable.validatePassword, ('file') : 'GlobalVariable.tNFile]'], FailureHandling.STOP_ON_FAILURE)
+	    WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : GlobalVariable.validateUser
+	            , ('$password') : GlobalVariable.validatePassword, ('organization') : 'translate_test', ('resource') : '/en_tn', ('file') : GlobalVariable.tNFile], FailureHandling.STOP_ON_FAILURE)
 	} else  {
-		WebUI.callTestCase(findTestCase('tCC Components/tCC tWL Open For Edit'), [('$username') : GlobalVariable.validateUser
-			, ('$password') : GlobalVariable.validatePassword, ('file') : 'GlobalVariable.tWLFile]'], FailureHandling.STOP_ON_FAILURE)
+		WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : GlobalVariable.validateUser
+			, ('$password') : GlobalVariable.validatePassword, ('organization') : 'unfoldingWord', ('resource') : '/en_twl', ('file') : GlobalVariable.tWLFile], FailureHandling.STOP_ON_FAILURE)
 	}
 	
     currentWindow = WebUI.getWindowIndex()
@@ -305,7 +308,7 @@ if (testOtherLangs) {
 //	language = 'ru'
 //	file = 'en_tn_08-RUT.tsv'
 	
-	                WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+	                WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : GlobalVariable.validateUser
 	                        , ('$password') : GlobalVariable.validatePassword, ('file') : file, ('language') : language], FailureHandling.STOP_ON_FAILURE)
 
 					errState = WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'), 5, 

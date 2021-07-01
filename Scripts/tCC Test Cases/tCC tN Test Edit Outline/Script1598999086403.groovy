@@ -17,7 +17,7 @@ import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
 import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 (width, height) = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getScreenResolution'()
 
@@ -61,7 +61,7 @@ WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 //Verify that the Spanish text was correctly set and saved'
 for (def i : (0..2)) {
@@ -91,7 +91,7 @@ WebUI.waitForElementNotPresent(findTestObject('Page_tCC translationNotes/button_
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 //Verify that the en text overwrote the Spanish text and was saved'
 for (def i : (0..2)) {

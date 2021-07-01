@@ -23,7 +23,7 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 // REDO THE TEST BUT THIS TIME SAVING THE FILE AFTER THE FIRST MOVE, THEN SAVING
 // REOPEN THE SAVED PROJECT, VERIFY THAT THE CHANGED ORDER WAS SAVED, THEN RESTORE TO ORIGINAL ORDER
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(1)
 
@@ -119,7 +119,7 @@ WebUI.delay(1)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(1)
 

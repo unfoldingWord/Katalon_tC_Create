@@ -95,9 +95,12 @@ public class HamburgerFunctions {
 			//		WebUI.click(findTestObject('Page_tC Create/file_Parmed'))
 
 			if (!drawerOpen) {
-				if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2)) {
-					WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'))
-					WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+				if (WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerClose'),2, FailureHandling.OPTIONAL)) {
+					if (WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'), FailureHandling.OPTIONAL)) {
+						WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+					} else {
+						retCode = false
+					}
 				} else {
 					retCode = false
 				}

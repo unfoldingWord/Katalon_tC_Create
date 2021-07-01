@@ -59,15 +59,7 @@ new File(myBooks).splitEachLine(',', { def fields ->
 
 //testFiles = ['08-RUT']
 
-executionProfile = RC.getExecutionProfile()
-
-if (executionProfile.indexOf('Develop') >= 0) {
-	server = 'qa'
-} else if (executionProfile.indexOf('Production') >= 0) {
-	server = 'git'
-} else {
-	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the server is indeterminate. Execution profile is ' + executionProfile + '.')
-}
+server = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getServer'()
 
 userTCC = 'tcc001'
 

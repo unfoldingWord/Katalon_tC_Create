@@ -37,18 +37,18 @@ if (1 == 1) {
     WebUI.delay(1)
 
     Screen s = new Screen()
-
-    if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/saveAs.png', 5)) {
+	
+	if (s.exists('/Users/cckozie/git/Katalon_tC_Create/Images/SaveAsButton.png', 5)) {
         s.click()
     }
     
-    if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/save3.png', 5)) {
+    if (s.exists('/Users/cckozie/git/Katalon_tC_Create/Images/SaveButton.png', 5)) {
         WebUI.delay(1)
 
         s.click()
     }
     
-    if (s.exists('/Users/cckozie/git/Katalon/tC Create Project/Images/replace.png', 5)) {
+    if (s.exists('/Users/cckozie/git/Katalon_tC_Create/Images/ReplaceButton.png', 5)) {
         WebUI.delay(1)
 
         s.click()

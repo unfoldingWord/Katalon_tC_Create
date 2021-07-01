@@ -21,7 +21,7 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 //						Added CustomKeywords send fail messages om failures
 //						Verified that timeout has not occurred on waiting for Save button to not be clickable
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
@@ -57,7 +57,7 @@ WebUI.verifyElementText(findTestObject('Page_tCC translationNotes/text_OrigQuote
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 

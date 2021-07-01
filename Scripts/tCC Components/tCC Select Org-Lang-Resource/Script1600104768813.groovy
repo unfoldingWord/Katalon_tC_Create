@@ -24,7 +24,12 @@ import internal.GlobalVariable as GlobalVariable
 //	- resource (string or list)
 //	- language	(if blank will use the GlobalVariable.langCode)
 
-println('resource is ' + resource)
+if (binding.hasVariable('resource')) {
+	myResource = resource
+} else {
+	myResource = '/en_tn'
+}
+println('resource is ' + myResource)
 
 if (organization == "") {
 	organization = GlobalVariable.organization
@@ -56,9 +61,9 @@ if (WebUI.waitForElementPresent(findTestObject('Page_tC Create/listOrg_Parmed', 
 
 		GlobalVariable.alertFlag = false
 		
-		if (resource instanceof List) {
+		if (myResource instanceof List) {
 			listFlag = true
-			resources = resource
+			resources = myResource
 			resource = resources[0]
 		} else {
 			listFlag = false

@@ -27,7 +27,7 @@ testFiles = ['en_tn_57-TIT.tsv']
 
 testFiles.each { file ->
 //for (file in testFiles) {
-	WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('file') : file], FailureHandling.STOP_ON_FAILURE)
+	WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('file') : file], FailureHandling.STOP_ON_FAILURE)
 	
 	WebUI.delay(15)
 	

@@ -13,6 +13,7 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
 
+import com.kms.katalon.core.configuration.RunConfiguration as RC
 import internal.GlobalVariable as GlobalVariable
 
 import com.kms.katalon.core.annotation.BeforeTestCase
@@ -60,7 +61,8 @@ class Test_Case_Teardown {
 			prefix = ' ---------------------- '
 		}
 		
-		msg = prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' ' + testCaseStatus + prefix
+		def executionProfile = RC.getExecutionProfile()
+		msg = prefix + testCaseContext.getTestCaseId() + ' on ' + GlobalVariable.version + ' running on ' + browser + ' in ' + executionProfile + ' ' + testCaseStatus + prefix
 		println(msg)
 		if (suite) {
 			File oFile = new File(fileName)

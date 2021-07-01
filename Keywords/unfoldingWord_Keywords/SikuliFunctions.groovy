@@ -59,8 +59,8 @@ class SikuliFunctions {
 		//		image = Pattern(imagePath+'SaveButton.png')
 		s.click(save)
 		//		image = Pattern(imagePath+'ReplaceButton.png')
-//		if (s.exists(return)) {
-//			s.click()
-//		}
+		//		if (s.exists(return)) {
+		//			s.click()
+		//		}
 	}
 }

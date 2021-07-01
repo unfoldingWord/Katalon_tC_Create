@@ -32,18 +32,18 @@ public class TestVersion {
 		//convert the version number to alpha to make sorting easier (e.g. '1.0.4' = 'A D'; '1.1.6' = 'AAF')
 		def vNum = ''
 		def thisVersion = GlobalVariable.version
-//		println('version:' + thisVersion)
+		//		println('version:' + thisVersion)
 		def versions = [thisVersion, testVersion]
 		def alphaVersions = []
 		for (def x : (0..1)) {
 			def version = versions[x]
 			if (x == 0) {
 				def v = version.indexOf('v')
-//				println('v:'+v)
+				//				println('v:'+v)
 				def rc = version.indexOf('-rc')
-//				println('rc:'+ rc)
+				//				println('rc:'+ rc)
 				def sp = version.indexOf(' ',v)
-//				println('sp:'+sp)
+				//				println('sp:'+sp)
 				if (rc > 0) {
 					version = version[0..rc-1]
 				} else if (sp > 0) {

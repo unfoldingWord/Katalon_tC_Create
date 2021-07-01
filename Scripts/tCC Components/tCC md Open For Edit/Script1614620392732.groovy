@@ -19,14 +19,26 @@ import com.kms.katalon.core.configuration.RunConfiguration as RunConfiguration
 
 println('>>>>> resource in tCC md Open for Edit is ' + resource)
 
-//WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password], FailureHandling.STOP_ON_FAILURE)
 WebUI.callTestCase(findTestCase('tCC Components/tCC Login'), [('user') : $username, ('password') : $password, ('newSession') : true], FailureHandling.STOP_ON_FAILURE)
 
-//resource = ['unfoldingWord/en_obs-sn', 'content/', '01/', '01.md']
+if (binding.hasVariable('organization')) {
+	myOrg = organization
+} else {
+	myOrg = GlobalVariable.organization
+}
+println('organization is ' + myOrg)
+
+if (binding.hasVariable('language')) {
+	myLanguage = language
+} else {
+	myLanguage = ''
+}
+println('language is ' + myLanguage)
+
 
 println('>>>>> resource in tCC md Open for Edit after Login is ' + resource)
 
-if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : '', ('language') : ''
+if (WebUI.callTestCase(findTestCase('tCC Components/tCC Select Org-Lang-Resource'), [('organization') : myOrg, ('language') : myLanguage
         , ('resource') : resource], FailureHandling.STOP_ON_FAILURE) == false) {
     KeywordUtil.markFailed('Exiting script because organization was not found..')
 

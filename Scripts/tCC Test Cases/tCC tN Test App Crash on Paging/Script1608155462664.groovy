@@ -21,7 +21,7 @@ import java.io.File as File
 // Loads all tN projects (all books, NT only, or custom - set myBooks) and pages to the end to test for app crash
 // THIS TEST RUNS FOR ABOUT 1 HOUR WHEN TESTING ONLY THE NEW TESTAMENT BOOKS
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
     FailureHandling.STOP_ON_FAILURE)
 
 testFiles = []
@@ -93,7 +93,7 @@ testFiles.each({ def testFile ->
 			println('ERROR: Failed to load ' + testFile)
 			CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because ' + testFile + ' failed to laod. Assume app crashed.')
 			WebUI.closeBrowser()
-			WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+			WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
 			    FailureHandling.STOP_ON_FAILURE)
 		}
     })

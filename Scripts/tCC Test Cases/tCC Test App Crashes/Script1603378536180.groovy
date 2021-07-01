@@ -26,7 +26,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
 // 03/01/21	Modified to use tCC md Open For Edit instead of tCC tA Open For Edit
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('>>>>>>>>> Testing for app crash when changing sections visible and invisible. ISSUE 365')
 
@@ -71,7 +71,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('>>>>>>>>> Testing for app crash after choosing a file from the drawer. ISSUE 428')
 
@@ -90,7 +90,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 println('>>>>>>>>> Testing for app crash when searching in tN. ISSUE 440')
 
@@ -111,7 +111,7 @@ WebUI.delay(2)
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_08-RUT.tsv'], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_08-RUT.tsv'], FailureHandling.STOP_ON_FAILURE)
 
 if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/button_validator_Message_Close'), 1, FailureHandling.OPTIONAL)) {
 
@@ -140,7 +140,7 @@ if (!WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/button
 
 WebUI.closeBrowser()
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_55-1TI.tsv'], 
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_55-1TI.tsv'], 
     FailureHandling.STOP_ON_FAILURE)
 
 println('>>>>>>>>> Testing for app crash after when adding data to deleted row. ISSUE 639')
@@ -202,6 +202,23 @@ if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5,
 }
 
 WebUI.delay(2)
+
+WebUI.closeBrowser()
+
+println('>>>>>>>>> Testing for app crash after when loading ru_tq. ISSUE 914')
+
+resource = ['en_tq', 'tit/', '01/', '01.md']
+println('>>>>> resource is ' + resource)
+
+WebUI.callTestCase(findTestCase('tCC Components/tCC md Open For Edit'), [('$username') : '', ('$password') : '', ('organization') : 'test_org', ('language') : 'ru', ('resource') : resource], FailureHandling.STOP_ON_FAILURE)
+
+if (!(WebUI.waitForElementPresent(findTestObject('Page_tC Create/chip_Repo'), 5, FailureHandling.OPTIONAL))) {
+	println('ERROR: Repo chip is not present after selecting a Russian tQ file.')
+
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because the repo chip is not present after selecting a Russian tQ file. (Issue 914)')
+} else {
+	println('App did not crash after selecting a Russian tQ file.')
+}
 
 GlobalVariable.scriptRunning = false
 

@@ -29,7 +29,7 @@ import com.kms.katalon.core.webui.driver.DriverFactory as DriverFactory
 
 String highlighted = 'rgba(255, 255, 0, 1)'
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
 
@@ -230,32 +230,42 @@ if ((system.contains('Windows') || myBrowser.contains('firefox')) || CustomKeywo
 WebUI.closeBrowser()
 
 // Test proper highlighting when Parashah Setumah marker appears in Hebrew
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_16-NEH.tsv'], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : 'en_tn_16-NEH.tsv'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_filterOpen'), 10)
-
-WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
-
-WebUI.click(findTestObject('Page_tCC translationNotes/filter_ChapterAll'))
-
-WebUI.click(findTestObject('Page_tCC translationNotes/filterOption_Chapter3'))
-
-WebUI.delay(3)
-
-WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
-
-if (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage')) != 25) {
-	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage'))
-	WebUI.delay(1)
-	WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 25]))
-	}
-
-if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
-	println('ERROR: Jericho is not highlighted')
-	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because Jericho is not highlighted in Neh 3:2.')
+if (WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/button_validator_Message_Close'), 1, FailureHandling.OPTIONAL)) {
+	msg = 'Bypassed testing proper highlighting when Parashah Setumah marker because en_tn_16-NEH.tsv has on-open validation errors.'
+	println(msg)
+	CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+	WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_validator_Message_Close'))
+	
 } else {
-	println('Jericho is highlighted as expected')
+	
+	WebUI.waitForElementClickable(findTestObject('Page_tCC translationNotes/button_filterOpen'), 10)
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterOpen'))
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/filter_ChapterAll'))
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/filterOption_Chapter3'))
+	
+	WebUI.delay(3)
+	
+	WebUI.click(findTestObject('Page_tCC translationNotes/button_filterClose'))
+	
+	if (WebUI.getText(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage')) != 25) {
+		WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/list_RowsPerPage'))
+		WebUI.delay(1)
+		WebUI.click(findTestObject('Page_tCC translationNotes/option_RowsPerPage_parmned', [('rows') : 25]))
+		}
+	
+	if (!testHighlightStatus('Page_tCC translationNotes/span_Jericho')) {
+		println('ERROR: Jericho is not highlighted')
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendFailMessage'('Test failed because Jericho is not highlighted in Neh 3:2.')
+	} else {
+		println('Jericho is highlighted as expected')
+	}
 }
+
 
 GlobalVariable.scriptRunning = false
 

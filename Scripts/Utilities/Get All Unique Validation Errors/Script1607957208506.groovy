@@ -22,7 +22,7 @@ import java.io.File as File
 // THIS SCRIPT RUNS VALIDATION ON ALL BOOKS IN THE BIBLE TO GET ALL CURRENT UNIQUE VALIDATION PRIORITY CODES
 // THIS IS USEFUL TO DEVELOP AND MAINTAIN SCRIPTS THAT DO THE VALIDATION TESTING
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
     FailureHandling.STOP_ON_FAILURE)
 
 testFiles = []

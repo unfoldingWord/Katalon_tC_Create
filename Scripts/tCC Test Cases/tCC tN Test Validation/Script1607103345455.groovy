@@ -59,11 +59,11 @@ validRefs = ['figs-', 'grammar-', 'translate-', 'writing-', 'guidelines-sonofgod
 alwaysErrors = ['450']
 
 //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-start = 10
+start = 0
 
 end = (testFiles.size() - 1)
 
-end = (start + 1)
+//end = (start + 1)
 
 testLevels = true
 
@@ -101,7 +101,7 @@ for (def fileNum : (start..end)) {
     initSize = vFiles.size()
 
     // Load the project in tN
-    WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : GlobalVariable.validateUser
+    WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : GlobalVariable.validateUser
             , ('$password') : GlobalVariable.validatePassword, ('file') : testFile], FailureHandling.STOP_ON_FAILURE)
 
     // Skip this project if there is an op-open validator error

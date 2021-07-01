@@ -368,13 +368,25 @@
    <testCaseLink>
       <guid>c1e8d52a-feed-4795-828a-4c687a24a6c6</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test Paging Performance</testCaseId>
    </testCaseLink>
    <testCaseLink>
       <guid>da09532b-97a8-40b7-9166-aa5a0f86b2fe</guid>
       <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
+      <isRun>false</isRun>
       <testCaseId>Test Cases/tCC Test Cases/tCC tN Test All Books from Drawer</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>fa40ebb5-072f-4e8f-902a-f86e2130dfc4</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>82af7ad2-9943-4d36-b2bc-022d3f40433c</variableId>
+      </variableLink>
    </testCaseLink>
 </TestSuiteEntity>

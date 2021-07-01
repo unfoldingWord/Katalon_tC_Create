@@ -29,11 +29,28 @@ WebUI.waitForElementVisible(findTestObject('Page_tC Create/icon_Lock'), 30)
 
 WebUI.delay(2)
 
+WebUI.click(findTestObject('Object Repository/Page_tC Create/input__username'))
+
+WebUI.delay(2)
+
+WebUI.mouseOver(findTestObject('Object Repository/Page_tC Create/input__username'))
+
+
 //String icnLock = '/Users/cckozie/Downloads/lockA.png'
 
 String icnLock = '/Users/cckozie/Katalon Studio/Sikuli Images/lockA.png'
 
+
 Screen s = new Screen()
+
+//s.type("+",Key.CMD)
+
+//s.type(Key.TAB)
+
+s.type('abc')
+
+WebUI.delay(2)
+
 
 //Pattern lockIcon = new Pattern(icnLock)
 
@@ -54,10 +71,11 @@ Region r = s.find(name)
 Region r1 = r.offset(((r.getX() + r.getW()) - r.getX()) + 10, 0)
 
 r1.highlight(1)
+r1.click()
 
-version = r1.text()
+//version = r1.text()
 
-println(version)
+//println(version)
 
 //WebUI.delay(2)
 

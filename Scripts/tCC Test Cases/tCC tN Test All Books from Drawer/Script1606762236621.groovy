@@ -15,26 +15,8 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], 
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : $username, ('$password') : $password, ('file') : ''], 
     FailureHandling.STOP_ON_FAILURE)
-
-if (1 == 2) {
-    numStr = ''
-
-    myFile.each({ def a ->
-            if (a.isNumber()) {
-                numStr += a
-            }
-        })
-
-    num = numStr.toInteger()
-
-    if (num < 40) {
-        OT = true
-    } else {
-        OT = false
-    }
-}
 
 baseDir = (GlobalVariable.projectPath + '/Data Files/')
 
@@ -42,6 +24,7 @@ books = []
 
 //new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/Bible_Books.csv').splitEachLine(',', { def fields ->
 //new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/NT_Books.csv').splitEachLine(',', { def fields ->
+//new File('/Users/' + GlobalVariable.pcUser + '/Katalon Studio/Files/Reference/One_Book.csv').splitEachLine(',', { def fields ->
 new File(GlobalVariable.projectPath + '/Data Files/Reference/Bible_Books.csv').splitEachLine(',', { def fields ->
         bookNum = (fields[0])
 
@@ -61,9 +44,28 @@ println(books)
 for (def book : books) {
     println('Opening ' + book)
 
-    CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'(book)
+    retCode = CustomKeywords.'unfoldingWord_Keywords.HamburgerFunctions.chooseFile'(book)
 
     WebUI.delay(2)
+	// If there was an on-open validation error, then load the default tN file before proceding with the next book from the drawer
+	if (!retCode && WebUI.verifyElementPresent(findTestObject('Page_tCC translationNotes/button_validator_Message_Close'), 1, FailureHandling.OPTIONAL)) {
+		alertHeader = WebUI.getText(findTestObject('Page_tCC translationNotes/alert_validator_Msg_Header'))
+		if (alertHeader.contains('target')) {
+			errorFile = 'TARGET'
+		} else {
+			errorFile = 'SOURCE'
+		}
+		msg = book + ' has on-open validation errors in the ' + errorFile + ' file.'
+		println(msg)
+		CustomKeywords.'unfoldingWord_Keywords.SendMessage.SendInfoMessage'(msg)
+		WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/button_validator_Message_Close'))
+		WebUI.click(findTestObject('Page_tC Create/button_DrawerClose'), FailureHandling.OPTIONAL)
+		WebUI.waitForElementVisible(findTestObject('Page_tC Create/button_DrawerOpen'), 5)
+		WebUI.click(findTestObject('Page_tC Create/resource_Parmed', [('resource') : 'unfoldingWord/en_tn']))
+		WebUI.click(findTestObject('Page_tC Create/file_Parmed', [('fileName') : GlobalVariable.tNFile]))
+		
+	}
+	
 }
 
 GlobalVariable.scriptRunning = false

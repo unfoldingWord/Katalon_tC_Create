@@ -24,7 +24,7 @@ WebUI.click(findTestObject('Page_tCC translationNotes/button_ViewColumns'))
 
 WebUI.click(findTestObject('Page_tCC translationNotes/columns_OrigQuote'))
 
-WebUI.click(findTestObject('null'))
+WebUI.click(findTestObject('Object Repository/Page_tCC translationNotes/btnX_CloseColumns'))
 
 Screen s = new Screen()
 

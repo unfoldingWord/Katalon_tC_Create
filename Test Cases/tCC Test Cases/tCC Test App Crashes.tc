@@ -2,7 +2,7 @@
 <TestCaseEntity>
    <description></description>
    <name>tCC Test App Crashes</name>
-   <tag>Issues 365, 428, 440, 463, 639</tag>
+   <tag>Issues 365, 428, 440, 463, 639, 914</tag>
    <comment></comment>
    <testCaseGuid>54a97535-ea69-4d04-bf80-d7fe81abe883</testCaseGuid>
    <variable>

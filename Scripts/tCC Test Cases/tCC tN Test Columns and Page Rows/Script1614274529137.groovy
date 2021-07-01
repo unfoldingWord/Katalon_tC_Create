@@ -24,7 +24,7 @@ import com.kms.katalon.core.testobject.ConditionType
 // 10/21/20 Modified to include test for blue bar visible on file open
 // 02/25/21 Modified to add tests for number of rows on page
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.delay(5)
 

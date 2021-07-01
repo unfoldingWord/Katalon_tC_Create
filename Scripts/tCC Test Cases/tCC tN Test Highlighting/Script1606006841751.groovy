@@ -153,7 +153,7 @@ new File('/Users/' + GlobalVariable.pcUser + '/Downloads/' + myFile).splitEachLi
         }
     })
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : myFile], 
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : myFile], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForElementPresent(findTestObject('Page_tCC translationNotes/button_ViewColumns'), 20)

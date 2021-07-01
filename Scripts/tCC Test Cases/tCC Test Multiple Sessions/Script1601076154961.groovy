@@ -21,7 +21,7 @@ import org.openqa.selenium.Keys as Keys
 system = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getOperatingSystem'()
 
 // Open Titus tN for editing
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [:], FailureHandling.STOP_ON_FAILURE)
 
 myBrowser = CustomKeywords.'unfoldingWord_Keywords.GetTestingConfig.getBrowserAndVersion'()
 
@@ -138,7 +138,7 @@ WebUI.closeBrowser()
 
 println('Testing for user alert on 404 or 403 error')
 
-WebUI.callTestCase(findTestCase('tCC Components/tCC tN Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('tCC Components/tCC tsv Open For Edit'), [('$username') : '', ('$password') : '', ('file') : ''], FailureHandling.STOP_ON_FAILURE)
 
 // Open a second browser tab
 if (myBrowser.contains('chrome')) {
