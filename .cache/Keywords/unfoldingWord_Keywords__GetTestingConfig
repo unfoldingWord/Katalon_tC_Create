@@ -6,26 +6,31 @@
       "keywordMethods": [
         {
           "name": "getOperatingSystem",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         },
         {
           "name": "getBrowserAndVersion",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         },
         {
           "name": "getScreenResolution",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         },
         {
           "name": "getTestCaseName",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         },
         {
           "name": "getServer",
-          "parameters": []
+          "parameters": [],
+          "javadoc": ""
         }
       ]
     }
   ],
-  "javadocParsed": false
+  "javadocParsed": true
 }

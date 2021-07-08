@@ -36,7 +36,7 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>findTestObject('Page_tC Create/listOrg_translate_test')</initValue>
+      <initValue>'translate_test'</initValue>
       <name>organization</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
